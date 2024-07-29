@@ -8,7 +8,7 @@
 #  iteration        :integer          not null
 #  name             :string           not null
 #  overview         :string           not null
-#  weight           :integer          not null
+#  weight           :float            not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  collection_id    :bigint           not null
@@ -21,8 +21,9 @@
 #
 #  fk_rails_...  (collection_id => collections.id)
 #
-# TODO: add activity_list, cushioning_list and support_list to controller
 class Model < ApplicationRecord
+  # Weight in grams.
+  # Heel to toe drop in millimiter
   belongs_to :collection
   has_one :brand, through: :collection
 

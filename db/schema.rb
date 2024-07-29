@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_183533) do
   create_table "models", force: :cascade do |t|
     t.string "name", null: false
     t.string "overview", null: false
-    t.integer "weight", null: false
+    t.float "weight", null: false
     t.integer "heel_to_toe_drop", null: false
     t.integer "iteration", null: false
     t.boolean "apma_accepted", null: false
