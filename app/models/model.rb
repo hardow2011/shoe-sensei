@@ -4,6 +4,7 @@
 #
 #  id               :bigint           not null, primary key
 #  apma_accepted    :boolean          not null
+#  cushioning       :integer          not null
 #  heel_to_toe_drop :integer          not null
 #  iteration        :integer          not null
 #  name             :string           not null
@@ -25,6 +26,8 @@ class Model < ApplicationRecord
   belongs_to :collection
   has_one :brand, through: :collection
 
+  enum cushioning: [:low_cushioning, :mid_cushioning, :high_cushioning]
+
   validates :heel_to_toe_drop, :iteration, :name, :weight, :overview, presence: true
   validates :apma_accepted, inclusion: [true, false]
   validates :name, uniqueness: { scope: :collection }
@@ -32,5 +35,6 @@ class Model < ApplicationRecord
   validates :heel_to_toe_drop, numericality: { greater_than_or_equal_to: 0 }
   validates :weight, numericality: { greater_than_or_equal_to: 0.1 }
   validates :iteration, uniqueness: { scope: :collection }
+  validates :cushioning, inclusion: { in: cushionings.keys }
   validates_presence_of :collection
 end
