@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_29_205146) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_29_205702) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_205146) do
   end
 
   create_table "models", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "iteration", null: false
     t.float "weight", null: false
     t.integer "heel_to_toe_drop", null: false
     t.boolean "apma_accepted", null: false
