@@ -5,7 +5,6 @@ class CreateModels < ActiveRecord::Migration[7.1]
       t.string :overview, null: false
       t.float :weight, null: false
       t.integer :heel_to_toe_drop, null: false
-      t.integer :iteration, null: false
       t.boolean :apma_accepted, null: false
       t.references :collection, null: false, foreign_key: true
 

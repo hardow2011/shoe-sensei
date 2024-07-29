@@ -5,7 +5,6 @@
 #  id               :bigint           not null, primary key
 #  apma_accepted    :boolean          not null
 #  heel_to_toe_drop :integer          not null
-#  iteration        :integer          not null
 #  name             :string           not null
 #  overview         :string           not null
 #  weight           :float            not null
@@ -31,13 +30,12 @@ class Model < ApplicationRecord
   CUSHIONING_OPTIONS = ['low', 'mid', 'high']
   SUPPORT_OPTIONS = ['neutral', 'stability']
 
-  validates :heel_to_toe_drop, :iteration, :name, :weight, :overview, presence: true
+  validates :heel_to_toe_drop, :name, :weight, :overview, presence: true
+  validates :name, uniqueness: { scope: :collection }
   validates :apma_accepted, inclusion: [ true, false ]
   validates :name, uniqueness: { scope: :collection }
-  validates :iteration, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :heel_to_toe_drop, numericality: { greater_than_or_equal_to: 0 }
   validates :weight, numericality: { greater_than_or_equal_to: 0.1 }
-  validates :iteration, uniqueness: { scope: :collection }
   validates_presence_of :collection
 
   validate :tags_validity
