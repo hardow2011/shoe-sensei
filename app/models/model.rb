@@ -6,7 +6,6 @@
 #  apma_accepted    :boolean          not null
 #  heel_to_toe_drop :integer          not null
 #  name             :string           not null
-#  overview         :string           not null
 #  weight           :float            not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -22,7 +21,7 @@
 #
 class Model < ApplicationRecord
   # Weight in grams.
-  # Heel to toe drop in millimiter
+  # Heel to toe drop in millimiters.
   belongs_to :collection
   has_one :brand, through: :collection
 
@@ -30,10 +29,9 @@ class Model < ApplicationRecord
   CUSHIONING_OPTIONS = ['low', 'mid', 'high']
   SUPPORT_OPTIONS = ['neutral', 'stability']
 
-  validates :heel_to_toe_drop, :name, :weight, :overview, presence: true
+  validates :heel_to_toe_drop, :name, :weight, presence: true
   validates :name, uniqueness: { scope: :collection }
   validates :apma_accepted, inclusion: [ true, false ]
-  validates :name, uniqueness: { scope: :collection }
   validates :heel_to_toe_drop, numericality: { greater_than_or_equal_to: 0 }
   validates :weight, numericality: { greater_than_or_equal_to: 0.1 }
   validates_presence_of :collection
@@ -56,5 +54,4 @@ class Model < ApplicationRecord
       errors.add(:support, "can't include #{tag}") if SUPPORT_OPTIONS.exclude?(tag)
     end
   end
-
 end
