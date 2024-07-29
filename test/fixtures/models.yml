@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  overview: MyString
+  weight: 1
+  heel_to_toe_drop: 1
+  iteration: 1
+  apma_accepted: false
+  collection: one
+
+two:
+  name: MyString
+  overview: MyString
+  weight: 1
+  heel_to_toe_drop: 1
+  iteration: 1
+  apma_accepted: false
+  collection: two
