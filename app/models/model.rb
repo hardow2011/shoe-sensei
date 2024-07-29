@@ -26,7 +26,7 @@ class Model < ApplicationRecord
   belongs_to :collection
   has_one :brand, through: :collection
 
-  ACTIVITY_OPTIONS = ['running', 'walking', 'standing', 'training and gym']
+  ACTIVITY_OPTIONS = ['road running', 'trail running', 'walking', 'standing', 'training and gym']
   CUSHIONING_OPTIONS = ['low', 'mid', 'high']
   SUPPORT_OPTIONS = ['neutral', 'stability']
 
