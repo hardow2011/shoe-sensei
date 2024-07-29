@@ -9,6 +9,7 @@
 #  iteration        :integer          not null
 #  name             :string           not null
 #  overview         :string           not null
+#  stability        :boolean          not null
 #  weight           :integer          not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -26,10 +27,10 @@ class Model < ApplicationRecord
   belongs_to :collection
   has_one :brand, through: :collection
 
-  enum cushioning: [:low_cushioning, :mid_cushioning, :high_cushioning]
+  enum cushioning: [ :low_cushioning, :mid_cushioning, :high_cushioning ]
 
   validates :heel_to_toe_drop, :iteration, :name, :weight, :overview, presence: true
-  validates :apma_accepted, inclusion: [true, false]
+  validates :apma_accepted, :stability, inclusion: [ true, false ]
   validates :name, uniqueness: { scope: :collection }
   validates :iteration, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :heel_to_toe_drop, numericality: { greater_than_or_equal_to: 0 }
