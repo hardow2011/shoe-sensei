@@ -1,0 +1,29 @@
+activity_road_running_tag:
+  name: road running
+
+activity_trail_running_tag:
+  name: trail running
+
+activity_walking_tag:
+  name: walking
+
+activity_standing_tag:
+  name: standing
+
+activity_training_and_gym:
+  name: training and gym
+
+cushioning_low_tag:
+  name: low
+
+cushioning_mid_tag:
+  name: mid
+
+cushioning_high_tag:
+  name: high
+
+support_neutral_tag:
+  name: neutral
+
+support_stability_tag:
+  name: stability
