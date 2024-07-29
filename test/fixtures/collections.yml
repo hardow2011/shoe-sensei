@@ -50,6 +50,11 @@ on_cloudsurfer_trail:
   overview: The On Cloudsurfer Trail is a trail running shoe that combines cushioned comfort with responsive performance. Featuring On’s signature CloudTec technology and a durable outsole, it offers a smooth, adaptive ride and reliable traction on varied trail surfaces, making it ideal for runners seeking both comfort and performance on rugged terrain.
   brand: on_running
 
+on_cloud_x:
+  name: Cloud X
+  overview: The On Cloud X line of shoes is designed for versatile performance, suitable for both running and cross-training. Combining lightweight construction with responsive cushioning, the Cloud X features a flexible and durable design. It offers a comfortable, adaptive fit, making it ideal for athletes seeking a multipurpose shoe that excels in various activities.
+  brand: on_running
+
 new_balance_fresh_foam_1080:
   name: Fresh Foam 1080
   overview: The New Balance Fresh Foam 1080 line is known for its plush cushioning and plush comfort, designed to provide a smooth and supportive ride for long-distance running. Featuring New Balance’s Fresh Foam midsole technology, the 1080 series delivers a responsive yet cushioned experience, making it ideal for runners seeking a blend of softness and performance.
