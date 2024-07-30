@@ -9,6 +9,8 @@
 #  updated_at :datetime         not null
 #
 class Brand < ApplicationRecord
+  has_many :collections
+  has_many :models, through: :collections
   validates :name, :overview, presence: true
   validates :name, uniqueness: true
 end

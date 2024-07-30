@@ -19,6 +19,7 @@
 #
 class Collection < ApplicationRecord
   belongs_to :brand
+  has_many :models
 
   validates :name, :overview, presence: true
   validates :name, uniqueness: { scope: :brand }
