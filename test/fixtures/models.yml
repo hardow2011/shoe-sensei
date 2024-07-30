@@ -1,84 +1,96 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 brooks_ghost_16:
-  iteration: 16
+  order: 16
+  full_name: Brooks Ghost 16
   weight: 269.3
   heel_to_toe_drop: 12
   apma_accepted: false
   collection: brooks_ghost
 
 brooks_ghost_max_1:
-  iteration: 1
+  order: 1
+  full_name: Brooks Ghost Max
   weight: 283.5
   heel_to_toe_drop: 6
   apma_accepted: true
   collection: brooks_ghost_max
 
 brooks_adrenaline_gts_23:
-  iteration: 23
+  order: 23
+  full_name: Brooks Adrenaline GTS 23
   weight: 286.3
   heel_to_toe_drop: 12
   apma_accepted: true
   collection: brooks_adrenaline_gts
 
 hoka_bondi_8:
-  iteration: 8
+  order: 8
+  full_name: Hoka Bondi 8
   weight: 306.2
   heel_to_toe_drop: 4
   apma_accepted: true
   collection: hoka_bondi
 
 hoka_clifton_9:
-  iteration: 9
+  order: 9
+  full_name: Hoka Clifton 9
   weight: 246.6
   heel_to_toe_drop: 5
   apma_accepted: true
   collection: hoka_clifton
 
 hoka_gaviota_5:
-  iteration: 5
+  order: 5
+  full_name: Hoka Gaviota 5
   weight: 309.0
   heel_to_toe_drop: 6
   apma_accepted: true
   collection: hoka_gaviota
 
 hoka_speedgoat_5:
-  iteration: 5
+  order: 5
+  full_name: Hoka Speedgoat 5
   weight: 292.0
   heel_to_toe_drop: 4
   apma_accepted: true
   collection: hoka_speedgoat
 
 on_cloudmonster_1:
-  iteration: 1
+  order: 1
+  full_name: On Cloundmonster
   weight: 230
   heel_to_toe_drop: 6
   apma_accepted: false
   collection: on_cloudmonster
 
 on_cloudvista_1:
-  iteration: 1
+  order: 1
+  full_name: On Cloundvista
   weight: 280
   heel_to_toe_drop: 9
   apma_accepted: false
   collection: on_cloudvista
 
 on_cloudsurfer_trail_1:
-  iteration: 1
+  order: 1
+  full_name: On Cloudsurfer Trail
   weight: 275
   heel_to_toe_drop: 7
   apma_accepted: false
   collection: on_cloudsurfer_trail
 
 on_cloud_x_4:
-  iteration: 4
+  order: 4
+  full_name: On Clound X 4
   weight: 263
   heel_to_toe_drop: 7
   apma_accepted: false
   collection: on_cloud_x
 
 new_balance_fresh_foam_1080v13:
-  iteration: 13
+  order: 13
+  full_name: New Balance Fresh Foam 1080v13
   weight: 262
   heel_to_toe_drop: 6
   apma_accepted: true
