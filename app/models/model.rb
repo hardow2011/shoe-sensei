@@ -27,9 +27,9 @@ class Model < ApplicationRecord
   belongs_to :collection
   has_one :brand, through: :collection
 
-  ACTIVITY_OPTIONS = ['road running', 'trail running', 'walking', 'standing', 'training and gym']
-  CUSHIONING_OPTIONS = ['low', 'mid', 'high']
-  SUPPORT_OPTIONS = ['neutral', 'stability']
+  ACTIVITY_OPTIONS = ['Road running', 'Trail running', 'Walking', 'Standing', 'Training and gym']
+  CUSHIONING_OPTIONS = ['Low', 'Mid', 'High']
+  SUPPORT_OPTIONS = ['Neutral', 'Stability']
 
   validates :heel_to_toe_drop, :name, :weight, presence: true
   validates :name, uniqueness: { scope: :collection }
