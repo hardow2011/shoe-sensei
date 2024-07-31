@@ -1,4 +1,4 @@
 <div class="models-grid">
-    <%= render partial: 'models/filter' %>
+    <%= render partial: 'models/filter', locals: { filter_list: @filter_list } %>
     <%= render models %>
 </div>

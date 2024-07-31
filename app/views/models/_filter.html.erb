@@ -1,65 +1,10 @@
 <div>
     <%= form_with url: filter_models_path, method: :get, class: 'model-filter' do |f| %>
-        <p>Brand</p>
-        <div>
-            <%= f.check_box 'brand[]', { id: :brooks_checkbox, include_hidden: false }, 'Brooks' %>
-            <%= f.label :brooks_checkbox, 'Brooks' %>
-        </div>
-        <div>
-            <%= f.check_box 'brand[]', { id: :hoka_checkbox, include_hidden: false }, 'HOKA' %>
-            <%= f.label :hoka_checkbox, 'HOKA' %>
-        </div>
-        <div>
-            <%= f.check_box 'brand[]', { id: :on_checkbox, include_hidden: false }, 'On' %>
-            <%= f.label :on_checkbox, 'On' %>
-        </div>
-        <div>
-            <%= f.check_box 'brand[]', { id: :new_balance_checkbox, include_hidden: false }, 'New Balance' %>
-            <%= f.label :new_balance_checkbox, 'New Balance' %>
-        </div>  
-        <p>Activity</p>
-        <div>
-            <%= f.check_box 'activity[]', { id: :running_checkbox, include_hidden: false }, 'Road running' %>
-            <%= f.label :running_checkbox, 'Running' %>
-        </div>
-        <div>
-            <%= f.check_box 'activity[]', { id: :trail_checkbox, include_hidden: false }, 'Trail running' %>
-            <%= f.label :trail_checkbox, 'Trail running' %>
-        </div>
-        <div>
-            <%= f.check_box 'activity[]', { id: :walking_checkbox, include_hidden: false }, 'Walking' %>
-            <%= f.label :walking_checkbox, 'Walking' %>
-        </div>
-        <div>
-            <%= f.check_box 'activity[]', { id: :standing_checkbox, include_hidden: false }, 'Standing' %>
-            <%= f.label :standing_checkbox, 'Standing' %>
-        </div>        
-        <div>
-            <%= f.check_box 'activity[]', { id: :training_checkbox, include_hidden: false }, 'Training and gym' %>
-            <%= f.label :training_checkbox, 'Training and gym' %>
-        </div>
-        <p>Cushioning</p>
-        <div>
-            <%= f.check_box 'cushioning[]', { id: :low_checkbox, include_hidden: false }, 'Low' %>
-            <%= f.label :low_checkbox, 'Low' %>
-        </div>  
-        <div>
-            <%= f.check_box 'cushioning[]', { id: :mid_checkbox, include_hidden: false }, 'Mid' %>
-            <%= f.label :mid_checkbox, 'Mid' %>
-        </div>  
-        <div>
-            <%= f.check_box 'cushioning[]', { id: :high_checkbox, include_hidden: false }, 'High' %>
-            <%= f.label :high_checkbox, 'High' %>
-        </div>
-        <p>Support</p>
-        <div>
-            <%= f.check_box 'support[]', { id: :neutral_checkbox, include_hidden: false }, 'Neutral' %>
-            <%= f.label :neutral_checkbox, 'Neutral' %>
-        </div>
-        <div>
-            <%= f.check_box 'support[]', { id: :stability_checkbox, include_hidden: false }, 'Stability' %>
-            <%= f.label :stability_checkbox, 'Stability' %>
-        </div>
+        <%= render partial: 'models/filter_checkbox', locals: { title: 'Brand', param_name: 'brand_ids', form: f, filter_list: filter_list[:brands] } %>
+        <%= render partial: 'models/filter_checkbox', locals: { title: 'Activity', param_name: 'activities', form: f, filter_list: filter_list[:activities] } %>
+        <%= render partial: 'models/filter_checkbox', locals: { title: 'Cushioning', param_name: 'cushionings', form: f, filter_list: filter_list[:cushionings] } %>
+        <%= render partial: 'models/filter_checkbox', locals: { title: 'Support', param_name: 'supports', form: f, filter_list: filter_list[:supports] } %>
         <%= f.submit %>                                          
     <% end %>
+    <%= link_to "Clear filters", filter_models_path %>
 </div>

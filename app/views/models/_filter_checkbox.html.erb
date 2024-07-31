@@ -1,0 +1,9 @@
+<p><%= title %></p>
+<% params_prefix = title.downcase.pluralize %>
+<% filter_list.each do |name, value| %>
+<% id = title.downcase.pluralize + '_' + name.downcase + "_checkbox" %>
+    <div>
+        <%= form.check_box "#{param_name}[]", { id: id, checked: value[:checked], onchange: "this.form.submit()", include_hidden: false }, "#{value[:id]}" %>
+        <%= form.label id, "#{name}" %>
+    </div>
+<% end %>

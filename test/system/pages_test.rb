@@ -2,7 +2,7 @@ require 'application_system_test_case'
 
 class PagesTest < ApplicationSystemTestCase
   setup do
-    @on_cloud_x_4 = models(:on_cloud_x_4)
+    @hoka_speedgoat_5 = models(:hoka_speedgoat_5)
   end
   test "Filtering the shoe models in the homepage" do
     visit root_path
@@ -25,7 +25,7 @@ class PagesTest < ApplicationSystemTestCase
     end
 
     within('.models-grid') do
-      assert_text @on_cloud_x_4.full_name
+      assert_text @hoka_speedgoat_5.full_name
     end
   end
 end

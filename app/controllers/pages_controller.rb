@@ -1,21 +1,24 @@
 class PagesController < ApplicationController
+  include FilterPagination
+
+  before_action :set_filtered_models, only: %i[home filter_models]
+
   def home
-    @models = Model.all
   end
 
   def filter_models
-    brands_ids = []
-    params[:brand].each do |brand_name|
-      brands_ids << Brand.find_by(name: brand_name).id
-    end
-    activity = params[:activity]
-    cushioning = params[:cushioning]
-    support = params[:support]
+  end
 
+  private
 
-    @models = Model.joins(:brand).where(brand: { id: brands_ids })
-    @models = @models.tagged_with(activity, on: :activity, any: true) if activity
-    @models = @models.tagged_with(cushioning, on: :cushioning, any: true) if cushioning
-    @models = @models.tagged_with(support, on: :support, any: true) if support
+  def set_filtered_models
+    brands_ids = params[:brand_ids]
+    selected_activities = params[:activities]
+    selected_cushionings = params[:cushionings]
+    selected_supports = params[:supports]
+
+    models_filter = ModelsFilter.new(selected_activities, selected_cushionings, selected_supports, brands_ids)
+    @filter_list = models_filter.filter_list
+    @models = models_filter.models
   end
 end
