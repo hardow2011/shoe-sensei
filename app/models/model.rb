@@ -4,6 +4,7 @@
 #
 #  id               :bigint           not null, primary key
 #  apma_accepted    :boolean          not null
+#  cached_tags      :json
 #  discontinued     :boolean          default(FALSE)
 #  heel_to_toe_drop :integer          not null
 #  name             :string           not null
