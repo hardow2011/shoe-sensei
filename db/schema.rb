@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_205146) do
   end
 
   create_table "models", force: :cascade do |t|
-    t.string "full_name", null: false
+    t.string "name", null: false
     t.float "weight", null: false
     t.integer "heel_to_toe_drop", null: false
     t.integer "order", null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_205146) do
     t.bigint "collection_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "retired", default: false
+    t.boolean "discontinued", default: false
     t.index ["collection_id"], name: "index_models_on_collection_id"
   end
 
