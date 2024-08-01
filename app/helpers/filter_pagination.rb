@@ -25,9 +25,9 @@ module FilterPagination
       filter_list[:supports] = build_filter(selected_supports, 'support_list')
       filter_list[:cushionings] = build_filter(selected_cushionings, 'cushioning_list')
 
-      @models = @models.tagged_with(selected_activities, on: :activity, any: true) if selected_activities.any?
-      @models = @models.tagged_with(selected_cushionings, on: :cushioning, any: true) if selected_cushionings.any?
-      @models = @models.tagged_with(selected_supports, on: :support, any: true) if selected_supports.any?
+      @models = @models.select { |m| m.cached_tags["activity_list"].intersect?(selected_activities) } if selected_activities.any?
+      @models = @models.select { |m| m.cached_tags["support_list"].intersect?(selected_supports) } if selected_supports.any?
+      @models =  @models.select { |m| m.cached_tags["cushioning_list"].intersect?(selected_cushionings) } if selected_cushionings.any?
 
       unless brands_ids.any?
         filtered_brands = Brand.joins(:models).where(models: { id: @models.map(&:id) }).uniq
@@ -42,7 +42,7 @@ module FilterPagination
 
     def build_filter(selected_filter, tagging_list)
       filter_list = {}
-      available_filters = (selected_filter + @models.map { |m| m.send(tagging_list) }.flatten).uniq
+      available_filters = (selected_filter + @models.map { |m| m.cached_tags[tagging_list] }.flatten).uniq
       available_filters.each do |a|
         filter_list[a] = { id: a, checked: selected_filter.include?(a) }
       end

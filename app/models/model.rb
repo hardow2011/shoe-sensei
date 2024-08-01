@@ -34,7 +34,7 @@ class Model < ApplicationRecord
 
   validates :heel_to_toe_drop, :name, :weight, presence: true
   validates :name, uniqueness: { scope: :collection }
-  validates :apma_accepted, :retired, inclusion: [ true, false ]
+  validates :apma_accepted, :discontinued, inclusion: [ true, false ]
   validates :heel_to_toe_drop, numericality: { greater_than_or_equal_to: 0 }
   validates :weight, numericality: { greater_than_or_equal_to: 0.1 }
   validates_presence_of :collection
@@ -44,6 +44,8 @@ class Model < ApplicationRecord
   acts_as_taggable_on :activity
   acts_as_taggable_on :cushioning
   acts_as_taggable_on :support
+
+  before_save :set_cached_tags
 
   def weight(to_oz = false)
     if to_oz
@@ -64,5 +66,14 @@ class Model < ApplicationRecord
     self.support_list.each do |tag|
       errors.add(:support, "can't include #{tag}") if SUPPORT_OPTIONS.exclude?(tag)
     end
+  end
+
+  def set_cached_tags
+    cached_tags = {
+      'activity_list': self.activity_list,
+      'cushioning_list': self.cushioning_list,
+      'support_list': self.support_list,
+    }
+    self.cached_tags = cached_tags
   end
 end
