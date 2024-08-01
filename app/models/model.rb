@@ -4,10 +4,10 @@
 #
 #  id               :bigint           not null, primary key
 #  apma_accepted    :boolean          not null
-#  full_name        :string           not null
+#  discontinued     :boolean          default(FALSE)
 #  heel_to_toe_drop :integer          not null
+#  name             :string           not null
 #  order            :integer          not null
-#  retired          :boolean          default(FALSE)
 #  weight           :float            not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
