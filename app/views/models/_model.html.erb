@@ -1,3 +1,35 @@
-<div class="model-box">
-    <p><%= model.full_name %></p>
+<div class="card model-box">
+  <div class="card-image">
+    <figure class="image is-4by3">
+      <img
+        src="https://bulma.io/assets/images/placeholders/1280x960.png"
+        alt="Placeholder image"
+      />
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <img
+            src="https://bulma.io/assets/images/placeholders/96x96.png"
+            alt="Placeholder image"
+          />
+        </figure>
+      </div>
+      <div class="media-content">
+        <p class="subtitle is-6"><%= model.brand.name %></p>
+        <p class="title is-4"><%= model.name %></p>
+      </div>
+    </div>
+
+    <div class="content">
+      <p><b>Weight:</b> <%= model.weight %> gr / <%= model.weight(to_oz = true) %> oz</p>
+      <p><b>Heel to toe drop:</b> <%= model.heel_to_toe_drop %> mm</p>
+      <p><%= 'APMA accepted' if model.apma_accepted %></p>
+      <div class="fixed-grid has-3-cols">
+        <%#= render partial: 'models/filter/cushioning_bar', locals: { cushioning: model.cushioning_list.first } %>
+      </div>
+    </div>
+  </div>
 </div>

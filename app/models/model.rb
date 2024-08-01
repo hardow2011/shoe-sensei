@@ -28,7 +28,7 @@ class Model < ApplicationRecord
   has_one :brand, through: :collection
 
   ACTIVITY_OPTIONS = ['Road running', 'Trail running', 'Walking', 'Standing', 'Training and gym']
-  CUSHIONING_OPTIONS = ['Low', 'Mid', 'High']
+  CUSHIONING_OPTIONS = { 'Low': 1, 'Mid': 2, 'High': 3 }
   SUPPORT_OPTIONS = ['Neutral', 'Stability']
 
   validates :heel_to_toe_drop, :name, :weight, presence: true
@@ -44,13 +44,21 @@ class Model < ApplicationRecord
   acts_as_taggable_on :cushioning
   acts_as_taggable_on :support
 
+  def weight(to_oz = false)
+    if to_oz
+      (super() * 0.035274).round(2)
+    else
+      super()
+    end
+  end
+
   private
   def tags_validity
     self.activity_list.each do |tag|
       errors.add(:activity, "can't include #{tag}") if ACTIVITY_OPTIONS.exclude?(tag)
     end
     self.cushioning_list.each do |tag|
-      errors.add(:cushioning, "can't include #{tag}") if CUSHIONING_OPTIONS.exclude?(tag)
+      errors.add(:cushioning, "can't include #{tag}") if CUSHIONING_OPTIONS.stringify_keys.keys.exclude?(tag)
     end
     self.support_list.each do |tag|
       errors.add(:support, "can't include #{tag}") if SUPPORT_OPTIONS.exclude?(tag)

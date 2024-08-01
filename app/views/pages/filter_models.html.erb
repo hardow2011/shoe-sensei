@@ -1,1 +1,5 @@
-<%= render partial: 'models/grid', locals: { models: @models, filter_list: @filter_list }%>
+<div class="section">
+    <div class="container">
+        <%= render partial: 'models/filter', locals: { models: @models, filter_list: @filter_list } %>
+    </div>
+</div>

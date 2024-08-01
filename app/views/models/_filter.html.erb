@@ -1,10 +1,12 @@
-<div>
-    <%= form_with url: filter_models_path, method: :get, class: 'model-filter' do |f| %>
-        <%= render partial: 'models/filter_checkbox', locals: { title: 'Brand', param_name: 'brand_ids', form: f, filter_list: filter_list[:brands] } %>
-        <%= render partial: 'models/filter_checkbox', locals: { title: 'Activity', param_name: 'activities', form: f, filter_list: filter_list[:activities] } %>
-        <%= render partial: 'models/filter_checkbox', locals: { title: 'Cushioning', param_name: 'cushionings', form: f, filter_list: filter_list[:cushionings] } %>
-        <%= render partial: 'models/filter_checkbox', locals: { title: 'Support', param_name: 'supports', form: f, filter_list: filter_list[:supports] } %>
-        <%= f.submit %>                                          
-    <% end %>
-    <%= link_to "Clear filters", filter_models_path %>
+<div class="filter-wrapper columns">
+    <div class="column is-one-fifth">
+        <%= render partial: 'models/filter/list', locals: { filter_list: @filter_list } %>
+    </div>
+    <div class="column">
+        <div class="fixed-grid has-1-cols-mobile has-3-cols">
+            <div class="grid models-grid">
+            <%= render models %>
+            </div>
+        </div>
+    </div>
 </div>
