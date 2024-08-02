@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_02_044642) do
     t.string "overview", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "handle"
+    t.string "handle", null: false
   end
 
   create_table "collections", force: :cascade do |t|

@@ -2,16 +2,20 @@
 
 brooks:
   name: Brooks
+  handle: brooks
   overview: Founded in 1914, Brooks is renowned for its innovative designs and technologies, aimed at enhancing comfort and performance for runners of all levels. The brand is highly regarded for its focus on biomechanics and personalized fit.
 
 on_running:
   name: 'On'
+  handle: 'on'
   overview: On, also known as On Running, is a Swiss company founded in 2010 that specializes in running shoes and sportswear. Renowned for its unique CloudTec cushioning technology, On shoes are designed to provide a soft landing and explosive takeoff. The brand quickly gained popularity for its innovative designs and performance-oriented footwear, attracting athletes and running enthusiasts worldwide.
 
 hoka:
   name: HOKA
+  handle: hoka
   overview: Hoka One One, commonly referred to as Hoka, is an athletic shoe company founded in 2009 in France. Known for its maximalist shoes featuring oversized midsoles, Hoka footwear provides exceptional cushioning and support, making it popular among runners and outdoor enthusiasts. The brand has gained a reputation for its innovative design and commitment to enhancing athletic performance and comfort.
 
 new_balance:
   name: New Balance
+  handle: new-balance
   overview: New Balance, founded in 1906, is an American sports footwear and apparel brand known for its high-quality, performance-oriented products. The company emphasizes a blend of function and fashion, offering a wide range of sizes and widths to ensure a perfect fit. New Balance is celebrated for its commitment to comfort, innovative design, and manufacturing some of its products in the USA.
