@@ -23,14 +23,11 @@
 #  fk_rails_...  (collection_id => collections.id)
 #
 class Model < ApplicationRecord
+  include AllowedTags
   # Weight in grams.
   # Heel to toe drop in millimiters.
   belongs_to :collection
   has_one :brand, through: :collection
-
-  ACTIVITY_OPTIONS = ['Road running', 'Trail running', 'Walking', 'Standing', 'Training and gym']
-  CUSHIONING_OPTIONS = { 'Low': 1, 'Mid': 2, 'High': 3 }
-  SUPPORT_OPTIONS = ['Neutral', 'Stability']
 
   validates :heel_to_toe_drop, :name, :weight, presence: true
   validates :name, uniqueness: { scope: :collection }
@@ -58,20 +55,24 @@ class Model < ApplicationRecord
   private
   def tags_validity
     self.activity_list.each do |tag|
-      errors.add(:activity, "can't include #{tag}") if ACTIVITY_OPTIONS.exclude?(tag)
+      errors.add(:activity, "can't include #{tag}") if AllowedTags::ACTIVITY_OPTIONS.exclude?(tag)
     end
+
+    errors.add(:cushioning, "can't have more than one type") if self.cushioning_list.size > 1
+
     self.cushioning_list.each do |tag|
-      errors.add(:cushioning, "can't include #{tag}") if CUSHIONING_OPTIONS.stringify_keys.keys.exclude?(tag)
+      errors.add(:cushioning, "can't include #{tag}") if AllowedTags::CUSHIONING_OPTIONS.exclude?(tag)
     end
+
     self.support_list.each do |tag|
-      errors.add(:support, "can't include #{tag}") if SUPPORT_OPTIONS.exclude?(tag)
+      errors.add(:support, "can't include #{tag}") if AllowedTags::SUPPORT_OPTIONS.exclude?(tag)
     end
   end
 
   def set_cached_tags
     cached_tags = {
       'activity_list': self.activity_list,
-      'cushioning_list': self.cushioning_list,
+      'cushioning': self.cushioning_list.first,
       'support_list': self.support_list,
     }
     self.cached_tags = cached_tags
