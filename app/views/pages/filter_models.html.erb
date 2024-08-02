@@ -1,5 +1,7 @@
 <div class="section">
     <div class="container">
-        <%= render partial: 'models/filter', locals: { models: @models, filter_list: @filter_list } %>
+        <%= turbo_frame_tag 'filter' do %>
+            <%= render partial: 'models/filter', locals: { models: @models, filter_list: @filter_list } %>
+        <% end %>
     </div>
 </div>
