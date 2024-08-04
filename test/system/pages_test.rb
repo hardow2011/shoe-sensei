@@ -25,13 +25,11 @@ class PagesTest < ApplicationSystemTestCase
       has_no_field? 'Training and gym'
     end
 
-    within('.filter-wrapper') do
-      within('.models-grid') do
-        assert_text @hoka_speedgoat_5.name
-        assert_text @hoka_speedgoat_5.brand.name
-        assert_text @hoka_bondi_8.name
-        assert_text @hoka_bondi_8.brand.name
-      end
+    within('.models-grid') do
+      assert_text @hoka_speedgoat_5.name
+      assert_text @hoka_speedgoat_5.brand.name
+      assert_text @hoka_bondi_8.name
+      assert_text @hoka_bondi_8.brand.name
     end
 
     within('.model-filter') do
