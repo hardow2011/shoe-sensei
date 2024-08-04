@@ -5,7 +5,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
   setup do
     # This is to generate the cached_tags on saving the models through the task
-    Rails.application.load_tasks
-    Rake::Task['run_models_save_callbacks'].invoke
+    # Rails.application.load_tasks
+    # Rake::Task['run_models_save_callbacks'].invoke
   end
 end
