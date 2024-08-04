@@ -17,9 +17,11 @@
           />
         </figure>
       </div>
-      <div class="media-content">
-        <p class="subtitle is-6 mb-1"><%= model.brand.name %></p>
-        <p class="title is-5"><%= model.name %></p>
+      <div class="media-content is-flex is-flex-direction-column is-align-self-stretch is-justify-content-space-evenly">
+        <% unless hide_brand_filter %>
+          <%= link_to model.brand.name, brand_path(model.brand), class: "is-size-5 mb-1 is-link", data: { turbo: false } %>
+        <% end %>
+        <p class="title is-size-4"><%= model.name %></p>
       </div>
     </div>
 

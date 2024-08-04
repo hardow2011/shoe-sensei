@@ -1,0 +1,13 @@
+<div class="section">
+    <div class="container is-widescreen">
+        <div class="content ">
+            <h1 class="title is-1"><%= @brand.name %></h1>
+            <p class="is-size-4"><%= @brand.overview %></p>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <div class="container is-widescreen">
+        <%= render partial: 'models/filter', locals: { models: @models, filter_list: @filter_list } %>
+    </div>
+</div>

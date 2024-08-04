@@ -2,13 +2,14 @@ module FilterPagination
   include AllowedTags
   class ModelsFilter
     attr_reader :filter_list, :models
-    def initialize(selected_activities, selected_cushionings, selected_supports, brands_ids)
+    def initialize(selected_activities, selected_cushionings, selected_supports, brands_ids, hide_brand_filter)
       selected_activities = selected_activities || []
       selected_cushionings = selected_cushionings || []
       selected_supports = selected_supports || []
       brands_ids = brands_ids || []
 
       @filter_list = {}
+      @filter_list[:hide_brand_filter] = hide_brand_filter.to_boolean || false
       @filter_list[:brands] = {}
       @filter_list[:activities] = {}
       @filter_list[:cushionings] = {}
@@ -30,13 +31,19 @@ module FilterPagination
 
       @models = @models.select { |m| m.cached_tags["activity_list"].intersect?(selected_activities) } if selected_activities.any?
       @models = @models.select { |m| m.cached_tags["support_list"].intersect?(selected_supports) } if selected_supports.any?
-      @models =  @models.select { |m| selected_cushionings.include?(m.cached_tags["cushioning_list"]) } if selected_cushionings.any?
+      @models =  @models.select { |m| selected_cushionings.include?(m.cached_tags["cushioning"]) } if selected_cushionings.any?
 
-      unless brands_ids.any?
-        filtered_brands = Brand.joins(:models).where(models: { id: @models.map(&:id) }).uniq.sort_by(&:name)
-      end
+      unless @filter_list[:hide_brand_filter]
 
-      filtered_brands.each do |brand|
+        unless brands_ids.any?
+          filtered_brands = Brand.joins(:models).where(models: { id: @models.map(&:id) }).uniq.sort_by(&:name)
+        end
+
+        filtered_brands.each do |brand|
+          @filter_list[:brands][brand.name] = { id: brand.id, checked: brands_ids.include?(brand.id) }
+        end
+      else
+        brand = Brand.find_by(id: brands_ids.first)
         @filter_list[:brands][brand.name] = { id: brand.id, checked: brands_ids.include?(brand.id) }
       end
     end

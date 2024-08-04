@@ -1,13 +1,15 @@
 <%# https://stackoverflow.com/questions/68624668/how-can-i-submit-a-form-on-input-change-with-turbo-streams %>
 <div class="field">
-    <label class="label"><%= title %></label>
+    <label class="label is-size-5"><%= title %></label>
     <% params_prefix = title.downcase.pluralize %>
     <div class="control">
         <% filter_list.each do |name, value| %>
         <% id = title.downcase.pluralize + '_' + name.downcase + "_checkbox" %>
             <div>
-                <%= form.check_box "#{param_name}[]", { id: id, checked: value[:checked], onchange: "this.form.requestSubmit()", include_hidden: false }, "#{value[:id]}" %>
-                <%= form.label id, "#{name}" %>
+                <label class='is-inline-block py-1'>
+                    <%= form.check_box "#{param_name}[]", { id: id, checked: value[:checked], onchange: "this.form.requestSubmit()", include_hidden: false }, "#{value[:id]}" %>
+                    <%= "#{name}" %>
+                </label>
             </div>
         <% end %>
     </div>

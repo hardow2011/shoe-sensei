@@ -1,12 +1,14 @@
-<div class="filter-wrapper columns">
-    <div class="column is-one-fifth">
-        <%= render partial: 'models/filter/list', locals: { filter_list: @filter_list } %>
-    </div>
-    <div class="column">
-        <div class="fixed-grid has-1-cols-mobile has-3-cols">
-            <div class="grid models-grid">
-            <%= render models %>
+<%= turbo_frame_tag 'models-filter' do %>
+    <div class="filter-wrapper columns">
+        <div class="column is-one-fifth">
+            <%= render partial: 'models/filter/list', locals: { filter_list: filter_list } %>
+        </div>
+        <div class="column">
+            <div class="fixed-grid has-1-cols-mobile has-3-cols">
+                <div class="grid models-grid">
+                <%= render partial: 'models/model', collection: models, locals: { hide_brand_filter: filter_list[:hide_brand_filter] } %>
+                </div>
             </div>
         </div>
     </div>
-</div>
+<% end %>

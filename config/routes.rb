@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#home"
   get 'filter_models', to: 'pages#filter_models', as: 'filter_models'
+  resources :brands, only: %i[show]
 end
