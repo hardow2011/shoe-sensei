@@ -29,9 +29,9 @@ module FilterPagination
       filter_list[:cushionings] = build_filter(selected_cushionings, :cushioning)
                                     .sort_by { |k, v| AllowedTags::CUSHIONING_OPTIONS.find_index(v[:id]) }
 
-      @models = @models.select { |m| m.tags["activity_list"].intersect?(selected_activities) } if selected_activities.any?
-      @models = @models.select { |m| m.tags["support_list"].intersect?(selected_supports) } if selected_supports.any?
-      @models =  @models.select { |m| selected_cushionings.include?(m.tags["cushioning"]) } if selected_cushionings.any?
+      @models = @models.select { |m| m.tags[:activity_list].intersect?(selected_activities) } if selected_activities.any?
+      @models = @models.select { |m| selected_supports.include?(m.tags[:support]) } if selected_supports.any?
+      @models =  @models.select { |m| selected_cushionings.include?(m.tags[:cushioning]) } if selected_cushionings.any?
 
       unless @filter_list[:hide_brand_filter]
 
