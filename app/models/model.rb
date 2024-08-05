@@ -4,11 +4,11 @@
 #
 #  id               :bigint           not null, primary key
 #  apma_accepted    :boolean          not null
-#  cached_tags      :json
 #  discontinued     :boolean          default(FALSE)
 #  heel_to_toe_drop :integer          not null
 #  name             :string           not null
 #  order            :integer          not null
+#  tags             :jsonb            not null
 #  weight           :float            not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -29,6 +29,8 @@ class Model < ApplicationRecord
   belongs_to :collection
   has_one :brand, through: :collection
 
+  serialize :tags, coder: HashSerializer
+
   validates :heel_to_toe_drop, :name, :weight, presence: true
   validates :name, uniqueness: { scope: :collection }
   validates :apma_accepted, :discontinued, inclusion: [ true, false ]
@@ -37,12 +39,6 @@ class Model < ApplicationRecord
   validates_presence_of :collection
 
   validate :tags_validity
-
-  acts_as_taggable_on :activity
-  acts_as_taggable_on :cushioning
-  acts_as_taggable_on :support
-
-  before_save :set_cached_tags
 
   def weight(to_oz = false)
     if to_oz
@@ -54,27 +50,25 @@ class Model < ApplicationRecord
 
   private
   def tags_validity
-    self.activity_list.each do |tag|
-      errors.add(:activity, "can't include #{tag}") if AllowedTags::ACTIVITY_OPTIONS.exclude?(tag)
+    if tags[:activity_list].nil?
+      errors.add("Activity list", "must exist")
+      else
+        errors.add("Activity list", "must have at least one type") if self.tags[:activity_list].size < 1
+        self.tags[:activity_list].each do |tag|
+          errors.add("Activity list", "can't include #{tag}") if AllowedTags::ACTIVITY_OPTIONS.exclude?(tag)
+        end
     end
 
-    errors.add(:cushioning, "can't have more than one type") if self.cushioning_list.size > 1
-
-    self.cushioning_list.each do |tag|
-      errors.add(:cushioning, "can't include #{tag}") if AllowedTags::CUSHIONING_OPTIONS.exclude?(tag)
+    if tags[:cushioning].nil?
+      errors.add("Cushioning", "must exist")
+    else
+      errors.add("Cushioning", "can't include #{self.tags[:cushioning]}") if AllowedTags::CUSHIONING_OPTIONS.exclude?(self.tags[:cushioning])
     end
 
-    self.support_list.each do |tag|
-      errors.add(:support, "can't include #{tag}") if AllowedTags::SUPPORT_OPTIONS.exclude?(tag)
+    if tags[:support].nil?
+      errors.add("Support", "must exist")
+    else
+      errors.add("Support", "can't include #{self.tags[:support]}") if AllowedTags::SUPPORT_OPTIONS.exclude?(self.tags[:support])
     end
-  end
-
-  def set_cached_tags
-    cached_tags = {
-      'activity_list': self.activity_list,
-      'cushioning': self.cushioning_list.first,
-      'support_list': self.support_list,
-    }
-    self.cached_tags = cached_tags
   end
 end

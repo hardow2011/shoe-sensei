@@ -7,10 +7,10 @@ brooks_ghost_16:
   heel_to_toe_drop: 12
   apma_accepted: false
   collection: brooks_ghost
-  cached_tags: 
+  tags: 
     activity_list: ["Road running","Walking"]
     cushioning: "Mid"
-    support_list: ["Neutral"]
+    support: "Neutral"
 
 brooks_ghost_max_1:
   order: 1
@@ -19,10 +19,10 @@ brooks_ghost_max_1:
   heel_to_toe_drop: 6
   apma_accepted: true
   collection: brooks_ghost_max
-  cached_tags: 
+  tags: 
     activity_list: ['Road running', 'Walking']
     cushioning: 'High'
-    support_list: ['Neutral']
+    support: "Neutral"
 
 brooks_adrenaline_gts_23:
   order: 23
@@ -31,10 +31,10 @@ brooks_adrenaline_gts_23:
   heel_to_toe_drop: 12
   apma_accepted: true
   collection: brooks_adrenaline_gts
-  cached_tags: 
+  tags: 
     activity_list: ['Road running', 'Walking']
     cushioning: 'Mid'
-    support_list: ['Stability']
+    support: ['Stability']
 
 hoka_bondi_8:
   order: 8
@@ -43,10 +43,10 @@ hoka_bondi_8:
   heel_to_toe_drop: 4
   apma_accepted: true
   collection: hoka_bondi
-  cached_tags: 
+  tags: 
     activity_list: ['Road running', 'Walking']
     cushioning: 'High'
-    support_list: ['Neutral']
+    support: "Neutral"
 
 hoka_clifton_9:
   order: 9
@@ -55,10 +55,10 @@ hoka_clifton_9:
   heel_to_toe_drop: 5
   apma_accepted: true
   collection: hoka_clifton
-  cached_tags: 
+  tags: 
     activity_list: ['Road running', 'Walking']
     cushioning: 'Mid'
-    support_list: ['Neutral']
+    support: "Neutral"
 
 hoka_gaviota_5:
   order: 5
@@ -67,10 +67,10 @@ hoka_gaviota_5:
   heel_to_toe_drop: 6
   apma_accepted: true
   collection: hoka_gaviota
-  cached_tags: 
+  tags: 
     activity_list: ['Road running', 'Walking']
     cushioning: 'High'
-    support_list: ['Stability']
+    support: ['Stability']
 
 hoka_speedgoat_5:
   order: 5
@@ -79,10 +79,10 @@ hoka_speedgoat_5:
   heel_to_toe_drop: 4
   apma_accepted: true
   collection: hoka_speedgoat
-  cached_tags: 
+  tags: 
     activity_list: ['Trail running']
     cushioning: 'Mid'
-    support_list: ['Neutral']
+    support: "Neutral"
 
 on_cloudmonster_1:
   order: 1
@@ -91,10 +91,10 @@ on_cloudmonster_1:
   heel_to_toe_drop: 6
   apma_accepted: false
   collection: on_cloudmonster
-  cached_tags: 
+  tags: 
     activity_list: ['Road running', 'Walking']
     cushioning: 'High'
-    support_list: ['Neutral']
+    support: "Neutral"
 
 on_cloudvista_1:
   order: 1
@@ -103,10 +103,10 @@ on_cloudvista_1:
   heel_to_toe_drop: 9
   apma_accepted: false
   collection: on_cloudvista
-  cached_tags: 
+  tags: 
     activity_list: ['Trail running']
     cushioning: 'Mid'
-    support_list: ['Neutral']
+    support: "Neutral"
 
 on_cloudsurfer_trail_1:
   order: 1
@@ -115,10 +115,10 @@ on_cloudsurfer_trail_1:
   heel_to_toe_drop: 7
   apma_accepted: false
   collection: on_cloudsurfer_trail
-  cached_tags: 
+  tags: 
     activity_list: ['Trail running']
     cushioning: 'Mid'
-    support_list: ['Neutral']
+    support: "Neutral"
 
 on_cloud_x_4:
   order: 4
@@ -127,10 +127,10 @@ on_cloud_x_4:
   heel_to_toe_drop: 7
   apma_accepted: false
   collection: on_cloud_x
-  cached_tags: 
+  tags: 
     activity_list: ['Training and gym']
     cushioning: 'Low'
-    support_list: ['Neutral']
+    support: "Neutral"
 
 new_balance_fresh_foam_1080v13:
   order: 13
@@ -139,7 +139,7 @@ new_balance_fresh_foam_1080v13:
   heel_to_toe_drop: 6
   apma_accepted: true
   collection: new_balance_fresh_foam_1080
-  cached_tags: 
+  tags: 
     activity_list: ['Road running', 'Walking']
     cushioning: 'High'
-    support_list: ['Neutral']
+    support: "Neutral"
