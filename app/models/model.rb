@@ -56,11 +56,11 @@ class Model < ApplicationRecord
 
   private
   def tags_validity
-    if tags[:activity_list].nil?
+    if tags[:activities].nil?
       errors.add("Activity list", "must exist")
       else
-        errors.add("Activity list", "must have at least one type") if self.tags[:activity_list].size < 1
-        self.tags[:activity_list].each do |tag|
+        errors.add("Activity list", "must have at least one type") if self.tags[:activities].size < 1
+        self.tags[:activities].each do |tag|
           errors.add("Activity list", "can't include #{tag}") if AllowedTags::ACTIVITY_OPTIONS.exclude?(tag)
         end
     end

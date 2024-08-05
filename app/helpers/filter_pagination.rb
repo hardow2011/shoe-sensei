@@ -23,13 +23,13 @@ module FilterPagination
         @models = Model.all
       end
 
-      filter_list[:activities] = build_filter(selected_activities, :activity_list).sort_by { |activity| activity[0] }
+      filter_list[:activities] = build_filter(selected_activities, :activities).sort_by { |activity| activity[0] }
       filter_list[:supports] =  build_filter(selected_supports, :support) # this is to sort the support tags
                                   .sort_by { |k, v| AllowedTags::SUPPORT_OPTIONS.find_index(v[:id]) }
       filter_list[:cushionings] = build_filter(selected_cushionings, :cushioning)
                                     .sort_by { |k, v| AllowedTags::CUSHIONING_OPTIONS.find_index(v[:id]) }
 
-      @models = @models.select { |m| m.tags[:activity_list].intersect?(selected_activities) } if selected_activities.any?
+      @models = @models.select { |m| m.tags[:activities].intersect?(selected_activities) } if selected_activities.any?
       @models = @models.select { |m| selected_supports.include?(m.tags[:support]) } if selected_supports.any?
       @models =  @models.select { |m| selected_cushionings.include?(m.tags[:cushioning]) } if selected_cushionings.any?
 

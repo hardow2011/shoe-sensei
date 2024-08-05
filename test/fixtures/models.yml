@@ -8,7 +8,7 @@ brooks_ghost_16:
   apma_accepted: false
   collection: brooks_ghost
   tags: 
-    activity_list: ["Road running","Walking"]
+    activities: ["Road running","Walking"]
     cushioning: "Mid"
     support: "Neutral"
 
@@ -20,7 +20,7 @@ brooks_ghost_max_1:
   apma_accepted: true
   collection: brooks_ghost_max
   tags: 
-    activity_list: ['Road running', 'Walking']
+    activities: ['Road running', 'Walking']
     cushioning: 'High'
     support: "Neutral"
 
@@ -32,7 +32,7 @@ brooks_adrenaline_gts_23:
   apma_accepted: true
   collection: brooks_adrenaline_gts
   tags: 
-    activity_list: ['Road running', 'Walking']
+    activities: ['Road running', 'Walking']
     cushioning: 'Mid'
     support: 'Stability'
 
@@ -44,7 +44,7 @@ hoka_bondi_8:
   apma_accepted: true
   collection: hoka_bondi
   tags: 
-    activity_list: ['Road running', 'Walking']
+    activities: ['Road running', 'Walking']
     cushioning: 'High'
     support: "Neutral"
 
@@ -56,7 +56,7 @@ hoka_clifton_9:
   apma_accepted: true
   collection: hoka_clifton
   tags: 
-    activity_list: ['Road running', 'Walking']
+    activities: ['Road running', 'Walking']
     cushioning: 'Mid'
     support: "Neutral"
 
@@ -68,7 +68,7 @@ hoka_gaviota_5:
   apma_accepted: true
   collection: hoka_gaviota
   tags: 
-    activity_list: ['Road running', 'Walking']
+    activities: ['Road running', 'Walking']
     cushioning: 'High'
     support: 'Stability'
 
@@ -80,7 +80,7 @@ hoka_speedgoat_5:
   apma_accepted: true
   collection: hoka_speedgoat
   tags: 
-    activity_list: ['Trail running']
+    activities: ['Trail running']
     cushioning: 'Mid'
     support: "Neutral"
 
@@ -92,7 +92,7 @@ on_cloudmonster_1:
   apma_accepted: false
   collection: on_cloudmonster
   tags: 
-    activity_list: ['Road running', 'Walking']
+    activities: ['Road running', 'Walking']
     cushioning: 'High'
     support: "Neutral"
 
@@ -104,7 +104,7 @@ on_cloudvista_1:
   apma_accepted: false
   collection: on_cloudvista
   tags: 
-    activity_list: ['Trail running']
+    activities: ['Trail running']
     cushioning: 'Mid'
     support: "Neutral"
 
@@ -116,7 +116,7 @@ on_cloudsurfer_trail_1:
   apma_accepted: false
   collection: on_cloudsurfer_trail
   tags: 
-    activity_list: ['Trail running']
+    activities: ['Trail running']
     cushioning: 'Mid'
     support: "Neutral"
 
@@ -128,7 +128,7 @@ on_cloud_x_4:
   apma_accepted: false
   collection: on_cloud_x
   tags: 
-    activity_list: ['Training and gym']
+    activities: ['Training and gym']
     cushioning: 'Low'
     support: "Neutral"
 
@@ -140,6 +140,6 @@ new_balance_fresh_foam_1080v13:
   apma_accepted: true
   collection: new_balance_fresh_foam_1080
   tags: 
-    activity_list: ['Road running', 'Walking']
+    activities: ['Road running', 'Walking']
     cushioning: 'High'
     support: "Neutral"
