@@ -43,5 +43,22 @@ class BrandsTest < ApplicationSystemTestCase
         assert_no_text model.name
       end
     end
+
+    within('.model-filter') do
+      check 'High'
+    end
+
+    # TODO: assert only models with high cushion present
+    brooks_with_high_cushioning = @brooks.models.select { |m| m.tags[:cushioning] == 'High'}.first(3)
+    brooks_without_high_cushioning = @brooks.models - @brooks.models.select { |m| m.tags[:cushioning] == 'High'}.first(3)
+    within('.models-grid') do
+      brooks_with_high_cushioning.each do |model|
+        assert_text model.name
+      end
+
+      brooks_without_high_cushioning.each do |model|
+        assert_no_text model.name
+      end
+    end
   end
 end
