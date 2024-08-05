@@ -40,6 +40,12 @@ class Model < ApplicationRecord
 
   validate :tags_validity
 
+  scope :tagged_with_high_cushioning, -> { where("tags -> 'cushioning' ? 'High'") }
+  scope :tagged_with_mid_cushioning, -> { where("tags -> 'cushioning' ? 'Mid'") }
+  scope :tagged_with_low_cushioning, -> { where("tags -> 'cushioning' ? 'Low'") }
+  scope :tagged_with_stability_support, -> { where("tags -> 'support' ? 'Stability'") }
+  scope :tagged_with_neutral_support, -> { where("tags -> 'support' ? 'Neutral'") }
+
   def weight(to_oz = false)
     if to_oz
       (super() * 0.035274).round(2)
