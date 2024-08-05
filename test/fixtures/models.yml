@@ -34,7 +34,7 @@ brooks_adrenaline_gts_23:
   tags: 
     activity_list: ['Road running', 'Walking']
     cushioning: 'Mid'
-    support: ['Stability']
+    support: 'Stability'
 
 hoka_bondi_8:
   order: 8
@@ -70,7 +70,7 @@ hoka_gaviota_5:
   tags: 
     activity_list: ['Road running', 'Walking']
     cushioning: 'High'
-    support: ['Stability']
+    support: 'Stability'
 
 hoka_speedgoat_5:
   order: 5
