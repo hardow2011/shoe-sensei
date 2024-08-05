@@ -29,9 +29,15 @@ module FilterPagination
       filter_list[:cushionings] = build_filter(selected_cushionings, :cushioning)
                                     .sort_by { |k, v| AllowedTags::CUSHIONING_OPTIONS.find_index(v[:id]) }
 
-      @models = @models.select { |m| m.tags[:activities].intersect?(selected_activities) } if selected_activities.any?
-      @models = @models.select { |m| selected_supports.include?(m.tags[:support]) } if selected_supports.any?
-      @models =  @models.select { |m| selected_cushionings.include?(m.tags[:cushioning]) } if selected_cushionings.any?
+      # Model.where("tags -> 'activities' ?| array[:activities] AND tags -> 'cushioning' ?| array[:cushioning] AND tags -> 'support' ?| array[:support]", activities: ['Road running', 'Training and gym'], cushioning: ['High'], support: ['Neutral'])
+      query = ''
+      query << "tags -> 'activities' ?| array#{selected_activities.to_s.gsub('"',"'")} "  if selected_activities.any?
+      query << "#{query.present? ? ' AND ' : nil } tags -> 'support' ?| array#{selected_supports.to_s.gsub('"',"'")}"  if selected_supports.any?
+      query << "#{query.present? ? ' AND ' : nil } tags -> 'cushioning' ?| array#{selected_cushionings.to_s.gsub('"',"'")}"  if selected_cushionings.any?
+
+      if query.present?
+        @models = @models.where(query)
+      end
 
       unless @filter_list[:hide_brand_filter]
 
