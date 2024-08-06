@@ -48,7 +48,6 @@ class BrandsTest < ApplicationSystemTestCase
       check 'High'
     end
 
-    # TODO: assert only models with high cushion present
     brooks_with_high_cushioning = @brooks.models.select { |m| m.tags[:cushioning] == 'High'}.first(3)
     brooks_without_high_cushioning = @brooks.models - @brooks.models.select { |m| m.tags[:cushioning] == 'High'}.first(3)
     within('.models-grid') do
