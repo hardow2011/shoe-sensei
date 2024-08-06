@@ -1,7 +1,7 @@
 module FilterPagination
   include AllowedTags
 
-  MODELS_PER_PAGE = 3
+  MODELS_PER_PAGE = 9
   class ModelsFilter
     attr_reader :filter_list, :models, :paged_models
     def initialize(selected_activities, selected_cushionings, selected_supports, brands_ids, hide_brand_filter)

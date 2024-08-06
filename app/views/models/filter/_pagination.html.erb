@@ -1,0 +1,17 @@
+<% if pages_amount > 1 %>
+    <nav class="pagination" role="navigation" aria-label="pagination">
+            <%= link_to "Previous", '#', class: 'pagination-previous is-disabled', disabled: true, data: { turbo: false }, onclick: "goToModelPage(event, 0)" %>
+            <%= link_to "Next page", '#', class: 'pagination-next', data: { turbo: false }, onclick: "goToModelPage(event, 1)" %>
+            <ul class="pagination-list">
+            <% pages_amount.times do |i| %>
+                <li>
+                <% if i == 0 %>
+                    <%= link_to i+1, '#', class: 'pagination-link', disabled: true, data: { turbo: false }, onclick: "goToModelPage(event, #{i})" %>
+                <% else %>
+                    <%= link_to i+1, '#', class: 'pagination-link', data: { turbo: false }, onclick: "goToModelPage(event, #{i})" %>
+                <% end %>
+                </li>
+            <% end %>
+            </ul>
+    </nav>
+<% end %>

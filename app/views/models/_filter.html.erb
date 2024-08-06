@@ -4,17 +4,7 @@
             <%= render partial: 'models/filter/list', locals: { filter_list: filter_list } %>
         </div>
         <div class="column">
-            <nav class="pagination" role="navigation" aria-label="pagination">
-                <%= link_to "Previous", '#', class: 'pagination-previous is-disabled', disabled: true, data: { turbo: false }, onclick: "goToModelPage(event, 0)" %>
-                <%= link_to "Next page", '#', class: 'pagination-next', data: { turbo: false }, onclick: "goToModelPage(event, 1)" %>
-                <ul class="pagination-list">
-                <% paged_models.size.times do |i| %>
-                    <li>
-                        <%= link_to i+1, '#', class: "pagination-link #{ i == 0 ? 'is-current' : nil }", data: { turbo: false }, onclick: "goToModelPage(event, #{i})" %>
-                    </li>
-                <% end %>
-                </ul>
-            </nav>
+            <%= render partial: 'models/filter/pagination', locals: { pages_amount: paged_models.size } %>
             <% paged_models.each_with_index do |models, index| %>
                 <div class="fixed-grid has-1-cols-mobile has-3-cols models-page <%= index != 0 ? 'is-hidden' : nil %>">
                     <div class="grid models-grid">
@@ -22,17 +12,7 @@
                     </div>
                 </div>
             <% end %>
-            <nav class="pagination" role="navigation" aria-label="pagination">
-                <%= link_to "Previous", '#', class: 'pagination-previous is-disabled', disabled: true, data: { turbo: false }, onclick: "goToModelPage(event, 0)" %>
-                <%= link_to "Next page", '#', class: 'pagination-next', data: { turbo: false }, onclick: "goToModelPage(event, 1)" %>
-                <ul class="pagination-list">
-                <% paged_models.size.times do |i| %>
-                    <li>
-                        <%= link_to i+1, '#', class: "pagination-link #{ i == 0 ? 'is-current' : nil }", data: { turbo: false }, onclick: "goToModelPage(event, #{i})" %>
-                    </li>
-                <% end %>
-                </ul>
-            </nav>
+            <%= render partial: 'models/filter/pagination', locals: { pages_amount: paged_models.size } %>
         </div>
     </div>
 <% end %>
@@ -56,13 +36,18 @@
             if (modelsPage.classList.contains('is-hidden')) {
                 if (i == page_number) {
                     modelsPage.classList.remove('is-hidden');
-                    pageBtns[i].classList.add('is-current');
-                    pageBtns[i+totalPages].classList.add('is-current');
+                    
+                    pageBtns[i].setAttribute('disabled', true);
+
+                    
+                    pageBtns[i+totalPages].setAttribute('disabled', true);
                 }
             } else {
                 modelsPage.classList.add('is-hidden');
-                pageBtns[i].classList.remove('is-current');
-                pageBtns[i+totalPages].classList.remove('is-current');
+
+                pageBtns[i].removeAttribute('disabled');
+
+                pageBtns[i+totalPages].removeAttribute('disabled');
             }
         });
         if (currentPage <= 0) {
