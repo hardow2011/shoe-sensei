@@ -51,4 +51,22 @@ class PagesTest < ApplicationSystemTestCase
       has_field? 'Low'
     end
   end
+
+  test 'Paginating through the shoe models in the homepage' do
+    visit root_path
+
+    within('.pagination', match: :first) do
+      assert_any_of_selectors(:css, '.pagination-list > li')
+      assert_any_of_selectors(:css, '.pagination-previous.is-disabled[disabled]')
+      assert_any_of_selectors(:css, '.pagination-next:not(.is-disabled):not(:disabled)')
+
+      click_on '2'
+    end
+
+    within('.model-filter') do
+      check 'On'
+    end
+
+    assert_no_selector(:css, '.pagination')
+  end
 end
