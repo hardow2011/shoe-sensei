@@ -1,6 +1,6 @@
 class HashSerializer
   def self.dump(hash)
-    if hash.class ==  String
+    if hash.class == String
       hash.to_json
     else
       hash

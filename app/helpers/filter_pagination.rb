@@ -54,7 +54,6 @@ module FilterPagination
       filter_list[:cushionings] = build_filter(selected_cushionings, :cushioning)
                                     .sort_by { |k, v| AllowedTags::CUSHIONING_OPTIONS.find_index(v[:id]) }
 
-
       unless @filter_list[:hide_brand_filter]
 
         unless brands_ids.any?
