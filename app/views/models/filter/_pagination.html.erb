@@ -1,17 +1,17 @@
-<% if pages_amount > 1 %>
+<% if total_pages > 1 %>
     <nav class="pagination" role="navigation" aria-label="pagination">
-            <%= link_to "Previous", '#', class: 'pagination-previous is-disabled', disabled: true, data: { turbo: false }, onclick: "goToModelPage(event, 0)" %>
-            <%= link_to "Next page", '#', class: 'pagination-next', data: { turbo: false }, onclick: "goToModelPage(event, 1)" %>
-            <ul class="pagination-list">
-            <% pages_amount.times do |i| %>
+        <%= link_to "Previous", build_page_url(request, current_page-1), class: "pagination-previous #{current_page <= 0 ? 'is-disabled' : nil}", disabled: (current_page <= 0 ? true : nil)  %>
+        <%= link_to "Next page", build_page_url(request, current_page+1), class: "pagination-next #{current_page >= total_pages -1 ? 'is-disabled' : nil}", disabled: (current_page >= total_pages ? true : nil) %>
+        <ul class="pagination-list">
+            <% total_pages.times do |i| %>
                 <li>
-                <% if i == 0 %>
-                    <%= link_to i+1, '#', class: 'pagination-link', disabled: true, data: { turbo: false }, onclick: "goToModelPage(event, #{i})" %>
+                <% if i == current_page %>
+                    <%= link_to i+1, build_page_url(request, i), class: 'pagination-link is-disabled', disabled: true %>
                 <% else %>
-                    <%= link_to i+1, '#', class: 'pagination-link', data: { turbo: false }, onclick: "goToModelPage(event, #{i})" %>
+                    <%= link_to i+1, build_page_url(request, i), class: 'pagination-link' %>
                 <% end %>
                 </li>
             <% end %>
-            </ul>
+        </ul>
     </nav>
 <% end %>

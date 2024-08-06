@@ -1,14 +1,27 @@
 module FilterPagination
+
   include AllowedTags
 
+  SORTING_OPTIONS = [['Name (A to Z)', :name], ['Cushioning (low to high)', :cushioning_asc], ['Cushioning (high to low)', :cushioning_desc], ['Weight (low to high)', :weight_asc], ['Weight (high to low)', :weight_asc], ['Heel to toe drop (low to high)', :heel_to_toe_drop_asc], ['Heel to toe drop (high to low)', :heel_to_toe_drop_desc]]
+
   MODELS_PER_PAGE = 9
+
+  def build_page_url(request, page)
+    params = request.params
+    params[:page] = page
+    url_for(params)
+  end
+
   class ModelsFilter
-    attr_reader :filter_list, :models, :paged_models
-    def initialize(selected_activities, selected_cushionings, selected_supports, brands_ids, hide_brand_filter)
+    attr_reader :filter_list, :models, :paged_models, :total_pages, :current_page
+    def initialize(selected_activities, selected_cushionings, selected_supports, brands_ids, hide_brand_filter, page)
       selected_activities = selected_activities || []
       selected_cushionings = selected_cushionings || []
       selected_supports = selected_supports || []
       brands_ids = brands_ids || []
+      page = page.to_i || 0
+
+      @current_page = page
 
       @filter_list = {}
       @filter_list[:hide_brand_filter] = hide_brand_filter.to_boolean || false
@@ -19,10 +32,10 @@ module FilterPagination
 
       if brands_ids.any?
         brands_ids = brands_ids.map(&:to_i)
-        @models = Model.joins(:brand).where(brand: { id: brands_ids })
+        @models = Model.joins(:brand).where(brand: { id: brands_ids }).order(:name)
         filtered_brands = Brand.all.sort_by(&:name)
       else
-        @models = Model.all
+        @models = Model.order(:name)
       end
 
       # Model.where("tags -> 'activities' ?| array[:activities] AND tags -> 'cushioning' ?| array[:cushioning] AND tags -> 'support' ?| array[:support]", activities: ['Road running', 'Training and gym'], cushioning: ['High'], support: ['Neutral'])
@@ -56,7 +69,9 @@ module FilterPagination
         @filter_list[:brands][brand.name] = { id: brand.id, checked: brands_ids.include?(brand.id) }
       end
 
-      @paged_models = @models.each_slice(MODELS_PER_PAGE).to_a
+      @models = @models.each_slice(MODELS_PER_PAGE).to_a
+      @total_pages = @models.size
+      @paged_models = @models[page]
     end
 
     private
@@ -79,10 +94,13 @@ module FilterPagination
     selected_cushionings = params[:cushionings]
     selected_supports = params[:supports]
     hide_brand_filter = params[:hide_brand_filter] || hide_brand_filter
+    page = params[:page]
 
-    models_filter = ModelsFilter.new(selected_activities, selected_cushionings, selected_supports, brands_ids, hide_brand_filter)
+    models_filter = ModelsFilter.new(selected_activities, selected_cushionings, selected_supports, brands_ids, hide_brand_filter, page)
     @filter_list = models_filter.filter_list
     @models = models_filter.models
     @paged_models = models_filter.paged_models
+    @total_pages = models_filter.total_pages
+    @current_page = models_filter.current_page
   end
 end
