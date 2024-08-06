@@ -9,7 +9,7 @@ brooks_ghost_16:
   collection: brooks_ghost
   tags: 
     activities: ["Road running","Walking"]
-    cushioning: "Mid"
+    cushioning: 1
     support: "Neutral"
 
 brooks_ghost_max_1:
@@ -21,7 +21,7 @@ brooks_ghost_max_1:
   collection: brooks_ghost_max
   tags: 
     activities: ['Road running', 'Walking']
-    cushioning: 'High'
+    cushioning: 2
     support: "Neutral"
 
 brooks_adrenaline_gts_23:
@@ -33,7 +33,7 @@ brooks_adrenaline_gts_23:
   collection: brooks_adrenaline_gts
   tags: 
     activities: ['Road running', 'Walking']
-    cushioning: 'Mid'
+    cushioning: 1
     support: 'Stability'
 
 hoka_bondi_8:
@@ -45,7 +45,7 @@ hoka_bondi_8:
   collection: hoka_bondi
   tags: 
     activities: ['Road running', 'Walking']
-    cushioning: 'High'
+    cushioning: 2
     support: "Neutral"
 
 hoka_clifton_9:
@@ -57,7 +57,7 @@ hoka_clifton_9:
   collection: hoka_clifton
   tags: 
     activities: ['Road running', 'Walking']
-    cushioning: 'Mid'
+    cushioning: 1
     support: "Neutral"
 
 hoka_gaviota_5:
@@ -69,7 +69,7 @@ hoka_gaviota_5:
   collection: hoka_gaviota
   tags: 
     activities: ['Road running', 'Walking']
-    cushioning: 'High'
+    cushioning: 2
     support: 'Stability'
 
 hoka_speedgoat_5:
@@ -81,7 +81,7 @@ hoka_speedgoat_5:
   collection: hoka_speedgoat
   tags: 
     activities: ['Trail running']
-    cushioning: 'Mid'
+    cushioning: 1
     support: "Neutral"
 
 on_cloudmonster_1:
@@ -93,7 +93,7 @@ on_cloudmonster_1:
   collection: on_cloudmonster
   tags: 
     activities: ['Road running', 'Walking']
-    cushioning: 'High'
+    cushioning: 2
     support: "Neutral"
 
 on_cloudvista_1:
@@ -105,7 +105,7 @@ on_cloudvista_1:
   collection: on_cloudvista
   tags: 
     activities: ['Trail running']
-    cushioning: 'Mid'
+    cushioning: 1
     support: "Neutral"
 
 on_cloudsurfer_trail_1:
@@ -117,7 +117,7 @@ on_cloudsurfer_trail_1:
   collection: on_cloudsurfer_trail
   tags: 
     activities: ['Trail running']
-    cushioning: 'Mid'
+    cushioning: 1
     support: "Neutral"
 
 on_cloud_x_4:
@@ -129,7 +129,7 @@ on_cloud_x_4:
   collection: on_cloud_x
   tags: 
     activities: ['Training and gym']
-    cushioning: 'Low'
+    cushioning: 0
     support: "Neutral"
 
 new_balance_fresh_foam_1080v13:
@@ -141,5 +141,5 @@ new_balance_fresh_foam_1080v13:
   collection: new_balance_fresh_foam_1080
   tags: 
     activities: ['Road running', 'Walking']
-    cushioning: 'High'
+    cushioning: 2
     support: "Neutral"

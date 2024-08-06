@@ -36,6 +36,8 @@ class Model < ApplicationRecord
   validates :apma_accepted, :discontinued, inclusion: [ true, false ]
   validates :heel_to_toe_drop, numericality: { greater_than_or_equal_to: 0 }
   validates :weight, numericality: { greater_than_or_equal_to: 0.1 }
+  validates :cushioning, numericality: { in: 0..(AllowedTags::CUSHIONING_OPTIONS.size-1) }
+  validates :support, inclusion: { in: AllowedTags::SUPPORT_OPTIONS }
   validates_presence_of :collection
 
   validate :tags_validity

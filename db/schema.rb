@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_02_044642) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "discontinued", default: false
-    t.jsonb "tags", default: "{}", null: false
+    t.jsonb "tags", default: {}, null: false
     t.index ["collection_id"], name: "index_models_on_collection_id"
   end
 
