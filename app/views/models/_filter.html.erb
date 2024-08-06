@@ -1,14 +1,94 @@
 <%= turbo_frame_tag 'models-filter' do %>
-    <div class="filter-wrapper columns">
+    <div id="filter-wrapper" class="filter-wrapper columns">
         <div class="column is-one-fifth">
             <%= render partial: 'models/filter/list', locals: { filter_list: filter_list } %>
         </div>
         <div class="column">
-            <div class="fixed-grid has-1-cols-mobile has-3-cols">
-                <div class="grid models-grid">
-                <%= render partial: 'models/model', collection: models, locals: { hide_brand_filter: filter_list[:hide_brand_filter] } %>
+            <nav class="pagination" role="navigation" aria-label="pagination">
+                <%= link_to "Previous", '#', class: 'pagination-previous is-disabled', disabled: true, data: { turbo: false }, onclick: "goToModelPage(event, 0)" %>
+                <%= link_to "Next page", '#', class: 'pagination-next', data: { turbo: false }, onclick: "goToModelPage(event, 1)" %>
+                <ul class="pagination-list">
+                <% paged_models.size.times do |i| %>
+                    <li>
+                        <%= link_to i+1, '#', class: "pagination-link #{ i == 0 ? 'is-current' : nil }", data: { turbo: false }, onclick: "goToModelPage(event, #{i})" %>
+                    </li>
+                <% end %>
+                </ul>
+            </nav>
+            <% paged_models.each_with_index do |models, index| %>
+                <div class="fixed-grid has-1-cols-mobile has-3-cols models-page <%= index != 0 ? 'is-hidden' : nil %>">
+                    <div class="grid models-grid">
+                        <%= render partial: 'models/model', collection: models, locals: { hide_brand_filter: filter_list[:hide_brand_filter] } %>
+                    </div>
                 </div>
-            </div>
+            <% end %>
+            <nav class="pagination" role="navigation" aria-label="pagination">
+                <%= link_to "Previous", '#', class: 'pagination-previous is-disabled', disabled: true, data: { turbo: false }, onclick: "goToModelPage(event, 0)" %>
+                <%= link_to "Next page", '#', class: 'pagination-next', data: { turbo: false }, onclick: "goToModelPage(event, 1)" %>
+                <ul class="pagination-list">
+                <% paged_models.size.times do |i| %>
+                    <li>
+                        <%= link_to i+1, '#', class: "pagination-link #{ i == 0 ? 'is-current' : nil }", data: { turbo: false }, onclick: "goToModelPage(event, #{i})" %>
+                    </li>
+                <% end %>
+                </ul>
+            </nav>
         </div>
     </div>
 <% end %>
+<script>
+// TODO: remove this JS. Try to do with turbo
+    const filterWrapper = document.getElementById('filter-wrapper')
+    const modelsPages = filterWrapper.getElementsByClassName('models-page')
+    const pageBtns = filterWrapper.getElementsByClassName('pagination-link')
+    const paginationPreviousBtns = filterWrapper.getElementsByClassName('pagination-previous')
+    const paginationNextBtns = filterWrapper.getElementsByClassName('pagination-next')
+    const totalPages = <%= paged_models.size %>;
+    let currentPage = 0;
+    function goToModelPage(event, page_number) {
+        const el = event.target
+        if (!!el.getAttribute('disabled')) {
+            event.preventDefault();
+            return false;
+        }
+        currentPage = page_number;
+        Array.from(modelsPages).forEach(function (modelsPage, i) {
+            if (modelsPage.classList.contains('is-hidden')) {
+                if (i == page_number) {
+                    modelsPage.classList.remove('is-hidden');
+                    pageBtns[i].classList.add('is-current');
+                    pageBtns[i+totalPages].classList.add('is-current');
+                }
+            } else {
+                modelsPage.classList.add('is-hidden');
+                pageBtns[i].classList.remove('is-current');
+                pageBtns[i+totalPages].classList.remove('is-current');
+            }
+        });
+        if (currentPage <= 0) {
+            for (let previousBtn of paginationPreviousBtns) {
+                previousBtn.classList.add('is-disabled');
+                previousBtn.setAttribute('disabled', true);
+            }
+        } else {
+            for (let previousBtn of paginationPreviousBtns) {
+                previousBtn.classList.remove('is-disabled');
+                previousBtn.removeAttribute('disabled');
+                previousBtn.setAttribute("onclick", `goToModelPage(event, ${currentPage-1})`);
+            }
+        }
+        if (page_number >= totalPages-1) {
+            for (let nextBtn of paginationNextBtns) {
+                nextBtn.classList.add('is-disabled');
+                nextBtn.setAttribute('disabled', true);
+            }
+        } else {
+            for (let nextBtn of paginationNextBtns) {
+                nextBtn.classList.remove('is-disabled');
+                nextBtn.removeAttribute('disabled');
+                nextBtn.setAttribute("onclick", `goToModelPage(event, ${currentPage+1})`);
+            }
+        }
+        event.preventDefault();
+    }
+</script>

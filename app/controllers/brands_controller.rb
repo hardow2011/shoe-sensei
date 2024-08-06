@@ -1,6 +1,9 @@
 class BrandsController < ApplicationController
   include FilterPagination
   before_action :set_brand, only: %i[show]
+  before_action only: %i[show] do
+    set_filtered_models(true, [@brand.id])
+  end
 
   def show
     brands_ids = [@brand.id]
