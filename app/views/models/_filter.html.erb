@@ -14,7 +14,7 @@
                         <div class="field is-narrow">
                             <div class="control">
                                 <div class="select is-fullwidth">
-                                    <%= f.select(:sorting, FilterPagination::SORTING_OPTIONS) %>
+                                    <%= f.select(:models_sorting, options_for_select(FilterPagination::SORTING_OPTIONS, selected: selected_sort), { }, onchange: "this.form.requestSubmit()") %>
                                 </div>
                             </div>
                     </div>

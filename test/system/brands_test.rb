@@ -48,8 +48,9 @@ class BrandsTest < ApplicationSystemTestCase
       check 'High'
     end
 
-    brooks_with_high_cushioning = @brooks.models.select { |m| m.tags[:cushioning] == 'High'}.first(3)
-    brooks_without_high_cushioning = @brooks.models - @brooks.models.select { |m| m.tags[:cushioning] == 'High'}.first(3)
+    brooks_with_high_cushioning = @brooks.models.select { |m| m.tags[:cushioning] == '2'}.first(3)
+    brooks_without_high_cushioning = (@brooks.models - brooks_with_high_cushioning).first(3)
+
     within('.models-grid') do
       brooks_with_high_cushioning.each do |model|
         assert_text model.name

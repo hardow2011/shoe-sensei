@@ -2,7 +2,7 @@ module FilterPagination
 
   include AllowedTags
 
-  SORTING_OPTIONS = [['Name (A to Z)', :name], ['Cushioning (low to high)', :cushioning_asc], ['Cushioning (high to low)', :cushioning_desc], ['Weight (low to high)', :weight_asc], ['Weight (high to low)', :weight_asc], ['Heel to toe drop (low to high)', :heel_to_toe_drop_asc], ['Heel to toe drop (high to low)', :heel_to_toe_drop_desc]]
+  SORTING_OPTIONS = [['Name (A to Z)', :name], ['Cushioning (low to high)', :cushioning_asc], ['Cushioning (high to low)', :cushioning_desc], ['Weight (low to high)', :weight_asc], ['Weight (high to low)', :weight_desc], ['Heel to toe drop (low to high)', :heel_to_toe_drop_asc], ['Heel to toe drop (high to low)', :heel_to_toe_drop_desc]]
 
   MODELS_PER_PAGE = 9
 
@@ -13,13 +13,14 @@ module FilterPagination
   end
 
   class ModelsFilter
-    attr_reader :filter_list, :models, :paged_models, :total_pages, :current_page
-    def initialize(selected_activities, selected_cushionings, selected_supports, brands_ids, hide_brand_filter, page)
+    attr_reader :filter_list, :models, :paged_models, :total_pages, :current_page, :selected_sort
+    def initialize(selected_activities, selected_cushionings, selected_supports, brands_ids, hide_brand_filter, page, sort)
       selected_activities = selected_activities || []
       selected_cushionings = selected_cushionings || []
       selected_supports = selected_supports || []
       brands_ids = brands_ids || []
       page = page.to_i || 0
+      sort = sort&.to_sym || SORTING_OPTIONS.first[1]
 
       @current_page = page
 
@@ -32,10 +33,10 @@ module FilterPagination
 
       if brands_ids.any?
         brands_ids = brands_ids.map(&:to_i)
-        @models = Model.joins(:brand).where(brand: { id: brands_ids }).order(:name)
+        @models = Model.joins(:brand).where(brand: { id: brands_ids })
         filtered_brands = Brand.all.sort_by(&:name)
       else
-        @models = Model.order(:name)
+        @models = Model.all
       end
 
       # Model.where("tags -> 'activities' ?| array[:activities] AND tags -> 'cushioning' ?| array[:cushioning] AND tags -> 'support' ?| array[:support]", activities: ['Road running', 'Training and gym'], cushioning: ['High'], support: ['Neutral'])
@@ -48,12 +49,12 @@ module FilterPagination
         @models = @models.where(query)
       end
 
-      filter_list[:activities] = build_filter(selected_activities, :activities).sort_by { |activity| activity[0] }
-      filter_list[:supports] =  build_filter(selected_supports, :support) # this is to sort the support tags
+      @filter_list[:activities] = build_filter(selected_activities, :activities).sort_by { |activity| activity[0] }
+      @filter_list[:supports] =  build_filter(selected_supports, :support) # this is to sort the support tags
                                   .sort_by { |k, v| AllowedTags::SUPPORT_OPTIONS.find_index(v[:id]) }
-      filter_list[:cushionings] = build_filter(selected_cushionings, :cushioning)
-                                    .sort_by { |k, v| AllowedTags::CUSHIONING_OPTIONS.find_index(v[:id]) }
-
+      @filter_list[:cushionings] = build_filter(selected_cushionings, :cushioning)
+                                    .sort_by { |k, _| k }
+                                    .map { |a, b| [ AllowedTags::CUSHIONING_OPTIONS[a.to_i], b ] }
       unless @filter_list[:hide_brand_filter]
 
         unless brands_ids.any?
@@ -68,9 +69,30 @@ module FilterPagination
         @filter_list[:brands][brand.name] = { id: brand.id, checked: brands_ids.include?(brand.id) }
       end
 
+      case sort
+      when :name
+        @models = @models.order(:name)
+      when :cushioning_asc
+        @models = @models.order_by_cushioning
+      when :cushioning_desc
+        @models = @models.order_by_cushioning(:desc)
+      when :weight_asc
+        @models = @models.order_by_weight
+      when :weight_desc
+        @models = @models.order_by_weight(:desc)
+      when :heel_to_toe_drop_asc
+        @models = @models.order_by_heel_to_toe_drop
+      when :heel_to_toe_drop_desc
+        @models = @models.order_by_heel_to_toe_drop(:desc)
+      end
+
+      # byebug
+
+
       @models = @models.each_slice(MODELS_PER_PAGE).to_a
       @total_pages = @models.size
       @paged_models = @models[page]
+      @selected_sort = SORTING_OPTIONS.select { |o| o[1] == sort }.first
     end
 
     private
@@ -94,12 +116,14 @@ module FilterPagination
     selected_supports = params[:supports]
     hide_brand_filter = params[:hide_brand_filter] || hide_brand_filter
     page = params[:page]
+    sort = params[:models_sorting]
 
-    models_filter = ModelsFilter.new(selected_activities, selected_cushionings, selected_supports, brands_ids, hide_brand_filter, page)
+    models_filter = ModelsFilter.new(selected_activities, selected_cushionings, selected_supports, brands_ids, hide_brand_filter, page, sort)
     @filter_list = models_filter.filter_list
     @models = models_filter.models
     @paged_models = models_filter.paged_models
     @total_pages = models_filter.total_pages
     @current_page = models_filter.current_page
+    @selected_sort = models_filter.selected_sort
   end
 end

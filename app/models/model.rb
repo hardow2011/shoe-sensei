@@ -36,11 +36,15 @@ class Model < ApplicationRecord
   validates :apma_accepted, :discontinued, inclusion: [ true, false ]
   validates :heel_to_toe_drop, numericality: { greater_than_or_equal_to: 0 }
   validates :weight, numericality: { greater_than_or_equal_to: 0.1 }
-  validates :cushioning, numericality: { in: 0..(AllowedTags::CUSHIONING_OPTIONS.size-1) }
-  validates :support, inclusion: { in: AllowedTags::SUPPORT_OPTIONS }
+  # validates :cushioning, numericality: { in: 0..(AllowedTags::CUSHIONING_OPTIONS.size-1) }
+  # validates :support, inclusion: { in: AllowedTags::SUPPORT_OPTIONS }
   validates_presence_of :collection
 
   validate :tags_validity
+
+  scope :order_by_cushioning, ->(order = :asc) { order(Arel.sql("tags ->> 'cushioning' #{ order == :desc ? 'DESC' : 'ASC' }, name")) }
+  scope :order_by_weight, ->(order = :asc) { order(weight: order) }
+  scope :order_by_heel_to_toe_drop, ->(order = :asc) { order(heel_to_toe_drop: order) }
 
   # scope :tagged_with_high_cushioning, -> { where("tags -> 'cushioning' ? 'High'") }
   # scope :tagged_with_mid_cushioning, -> { where("tags -> 'cushioning' ? 'Mid'") }
@@ -56,8 +60,8 @@ class Model < ApplicationRecord
     end
   end
 
-  def cushioning_level
-    AllowedTags::CUSHIONING_OPTIONS.find_index(self.tags[:cushioning])
+  def cushioning_name
+    AllowedTags::CUSHIONING_OPTIONS[self.tags[:cushioning].to_i]
   end
 
   private
@@ -73,14 +77,14 @@ class Model < ApplicationRecord
 
     if tags[:cushioning].nil?
       errors.add("Cushioning", "must exist")
-    else
-      errors.add("Cushioning", "can't include #{self.tags[:cushioning]}") if AllowedTags::CUSHIONING_OPTIONS.exclude?(self.tags[:cushioning])
+    elsif !tags[:cushioning].to_i.between?(0, AllowedTags::CUSHIONING_OPTIONS.size-1)
+      errors.add("Cushioning", "must be between 0 and #{AllowedTags::CUSHIONING_OPTIONS.size-1}")
     end
 
     if tags[:support].nil?
       errors.add("Support", "must exist")
-    else
-      errors.add("Support", "can't include #{self.tags[:support]}") if AllowedTags::SUPPORT_OPTIONS.exclude?(self.tags[:support])
+    elsif AllowedTags::SUPPORT_OPTIONS.exclude?(self.tags[:support])
+      errors.add("Support", "can't include #{self.tags[:support]}")
     end
   end
 end
