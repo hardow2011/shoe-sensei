@@ -23,6 +23,56 @@ class AdminsTest < ApplicationSystemTestCase
     assert_text 'CONTENT MANAGEMENT'
   end
 
+  test "Creating brand" do
+    sign_as @charo
+
+    clink_on 'New brand'
+
+    fill_in "brand[name]",	with: "Adidas"
+    fill_in "brand[overview]",	with: "A very hip brand!"
+
+    click_on 'Create brand'
+
+    assert_text 'Adidas'
+  end
+
+  test "Updating brand" do
+    sign_as @charo
+
+    clink_on 'Brands'
+
+    click_on 'Edit', match: :first
+
+    fill_in "brand[name]",	with: "Saucony"
+    fill_in "brand[overview]",	with: "I do not know much about this one."
+
+    click_on 'Update brand'
+
+    assert_text 'Saucony'
+  end
+
+  test 'Destroying a brand' do
+    sign_in @charo
+
+    click_on 'Brands'
+
+    assert_no_text 'ToDelete'
+
+    clink_on 'New brand'
+
+    fill_in "brand[name]",	with: "ToDelete"
+    fill_in "brand[overview]",	with: "Will be deleted"
+
+    click_on 'Create brand'
+
+    assert_text 'ToDelete'
+
+    click_on 'Delete', match: :first
+
+    assert_no_text 'ToDelete'
+  end
+
+
   # test 'Logging out' do
   #   sign_in @charo
 
