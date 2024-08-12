@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, path: 'admin', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'signup' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -10,4 +10,9 @@ Rails.application.routes.draw do
   root "pages#home"
   get 'filter_models', to: 'pages#filter_models', as: 'filter_models'
   resources :brands, only: %i[show]
+
+  namespace :admin do
+    resources :brands
+    get 'home', to: 'pages#home' # admin_home
+  end
 end
