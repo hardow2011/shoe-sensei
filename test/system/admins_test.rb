@@ -4,17 +4,9 @@ class AdminsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
   setup do
-    @charo = users(:charo)
-    @charo_psswd = 'charo'
+    sign_in_as_admin
   end
   test "Logging in" do
-    visit new_user_session_url
-
-    fill_in "user[email]",	with: @charo.email
-    fill_in "user[password]",	with: @charo_psswd
-
-    click_on 'Log in'
-
     within('.admin-menubar') do
       click_on 'Brands'
     end
@@ -26,13 +18,6 @@ class AdminsTest < ApplicationSystemTestCase
   end
 
   test "Creating brand" do
-    visit new_user_session_url
-
-    fill_in "user[email]",	with: @charo.email
-    fill_in "user[password]",	with: @charo_psswd
-
-    click_on 'Log in'
-
     click_on 'Add a brand'
 
     fill_in "brand[name]",	with: "Adidas"
@@ -46,13 +31,6 @@ class AdminsTest < ApplicationSystemTestCase
   end
 
   test "Updating brand" do
-    visit new_user_session_url
-
-    fill_in "user[email]",	with: @charo.email
-    fill_in "user[password]",	with: @charo_psswd
-
-    click_on 'Log in'
-
     click_on 'Brands'
 
     click_on 'Edit', match: :first
@@ -68,13 +46,6 @@ class AdminsTest < ApplicationSystemTestCase
   end
 
   test 'Destroying a brand' do
-    visit new_user_session_url
-
-    fill_in "user[email]",	with: @charo.email
-    fill_in "user[password]",	with: @charo_psswd
-
-    click_on 'Log in'
-
     click_on 'Brands'
 
     assert_no_text 'ToDelete'
