@@ -1,12 +1,17 @@
-<div class="section">
-    <div class="buttons is-right">
-        <%= link_to 'Add a brand', new_admin_brand_path, class: "button is-link" %>
+<div class="section px-0 pt-0">
+    <div class="columns">
+        <div class="column">
+            <h1 class="title is-1">Brands</h1>
+        </div>
+        <div class="column">
+            <div class="buttons is-right">
+                <%= link_to 'Add a brand', new_admin_brand_path, class: "button is-link" %>
+            </div>
+        </div>
     </div>
 </div>
-<div class="section">
-    <div class="fixed-grid has-1-cols">
-        <div class="grid models-grid">
-            <%= render partial: 'admin/brands/brand', collection: @brands %>
-        </div>
-    </div>  
-</div>
+<div class="fixed-grid has-1-cols">
+    <div class="grid models-grid">
+        <%= render partial: 'admin/brands/brand', collection: @brands %>
+    </div>
+</div>  

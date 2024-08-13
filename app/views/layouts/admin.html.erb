@@ -15,18 +15,16 @@
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     </div>
-    <div class="columns">
-      <div class="column is-one-fifth">
-          <div class="section">
-              <%= render 'admin/menu' %>
+    <div class="section">
+      <div class="container is-widescreen">
+        <div class="columns">
+          <div class="column is-one-quarter">
+            <%= render 'admin/menu' %>
           </div>
-      </div>
-      <div class="column">
-          <div class="section">
-              <div class="container is-max-desktop ml-0">
-                  <%= yield %>
-              </div>
+          <div class="column">
+            <%= yield %>
           </div>
+        </div>
       </div>
     </div>
   </body>
