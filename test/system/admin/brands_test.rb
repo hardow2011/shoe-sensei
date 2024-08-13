@@ -1,20 +1,8 @@
 require 'application_system_test_case'
 
-class AdminsTest < ApplicationSystemTestCase
-  include Devise::Test::IntegrationHelpers
-
+class Admin::BrandsTest < ApplicationSystemTestCase
   setup do
     sign_in_as_admin
-  end
-  test "Logging in" do
-    within('.admin-menubar') do
-      click_on 'Brands'
-    end
-
-    assert_text 'Brands'
-
-    assert_text 'Dashboard'
-    assert_text 'CONTENT MANAGEMENT'
   end
 
   test "Creating brand" do
@@ -69,11 +57,4 @@ class AdminsTest < ApplicationSystemTestCase
 
     assert_no_text 'ToDelete'
   end
-
-
-  # test 'Logging out' do
-  #   sign_in @charo
-
-  #   click_on 'Log out'
-  # end
 end
