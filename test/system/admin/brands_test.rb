@@ -31,6 +31,8 @@ class Admin::BrandsTest < ApplicationSystemTestCase
 
     click_on 'Edit', match: :first
 
+    assert_text 'Edit brand'
+
     fill_in "brand[name]",	with: "Saucony"
     fill_in "brand[overview]",	with: "I do not know much about this one."
 
