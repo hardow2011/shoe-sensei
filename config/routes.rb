@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   resources :brands, only: %i[show]
 
   namespace :admin do
-    resources :brands
     get '', to: 'pages#home', as: 'home'
+    resources :brands do
+      resources :collections
+    end
   end
 end
