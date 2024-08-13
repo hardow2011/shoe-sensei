@@ -12,11 +12,13 @@
 class Brand < ApplicationRecord
   has_many :collections
   has_many :models, through: :collections
+
+  before_validation :assign_handle
+
   validates :name, :handle, :overview, presence: true
   validates :name, :handle, uniqueness: true
   validates :handle, format: { with: /[a-zA-Z0-9-]+/ }
 
-  before_validation :assign_handle
 
   def to_param
     handle
