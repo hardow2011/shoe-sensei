@@ -3,7 +3,7 @@ class Admin::DeviseTest < ApplicationSystemTestCase
     sign_in_as_admin
   end
 
-  test "Logging in" do
+  test "logging in" do
     within('.admin-menubar') do
       click_on 'Brands'
     end
@@ -14,7 +14,7 @@ class Admin::DeviseTest < ApplicationSystemTestCase
     assert_text 'CONTENT MANAGEMENT'
   end
 
-  # test 'Logging out' do
+  # test 'logging out' do
   #   sign_in @charo
 
   #   click_on 'Log out'
