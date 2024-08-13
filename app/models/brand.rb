@@ -9,7 +9,13 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_brands_on_handle  (handle) UNIQUE
+#  index_brands_on_name    (name) UNIQUE
+#
 class Brand < ApplicationRecord
+  include DataFormatting
   has_many :collections
   has_many :models, through: :collections
 
@@ -17,22 +23,10 @@ class Brand < ApplicationRecord
 
   validates :name, :handle, :overview, presence: true
   validates :name, :handle, uniqueness: true
-  validates :handle, format: { with: /[a-zA-Z0-9-]+/ }
+  validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }
 
 
   def to_param
     handle
-  end
-
-  def self.get_by_handle(handle)
-    Brand.find_sole_by(handle: handle)
-  end
-
-  private
-
-  def assign_handle
-    if self.name && self.name_changed?
-      self.handle = self.name.parameterize
-    end
   end
 end

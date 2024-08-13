@@ -4,7 +4,7 @@
 #
 #  id               :bigint           not null, primary key
 #  apma_accepted    :boolean          not null
-#  discontinued     :boolean          default(FALSE)
+#  discontinued     :boolean          not null
 #  heel_to_toe_drop :integer          not null
 #  name             :string           not null
 #  order            :integer          not null
@@ -16,7 +16,8 @@
 #
 # Indexes
 #
-#  index_models_on_collection_id  (collection_id)
+#  index_models_on_collection_id           (collection_id)
+#  index_models_on_name_and_collection_id  (name,collection_id) UNIQUE
 #
 # Foreign Keys
 #
@@ -32,7 +33,7 @@ class Model < ApplicationRecord
   serialize :tags, coder: HashSerializer
 
   validates :heel_to_toe_drop, :name, :weight, presence: true
-  validates :name, uniqueness: { scope: :collection }
+  validates :name, uniqueness: { scope: :collection, case_sensitive: false }
   validates :apma_accepted, :discontinued, inclusion: [ true, false ]
   validates :heel_to_toe_drop, numericality: { greater_than_or_equal_to: 0 }
   validates :weight, numericality: { greater_than_or_equal_to: 0.1 }
