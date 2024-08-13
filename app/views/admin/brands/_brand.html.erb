@@ -1,0 +1,9 @@
+<div class="columns">
+    <div class="column is-narrow"><%= brand.name %></div>
+    <div class="column">
+        <div class="buttons is-right">
+             <%= link_to 'Edit', edit_admin_brand_path(brand), class: "button is-link" %>
+             <%= button_to 'Delete', [:admin, brand], method: :delete, class: "button is-danger" %>
+        </div>
+    </div>
+</div>

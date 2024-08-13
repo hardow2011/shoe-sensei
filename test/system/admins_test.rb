@@ -1,6 +1,8 @@
 require 'application_system_test_case'
 
 class AdminsTest < ApplicationSystemTestCase
+  include Devise::Test::IntegrationHelpers
+
   setup do
     @charo = users(:charo)
     @charo_psswd = 'charo'
@@ -24,50 +26,73 @@ class AdminsTest < ApplicationSystemTestCase
   end
 
   test "Creating brand" do
-    sign_as @charo
+    visit new_user_session_url
 
-    clink_on 'New brand'
+    fill_in "user[email]",	with: @charo.email
+    fill_in "user[password]",	with: @charo_psswd
+
+    click_on 'Log in'
+
+    click_on 'Add a brand'
 
     fill_in "brand[name]",	with: "Adidas"
     fill_in "brand[overview]",	with: "A very hip brand!"
 
-    click_on 'Create brand'
+    click_on 'Create Brand'
+
+    assert_text 'Brand was created successfully.'
 
     assert_text 'Adidas'
   end
 
   test "Updating brand" do
-    sign_as @charo
+    visit new_user_session_url
 
-    clink_on 'Brands'
+    fill_in "user[email]",	with: @charo.email
+    fill_in "user[password]",	with: @charo_psswd
+
+    click_on 'Log in'
+
+    click_on 'Brands'
 
     click_on 'Edit', match: :first
 
     fill_in "brand[name]",	with: "Saucony"
     fill_in "brand[overview]",	with: "I do not know much about this one."
 
-    click_on 'Update brand'
+    click_on 'Update Brand'
+
+    assert_text 'Brand was updated successfully.'
 
     assert_text 'Saucony'
   end
 
   test 'Destroying a brand' do
-    sign_in @charo
+    visit new_user_session_url
+
+    fill_in "user[email]",	with: @charo.email
+    fill_in "user[password]",	with: @charo_psswd
+
+    click_on 'Log in'
 
     click_on 'Brands'
 
     assert_no_text 'ToDelete'
 
-    clink_on 'New brand'
+    click_on 'Create Brand', match: :first
 
     fill_in "brand[name]",	with: "ToDelete"
     fill_in "brand[overview]",	with: "Will be deleted"
 
-    click_on 'Create brand'
+    click_on 'Create Brand', match: :first
+
+    assert_text 'Brand was created successfully.'
 
     assert_text 'ToDelete'
 
     click_on 'Delete', match: :first
+
+    assert_text 'Brand was destroyed successfully.'
 
     assert_no_text 'ToDelete'
   end

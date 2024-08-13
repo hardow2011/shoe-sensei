@@ -18,6 +18,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :brands
-    get 'home', to: 'pages#home' # admin_home
+    get '', to: 'pages#home', as: 'home'
   end
 end

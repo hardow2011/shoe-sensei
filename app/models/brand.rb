@@ -22,8 +22,8 @@ class Brand < ApplicationRecord
     handle
   end
 
-  def self.get_by_handle
-    Community.find_sole_by(handle: handle)
+  def self.get_by_handle(handle)
+    Brand.find_sole_by(handle: handle)
   end
 
   private

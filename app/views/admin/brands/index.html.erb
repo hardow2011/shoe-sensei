@@ -1,0 +1,12 @@
+<div class="section">
+    <div class="buttons is-right">
+        <%= link_to 'Create Brand', new_admin_brand_path, class: "button is-link" %>
+    </div>
+</div>
+<div class="section">
+    <div class="fixed-grid has-1-cols">
+        <div class="grid models-grid">
+            <%= render partial: 'admin/brands/brand', collection: @brands %>
+        </div>
+    </div>  
+</div>

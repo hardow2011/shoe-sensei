@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Footwearapp Admin</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  </head>
+
+  <body>
+    <div class="notices">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+    <div class="columns">
+      <div class="column is-one-fifth">
+          <div class="section">
+              <%= render 'admin/menu' %>
+          </div>
+      </div>
+      <div class="column">
+          <div class="section">
+              <div class="container is-max-desktop ml-0">
+                  <%= yield %>
+              </div>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

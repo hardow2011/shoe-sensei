@@ -1,0 +1,15 @@
+<aside class="menu admin-menubar">
+    <p class="menu-label">General</p>
+    <ul class="menu-list">
+        <li><%= link_to 'Dashboard', admin_home_path %></li>
+    </ul>
+    <p class="menu-label">Content management</p>
+    <ul class="menu-list">
+        <li>
+            <%= link_to 'Brands', admin_brands_path, class: 'is-active' %>
+            <ul>
+                <li><%= link_to 'Add a brand', new_admin_brand_path %></li>
+            </ul>
+        </li>
+    </ul>
+</aside>
