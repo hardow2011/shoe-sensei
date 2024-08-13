@@ -6,7 +6,7 @@ class PagesTest < ApplicationSystemTestCase
     @hoka_speedgoat_5 = models(:hoka_speedgoat_5)
     @hoka_bondi_8 = models(:hoka_bondi_8)
   end
-  test "Filtering the shoe models in the homepage" do
+  test "filtering the shoe models in the homepage" do
     visit root_path
 
     within('.models-grid') do
@@ -51,7 +51,7 @@ class PagesTest < ApplicationSystemTestCase
     end
   end
 
-  test 'Paginating through the shoe models in the homepage' do
+  test 'paginating through the shoe models in the homepage' do
     visit root_path
 
     within('.pagination', match: :first) do
@@ -69,7 +69,7 @@ class PagesTest < ApplicationSystemTestCase
     assert_no_selector(:css, '.pagination')
   end
 
-  test 'Sorting the models in the homepage' do
+  test 'sorting the models in the homepage' do
     visit root_url
 
 

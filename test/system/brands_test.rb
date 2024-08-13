@@ -8,7 +8,7 @@ class BrandsTest < ApplicationSystemTestCase
     @hoka = brands(:hoka)
     @on = brands(:on_running)
   end
-  test 'Show brand page' do
+  test 'show brand page' do
     visit root_url
 
     within('.model-filter') do
