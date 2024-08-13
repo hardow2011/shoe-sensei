@@ -2,60 +2,72 @@
 
 brooks_ghost:
   name: Ghost
+  handle: ghost
   overview: The Brooks Ghost line of shoes is renowned for its balanced cushioning and smooth ride, making it a favorite among neutral runners. These shoes offer a versatile fit, reliable comfort, and durability, catering to both everyday training and long-distance running. The Ghost series consistently receives high praise for its performance and comfort.
   brand: brooks
 
 brooks_ghost_max:
   name: Ghost Max
+  handle: ghost-max
   overview: The Brooks Ghost Max is a cushioned running shoe designed to provide maximum comfort and support. It features enhanced cushioning and a soft, smooth ride, making it ideal for runners seeking extra protection and comfort during their runs. The Ghost Max combines the reliable performance of the Ghost line with added cushioning for a plush running experience.
   brand: brooks
 
 brooks_adrenaline_gts:
   name: Adrenaline GTS
+  handle: adrenaline-gts
   overview: The Brooks Adrenaline GTS is a stability running shoe designed to offer balanced support and cushioning. Known for its GuideRails support system, it helps runners maintain proper alignment, reducing the risk of injury. The Adrenaline GTS is popular for its reliable comfort, stability, and smooth ride, catering to overpronators and those seeking added support.
   brand: brooks
 
 hoka_bondi:
   name: Bondi
+  handle: bondi
   overview: The Hoka Bondi line of shoes is renowned for its maximal cushioning and plush comfort, making it one of the most cushioned road running shoes available. Designed for long-distance running and high-impact activities, the Bondi series provides a smooth and stable ride, catering to runners seeking superior cushioning and support.
   brand: hoka
 
 hoka_clifton:
   name: Clifton
+  handle: clifton
   overview: The Hoka Clifton line of shoes is celebrated for its lightweight design and balanced cushioning, offering a smooth and responsive ride. Ideal for daily training and long-distance running, the Clifton series combines comfort with performance, making it a favorite among runners seeking a versatile and reliable shoe.
   brand: hoka
 
 hoka_gaviota:
   name: Gaviota
+  handle: gaviota
   overview: The Hoka Gaviota is a stability running shoe designed to provide maximum cushioning and support for overpronators. It features a plush, cushioned ride combined with Hoka’s signature stability technologies to help maintain proper alignment and reduce the risk of injury, making it ideal for long-distance runs and daily training.
   brand: hoka
 
 hoka_speedgoat:
-  name: Gaviota
+  name: Speedgoat
+  handle: speedgoat
   overview: The Hoka Speedgoat is a trail running shoe designed for rugged terrain and challenging conditions. Known for its aggressive traction, durable construction, and ample cushioning, the Speedgoat provides excellent stability and comfort on rough and uneven surfaces, making it a popular choice for trail runners seeking performance and protection.
   brand: hoka
 
 on_cloudmonster:
   name: Cloudmonster
+  handle: cloudmonster
   overview: The On Cloudmonster line features high-cushioning running shoes designed to deliver a plush, comfortable ride with a distinctive "monster" CloudTec sole. Engineered for maximum comfort and energy return, the Cloudmonster provides a smooth and cushioned experience, making it ideal for runners seeking both softness and performance.
   brand: on_running
 
 on_cloudvista:
   name: Cloudvista
+  handle: cloudvista
   overview: The On Cloudvista is a trail running shoe designed for versatility and comfort on various terrains. It features a responsive CloudTec sole and enhanced traction, providing a cushioned and stable ride for trail runners navigating diverse and challenging surfaces.
   brand: on_running
 
 on_cloudsurfer_trail:
   name: Cloudsurfer Trail
+  handle: cloudsurfer-trail
   overview: The On Cloudsurfer Trail is a trail running shoe that combines cushioned comfort with responsive performance. Featuring On’s signature CloudTec technology and a durable outsole, it offers a smooth, adaptive ride and reliable traction on varied trail surfaces, making it ideal for runners seeking both comfort and performance on rugged terrain.
   brand: on_running
 
 on_cloud_x:
   name: Cloud X
+  handle: cloud-x
   overview: The On Cloud X line of shoes is designed for versatile performance, suitable for both running and cross-training. Combining lightweight construction with responsive cushioning, the Cloud X features a flexible and durable design. It offers a comfortable, adaptive fit, making it ideal for athletes seeking a multipurpose shoe that excels in various activities.
   brand: on_running
 
 new_balance_fresh_foam_1080:
   name: Fresh Foam X 1080
+  handle: fresh-foam-x-1080
   overview: The New Balance Fresh Foam 1080 line is known for its plush cushioning and plush comfort, designed to provide a smooth and supportive ride for long-distance running. Featuring New Balance’s Fresh Foam midsole technology, the 1080 series delivers a responsive yet cushioned experience, making it ideal for runners seeking a blend of softness and performance.
   brand: new_balance
