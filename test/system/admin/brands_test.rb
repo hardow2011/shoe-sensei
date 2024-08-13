@@ -5,7 +5,7 @@ class Admin::BrandsTest < ApplicationSystemTestCase
     sign_in_as_admin
   end
 
-  test "Listing all brands" do
+  test "listing all brands" do
     click_on 'Brands'
 
     brands.each do |b|
@@ -13,20 +13,20 @@ class Admin::BrandsTest < ApplicationSystemTestCase
     end
   end
 
-  test "Creating brand" do
+  test "creating brand" do
     click_on 'Add a brand'
 
-    fill_in "brand[name]",	with: "Adidas"
+    fill_in "brand[name]",	with: "MadeUpBrand"
     fill_in "brand[overview]",	with: "A very hip brand!"
 
     click_on 'Create Brand'
 
     assert_text 'Brand was created successfully.'
 
-    assert_text 'Adidas'
+    assert_text 'MadeUpBrand'
   end
 
-  test "Updating brand" do
+  test "updating brand" do
     click_on 'Brands'
 
     click_on 'Edit', match: :first
@@ -43,7 +43,7 @@ class Admin::BrandsTest < ApplicationSystemTestCase
     assert_text 'Saucony'
   end
 
-  test 'Destroying a brand' do
+  test 'destroying a brand' do
     click_on 'Brands'
 
     assert_no_text 'ToDelete'
