@@ -10,16 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_07_012228) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_13_042756) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "brands", force: :cascade do |t|
     t.string "name", null: false
+    t.string "handle", null: false
     t.string "overview", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "handle", null: false
+    t.index ["handle"], name: "index_brands_on_handle", unique: true
+    t.index ["name"], name: "index_brands_on_name", unique: true
   end
 
   create_table "collections", force: :cascade do |t|
@@ -30,10 +32,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_07_012228) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["brand_id"], name: "index_collections_on_brand_id"
+    t.index ["handle", "brand_id"], name: "index_collections_on_handle_and_brand_id", unique: true
+    t.index ["name", "brand_id"], name: "index_collections_on_name_and_brand_id", unique: true
   end
 
   create_table "models", force: :cascade do |t|
     t.string "name", null: false
+    t.boolean "discontinued", null: false
     t.float "weight", null: false
     t.integer "heel_to_toe_drop", null: false
     t.integer "order", null: false
@@ -41,9 +46,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_07_012228) do
     t.bigint "collection_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "discontinued", default: false
     t.jsonb "tags", default: {}, null: false
     t.index ["collection_id"], name: "index_models_on_collection_id"
+    t.index ["name", "collection_id"], name: "index_models_on_name_and_collection_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
