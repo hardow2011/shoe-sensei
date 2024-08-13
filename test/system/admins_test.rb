@@ -79,7 +79,9 @@ class AdminsTest < ApplicationSystemTestCase
 
     assert_no_text 'ToDelete'
 
-    click_on 'Create Brand', match: :first
+    assert_link 'Add a brand', count: 2
+
+    click_on 'Add a brand', match: :first
 
     fill_in "brand[name]",	with: "ToDelete"
     fill_in "brand[overview]",	with: "Will be deleted"
