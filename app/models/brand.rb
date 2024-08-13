@@ -29,6 +29,8 @@ class Brand < ApplicationRecord
   private
 
   def assign_handle
-    self.handle = self.name.parameterize
+    if self.name && self.name_changed?
+      self.handle = self.name.parameterize
+    end
   end
 end
