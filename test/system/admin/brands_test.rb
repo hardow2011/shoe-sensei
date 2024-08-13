@@ -5,6 +5,14 @@ class Admin::BrandsTest < ApplicationSystemTestCase
     sign_in_as_admin
   end
 
+  test "Listing all brands" do
+    click_on 'Brands'
+
+    brands.each do |b|
+      assert_text b.name
+    end
+  end
+
   test "Creating brand" do
     click_on 'Add a brand'
 
