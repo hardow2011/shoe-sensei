@@ -1,0 +1,17 @@
+<div class="section px-0 pt-0">
+    <div class="columns">
+        <div class="column">
+            <h1 class="title is-1">Collections</h1>
+        </div>
+        <div class="column">
+            <div class="buttons is-right">
+                <%= link_to 'Add a collection', new_admin_collection_path, class: "button is-link" %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fixed-grid has-1-cols">
+    <div class="grid models-grid">
+        <%= render partial: 'admin/collections/collection', collection: @collections %>
+    </div>
+</div>  

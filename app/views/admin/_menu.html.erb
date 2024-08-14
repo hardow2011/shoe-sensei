@@ -12,4 +12,12 @@
             </ul>
         </li>
     </ul>
+    <ul class="menu-list">
+        <li>
+            <%= link_to 'Collections', admin_collections_path, class: 'is-active' %>
+            <ul>
+                <li><%= link_to 'Add a collection', new_admin_collection_path %></li>
+            </ul>
+        </li>
+    </ul>
 </aside>

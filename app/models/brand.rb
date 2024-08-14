@@ -16,7 +16,7 @@
 #
 class Brand < ApplicationRecord
   include DataFormatting
-  has_many :collections
+  has_many :collections, dependent: :destroy
   has_many :models, through: :collections
 
   before_validation :assign_handle

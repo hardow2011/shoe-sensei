@@ -1,0 +1,13 @@
+<div class="box">
+    <div class="columns">
+        <div class="column is-narrow is-flex is-align-items-center">
+            <%= link_to collection.name, edit_admin_collection_path(collection), class: "is-size-4" %>
+        </div>
+        <div class="column">
+            <div class="buttons is-right">
+                <%= link_to 'Edit', edit_admin_collection_path(collection), class: "button is-link" %>
+                <%= button_to 'Delete', [:admin, collection], method: :delete, class: "button is-danger" %>
+            </div>
+        </div>
+    </div>
+</div>

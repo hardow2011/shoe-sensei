@@ -3,6 +3,7 @@ require 'application_system_test_case'
 class Admin::BrandsTest < ApplicationSystemTestCase
   setup do
     sign_in_as_admin
+    @hoka = brands(:hoka)
   end
 
   test "listing all brands" do
@@ -29,9 +30,13 @@ class Admin::BrandsTest < ApplicationSystemTestCase
   test "updating brand" do
     click_on 'Brands'
 
-    click_on 'Edit', match: :first
+    click_on @hoka.name
 
     assert_text 'Edit brand'
+
+    @hoka.collections.each do |c|
+      assert_text c.name
+    end
 
     fill_in "brand[name]",	with: "Saucony"
     fill_in "brand[overview]",	with: "I do not know much about this one."
@@ -61,7 +66,8 @@ class Admin::BrandsTest < ApplicationSystemTestCase
 
     assert_text 'ToDelete'
 
-    click_on 'Delete', match: :first
+    # click_on clicking on edit for some reason
+    click_button 'Delete', match: :first
 
     assert_text 'Brand was destroyed successfully.'
 

@@ -23,7 +23,7 @@
 class Collection < ApplicationRecord
   include DataFormatting
   belongs_to :brand
-  has_many :models
+  has_many :models, dependent: :destroy
 
   validates :name, :overview, :handle, presence: true
   validates :name, :handle, uniqueness: { scope: :brand, case_sensitive: false }

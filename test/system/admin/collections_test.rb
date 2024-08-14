@@ -18,11 +18,34 @@ class Admin::CollectionsTest < ApplicationSystemTestCase
 
     fill_in "collection[name]",	with: "MadeUpCollection"
     fill_in "collection[overview]",	with: "For challenging trails."
-    select 'On', from: 'collection[brand]'
+    select 'On', from: 'collection[brand_id]'
 
     click_on 'Create Collection'
 
     assert_text 'Collection was created successfully.'
+
+    assert_text 'MadeUpCollection'
+  end
+
+  test 'creating a collection from a brand' do
+    click_on 'Brands'
+
+    click_on 'On'
+
+    click_on 'Edit', match: :first
+
+    assert_text 'Edit collection'
+
+    click_on 'Add Collection'
+
+    fill_in "collection[name]",	with: "MadeUpCollection"
+    fill_in "collection[overview]",	with: "For challenging trails."
+
+    click_on 'Update Brand'
+
+    click_on 'On'
+
+    click_on 'Edit'
 
     assert_text 'MadeUpCollection'
   end
@@ -35,7 +58,7 @@ class Admin::CollectionsTest < ApplicationSystemTestCase
     fill_in "collection[name]",	with: "UpdatedCollection"
     fill_in "collection[overview]",	with: "A minimalistic casual shoe."
 
-    click_on 'Update collection'
+    click_on 'Update Collection'
 
     assert_text 'Collection was updated successfully.'
 
@@ -45,11 +68,11 @@ class Admin::CollectionsTest < ApplicationSystemTestCase
   test 'destroying a collection' do
     click_on 'Collections'
 
-    click_on 'Add a collection'
+    click_on 'Add a collection', match: :first
 
     fill_in "collection[name]",	with: "ToDelete"
     fill_in "collection[overview]",	with: "Will be deleted"
-    select 'On', from: 'collection[brand]'
+    select 'On', from: 'collection[brand_id]'
 
     click_on 'Create Collection'
 
@@ -57,9 +80,9 @@ class Admin::CollectionsTest < ApplicationSystemTestCase
 
     assert_text 'ToDelete'
 
-    click_on 'Delete', match: :first
+    click_button 'Delete', match: :first
 
-    assert_text 'Collection was deleted successfully.'
+    assert_text 'Collection was destroyed successfully.'
 
     assert_no_text 'ToDelete'
   end
