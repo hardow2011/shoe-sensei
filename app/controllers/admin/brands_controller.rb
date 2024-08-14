@@ -9,7 +9,11 @@ class Admin::BrandsController < ApplicationController
     @brands = Brand.order(created_at: :desc)
   end
 
-  def show
+  # def show
+
+  # end
+
+  def edit
 
   end
 
@@ -25,10 +29,6 @@ class Admin::BrandsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def edit
-
   end
 
   def update
