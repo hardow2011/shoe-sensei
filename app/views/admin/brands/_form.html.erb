@@ -4,6 +4,7 @@
             <%= brand.errors.full_messages.to_sentence.capitalize %>
         </div>
     <% end %>
+    <div> <%# TODO: find out why Delete button on _collection partial causes wrong html without this tag %>
     <div class="field">
         <label class="label"><%= f.label :name %></label>
         <div class="control">
