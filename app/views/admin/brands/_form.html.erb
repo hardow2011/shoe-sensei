@@ -16,11 +16,13 @@
         <div class="control">
             <%= f.text_area :overview, class: 'textarea' %>
         </div>
-        <%# TODO: add overview field. Maybe make text insted of string %>
+    </div>
+    <div class="fields">
+        <%= render partial: 'admin/collections/collection', collection: brand.collections %>
     </div>
     <div class="field">
         <div class="control">
             <%= f.submit class: 'button is-success is-pulled-right' %>
-        </div>
+    </div>
   </div>
 <% end %>
