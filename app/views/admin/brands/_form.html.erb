@@ -24,9 +24,10 @@
             <%= render partial: 'admin/collections/collection', collection: brand.collections %>
         </div>
     </div>
+    <%= link_to 'Add Collection', new_admin_brand_collection_path(brand) %>
     <div class="field">
         <div class="control">
-            <%= f.submit class: 'button is-success is-pulled-right' %>
+            <%#= f.submit class: 'button is-success is-pulled-right' %>
         </div>
     </div>
 <% end %>
