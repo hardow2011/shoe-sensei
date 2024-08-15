@@ -1,13 +1,20 @@
-<div class="box">
+<% disable_turbo = defined?(disable_turbo) ? disable_turbo : false %>
+<%= turbo_frame_tag collection, target: "#{disable_turbo ? '_top' : nil}", class: 'box' do %>
     <div class="columns">
         <div class="column is-narrow is-flex is-align-items-center">
-            <%= link_to collection.name, edit_admin_brand_collection_path(collection.brand, collection), class: "is-size-4" %>
+            <p>
+                 <%= link_to collection.name, edit_admin_brand_collection_path(collection.brand, collection), class: "is-size-4" %>
+                 <% unless defined?(brand) %>
+                 from 
+                 <%= link_to collection.brand.name, edit_admin_brand_path(collection.brand), class: "is-size-5" %>
+                 <% end %>
+            </p>
         </div>
         <div class="column">
             <div class="buttons is-right">
                 <%= link_to 'Edit', edit_admin_brand_collection_path(collection.brand, collection), class: "button is-link" %>
-                <%= button_to 'Delete', [:admin, collection.brand, collection], method: :delete, class: "button is-danger" %>
+                <%= button_to('Delete', [:admin, brand, collection], method: :delete, class: "button is-danger") if defined?(brand) %>
             </div>
         </div>
     </div>
-</div>
+<% end %>

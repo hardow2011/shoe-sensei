@@ -1,0 +1,3 @@
+<%= turbo_frame_tag Collection.new(brand: brand) do %>
+    <%= link_to 'Add Collection', new_admin_brand_collection_path(brand, edited_from_brand: true), class: "button is-link" %>
+<% end %>

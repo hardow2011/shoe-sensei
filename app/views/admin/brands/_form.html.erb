@@ -4,7 +4,6 @@
             <%= brand.errors.full_messages.to_sentence.capitalize %>
         </div>
     <% end %>
-    <div> <%# TODO: find out why Delete button on _collection partial causes wrong html without this tag %>
     <div class="field">
         <label class="label"><%= f.label :name %></label>
         <div class="control">
@@ -19,15 +18,21 @@
         </div>
     </div>
     <div class="field">
-        <label class="label">Collections</label>
-        <div class="control">
-            <%= render partial: 'admin/collections/collection', collection: brand.collections %>
+        <div class="control is-flex is-justify-content-end">
+            <%= f.submit class: 'button is-success' %>
         </div>
     </div>
-    <%= link_to 'Add Collection', new_admin_brand_collection_path(brand) %>
-    <div class="field">
-        <div class="control">
-            <%#= f.submit class: 'button is-success is-pulled-right' %>
+<% end %>
+<% unless brand.new_record? %>
+    <div class="block">
+        <div class="field">
+            <label class="label">Collections</label>
+            <%= turbo_frame_tag 'collections' do %>
+                <%= render partial: 'admin/collections/collection', collection: brand.collections.order(:name), locals: { brand: brand } %>
+            <% end %>
         </div>
+    </div>
+    <div class="box">
+        <%= render partial: 'admin/brands/add_collection_btn', locals: { brand: brand } %>
     </div>
 <% end %>

@@ -1,33 +1,37 @@
-<%= form_with model: [:admin, collection.brand, collection] do |f| %>
-    <% if collection.errors.any? %>
-        <div>
-            <%= collection.errors.full_messages.to_sentence.capitalize %>
+<% edited_from_brand = !params[:edited_from_brand].nil? ? params[:edited_from_brand].to_boolean : false %>
+<%= turbo_frame_tag collection, autoscroll: true do %>
+    <%= form_with model: [:admin, collection.brand, collection] do |f| %>
+        <% if collection.errors.any? %>
+            <div>
+                <%= collection.errors.full_messages.to_sentence.capitalize %>
+            </div>
+        <% end %>
+        <div class="field">
+            <label class="label"><%= f.label :name %></label>
+            <div class="control">
+                <%= f.text_field :name, autofocus: true, class: 'input' %>
+            </div>
+            <%# TODO: add overview field. Maybe make text insted of string %>
         </div>
-    <% end %>
-    <div class="field">
-        <label class="label"><%= f.label :name %></label>
-        <div class="control">
-            <%= f.text_field :name, autofocus: true, class: 'input' %>
-        </div>
-        <%# TODO: add overview field. Maybe make text insted of string %>
-    </div>
-    <div class="field">
-        <label class="label"><%= f.label :overview %></label>
-        <div class="control">
-            <%= f.text_area :overview, class: 'textarea' %>
-        </div>
-    </div>
-    <div class="field">
-        <label class="label"><%= f.label :brand_id, 'Brand' %></label>
-        <div class="control">
-            <div class="select">
-                <%= f.collection_select :brand_id, Brand.order(:name), :id, :name, class: 'textarea' %>
+        <div class="field">
+            <label class="label"><%= f.label :overview %></label>
+            <div class="control">
+                <%= f.text_area :overview, class: 'textarea' %>
             </div>
         </div>
-    </div>
-    <div class="field">
-        <div class="control">
-            <%= f.submit class: 'button is-success is-pulled-right' %>
+        <div class="field">
+            <label class="label"><%= f.label :brand_id, 'Brand' %></label>
+            <div class="control">
+                <div class="select">
+                    <%= f.collection_select :brand_id, Brand.order(:name), :id, :name, class: 'textarea' %>
+                </div>
+            </div>
         </div>
-    </div>
+        <div class="field">
+            <div class="buttons is-right">
+                <%= link_to("Cancel", edit_admin_brand_path(collection.brand), class: 'button') if collection.brand %>
+                <%= f.submit edited_from_brand ? 'Add Collection' : nil, class: 'button is-success' %>
+            </div>
+        </div>
+    <% end %>
 <% end %>

@@ -1,0 +1,2 @@
+<%= turbo_stream.update "collections", partial: 'admin/collections/collection', collection: @collections, locals: { brand: @collection.brand } %>
+<%= turbo_stream.replace Collection.new, partial: 'admin/brands/add_collection_btn', locals: { brand: @collection.brand } %>

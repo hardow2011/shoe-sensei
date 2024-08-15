@@ -19,14 +19,19 @@ class Admin::CollectionsController < ApplicationController
 
   def new
     @collection = Collection.new
-    @collection.brand_id = params[:brand_id] if params[:brand_id]
+    @collection.brand = Brand.get_by_handle(params[:brand_id]) if params[:brand_id]
   end
 
   def create
     @collection = Collection.new(collection_params)
 
     if @collection.save
-      redirect_to admin_collections_path, notice: 'Collection was created successfully.'
+      respond_to do |format|
+        format.html { redirect_to admin_collections_path, notice: 'Collection was created successfully.' }
+        format.turbo_stream do
+          @collections = Collection.where(brand: @collection.brand).order(:name)
+        end
+      end
       else
         render :new, status: :unprocessable_entity
     end
@@ -46,7 +51,12 @@ class Admin::CollectionsController < ApplicationController
 
   def destroy
     @collection.destroy
-    redirect_to admin_collections_path, notice: 'Collection was destroyed successfully.'
+    respond_to do |format|
+      format.html { redirect_to admin_collections_path, notice: 'Collection was destroyed successfully.' }
+      format.turbo_stream do
+        @collections = Collection.where(brand: @collection.brand).order(:name)
+      end
+    end
   end
 
   private
@@ -56,6 +66,7 @@ class Admin::CollectionsController < ApplicationController
   end
 
   def set_collection
+    # byebug
     @collection = Collection.get_by_handle(params[:id])
   end
 

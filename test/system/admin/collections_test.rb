@@ -3,13 +3,14 @@ require 'application_system_test_case'
 class Admin::CollectionsTest < ApplicationSystemTestCase
   setup do
     sign_in_as_admin
+    @on_brand = brands(:on_running)
   end
 
   test 'listing all collections' do
     click_on 'Collections'
 
     collections.each do |c|
-      assert_text c.name
+      assert_text "#{c.name} from #{c.brand.name}"
     end
   end
 
@@ -30,22 +31,22 @@ class Admin::CollectionsTest < ApplicationSystemTestCase
   test 'creating a collection from a brand' do
     click_on 'Brands'
 
-    click_on 'On'
+    click_on @on_brand.name
 
-    click_on 'Edit', match: :first
+    assert_text 'Edit brand'
 
-    assert_text 'Edit collection'
+    assert_text @on_brand.name
+    assert_text @on_brand.overview
 
     click_on 'Add Collection'
 
     fill_in "collection[name]",	with: "MadeUpCollection"
     fill_in "collection[overview]",	with: "For challenging trails."
 
-    click_on 'Update Brand'
+    click_on 'Add Collection'
 
-    click_on 'On'
-
-    click_on 'Edit'
+    assert_text @on_brand.name
+    assert_text @on_brand.overview
 
     assert_text 'MadeUpCollection'
   end

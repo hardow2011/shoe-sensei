@@ -36,6 +36,7 @@ class Admin::BrandsTest < ApplicationSystemTestCase
 
     @hoka.collections.each do |c|
       assert_text c.name
+      assert_no_text "#{c.name} from #{c.brand.name}"
     end
 
     fill_in "brand[name]",	with: "Saucony"
