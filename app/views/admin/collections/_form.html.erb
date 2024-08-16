@@ -30,7 +30,7 @@
         <div class="field">
             <div class="buttons is-right">
                 <%= link_to("Cancel", edit_admin_brand_path(collection.brand), class: 'button') if collection.brand %>
-                <%= f.submit edited_from_brand ? 'Add Collection' : nil, class: 'button is-success' %>
+                <%= f.submit edited_from_brand ? 'Add Collection' : nil, class: 'button is-success', data: { turbo: edited_from_brand } %>
             </div>
         </div>
     <% end %>

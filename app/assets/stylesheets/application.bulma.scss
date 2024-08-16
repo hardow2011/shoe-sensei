@@ -50,3 +50,31 @@
 .is-disabled {
     pointer-events: none;
 }
+
+.flash {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    max-width: 528px;
+    width: 100%;
+    margin: 0 24px;
+    
+    .notification {
+        animation: appear-then-fade 2.5s both;
+    }
+}
+
+@keyframes appear-then-fade {
+    100% {
+        display: none;
+    }
+    0%, 100% {
+        opacity: 0;
+    }
+
+    5%, 60% {
+        opacity: 1;
+    }
+}

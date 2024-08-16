@@ -29,6 +29,7 @@ class Admin::CollectionsController < ApplicationController
       respond_to do |format|
         format.html { redirect_to admin_collections_path, notice: 'Collection was created successfully.' }
         format.turbo_stream do
+          flash.now[:notice] = 'Collection was created successfully.'
           @collections = Collection.where(brand: @collection.brand).order(:name)
         end
       end
@@ -54,6 +55,7 @@ class Admin::CollectionsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_collections_path, notice: 'Collection was destroyed successfully.' }
       format.turbo_stream do
+        flash.now[:notice] = 'Collection was destroyed successfully.'
         @collections = Collection.where(brand: @collection.brand).order(:name)
       end
     end

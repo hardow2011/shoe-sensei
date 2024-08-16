@@ -1,0 +1,10 @@
+<div id="flash" class="flash">
+    <% if flash.any? %>
+        <div class="notification">
+            <% flash.each do |flash_type, message| %>
+                <button class="delete" onclick="this.parentNode.style.display = 'none'"></button>
+                <p class="notice"><%= message %></p>
+            <% end %>
+        </div>
+    <% end %>
+</div>
