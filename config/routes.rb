@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '', to: 'pages#home', as: 'home'
-    resources :collections, except: %i[update edit destroy]
+    resources :collections, only: %i[index new create]
     resources :brands, except: [:show] do
       resources :collections
     end
