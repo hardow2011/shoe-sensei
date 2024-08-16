@@ -5,7 +5,7 @@ module DataFormatting
 
   included do
     def self.get_by_handle(handle)
-      self.find_sole_by(handle: handle)
+      self.find_by(handle: handle)
     end
     private
       def assign_handle
