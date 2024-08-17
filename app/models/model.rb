@@ -7,7 +7,6 @@
 #  discontinued     :boolean          not null
 #  heel_to_toe_drop :integer          not null
 #  name             :string           not null
-#  order            :integer          not null
 #  tags             :jsonb            not null
 #  weight           :float            not null
 #  created_at       :datetime         not null
