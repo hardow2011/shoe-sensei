@@ -13,8 +13,8 @@
 # Indexes
 #
 #  index_collections_on_brand_id             (brand_id)
-#  index_collections_on_handle_and_brand_id  (handle,brand_id)
-#  index_collections_on_name_and_brand_id    (name,brand_id)
+#  index_collections_on_handle_and_brand_id  (handle,brand_id) UNIQUE
+#  index_collections_on_name_and_brand_id    (name,brand_id) UNIQUE
 #
 # Foreign Keys
 #
