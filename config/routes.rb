@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   root "pages#home"
   get 'filter_models', to: 'pages#filter_models', as: 'filter_models'
   resources :brands, only: %i[show]
+  get 'collections/:brand_id/:id', to: 'collections#show', as: 'collection'
+  get 'models/:brand_id/:collection_id/:id', to: 'models#show', as: 'model'
 
   namespace :admin do
     get '', to: 'pages#home', as: 'home'
@@ -22,5 +24,6 @@ Rails.application.routes.draw do
     resources :brands, except: [:show] do
       resources :collections
     end
+    resources :models
   end
 end
