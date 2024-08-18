@@ -5,6 +5,7 @@
 #  id               :bigint           not null, primary key
 #  apma_accepted    :boolean          not null
 #  discontinued     :boolean          not null
+#  handle           :string           not null
 #  heel_to_toe_drop :integer          not null
 #  name             :string           not null
 #  tags             :jsonb            not null
@@ -23,6 +24,7 @@
 #  fk_rails_...  (collection_id => collections.id)
 #
 class Model < ApplicationRecord
+  include DataFormatting
   include AllowedTags
   # Weight in grams.
   # Heel to toe drop in millimiters.
@@ -31,14 +33,15 @@ class Model < ApplicationRecord
 
   serialize :tags, coder: HashSerializer
 
+  validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }
   validates :heel_to_toe_drop, :name, :weight, presence: true
   validates :name, uniqueness: { scope: :collection, case_sensitive: false }
   validates :apma_accepted, :discontinued, inclusion: [ true, false ]
   validates :heel_to_toe_drop, numericality: { greater_than_or_equal_to: 0 }
   validates :weight, numericality: { greater_than_or_equal_to: 0.1 }
-  # validates :cushioning, numericality: { in: 0..(AllowedTags::CUSHIONING_OPTIONS.size-1) }
-  # validates :support, inclusion: { in: AllowedTags::SUPPORT_OPTIONS }
   validates_presence_of :collection
+
+  before_validation :assign_handle
 
   validate :tags_validity
 
@@ -51,6 +54,10 @@ class Model < ApplicationRecord
   # scope :tagged_with_low_cushioning, -> { where("tags -> 'cushioning' ? 'Low'") }
   # scope :tagged_with_stability_support, -> { where("tags -> 'support' ? 'Stability'") }
   # scope :tagged_with_neutral_support, -> { where("tags -> 'support' ? 'Neutral'") }
+
+  def to_param
+    handle
+  end
 
   def weight(to_oz = false)
     if to_oz
