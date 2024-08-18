@@ -19,7 +19,7 @@ class Admin::CollectionsController < ApplicationController
 
   def new
     @collection = Collection.new
-    @collection.brand = Brand.get_by_handle(params[:brand_id]) if params[:brand_id]
+    @collection.brand = Brand.find(params[:brand_id]) if params[:brand_id]
   end
 
   def create
@@ -68,8 +68,7 @@ class Admin::CollectionsController < ApplicationController
   end
 
   def set_collection
-    # byebug
-    @collection = Collection.get_by_handle(params[:id])
+    @collection = Collection.find(params[:id])
   end
 
 end

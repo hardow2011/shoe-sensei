@@ -20,10 +20,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '', to: 'pages#home', as: 'home'
-    resources :collections, only: %i[index new create]
-    resources :brands, except: [:show] do
-      resources :collections
-    end
-    resources :models
+    resources :brands, except: %i[show]
+    resources :collections, except: %i[show]
+    resources :models, except: %i[show]
   end
 end

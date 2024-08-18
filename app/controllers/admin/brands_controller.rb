@@ -14,7 +14,6 @@ class Admin::BrandsController < ApplicationController
   # end
 
   def edit
-
   end
 
   def new
@@ -51,7 +50,7 @@ class Admin::BrandsController < ApplicationController
   end
 
   def set_brand
-    @brand = Brand.get_by_handle(params[:id])
+    @brand = Brand.find(params[:id])
   end
 
 end

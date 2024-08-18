@@ -1,6 +1,6 @@
 <% edited_from_brand = !params[:edited_from_brand].nil? ? params[:edited_from_brand].to_boolean : false %>
 <%= turbo_frame_tag collection, autoscroll: true do %>
-    <%= form_with model: [:admin, collection.brand, collection] do |f| %>
+    <%= form_with model: [:admin, collection] do |f| %>
         <% if collection.errors.any? %>
             <div>
                 <%= collection.errors.full_messages.to_sentence.capitalize %>

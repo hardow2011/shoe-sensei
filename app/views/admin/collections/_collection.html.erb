@@ -3,7 +3,7 @@
     <div class="columns">
         <div class="column is-narrow is-flex is-align-items-center">
             <p>
-                 <%= link_to collection.name, edit_admin_brand_collection_path(collection.brand, collection), class: "is-size-4" %>
+                 <%= link_to collection.name, edit_admin_collection_path(collection), class: "is-size-4" %>
                  <% unless defined?(brand) %>
                  from 
                  <%= link_to collection.brand.name, edit_admin_brand_path(collection.brand), class: "is-size-5" %>
@@ -12,8 +12,8 @@
         </div>
         <div class="column">
             <div class="buttons is-right">
-                <%= link_to 'Edit', edit_admin_brand_collection_path(collection.brand, collection), class: "button is-link" %>
-                <%= button_to('Delete', [:admin, collection.brand, collection], method: :delete, class: "button is-danger", data: { turbo: defined?(brand) ? nil : false }) %>
+                <%= link_to 'Edit', edit_admin_collection_path(collection), class: "button is-link" %>
+                <%= button_to('Delete', [:admin, collection], method: :delete, class: "button is-danger", data: { turbo: defined?(brand) ? nil : false }) %>
             </div>
         </div>
     </div>
