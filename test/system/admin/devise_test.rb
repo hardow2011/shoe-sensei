@@ -1,3 +1,5 @@
+require 'application_system_test_case'
+
 class Admin::DeviseTest < ApplicationSystemTestCase
   setup do
     sign_in_as_admin
