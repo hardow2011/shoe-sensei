@@ -1,0 +1,99 @@
+<% edited_from_collection = !params[:edited_from_collection].nil? ? params[:edited_from_collection].to_boolean : false %>
+<%= turbo_frame_tag model, autoscroll: true do %>
+    <%= form_with model: [:admin, model] do |f| %>
+        <% if model.errors.any? %>
+            <div>
+                <%= model.errors.full_messages.to_sentence.capitalize %>
+            </div>
+        <% end %>
+        <div class="field">
+            <label class="label"><%= f.label :name %></label>
+            <div class="control">
+                <%= f.text_field :name, autofocus: true, class: 'input' %>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <label class='checkbox'>
+                    <%= f.check_box :apma_accepted %>
+                    <%= f.label :apma_accepted %>
+                </label>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <label class='checkbox'>
+                    <%= f.check_box :discontinued %>
+                    <%= f.label :discontinued %>
+                </label>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label"><%= f.label :heel_to_toe_drop %></label>
+            <div class="control">
+                <%= f.number_field :heel_to_toe_drop, class: 'input', step: 0.1, min: 0 %>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label"><%= f.label :weight %></label>
+            <div class="control">
+                <%= f.number_field :weight, class: 'input', step: 0.1, min: 0.1 %>
+            </div>
+        </div>
+
+        <div class="field">
+            <label>Activites</label>
+            <div class="control">
+                <% AllowedTags::ACTIVITY_OPTIONS.each do |a| %>
+                    <div>
+                        <label class='checkbox'>
+                            <%= check_box_tag 'model[tags][activities][]', id: nil, value: a, checked: model.tags[:activities]&.include?(a) %>
+                            <%= a %>
+                        </label>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <div class="field">
+            <label>Cushioning</label>
+            <div class="control">
+                <% AllowedTags::CUSHIONING_OPTIONS.each_with_index do |c, i| %>
+                    <div>
+                        <label class='radio'>
+                            <%= radio_button_tag 'model[tags][cushioning]', c, { id: nil, checked: model.tags[:cushioning].to_i == i, value: i } %>
+                            <%= c %>
+                        </label>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <div class="field">
+            <label>Support</label>
+            <div class="control">
+                <% AllowedTags::SUPPORT_OPTIONS.each do |s| %>
+                    <div>
+                        <label class='radio'>
+                            <%= radio_button_tag 'model[tags][support]', s, { id: nil, checked: model.tags[:support] == s, value: s } %>
+                            <%= s %>
+                        </label>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label"><%= f.label :collection_id, 'Collection' %></label>
+            <div class="control">
+                <div class="select">
+                    <%= f.collection_select :collection_id, Collection.order(:name), :id, :name_with_brand %>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <div class="buttons is-right">
+                <%= link_to("Cancel", edit_admin_collection_path(model.collection), class: 'button') if model.collection %>
+                <%= f.submit edited_from_collection ? 'Add Model' : nil, class: 'button is-success', data: { turbo: edited_from_collection } %>
+            </div>
+        </div>
+    <% end %>
+<% end %>

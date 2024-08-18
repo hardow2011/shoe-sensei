@@ -3,7 +3,10 @@ require 'application_system_test_case'
 class ModelsTest < ApplicationSystemTestCase
   setup do
     sign_in_as_admin
-    @on_cloudsurfer_trail_1 = models(:on_cloudsurfer_trail_1)
+    @hoka_speedgoat_5 = models(:hoka_speedgoat_5)
+    @hoka_speedgoat_collection = collections(:hoka_speedgoat)
+    @hoka_bondi_collection = collections(:hoka_bondi)
+    @brooks_ghost_max_collection = collections(:brooks_ghost_max)
   end
 
   test 'listing all models' do
@@ -27,17 +30,16 @@ class ModelsTest < ApplicationSystemTestCase
     assert_text 'New model'
 
     fill_in "model[name]",	with: "Gaviota 74"
-    fill_in "model[overview]",	with: "A brand new Gaviota with imaginary cushioning and knee support!"
     check "model[apma_accepted]"
     check "model[discontinued]"
     uncheck "model[discontinued]"
     fill_in "model[heel_to_toe_drop]",	with: "8"
     fill_in "model[weight]",	with: "598.2"
-    select "Bondi (Hoka)", "model[collection_id]"
-    check "model[tags][activities][Road running]"
-    check "model[tags][activities][Walking]"
-    choose "model[tags][cushioning][2]"
-    choose "model[tags][support][neutral]"
+    select @hoka_bondi_collection.name_with_brand, from: "model[collection_id]"
+    check "Road running"
+    check "Walking"
+    choose "High"
+    choose "Neutral"
 
     click_on 'Create Model'
 
@@ -47,6 +49,43 @@ class ModelsTest < ApplicationSystemTestCase
 
     assert_text 'Models', count: 2
     assert_text 'Add a model', count: 2
+    assert_text "Gaviota 74 from #{@hoka_bondi_collection.name}"
+  end
+
+  test "creating a model from a collection" do
+    click_on 'Collections'
+
+    assert_text 'Collections', count: 2
+    assert_text 'Add a collection', count: 2
+
+    click_on @brooks_ghost_max_collection.name
+
+    assert_no_text 'Gaviota 74'
+
+    assert_text 'Add Model'
+    click_on 'Add Model'
+
+    fill_in "model[name]",	with: "Gaviota 74"
+    check "model[apma_accepted]"
+    check "model[discontinued]"
+    uncheck "model[discontinued]"
+    fill_in "model[heel_to_toe_drop]",	with: "8"
+    fill_in "model[weight]",	with: "598.2"
+    check "Road running"
+    check "Walking"
+    choose "High"
+    choose "Neutral"
+
+    click_on 'Add Model'
+
+    assert_text 'Model was created successfully.'
+
+    assert_text 'Collections', count: 1
+    assert_text 'Add a collection', count: 1
+
+    assert_field "collection[name]", with: @brooks_ghost_max_collection.name
+    assert_field "collection[overview]", with: @brooks_ghost_max_collection.overview
+
     assert_text 'Gaviota 74'
   end
 
@@ -58,23 +97,31 @@ class ModelsTest < ApplicationSystemTestCase
     assert_text 'Models', count: 2
     assert_text 'Add a model', count: 2
 
-    assert_text @on_cloudsurfer_trail_1.name
+    assert_text @hoka_speedgoat_5.name
 
-    click_on @on_cloudsurfer_trail_1.name
+    click_on @hoka_speedgoat_5.name
 
     assert_text 'Edit model'
 
+    assert_field "model[name]", with: @hoka_speedgoat_5.name
     fill_in "model[name]",	with: new_model_name
-    fill_in "model[overview]",	with: "You will walk on branches"
-    check "model[apma_accepted]"
-    check "model[discontinued]"
+
+    assert_checked_field "model[apma_accepted]"
+    assert_no_checked_field "model[discontinued]"
+
+    assert_field "model[heel_to_toe_drop]", with: @hoka_speedgoat_5.heel_to_toe_drop
     fill_in "model[heel_to_toe_drop]",	with: "2"
-    fill_in "model[weight]",	with: "78.2"
-    select "Ghost Max (Brooks)", "model[collection_id]"
-    check "model[tags][activities][Road running]"
-    uncheck "model[tags][activities][Trail running]"
-    choose "model[tags][cushioning][0]"
-    choose "model[tags][support][stability]"
+
+    select @brooks_ghost_max_collection.name_with_brand, from: "model[collection_id]"
+
+    @hoka_speedgoat_5.tags[:activities].each do |a|
+      assert_checked_field "model[tags][activities][]", with: a
+    end
+
+    check 'Walking'
+
+    choose "model[tags][cushioning]", with: 0
+    choose "model[tags][support]", with: "Stability"
 
     click_on 'Update Model'
 
@@ -84,7 +131,7 @@ class ModelsTest < ApplicationSystemTestCase
 
     assert_text 'Models', count: 2
     assert_text 'Add a model', count: 2
-    assert_no_text @on_cloudsurfer_trail_1.name
+    assert_no_text @hoka_speedgoat_5.name
     assert_text new_model_name
   end
 
@@ -97,7 +144,6 @@ class ModelsTest < ApplicationSystemTestCase
 
     assert_text 'Model was destroyed successfully.'
 
-    a
-    ssert_no_text model.name
+    assert_no_text model.name
   end
 end

@@ -45,6 +45,8 @@ class Admin::CollectionsTest < ApplicationSystemTestCase
 
     click_on 'Add Collection'
 
+    assert_text 'Collection was created successfully.'
+
     assert_text @on_brand.name
     assert_text @on_brand.overview
 

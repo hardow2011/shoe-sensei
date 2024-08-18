@@ -23,7 +23,7 @@
             <label class="label"><%= f.label :brand_id, 'Brand' %></label>
             <div class="control">
                 <div class="select">
-                    <%= f.collection_select :brand_id, Brand.order(:name), :id, :name, class: 'textarea' %>
+                    <%= f.collection_select :brand_id, Brand.order(:name), :id, :name %>
                 </div>
             </div>
         </div>
@@ -34,4 +34,17 @@
             </div>
         </div>
     <% end %>
+<% end %>
+<% unless collection.new_record? %>
+    <div class="block">
+        <div class="field">
+            <label class="label">Models</label>
+            <%= turbo_frame_tag 'models' do %>
+                <%= render partial: 'admin/models/model', collection: collection.models.order(:name), locals: { collection: collection } %>
+            <% end %>
+        </div>
+    </div>
+    <div class="box">
+        <%= render partial: 'admin/collections/add_model_btn', locals: { collection: collection } %>
+    </div>
 <% end %>

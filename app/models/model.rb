@@ -55,10 +55,6 @@ class Model < ApplicationRecord
   # scope :tagged_with_stability_support, -> { where("tags -> 'support' ? 'Stability'") }
   # scope :tagged_with_neutral_support, -> { where("tags -> 'support' ? 'Neutral'") }
 
-  def to_param
-    handle
-  end
-
   def weight(to_oz = false)
     if to_oz
       (super() * 0.035274).round(2)

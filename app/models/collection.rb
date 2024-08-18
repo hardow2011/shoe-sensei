@@ -31,4 +31,8 @@ class Collection < ApplicationRecord
   validates_presence_of :brand
 
   before_validation :assign_handle
+
+  def name_with_brand
+    "#{name} (#{brand.name})"
+  end
 end
