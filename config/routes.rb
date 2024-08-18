@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get 'models/:brand_id/:collection_id/:id', to: 'models#show', as: 'model'
 
   namespace :admin do
-    get '', to: 'pages#home', as: 'home'
+    get '', to: 'pages#home'
     resources :brands, except: %i[show]
     resources :collections, except: %i[show]
     resources :models, except: %i[show]

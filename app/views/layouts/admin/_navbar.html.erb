@@ -1,11 +1,22 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <%= link_to 'SoleFacts', root_path, class: "navbar-item", data: { turbo: false } %>
+    <%= link_to 'SoleFacts', admin_path, class: "navbar-item", data: { turbo: false } %>
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'button is-danger' %>
+        </div>
+      </div>
+    </div>
   </div>
 </nav>
