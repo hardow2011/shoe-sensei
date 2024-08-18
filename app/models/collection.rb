@@ -31,8 +31,4 @@ class Collection < ApplicationRecord
   validates_presence_of :brand
 
   before_validation :assign_handle
-
-  def to_param
-    handle
-  end
 end

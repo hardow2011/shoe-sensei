@@ -24,9 +24,4 @@ class Brand < ApplicationRecord
   validates :name, :handle, :overview, presence: true
   validates :name, :handle, uniqueness: true
   validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }
-
-
-  def to_param
-    handle
-  end
 end
