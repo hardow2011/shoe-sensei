@@ -60,7 +60,7 @@
                 <% AllowedTags::CUSHIONING_OPTIONS.each_with_index do |c, i| %>
                     <div>
                         <label class='radio'>
-                            <%= radio_button_tag 'model[tags][cushioning]', c, { id: nil, checked: model.tags[:cushioning].to_i == i, value: i } %>
+                            <%= radio_button_tag 'model[tags][cushioning]', c, { id: nil, checked: model.tags[:cushioning]&.to_i == i, value: i } %>
                             <%= c %>
                         </label>
                     </div>

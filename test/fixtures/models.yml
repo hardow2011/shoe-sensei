@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 brooks_ghost_16:
-  name: Ghorst 16
+  name: Ghost 16
   handle: ghost-16
   weight: 269.3
   heel_to_toe_drop: 12
