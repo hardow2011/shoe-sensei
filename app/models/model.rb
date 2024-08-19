@@ -70,24 +70,24 @@ class Model < ApplicationRecord
   private
   def tags_validity
     if tags[:activities].nil?
-      errors.add("Activity list", "must exist")
+      errors.add(:activities, "must exist")
       else
-        errors.add("Activity list", "must have at least one type") if self.tags[:activities].size < 1
+        errors.add(:activities, "must have at least one type") if self.tags[:activities].size < 1
         self.tags[:activities].each do |tag|
-          errors.add("Activity list", "can't include #{tag}") if AllowedTags::ACTIVITY_OPTIONS.exclude?(tag)
+          errors.add(:activities, "can't include #{tag}") if AllowedTags::ACTIVITY_OPTIONS.exclude?(tag)
         end
     end
 
     if tags[:cushioning].nil?
-      errors.add("Cushioning", "must exist")
+      errors.add(:cushioning, "must exist")
     elsif !tags[:cushioning].to_i.between?(0, AllowedTags::CUSHIONING_OPTIONS.size-1)
-      errors.add("Cushioning", "must be between 0 and #{AllowedTags::CUSHIONING_OPTIONS.size-1}")
+      errors.add(:cushioning, "must be between 0 and #{AllowedTags::CUSHIONING_OPTIONS.size-1}")
     end
 
     if tags[:support].nil?
-      errors.add("Support", "must exist")
+      errors.add(:support, "must exist")
     elsif AllowedTags::SUPPORT_OPTIONS.exclude?(self.tags[:support])
-      errors.add("Support", "can't include #{self.tags[:support]}")
+      errors.add(:support, "can't include #{self.tags[:support]}")
     end
   end
 end
