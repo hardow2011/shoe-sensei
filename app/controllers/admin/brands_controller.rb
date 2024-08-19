@@ -46,7 +46,7 @@ class Admin::BrandsController < ApplicationController
   private
 
   def brand_params
-    params.require(:brand).permit(:name, :overview)
+    params.require(:brand).permit(:name, :overview, :logo)
   end
 
   def set_brand

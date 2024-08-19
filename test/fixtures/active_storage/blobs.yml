@@ -1,0 +1,4 @@
+brooks_logo_blob: <%= ActiveStorage::FixtureSet.blob filename: 'brooks-logo.png', service_name: 'test_fixtures' %>
+on_running_logo_blob: <%= ActiveStorage::FixtureSet.blob filename: 'brooks-logo.png', service_name: 'test_fixtures' %>
+hoka_logo_blob: <%= ActiveStorage::FixtureSet.blob filename: 'brooks-logo.png', service_name: 'test_fixtures' %>
+new_balance_logo_blob: <%= ActiveStorage::FixtureSet.blob filename: 'brooks-logo.png', service_name: 'test_fixtures' %>

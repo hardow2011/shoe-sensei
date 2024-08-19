@@ -12,6 +12,24 @@
         <%# TODO: add overview field. Maybe make text insted of string %>
     </div>
     <div class="field">
+        <label class="label"><%= f.label :logo %></label>
+        <div class="control">
+            <div class="file">
+                <label class="file-label">
+                    <%= f.hidden_field :logo, value: brand.logo.signed_id if brand.logo.attached? %>
+                    <%= f.file_field :logo, class: 'file-input', direct_upload: true %>
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">Choose a logo...</span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <%# TODO: add overview field. Maybe make text insted of string %>
+    </div>
+    <div class="field">
         <label class="label"><%= f.label :overview %></label>
         <div class="control">
             <%= f.text_area :overview, class: 'textarea' %>

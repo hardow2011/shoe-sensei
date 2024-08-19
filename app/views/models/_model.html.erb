@@ -10,11 +10,10 @@
   <div class="card-content">
     <div class="media">
       <div class="media-left">
-        <figure class="image is-48x48">
-          <img
-            src="https://bulma.io/assets/images/placeholders/96x96.png"
-            alt="Placeholder image"
-          />
+        <figure class="image is-48x48 is-flex is-align-items-center">
+          <a href="<%= brand_path(model.brand.handle) %>" data-turbo="false">
+            <%= image_tag model.brand.logo.variant(:thumb), class: 'height: fit-content' %>
+          </a>
         </figure>
       </div>
       <div class="media-content is-flex is-flex-direction-column is-align-self-stretch is-justify-content-space-evenly">

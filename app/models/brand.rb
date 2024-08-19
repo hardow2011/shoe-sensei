@@ -24,4 +24,11 @@ class Brand < ApplicationRecord
   validates :name, :handle, :overview, presence: true
   validates :name, :handle, uniqueness: true
   validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }
+
+  has_one_attached :logo do |attachable|
+    attachable.variant :thumb, resize_to_limit: [100, 100]
+  end
+
+  validates :logo, attached: true, content_type: ['image/png', 'image/webp', 'image/jpeg'],
+                  size: { less_than_or_equal_to: 2.megabytes }
 end

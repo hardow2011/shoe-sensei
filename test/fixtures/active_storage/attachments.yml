@@ -1,0 +1,19 @@
+brooks_logo:
+  name: logo
+  record: brooks (Brand)
+  blob: brooks_logo_blob
+
+on_running_logo:
+  name: logo
+  record: on_running (Brand)
+  blob: on_running_logo_blob
+
+hoka_logo:
+  name: logo
+  record: hoka (Brand)
+  blob: hoka_logo_blob
+
+new_balance:
+  name: logo
+  record: new_balance (Brand)
+  blob: new_balance_logo_blob
