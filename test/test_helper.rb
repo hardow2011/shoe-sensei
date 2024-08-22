@@ -11,5 +11,11 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
+
+    # Remove test files after integration tests
+    # https://guides.rubyonrails.org/active_storage_overview.html#integration-tests
+    Minitest.after_run do
+      FileUtils.rm_rf(ActiveStorage::Blob.services.fetch(:test_fixtures).root)
+    end
   end
 end
