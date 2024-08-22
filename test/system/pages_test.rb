@@ -5,6 +5,7 @@ class PagesTest < ApplicationSystemTestCase
   setup do
     @hoka_speedgoat_5 = models(:hoka_speedgoat_5)
     @hoka_bondi_8 = models(:hoka_bondi_8)
+    @on_cloud_x_4 = models(:on_cloud_x_4)
   end
   test "filtering the shoe models in the homepage" do
     visit root_path
@@ -49,6 +50,44 @@ class PagesTest < ApplicationSystemTestCase
       has_field? 'On'
       check 'On'
       has_field? 'Low'
+
+      uncheck 'Road running'
+    end
+
+    within("[data-model='On Cloud X 4']") do
+      assert_text @on_cloud_x_4.name
+      assert_selector 'a', text: @on_cloud_x_4.brand.name
+      assert_text "Weight: #{@on_cloud_x_4.weight} gr / #{@on_cloud_x_4.weight(to_oz = true)} oz"
+      assert_text "Cushioning: #{@on_cloud_x_4.cushioning_name}"
+
+      within('.cushioning_info') do
+        assert_selector 'span.icon', count: 3
+        assert_selector 'span.icon.has-text-danger', count: 1
+        assert_selector 'span.icon:not(.has-text-danger)', count: 2
+      end
+
+      within('.apma_info') do
+        assert_selector 'span.icon', count: 1
+        assert_selector 'span.icon.has-text-danger'
+      end
+    end
+
+    within("[data-model='HOKA Bondi 8']") do
+      assert_text @hoka_bondi_8.name
+      assert_selector 'a', text: @hoka_bondi_8.brand.name
+      assert_text "Weight: #{@hoka_bondi_8.weight} gr / #{@hoka_bondi_8.weight(to_oz = true)} oz"
+      assert_text "Cushioning: #{@hoka_bondi_8.cushioning_name}"
+
+      within('.cushioning_info') do
+        assert_selector 'span.icon', count: 3
+        assert_selector 'span.icon.has-text-primary-30', count: 3
+        assert_no_selector 'span.icon.has-text-danger'
+      end
+
+      within('.apma_info') do
+        assert_selector 'span.icon', count: 1
+        assert_selector 'span.icon.has-text-primary-30'
+      end
     end
   end
 

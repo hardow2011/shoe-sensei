@@ -1,4 +1,4 @@
-<div class="card model-box">
+<div class="card model-box" data-model="<%= model.brand.name %> <%= model.name %>">
   <div class="card-image">
     <figure class="image is-4by3">
       <img
@@ -8,11 +8,11 @@
     </figure>
   </div>
   <div class="card-content">
-    <div class="media">
+    <div class="media is-align-items-center	">
       <div class="media-left">
-        <figure class="image is-48x48 is-flex is-align-items-center">
-          <a href="<%= brand_path(model.brand.handle) %>" data-turbo="false">
-            <%= image_tag model.brand.logo.variant(:thumb), class: 'height: fit-content' %>
+        <figure>
+          <a href="<%= brand_path(model.brand.handle) %>" class="image is-48x48 is-flex is-align-items-center" data-turbo="false">
+            <%= image_tag model.brand.logo.variant(:thumb), alt: "#{model.brand.name} logo", title: "#{model.brand.name} logo", style: "height: 100%;object-fit: contain;" %>
           </a>
         </figure>
       </div>
@@ -27,9 +27,8 @@
     <div class="content">
       <p><b>Weight:</b> <%= model.weight %> gr / <%= model.weight(to_oz = true) %> oz</p>
       <p><b>Heel to toe drop:</b> <%= model.heel_to_toe_drop %> mm</p>
-      <p><b>Cushioning:</b> <%= model.cushioning_name %></p>
-      <%#= render partial: 'models/filter/cushioning_bar', locals: { cushioning: model.cached_tags["cushioning"] } %>
-      <p><%= 'APMA accepted' if model.apma_accepted %></p>
+      <%= render partial: 'models/cushioning', locals: { cushioning_level: model.tags[:cushioning], cushioning_name: model.cushioning_name } %>
+      <%= render partial: 'models/apma_accepted', locals: { apma_accepted: model.apma_accepted  } %>
     </div>
   </div>
 </div>
