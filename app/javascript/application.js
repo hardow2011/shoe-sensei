@@ -6,3 +6,4 @@ import * as ActiveStorage from "@rails/activestorage"
 ActiveStorage.start()
 
 import './direct_uploads'
+import "@fortawesome/fontawesome-free/js/all";
