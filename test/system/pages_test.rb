@@ -27,6 +27,7 @@ class PagesTest < ApplicationSystemTestCase
     end
 
     within('.models-grid') do
+      assert_img_src @hoka_speedgoat_5.brand.logo.variant(:thumb)
       assert_text @hoka_speedgoat_5.name
       assert_text @hoka_speedgoat_5.brand.name
       assert_text @hoka_bondi_8.name
