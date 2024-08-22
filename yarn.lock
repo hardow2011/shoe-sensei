@@ -247,6 +247,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rails/activestorage@npm:^7.2.0":
+  version: 7.2.0
+  resolution: "@rails/activestorage@npm:7.2.0"
+  dependencies:
+    spark-md5: ^3.0.1
+  checksum: 85e9e13686221c05a6bc0a872df521009597cfd4907043e40a5ecd9bd5848831b1f10ced3db95725fb0db6f338bffaa8b5afc72fc822275368b7a0335487d927
+  languageName: node
+  linkType: hard
+
 "abbrev@npm:^2.0.0":
   version: 2.0.0
   resolution: "abbrev@npm:2.0.0"
@@ -319,6 +328,7 @@ __metadata:
   dependencies:
     "@hotwired/stimulus": ^3.2.2
     "@hotwired/turbo-rails": ^8.0.5
+    "@rails/activestorage": ^7.2.0
     bulma: ^1.0.2
     esbuild: ^0.23.0
     sass: ^1.77.8
@@ -1163,6 +1173,13 @@ __metadata:
   version: 1.2.0
   resolution: "source-map-js@npm:1.2.0"
   checksum: 791a43306d9223792e84293b00458bf102a8946e7188f3db0e4e22d8d530b5f80a4ce468eb5ec0bf585443ad55ebbd630bf379c98db0b1f317fd902500217f97
+  languageName: node
+  linkType: hard
+
+"spark-md5@npm:^3.0.1":
+  version: 3.0.2
+  resolution: "spark-md5@npm:3.0.2"
+  checksum: 5feebff0bfabcecf56ba03af3e38fdb068272ed41fbf0a94ff9ef65b9bb9cb1dd69be3684db6542e62497b1eac3ae324c07ac4dcb606465dc36ca048177077bf
   languageName: node
   linkType: hard
 
