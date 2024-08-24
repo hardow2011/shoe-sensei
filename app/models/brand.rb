@@ -26,7 +26,7 @@ class Brand < ApplicationRecord
   validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }
 
   has_one_attached :logo do |attachable|
-    attachable.variant :thumb, resize_to_limit: [100, 100]
+    attachable.variant :thumb, resize_to_limit: [100, 100], preprocessed: true
   end
 
   validates :logo, attached: true, content_type: ['image/png', 'image/webp', 'image/jpeg'],

@@ -14,15 +14,25 @@
     <div class="field">
         <label class="label"><%= f.label :logo %></label>
         <div class="control">
+            <% if brand.logo.attached? %>
+                <div class="label">
+                    <figure class="image">
+                        <div>
+                            <%= image_tag brand.logo, id: 'logo-preview', style: "max-width: 144px; max-height: 180px" %>
+                        </div>
+                    </figure>
+                </div>
+            <% end %>
             <div class="file">
                 <label class="file-label">
                     <%= f.hidden_field :logo, value: brand.logo.signed_id if brand.logo.attached? %>
-                    <%= f.file_field :logo, class: 'file-input', direct_upload: true %>
+                    <img id="loaded-img" style="max-width: 144px; max-height: 180px">
+                    <%= f.file_field :logo, class: 'file-input', onchange: "previewImage(event)", data: { previewTagId: 'logo-preview' }, direct_upload: true %>
                     <span class="file-cta">
                         <span class="file-icon">
                             <i class="fas fa-upload"></i>
                         </span>
-                        <span class="file-label">Choose a logo...</span>
+                        <span class="file-label"><%= brand.logo.attached? ? 'Change the logo...' : 'Choose a logo...' %></span>
                     </span>
                 </label>
             </div>
@@ -42,6 +52,7 @@
     </div>
 <% end %>
 <% unless brand.new_record? %>
+    <hr>
     <div class="block">
         <div class="field">
             <label class="label">Collections</label>

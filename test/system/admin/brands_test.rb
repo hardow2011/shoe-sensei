@@ -10,6 +10,7 @@ class Admin::BrandsTest < ApplicationSystemTestCase
     click_on 'Brands'
 
     brands.each do |b|
+      assert_img_src b.logo.variant(:thumb)
       assert_text b.name
     end
   end
@@ -18,15 +19,29 @@ class Admin::BrandsTest < ApplicationSystemTestCase
     click_on 'Add a brand'
 
     fill_in "brand[name]",	with: "MadeUpBrand"
+
+    find('#loaded-img', visible: false)
+
+    # TODO: find way to test file preview
+    # attach_file 'test/fixtures/files/brooks-logo.webp', make_visible: true do
+    #   find('.file-cta').click
+    # end
+
+    attach_file 'brand[logo]', 'test/fixtures/files/brooks-logo.webp', make_visible: true
+
     fill_in "brand[overview]",	with: "A very hip brand!"
 
     click_on 'Create Brand'
+
+    # TODO: find way to test file preview
+    # find('#loaded-img', visible: true)
 
     assert_text 'Brand was created successfully.'
 
     assert_text 'MadeUpBrand'
   end
 
+  # TODO: find way to test file preview when updating
   test "updating brand" do
     click_on 'Brands'
 
@@ -40,6 +55,7 @@ class Admin::BrandsTest < ApplicationSystemTestCase
     end
 
     fill_in "brand[name]",	with: "Saucony"
+    attach_file 'brand[logo]', 'test/fixtures/files/new-balance-logo.png', make_visible: true
     fill_in "brand[overview]",	with: "I do not know much about this one."
 
     click_on 'Update Brand'
@@ -59,6 +75,7 @@ class Admin::BrandsTest < ApplicationSystemTestCase
     click_on 'Add a brand', match: :first
 
     fill_in "brand[name]",	with: "ToDelete"
+    attach_file 'brand[logo]', 'test/fixtures/files/on-logo.png', make_visible: true
     fill_in "brand[overview]",	with: "Will be deleted"
 
     click_on 'Create Brand', match: :first
