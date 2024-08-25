@@ -1,3 +1,4 @@
+# Logos
 brooks_logo:
   name: logo
   record: brooks (Brand)
@@ -17,3 +18,64 @@ new_balance:
   name: logo
   record: new_balance (Brand)
   blob: new_balance_logo_blob
+
+# Models
+brooks_ghost_16_image:
+  name: image
+  record: brooks_ghost_16 (Model)
+  blob: brooks_ghost_16_blob
+
+brooks_ghost_max_1_image:
+  name: image
+  record: brooks_ghost_max_1 (Model)
+  blob: brooks_ghost_max_1_blob
+
+brooks_adrenaline_gts_23_image:
+  name: image
+  record: brooks_adrenaline_gts_23 (Model)
+  blob: brooks_adrenaline_gts_23_blob
+
+hoka_bondi_8_image:
+  name: image
+  record: hoka_bondi_8 (Model)
+  blob: hoka_bondi_8_blob
+
+hoka_clifton_9_image:
+  name: image
+  record: hoka_clifton_9 (Model)
+  blob: hoka_clifton_9_blob
+
+hoka_gaviota_5_image:
+  name: image
+  record: hoka_gaviota_5 (Model)
+  blob: hoka_gaviota_5_blob
+
+hoka_speedgoat_5_image:
+  name: image
+  record: hoka_speedgoat_5 (Model)
+  blob: hoka_speedgoat_5_blob
+
+on_cloudmonster_1_image:
+  name: image
+  record: on_cloudmonster_1 (Model)
+  blob: on_cloudmonster_1_blob
+
+on_cloudvista_1_image:
+  name: image
+  record: on_cloudvista_1 (Model)
+  blob: on_cloudvista_1_blob
+
+on_cloudsurfer_trail_1_image:
+  name: image
+  record: on_cloudsurfer_trail_1 (Model)
+  blob: on_cloudsurfer_trail_1_blob
+
+on_cloud_x_4_image:
+  name: image
+  record: on_cloud_x_4 (Model)
+  blob: on_cloud_x_4_blob
+
+new_balance_fresh_foam_x_1080v13_image:
+  name: image
+  record: new_balance_fresh_foam_x_1080v13 (Model)
+  blob: new_balance_fresh_foam_x_1080v13_blob

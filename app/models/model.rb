@@ -31,6 +31,8 @@ class Model < ApplicationRecord
   belongs_to :collection
   has_one :brand, through: :collection
 
+  has_one_attached :image
+
   serialize :tags, coder: HashSerializer
 
   validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }
@@ -40,6 +42,8 @@ class Model < ApplicationRecord
   validates :heel_to_toe_drop, numericality: { greater_than_or_equal_to: 0 }
   validates :weight, numericality: { greater_than_or_equal_to: 0.1 }
   validates_presence_of :collection
+  validates :image, attached: true, content_type: ['image/png', 'image/webp', 'image/jpeg', 'image/jpg'],
+                    size: { less_than_or_equal_to: 2.megabytes }
 
   before_validation :assign_handle
 

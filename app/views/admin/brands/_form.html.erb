@@ -14,15 +14,13 @@
     <div class="field">
         <label class="label"><%= f.label :logo %></label>
         <div class="control">
-            <% if brand.logo.attached? %>
                 <div class="label">
                     <figure class="image">
                         <div>
-                            <%= image_tag brand.logo, id: 'logo-preview', style: "max-width: 144px; max-height: 180px" %>
+                            <%= image_tag (brand.logo.attached? ? brand.logo : ''), id: 'logo-preview', style: "max-width: 144px; max-height: 180px" %>
                         </div>
                     </figure>
                 </div>
-            <% end %>
             <div class="file">
                 <label class="file-label">
                     <%= f.hidden_field :logo, value: brand.logo.signed_id if brand.logo.attached? %>

@@ -58,6 +58,6 @@ class Admin::ModelsController < ApplicationController
   end
 
   def model_params
-    params.require(:model).permit(:name, :apma_accepted, :discontinued, :heel_to_toe_drop, :weight, :collection_id, tags: [:cushioning, :support, activities: []])
+    params.require(:model).permit(:name, :image, :apma_accepted, :discontinued, :heel_to_toe_drop, :weight, :collection_id, tags: [:cushioning, :support, activities: []])
   end
 end

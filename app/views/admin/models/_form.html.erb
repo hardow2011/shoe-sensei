@@ -13,6 +13,31 @@
             </div>
         </div>
         <div class="field">
+            <label class="label"><%= f.label :image %></label>
+            <div class="control">
+                <div class="label">
+                    <figure class="image">
+                        <div>
+                            <%= image_tag (model.image.attached? ? model.image : ''), id: 'image-preview', style: "max-width: 144px; max-height: 180px" %>
+                        </div>
+                    </figure>
+                </div>
+                <div class="file">
+                    <label class="file-label">
+                        <%= f.hidden_field :image, value: model.image.signed_id if model.image.attached? %>
+                        <img id="loaded-img" style="max-width: 144px; max-height: 180px">
+                        <%= f.file_field :image, class: 'file-input', onchange: "previewImage(event)", data: { previewTagId: 'image-preview' }, direct_upload: true %>
+                        <span class="file-cta">
+                            <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label"><%= model.image.attached? ? 'Change the image...' : 'Choose an image...' %></span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="field">
             <div class="control">
                 <label class='checkbox'>
                     <%= f.check_box :apma_accepted %>
