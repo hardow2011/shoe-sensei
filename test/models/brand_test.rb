@@ -3,9 +3,10 @@ require "test_helper"
 class BrandTest < ActiveSupport::TestCase
   setup do
     @brooks = brands(:brooks)
+    @brooks_logo = File.open('test/fixtures/files/hoka-logo.webp')
   end
   test "valid brand" do
-    brand = Brand.new(name: 'Adidas', overview: 'A very hip brand!')
+    brand = Brand.new(name: 'Adidas', overview: 'A very hip brand!', logo: @brooks_logo)
     brand.save
     assert brand.valid?
   end
@@ -15,6 +16,13 @@ class BrandTest < ActiveSupport::TestCase
     brand.save
     refute brand.valid?, 'brand valid without name'
     assert_not_empty brand.errors[:name], 'no validation error for name present'
+  end
+
+  test "invalid without logo" do
+    brand = Brand.new(name: 'Adidas', overview: 'A very hip brand!')
+    brand.save
+    refute brand.valid?, 'brand valid without name'
+    assert_not_empty brand.errors[:logo], 'no validation error for name present'
   end
 
   test "invalid without overview" do
