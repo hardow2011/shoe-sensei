@@ -3,7 +3,7 @@
 <p class="icon-text cushioning_info">
     <span><b>Cushioning:</b> <%= cushioning_name %></span>
     <% 3.times do |t| %>
-      <span class="icon <%= cushioning_level >= t ? icon_color[cushioning_level] : nil %>">
+      <span class="icon <%= cushioning_level >= t ? icon_color[cushioning_level] : 'transparent-icon' %>">
         <i class="fas fa-lg fa-feather"></i>
       </span>
     <%end%>
