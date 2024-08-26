@@ -29,7 +29,8 @@ class Admin::BrandsTest < ApplicationSystemTestCase
 
     attach_file 'brand[logo]', 'test/fixtures/files/brooks-logo.webp', make_visible: true
 
-    fill_in "brand[overview]",	with: "A very hip brand!"
+    fill_in "brand[overview_en]",	with: "A very hip brand!"
+    fill_in "brand[overview_es]",	with: "Una marca muy popular!"
 
     click_on 'Create Brand'
 
@@ -56,7 +57,8 @@ class Admin::BrandsTest < ApplicationSystemTestCase
 
     fill_in "brand[name]",	with: "Saucony"
     attach_file 'brand[logo]', 'test/fixtures/files/new-balance-logo.png', make_visible: true
-    fill_in "brand[overview]",	with: "I do not know much about this one."
+    fill_in "brand[overview_en]",	with: "I do not know much about this one."
+    fill_in "brand[overview_es]",	with: "No sé mucho de esta."
 
     click_on 'Update Brand'
 
@@ -76,7 +78,8 @@ class Admin::BrandsTest < ApplicationSystemTestCase
 
     fill_in "brand[name]",	with: "ToDelete"
     attach_file 'brand[logo]', 'test/fixtures/files/on-logo.png', make_visible: true
-    fill_in "brand[overview]",	with: "Will be deleted"
+    fill_in "brand[overview_en]",	with: "Will be deleted"
+    fill_in "brand[overview_es]",	with: "Será borrada"
 
     click_on 'Create Brand', match: :first
 

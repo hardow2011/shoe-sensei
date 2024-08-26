@@ -24,7 +24,9 @@ class Brand < ApplicationRecord
 
   before_validation :assign_handle
 
-  validates :name, :handle, :overview, presence: true
+  validates :name, :handle, presence: true
+  validates :overview_en, presence: true
+  validates :overview_es, presence: true
   validates :name, :handle, uniqueness: true
   validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }
 

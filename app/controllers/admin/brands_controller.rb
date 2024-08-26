@@ -42,7 +42,7 @@ class Admin::BrandsController < Admin::AdminController
   private
 
   def brand_params
-    params.require(:brand).permit(:name, :overview, :logo)
+    params.require(:brand).permit(:name, :overview_en, :overview_es, :logo)
   end
 
   def set_brand
