@@ -2,13 +2,14 @@
 #
 # Table name: brands
 #
-#  id          :bigint           not null, primary key
-#  handle      :string           not null
-#  name        :string           not null
-#  overview_en :string           not null
-#  overview_es :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id            :bigint           not null, primary key
+#  company_color :string(7)        not null
+#  handle        :string           not null
+#  name          :string           not null
+#  overview_en   :string           not null
+#  overview_es   :string           not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 # Indexes
 #
@@ -24,7 +25,8 @@ class Brand < ApplicationRecord
 
   before_validation :assign_handle
 
-  validates :name, :handle, presence: true
+  validates :name, :handle, :company_color, presence: true
+  validates :company_color, length: { is: 7 }, format: { with:   /\#?([a-f0-9]{6}|[a-f0-9]{3})\z/,message: "only allows letters" }
   validates :overview_en, presence: true
   validates :overview_es, presence: true
   validates :name, :handle, uniqueness: true

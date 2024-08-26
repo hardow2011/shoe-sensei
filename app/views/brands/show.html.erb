@@ -1,8 +1,16 @@
 <div class="section">
     <div class="container is-widescreen">
-        <div class="content ">
-            <h1 class="title is-1"><%= @brand.name %></h1>
-            <p class="is-size-4"><%= @brand.overview %></p>
+        <div class="columns is-multiline is-8-desktop">
+            <div class="column is-full-tablet is-one-third-desktop is-flex is-justify-content-center brand-hero">
+                <%= image_tag @brand.logo %>
+            </div>
+            <div class="column is-full-tablet is-two-thirds-desktop">
+                <div class="content ">
+                    <h1 class="title is-1"><%= @brand.name %></h1>
+                    <p class="is-size-4"><%= @brand.overview %></p>
+                </div>
+                <div style="background-color: <%= @brand.company_color %>; border-radius: 50px; margin-left: 75%" class="py-1"></div>
+            </div>
         </div>
     </div>
 </div>

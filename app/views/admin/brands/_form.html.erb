@@ -36,6 +36,12 @@
         </div>
     </div>
     <div class="field">
+        <label class="label"><%= f.label :company_color %></label>
+        <div class="control">
+            <%= f.color_field :company_color, autofocus: true, class: 'input', style: 'max-width: 100px; widthL 100%' %>
+        </div>
+    </div>
+    <div class="field">
         <label class="label"><%= f.label :overview_en %></label>
         <div class="control">
             <%= f.text_area :overview_en, class: 'textarea' %>

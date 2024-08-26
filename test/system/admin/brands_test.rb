@@ -29,6 +29,8 @@ class Admin::BrandsTest < ApplicationSystemTestCase
 
     attach_file 'brand[logo]', 'test/fixtures/files/brooks-logo.webp', make_visible: true
 
+    fill_in "brand[company_color]",	with: "#2232bf"
+
     fill_in "brand[overview_en]",	with: "A very hip brand!"
     fill_in "brand[overview_es]",	with: "Una marca muy popular!"
 
@@ -57,6 +59,7 @@ class Admin::BrandsTest < ApplicationSystemTestCase
 
     fill_in "brand[name]",	with: "Saucony"
     attach_file 'brand[logo]', 'test/fixtures/files/new-balance-logo.png', make_visible: true
+    fill_in "brand[company_color]",	with: "#2232bf"
     fill_in "brand[overview_en]",	with: "I do not know much about this one."
     fill_in "brand[overview_es]",	with: "No sé mucho de esta."
 
