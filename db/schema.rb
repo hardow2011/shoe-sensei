@@ -45,7 +45,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_26_203026) do
   create_table "brands", force: :cascade do |t|
     t.string "name", null: false
     t.string "handle", null: false
-    t.string "overview", null: false
+    t.string "overview_en", null: false
+    t.string "overview_es", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["handle"], name: "index_brands_on_handle", unique: true

@@ -2,12 +2,13 @@
 #
 # Table name: brands
 #
-#  id         :bigint           not null, primary key
-#  handle     :string           not null
-#  name       :string           not null
-#  overview   :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :bigint           not null, primary key
+#  handle      :string           not null
+#  name        :string           not null
+#  overview_en :string           not null
+#  overview_es :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 # Indexes
 #
@@ -16,6 +17,8 @@
 #
 class Brand < ApplicationRecord
   include DataFormatting
+  extend Mobility
+  translates :overview
   has_many :collections, dependent: :destroy
   has_many :models, through: :collections
 

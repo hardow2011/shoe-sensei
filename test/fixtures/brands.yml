@@ -3,19 +3,23 @@
 brooks:
   name: Brooks
   handle: brooks
-  overview: Founded in 1914, Brooks is renowned for its innovative designs and technologies, aimed at enhancing comfort and performance for runners of all levels. The brand is highly regarded for its focus on biomechanics and personalized fit.
+  overview_en: Founded in 1914, Brooks is renowned for its innovative designs and technologies, aimed at enhancing comfort and performance for runners of all levels. The brand is highly regarded for its focus on biomechanics and personalized fit.
+  overview_es: Fundada en 1914, Brooks es famosa por sus innovadores diseños y tecnologías, cuyo objetivo es mejorar la comodidad y el rendimiento de los corredores de todos los niveles. La marca es muy valorada por su enfoque en la biomecánica y el ajuste personalizado.
 
 on_running:
   name: 'On'
   handle: 'on'
-  overview: On, also known as On Running, is a Swiss company founded in 2010 that specializes in running shoes and sportswear. Renowned for its unique CloudTec cushioning technology, On shoes are designed to provide a soft landing and explosive takeoff. The brand quickly gained popularity for its innovative designs and performance-oriented footwear, attracting athletes and running enthusiasts worldwide.
+  overview_en: On, also known as On Running, is a Swiss company founded in 2010 that specializes in running shoes and sportswear. Renowned for its unique CloudTec cushioning technology, On shoes are designed to provide a soft landing and explosive takeoff. The brand quickly gained popularity for its innovative designs and performance-oriented footwear, attracting athletes and running enthusiasts worldwide.
+  overview_es: On, también conocida como On Running, es una empresa suiza fundada en 2010 que se especializa en zapatillas y ropa deportiva para correr. Conocida por su exclusiva tecnología de amortiguación CloudTec, las zapatillas On están diseñadas para proporcionar un aterrizaje suave y un despegue explosivo. La marca ganó popularidad rápidamente por sus diseños innovadores y su calzado orientado al rendimiento, atrayendo a atletas y entusiastas del running de todo el mundo.
 
 hoka:
   name: HOKA
   handle: hoka
-  overview: Hoka One One, commonly referred to as Hoka, is an athletic shoe company founded in 2009 in France. Known for its maximalist shoes featuring oversized midsoles, Hoka footwear provides exceptional cushioning and support, making it popular among runners and outdoor enthusiasts. The brand has gained a reputation for its innovative design and commitment to enhancing athletic performance and comfort.
+  overview_en: Hoka One One, commonly referred to as Hoka, is an athletic shoe company founded in 2009 in France. Known for its maximalist shoes featuring oversized midsoles, Hoka footwear provides exceptional cushioning and support, making it popular among runners and outdoor enthusiasts. The brand has gained a reputation for its innovative design and commitment to enhancing athletic performance and comfort.
+  overview_es: Hoka One One, comúnmente conocida como Hoka, es una empresa de calzado deportivo fundada en 2009 en Francia. Conocida por sus zapatillas maximalistas con entresuelas de gran tamaño, el calzado Hoka proporciona una amortiguación y un soporte excepcionales, lo que la hace popular entre los corredores y los entusiastas del aire libre. La marca se ha ganado una reputación por su diseño innovador y su compromiso con la mejora del rendimiento y la comodidad atléticos.
 
 new_balance:
   name: New Balance
   handle: new-balance
-  overview: New Balance, founded in 1906, is an American sports footwear and apparel brand known for its high-quality, performance-oriented products. The company emphasizes a blend of function and fashion, offering a wide range of sizes and widths to ensure a perfect fit. New Balance is celebrated for its commitment to comfort, innovative design, and manufacturing some of its products in the USA.
+  overview_en: New Balance, founded in 1906, is an American sports footwear and apparel brand known for its high-quality, performance-oriented products. The company emphasizes a blend of function and fashion, offering a wide range of sizes and widths to ensure a perfect fit. New Balance is celebrated for its commitment to comfort, innovative design, and manufacturing some of its products in the USA.
+  overview_es: New Balance, fundada en 1906, es una marca estadounidense de ropa y calzado deportivo conocida por sus productos de alta calidad y orientados al rendimiento. La empresa pone énfasis en una combinación de funcionalidad y moda, y ofrece una amplia gama de tallas y anchos para garantizar un ajuste perfecto. New Balance es reconocida por su compromiso con la comodidad, el diseño innovador y la fabricación de algunos de sus productos en los Estados Unidos.
