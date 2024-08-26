@@ -1,7 +1,7 @@
 <div class="card model-box" data-model="<%= model.brand.name %> <%= model.name %>">
   <div class="card-image">
-    <figure class="image is-16by9">
-      <%= image_tag model.image, alt: "#{model.name} image", title: "#{model.name} image", style: "height: 100%;object-fit: contain;" %>
+    <figure class="image is-5by3">
+      <%= image_tag model.image, alt: "#{model.name} image", title: "#{model.name} image", class: 'px-5', style: "height: 100%;object-fit: contain;" %>
     </figure>
   </div>
   <div class="card-content">
