@@ -12,10 +12,10 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  get '/:locale' => "pages#home"
-  root "pages#home"
+  # get '/:locale' => "pages#home"
 
   scope "(:locale)", locale: /en|es/ do
+    root "pages#home"
 
     namespace :admin do
       get '', to: 'pages#home'
