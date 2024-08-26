@@ -10,7 +10,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     default_url_options[:locale] = I18n.default_locale
   end
 
-  # Clear attached files after system tests
+  # Clear attached files after each system test
   # https://guides.rubyonrails.org/active_storage_overview.html#system-tests
   def after_teardown
     super

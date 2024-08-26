@@ -1,23 +1,29 @@
+# Set the service for fixtures to test_fixtures when running tests.
+# Otherwise, use the service name defined in storage.yml
+# This prevents the development attachements from being deleted when deleting
+# the test attachements, by making the, use different services
+<% service_name = Rails.env.test? ? 'test_fixtures' : Rails.application.config.active_storage.service.to_s %>
+
 # Logos
-brooks_logo_blob: <%= ActiveStorage::FixtureSet.blob filename: 'brooks-logo.webp', service_name: 'test_fixtures' %>
-on_running_logo_blob: <%= ActiveStorage::FixtureSet.blob filename: 'on-logo.png', service_name: 'test_fixtures' %>
-hoka_logo_blob: <%= ActiveStorage::FixtureSet.blob filename: 'hoka-logo.webp', service_name: 'test_fixtures' %>
-new_balance_logo_blob: <%= ActiveStorage::FixtureSet.blob filename: 'new-balance-logo.png', service_name: 'test_fixtures' %>
+brooks_logo_blob: <%= ActiveStorage::FixtureSet.blob filename: 'brooks-logo.webp', service_name: service_name %>
+on_running_logo_blob: <%= ActiveStorage::FixtureSet.blob filename: 'on-logo.png', service_name: service_name %>
+hoka_logo_blob: <%= ActiveStorage::FixtureSet.blob filename: 'hoka-logo.webp', service_name: service_name %>
+new_balance_logo_blob: <%= ActiveStorage::FixtureSet.blob filename: 'new-balance-logo.png', service_name: service_name %>
 
 # Models
-brooks_ghost_16_blob: <%= ActiveStorage::FixtureSet.blob filename: 'brooks-ghost-16.JPG', service_name: 'test_fixtures' %>
-brooks_ghost_max_1_blob: <%= ActiveStorage::FixtureSet.blob filename: 'brooks-ghost-max.JPG', service_name: 'test_fixtures' %>
+brooks_ghost_16_blob: <%= ActiveStorage::FixtureSet.blob filename: 'brooks-ghost-16.JPG', service_name: service_name %>
+brooks_ghost_max_1_blob: <%= ActiveStorage::FixtureSet.blob filename: 'brooks-ghost-max.JPG', service_name: service_name %>
 # TODO: assign correct image
-brooks_adrenaline_gts_23_blob: <%= ActiveStorage::FixtureSet.blob filename: 'brooks-ghost-max.JPG', service_name: 'test_fixtures' %>
-hoka_bondi_8_blob: <%= ActiveStorage::FixtureSet.blob filename: 'hoka-bondi-8.WEBP', service_name: 'test_fixtures' %>
-hoka_clifton_9_blob: <%= ActiveStorage::FixtureSet.blob filename: 'hoka-clifton-9.WEBP', service_name: 'test_fixtures' %>
+brooks_adrenaline_gts_23_blob: <%= ActiveStorage::FixtureSet.blob filename: 'brooks-ghost-max.JPG', service_name: service_name %>
+hoka_bondi_8_blob: <%= ActiveStorage::FixtureSet.blob filename: 'hoka-bondi-8.WEBP', service_name: service_name %>
+hoka_clifton_9_blob: <%= ActiveStorage::FixtureSet.blob filename: 'hoka-clifton-9.WEBP', service_name: service_name %>
 # TODO: assign correct image
-hoka_gaviota_5_blob: <%= ActiveStorage::FixtureSet.blob filename: 'hoka-clifton-9.WEBP', service_name: 'test_fixtures' %>
-hoka_speedgoat_5_blob: <%= ActiveStorage::FixtureSet.blob filename: 'hoka-speedgoat-5.WEBP', service_name: 'test_fixtures' %>
-on_cloudmonster_1_blob: <%= ActiveStorage::FixtureSet.blob filename: 'on-cloudmonster-1.JPG', service_name: 'test_fixtures' %>
+hoka_gaviota_5_blob: <%= ActiveStorage::FixtureSet.blob filename: 'hoka-clifton-9.WEBP', service_name: service_name %>
+hoka_speedgoat_5_blob: <%= ActiveStorage::FixtureSet.blob filename: 'hoka-speedgoat-5.WEBP', service_name: service_name %>
+on_cloudmonster_1_blob: <%= ActiveStorage::FixtureSet.blob filename: 'on-cloudmonster-1.JPG', service_name: service_name %>
 # TODO: assign correct image
-on_cloudvista_1_blob: <%= ActiveStorage::FixtureSet.blob filename: 'on-cloudmonster-1.JPG', service_name: 'test_fixtures' %>
+on_cloudvista_1_blob: <%= ActiveStorage::FixtureSet.blob filename: 'on-cloudmonster-1.JPG', service_name: service_name %>
 # TODO: assign correct image
-on_cloudsurfer_trail_1_blob: <%= ActiveStorage::FixtureSet.blob filename: 'on-cloudmonster-1.JPG', service_name: 'test_fixtures' %>
-on_cloud_x_4_blob: <%= ActiveStorage::FixtureSet.blob filename: 'on-cloud-x-4.JPG', service_name: 'test_fixtures' %>
-new_balance_fresh_foam_x_1080v13_blob: <%= ActiveStorage::FixtureSet.blob filename: 'new-balance-fresh-foam-x-1080v13.WEBP', service_name: 'test_fixtures' %>
+on_cloudsurfer_trail_1_blob: <%= ActiveStorage::FixtureSet.blob filename: 'on-cloudmonster-1.JPG', service_name: service_name %>
+on_cloud_x_4_blob: <%= ActiveStorage::FixtureSet.blob filename: 'on-cloud-x-4.JPG', service_name: service_name %>
+new_balance_fresh_foam_x_1080v13_blob: <%= ActiveStorage::FixtureSet.blob filename: 'new-balance-fresh-foam-x-1080v13.WEBP', service_name: service_name %>
