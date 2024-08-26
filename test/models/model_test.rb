@@ -4,7 +4,7 @@ class ModelTest < ActiveSupport::TestCase
   setup do
     @on_cloud_x = collections(:on_cloud_x)
     @tags = { activities: ['Walking', 'Standing'], cushioning: 1, support: 'Neutral' }
-    @hoka_speedgoat_5_image = File.open('test/fixtures/files/hoka-speedgoat-5.WEBP')
+    @hoka_speedgoat_5_image = File.open('test/fixtures/files/hoka-speedgoat-5.webp')
   end
   test "valid model" do
     model = Model.new(name: 'Uncle Iroh', apma_accepted: true, discontinued: false, heel_to_toe_drop: 4, weight: 154.6,
