@@ -1,9 +1,5 @@
-class Admin::BrandsController < ApplicationController
-  before_action :authenticate_user!
-
+class Admin::BrandsController < Admin::AdminController
   before_action :set_brand, only: %i[edit update destroy]
-
-  layout 'admin'
 
   def index
     @brands = Brand.order(created_at: :desc)

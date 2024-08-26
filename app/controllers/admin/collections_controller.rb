@@ -1,7 +1,5 @@
-class Admin::CollectionsController < ApplicationController
-  before_action :authenticate_user!
+class Admin::CollectionsController < Admin::AdminController
   before_action :set_collection, only: %i[show edit update destroy]
-  layout 'admin'
 
   def index
     if params[:brand_id]

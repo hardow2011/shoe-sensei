@@ -1,7 +1,4 @@
-class Admin::PagesController < ApplicationController
-  before_action :authenticate_user!
-  layout 'admin'
-
+class Admin::PagesController < Admin::AdminController
   def home
 
   end

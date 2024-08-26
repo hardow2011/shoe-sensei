@@ -1,6 +1,4 @@
-class Admin::ModelsController < ApplicationController
-  layout 'admin'
-
+class Admin::ModelsController < Admin::AdminController
   before_action :set_model, only: %i[edit update destroy]
 
   def index
