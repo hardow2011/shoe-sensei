@@ -12,16 +12,21 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
+  get '/:locale' => "pages#home"
   root "pages#home"
-  get 'filter_models', to: 'pages#filter_models', as: 'filter_models'
-  resources :brands, only: %i[show]
-  get 'collections/:brand_id/:id', to: 'collections#show', as: 'collection'
-  get 'models/:brand_id/:collection_id/:id', to: 'models#show', as: 'model'
 
-  namespace :admin do
-    get '', to: 'pages#home'
-    resources :brands, except: %i[show]
-    resources :collections, except: %i[show]
-    resources :models, except: %i[show]
+  scope "(:locale)", locale: /en|es/ do
+
+    namespace :admin do
+      get '', to: 'pages#home'
+      resources :brands, except: %i[show]
+      resources :collections, except: %i[show]
+      resources :models, except: %i[show]
+    end
+
+    get 'filter_models', to: 'pages#filter_models', as: 'filter_models'
+    resources :brands, only: %i[show]
+    get 'collections/:brand_id/:id', to: 'collections#show', as: 'collection'
+    get 'models/:brand_id/:collection_id/:id', to: 'models#show', as: 'model'
   end
 end
