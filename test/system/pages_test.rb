@@ -115,7 +115,6 @@ class PagesTest < ApplicationSystemTestCase
 
     sort_options = FilterPagination::SORTING_OPTIONS.map { |o| o[0]}
 
-    # TODO: assert select values
     within('.model-filter') do
       assert_select :models_sorting, with_options: sort_options
     end

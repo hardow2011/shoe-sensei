@@ -2,13 +2,12 @@ class Admin::CollectionsController < Admin::AdminController
   before_action :set_collection, only: %i[show edit update destroy]
 
   def index
-    if params[:brand_id]
-      # TODO: add failsafe if brand not valid
-      brand = Brand.get_by_handle(params[:brand_id])
-      @collections = brand.collections
-    else
-      @collections = Collection.order(created_at: :desc)
+    brand = Brand.get_by_handle(params[:brand_id])
+    if brand
+      @collections = brand.collections if brand
+      return
     end
+    @collections = Collection.order(created_at: :desc)
   end
 
   def show
