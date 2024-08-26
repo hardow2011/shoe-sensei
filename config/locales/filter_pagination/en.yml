@@ -9,7 +9,7 @@ en:
     next_page: Next page
     previous_page: Previous page
   sorting:
-    prompt: Orden
+    prompt: Sorting
     name_a_to_z: 'Name (A to Z)'
     cushioning_low_to_high: 'Cushioning (low to high)'
     cushioning_high_to_low: 'Cushioning (high to low)'
