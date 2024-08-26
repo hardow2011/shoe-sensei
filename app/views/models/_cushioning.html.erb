@@ -1,7 +1,7 @@
 <% icon_color = ['has-text-danger', 'has-text-warning', 'has-text-primary-30'] %>
 <% cushioning_level = cushioning_level.to_i %>
 <p class="icon-text cushioning_info">
-    <span><b>Cushioning:</b> <%= cushioning_name %></span>
+    <span><b><%= t('model.cushioning') %>:</b> <%= t("tags.cushionings.#{cushioning_name.parameterize(separator: '-')}") %></span>
     <% 3.times do |t| %>
       <span class="icon <%= cushioning_level >= t ? icon_color[cushioning_level] : 'transparent-icon' %>">
         <i class="fas fa-lg fa-feather"></i>

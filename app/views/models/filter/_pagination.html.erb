@@ -1,7 +1,7 @@
 <% if total_pages > 1 %>
     <nav class="pagination" role="navigation" aria-label="pagination">
-        <%= link_to "Previous", build_page_url(request, current_page-1), class: "pagination-previous #{current_page <= 0 ? 'is-disabled' : nil}", disabled: (current_page <= 0 ? true : nil)  %>
-        <%= link_to "Next page", build_page_url(request, current_page+1), class: "pagination-next #{current_page >= total_pages -1 ? 'is-disabled' : nil}", disabled: (current_page >= total_pages ? true : nil) %>
+        <%= link_to "#{t('pagination.previous_page')}", build_page_url(request, current_page-1), class: "pagination-previous #{current_page <= 0 ? 'is-disabled' : nil}", disabled: (current_page <= 0 ? true : nil)  %>
+        <%= link_to "#{t('pagination.next_page')}", build_page_url(request, current_page+1), class: "pagination-next #{current_page >= total_pages -1 ? 'is-disabled' : nil}", disabled: (current_page >= total_pages ? true : nil) %>
         <ul class="pagination-list">
             <% total_pages.times do |i| %>
                 <li>

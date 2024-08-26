@@ -1,7 +1,5 @@
 <div class="section">
     <div class="container is-widescreen">
-        <%#= turbo_frame_tag 'filter' do %>
-            <%= render partial: 'models/filter', locals: { paged_models: @paged_models, total_pages: @total_pages, current_page: @current_page, selected_sort: @selected_sort, filter_list: @filter_list } %>
-        <%# end %>
+        <%= render partial: 'models/filter', locals: { paged_models: @paged_models, total_pages: @total_pages, current_page: @current_page, selected_sort: @selected_sort, filter_list: @filter_list } %>
     </div>
 </div>

@@ -1,0 +1,19 @@
+en:
+  filter:
+    brand: Brand
+    activities: Activity
+    cushioning: Cushioning
+    support: Support
+    clear_filters: Clear filters
+  pagination:
+    next_page: Next page
+    previous_page: Previous page
+  sorting:
+    prompt: Orden
+    name_a_to_z: 'Name (A to Z)'
+    cushioning_low_to_high: 'Cushioning (low to high)'
+    cushioning_high_to_low: 'Cushioning (high to low)'
+    weight_low_to_high: 'Weight (low to high)'
+    weight_high_to_low: 'Weight (high to low)'
+    heel_to_toe_drop_low_to_high: 'Heel to toe drop (low to high)'
+    heel_to_toe_drop_high_to_low: 'Heel to toe drop (high to low)'

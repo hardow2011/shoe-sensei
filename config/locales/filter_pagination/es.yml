@@ -1,0 +1,19 @@
+es:
+  filter:
+    brand: Marca
+    activities: Actividad
+    cushioning: Amortiguación
+    support: Soporte
+    clear_filters: Limpiar filtros
+  pagination:
+    next_page: Próxima página
+    previous_page: Página anterior
+  sorting:
+    prompt: Orden
+    name_a_to_z: Nombre (ascendente)
+    cushioning_low_to_high: Amortiguación (ascendente)
+    cushioning_high_to_low: Amortiguación (descendente)
+    weight_low_to_high: Peso (ascendente)
+    weight_high_to_low: Peso (descendente)
+    heel_to_toe_drop_low_to_high: Inclinación (ascendente)
+    heel_to_toe_drop_high_to_low: Inclinación (descendente)

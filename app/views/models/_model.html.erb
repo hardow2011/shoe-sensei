@@ -22,8 +22,8 @@
     </div>
 
     <div class="content">
-      <p><b>Weight:</b> <%= model.weight %> gr / <%= model.weight(to_oz = true) %> oz</p>
-      <p><b>Heel to toe drop:</b> <%= model.heel_to_toe_drop %> mm</p>
+      <p><b><%= t('model.weight') %>:</b> <%= model.weight %> gr / <%= model.weight(to_oz = true) %> oz</p>
+      <p><b><%= t('model.heel_to_toe_drop') %>:</b> <%= model.heel_to_toe_drop %> mm</p>
       <%= render partial: 'models/cushioning', locals: { cushioning_level: model.tags[:cushioning], cushioning_name: model.cushioning_name } %>
       <%= render partial: 'models/apma_accepted', locals: { apma_accepted: model.apma_accepted  } %>
     </div>

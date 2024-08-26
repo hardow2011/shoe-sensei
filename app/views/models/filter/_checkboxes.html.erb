@@ -1,4 +1,5 @@
 <%# https://stackoverflow.com/questions/68624668/how-can-i-submit-a-form-on-input-change-with-turbo-streams %>
+<% translate = translate || false %>
 <div class="field">
     <label class="label is-size-5"><%= title %></label>
     <% params_prefix = title.downcase.pluralize %>
@@ -8,7 +9,7 @@
             <div>
                 <label class='is-inline-block py-1'>
                     <%= form.check_box "#{param_name}[]", { id: id, checked: value[:checked], onchange: "this.form.requestSubmit()", include_hidden: false }, "#{value[:id]}" %>
-                    <%= "#{name}" %>
+                    <%= translate ? t("tags.#{param_name}.#{name.parameterize(separator: '_')}") : "#{name}" %>
                 </label>
             </div>
         <% end %>
