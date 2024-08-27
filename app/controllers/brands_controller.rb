@@ -6,16 +6,6 @@ class BrandsController < ApplicationController
   end
 
   def show
-    # brands_ids = [@brand.id]
-    # selected_activities = params[:activities]
-    # selected_cushionings = params[:cushionings]
-    # selected_supports = params[:supports]
-
-    # @models = @brand.models
-
-    # models_filter = ModelsFilter.new(selected_activities, selected_cushionings, selected_supports, brands_ids, true)
-    # @filter_list = models_filter.filter_list
-    # @models = models_filter.models
   end
 
   private
