@@ -52,6 +52,12 @@ gem 'devise'
 
 gem 'mobility', '~> 1.3.0.rc3'
 
+# TODO: test gems
+gem "actionpack-page_caching"
+gem 'actionpack-action_caching'
+gem 'delayed_job_active_record'
+gem 'resque'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
