@@ -1,2 +1,5 @@
 es:
-  brands: marcas
+  language:
+    prompt: Idioma
+    english: English
+    spanish: Español

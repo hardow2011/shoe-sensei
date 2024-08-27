@@ -33,3 +33,7 @@ en:
       brand:
         overview_en: "English translation of overview"
         overview_es: "Spanish translation of overview"
+  language:
+    prompt: Language
+    english: English
+    spanish: Español
