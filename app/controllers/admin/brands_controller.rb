@@ -46,6 +46,7 @@ class Admin::BrandsController < Admin::AdminController
   end
 
   def set_brand
+    # TODO: add fallback if brand not found
     @brand = Brand.find(params[:id])
   end
 

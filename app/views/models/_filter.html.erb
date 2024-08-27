@@ -25,7 +25,7 @@
             <%= render partial: 'models/filter/pagination', locals: { total_pages: total_pages, current_page: current_page } %>
             <div class="fixed-grid has-1-cols-mobile has-3-cols models-page">
                 <div class="grid models-grid">
-                    <%= render partial: 'models/model', collection: paged_models, locals: { hide_brand_filter: filter_list[:hide_brand_filter] } %>
+                    <%= render partial: 'models/model', collection: paged_models, locals: { hide_brand_filter: filter_list[:hide_brand_filter] }, cached: ->(model) { [I18n.locale, model] } %>
                 </div>
             </div>
             <%= render partial: 'models/filter/pagination', locals: { total_pages: total_pages, current_page: current_page } %>

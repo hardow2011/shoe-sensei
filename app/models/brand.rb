@@ -25,6 +25,8 @@ class Brand < ApplicationRecord
 
   before_validation :assign_handle
 
+  after_save :renew_models_cache
+
   validates :name, :handle, :company_color, presence: true
   validates :company_color, length: { is: 7 }, format: { with:   /\#?([a-f0-9]{6}|[a-f0-9]{3})\z/,message: "only allows letters" }
   validates :overview_en, presence: true
@@ -38,4 +40,10 @@ class Brand < ApplicationRecord
 
   validates :logo, attached: true, content_type: ['image/png', 'image/webp', 'image/jpeg', 'image/jpg'],
                   size: { less_than_or_equal_to: 2.megabytes }
+
+  private
+
+  def renew_models_cache
+    models.touch_all
+  end
 end
