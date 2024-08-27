@@ -31,13 +31,7 @@ module FilterPagination
       @filter_list[:cushionings] = {}
       @filter_list[:supports] = {}
 
-      if brands_ids.any?
-        brands_ids = brands_ids.map(&:to_i)
-        @models = Model.joins(:brand).where(brand: { id: brands_ids })
-        filtered_brands = Brand.all.sort_by(&:name)
-      else
-        @models = Model.all
-      end
+      @models = Model.all
 
       # Model.where("tags -> 'activities' ?| array[:activities] AND tags -> 'cushioning' ?| array[:cushioning] AND tags -> 'support' ?| array[:support]", activities: ['Road running', 'Training and gym'], cushioning: ['High'], support: ['Neutral'])
       query = ''
@@ -49,6 +43,13 @@ module FilterPagination
         @models = @models.where(query)
       end
 
+      filtered_brands = Brand.joins(:models).where(models: { id: @models.map(&:id) }).uniq.sort_by(&:name)
+
+      if brands_ids.any?
+        brands_ids = brands_ids.map(&:to_i)
+        @models = @models.joins(:brand).where(brand: { id: brands_ids })
+      end
+
       @filter_list[:activities] = build_filter(selected_activities, :activities).sort_by { |activity| activity[0] }
       @filter_list[:supports] =  build_filter(selected_supports, :support) # this is to sort the support tags
                                   .sort_by { |k, v| AllowedTags::SUPPORT_OPTIONS.find_index(v[:id]) }
@@ -56,10 +57,6 @@ module FilterPagination
                                     .sort_by { |k, _| k }
                                     .map { |a, b| [ AllowedTags::CUSHIONING_OPTIONS[a.to_i], b ] }
       unless @filter_list[:hide_brand_filter]
-
-        unless brands_ids.any?
-          filtered_brands = Brand.joins(:models).where(models: { id: @models.map(&:id) }).uniq.sort_by(&:name)
-        end
 
         filtered_brands.each do |brand|
           @filter_list[:brands][brand.name] = { id: brand.id, checked: brands_ids.include?(brand.id) }
