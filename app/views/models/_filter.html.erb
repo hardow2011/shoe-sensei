@@ -1,7 +1,7 @@
 <%= turbo_frame_tag 'models-filter' do %>
     <%= form_with url: filter_models_path, method: :get, class: 'model-filter block' do |f| %>
         <div id="filter-wrapper" class="filter-wrapper columns">
-            <div class="column is-one-fifth">
+            <div class="column is-one-fifth is-relative">
                 <%= render partial: 'models/filter/list', locals: { form: f, filter_list: filter_list } %>
             </div>
             <div class="column">

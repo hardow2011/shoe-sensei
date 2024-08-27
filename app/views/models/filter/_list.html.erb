@@ -1,4 +1,4 @@
-<div>
+<div style="position: sticky; top: 24px">
     <div class="<%= class_names('is-hidden': filter_list[:hide_brand_filter] ) %>">
         <%= render(partial: 'models/filter/checkboxes', locals: { title: t('filter.brand'), param_name: 'brand_ids', form: form, filter_list: filter_list[:brands] }) %>
     </div>
