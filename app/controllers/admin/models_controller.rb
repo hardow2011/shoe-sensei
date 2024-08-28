@@ -2,7 +2,7 @@ class Admin::ModelsController < Admin::AdminController
   before_action :set_model, only: %i[edit update destroy]
 
   def index
-    @models = Model.order(created_at: :desc)
+    @models = Model.order(updated_at: :desc)
   end
 
   def new
