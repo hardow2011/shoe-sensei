@@ -5,6 +5,10 @@ es:
     cushioning: Amortiguación
     support: Soporte
     clear_filters: Limpiar filtros
+  other_filter:
+    prompt: Filtros adicionales
+    apma_accepted_only: Sólo aceptado por la APMA
+    show_discontinued_models: Mostrar modelos descontinuados
   pagination:
     next_page: Próxima página
     previous_page: Página anterior

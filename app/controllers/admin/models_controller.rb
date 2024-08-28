@@ -12,6 +12,7 @@ class Admin::ModelsController < Admin::AdminController
 
   def create
     @model = Model.new(model_params)
+    format_model_tags
 
     if @model.save
       respond_to do |format|
@@ -31,7 +32,9 @@ class Admin::ModelsController < Admin::AdminController
   end
 
   def update
-    if @model.update(model_params)
+    @model.assign_attributes(model_params)
+    format_model_tags
+    if @model.save
       redirect_to admin_models_path, notice: 'Model was updated successfully.'
     else
       render :edit, status: :unprocessable_entity
@@ -55,7 +58,15 @@ class Admin::ModelsController < Admin::AdminController
     @model = Model.find(params[:id])
   end
 
+  def format_model_tags
+    @model.tags[:cushioning_level] = Integer(@model.tags[:cushioning_level])
+
+    @model.tags[:apma_accepted] = ActiveModel::Type::Boolean.new.cast(@model.tags[:apma_accepted])
+
+    @model.tags[:discontinued] = ActiveModel::Type::Boolean.new.cast(@model.tags[:discontinued])
+  end
+
   def model_params
-    params.require(:model).permit(:name, :image, :apma_accepted, :discontinued, :heel_to_toe_drop, :weight, :collection_id, tags: [:cushioning, :support, activities: []])
+    params.require(:model).permit(:name, :image, :heel_to_toe_drop, :weight, :collection_id, tags: [:cushioning_level, :support, :apma_accepted, :discontinued, activities: []])
   end
 end

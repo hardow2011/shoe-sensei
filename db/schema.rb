@@ -93,10 +93,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_26_222211) do
 
   create_table "models", force: :cascade do |t|
     t.string "name", null: false
-    t.boolean "discontinued", null: false
     t.float "weight", null: false
     t.integer "heel_to_toe_drop", null: false
-    t.boolean "apma_accepted", null: false
     t.bigint "collection_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

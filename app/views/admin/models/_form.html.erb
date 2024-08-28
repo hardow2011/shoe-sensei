@@ -40,16 +40,18 @@
         <div class="field">
             <div class="control">
                 <label class='checkbox'>
-                    <%= f.check_box :apma_accepted %>
-                    <%= f.label :apma_accepted %>
+                    <%= hidden_field_tag 'model[tags][apma_accepted]', false %>
+                    <%= check_box_tag 'model[tags][apma_accepted]', true, checked: ActiveModel::Type::Boolean.new.cast(model.tags[:apma_accepted]) %>
+                    <%= 'Is APMA acceped?' %>
                 </label>
             </div>
         </div>
         <div class="field">
             <div class="control">
                 <label class='checkbox'>
-                    <%= f.check_box :discontinued %>
-                    <%= f.label :discontinued %>
+                    <%= hidden_field_tag 'model[tags][discontinued]', false %>
+                    <%= check_box_tag 'model[tags][discontinued]', true, checked: ActiveModel::Type::Boolean.new.cast(model.tags[:discontinued]) %>
+                    <%= 'Is discontinued?' %>
                 </label>
             </div>
         </div>
@@ -73,7 +75,7 @@
                     <div>
                         <label class='checkbox'>
                             <%= check_box_tag 'model[tags][activities][]', id: nil, value: a, checked: model.tags[:activities]&.include?(a) %>
-                            <%= a %>
+                            <%= t("model.tags.activities.#{a}") %>
                         </label>
                     </div>
                 <% end %>
@@ -85,8 +87,8 @@
                 <% AllowedTags::CUSHIONING_OPTIONS.each_with_index do |c, i| %>
                     <div>
                         <label class='radio'>
-                            <%= radio_button_tag 'model[tags][cushioning]', c, { id: nil, checked: model.tags[:cushioning]&.to_i == i, value: i } %>
-                            <%= c %>
+                            <%= radio_button_tag 'model[tags][cushioning_level]', c, { id: nil, checked: model.tags[:cushioning_level]&.to_i == (i + 1), value: i+1 } %>
+                            <%= t("model.tags.cushionings.#{c}") %>
                         </label>
                     </div>
                 <% end %>
@@ -99,7 +101,7 @@
                     <div>
                         <label class='radio'>
                             <%= radio_button_tag 'model[tags][support]', s, { id: nil, checked: model.tags[:support] == s, value: s } %>
-                            <%= s %>
+                            <%= t("model.tags.supports.#{s}") %>
                         </label>
                     </div>
                 <% end %>

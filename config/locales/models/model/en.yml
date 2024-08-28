@@ -5,17 +5,17 @@ en:
     cushioning: Cushioning
     apma_accepted: APMA accepted
     not_apma_accepted: Not aceptado por la APMA
-  tags:
-    activities:
-      road_running: Road running
-      trail_running: Trail running
-      walking: Walking
-      standing: Standing
-      training_and_gym: Training and gym
-    cushionings:
-      low: Low
-      mid: Mid
-      high: High
-    supports:
-      neutral: Neutral
-      stability: Stability
+    tags:
+      activities:
+        road_running: Road running
+        trail_running: Trail running
+        walking: Walking
+        standing: Standing
+        training_and_gym: Training and gym
+      cushionings:
+        low: Low
+        mid: Mid
+        high: High
+      supports:
+        neutral: Neutral
+        stability: Stability

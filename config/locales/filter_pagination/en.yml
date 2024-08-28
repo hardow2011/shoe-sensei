@@ -5,6 +5,10 @@ en:
     cushioning: Cushioning
     support: Support
     clear_filters: Clear filters
+  other_filter:
+    prompt: Additional filters
+    apma_accepted_only: Apma accepted_only
+    show_discontinued_models: Show discontinued models
   pagination:
     next_page: Next page
     previous_page: Previous page

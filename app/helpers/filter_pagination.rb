@@ -53,9 +53,10 @@ module FilterPagination
       @filter_list[:activities] = build_filter(selected_activities, :activities).sort_by { |activity| activity[0] }
       @filter_list[:supports] =  build_filter(selected_supports, :support) # this is to sort the support tags
                                   .sort_by { |k, v| AllowedTags::SUPPORT_OPTIONS.find_index(v[:id]) }
-      @filter_list[:cushionings] = build_filter(selected_cushionings, :cushioning)
+      @filter_list[:cushionings] = build_filter(selected_cushionings, :cushioning_level)
                                     .sort_by { |k, _| k }
-                                    .map { |a, b| [ AllowedTags::CUSHIONING_OPTIONS[a.to_i], b ] }
+                                    .map { |a, b| [ AllowedTags::CUSHIONING_OPTIONS[a.to_i - 1], b ] }
+
       unless @filter_list[:hide_brand_filter]
 
         filtered_brands.each do |brand|
@@ -70,9 +71,9 @@ module FilterPagination
       when :name
         @models = @models.order(:name)
       when :cushioning_asc
-        @models = @models.order_by_cushioning
+        @models = @models.order_by_cushioning_level
       when :cushioning_desc
-        @models = @models.order_by_cushioning(:desc)
+        @models = @models.order_by_cushioning_level(:desc)
       when :weight_asc
         @models = @models.order_by_weight
       when :weight_desc
@@ -82,9 +83,6 @@ module FilterPagination
       when :heel_to_toe_drop_desc
         @models = @models.order_by_heel_to_toe_drop(:desc)
       end
-
-      # byebug
-
 
       @models = @models.each_slice(MODELS_PER_PAGE).to_a
       @total_pages = @models.size

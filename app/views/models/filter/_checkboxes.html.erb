@@ -9,7 +9,7 @@
             <div>
                 <label class='is-inline-block py-1'>
                     <%= form.check_box "#{param_name}[]", { id: id, checked: value[:checked], onchange: "this.form.requestSubmit()", include_hidden: false }, "#{value[:id]}" %>
-                    <%= translate ? t("tags.#{param_name}.#{name.parameterize(separator: '_')}") : "#{name}" %>
+                    <%= translate ? t("model.tags.#{param_name}.#{name.parameterize(separator: '_')}") : "#{name}" %>
                 </label>
             </div>
         <% end %>

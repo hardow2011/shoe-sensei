@@ -31,9 +31,9 @@ class ModelsTest < ApplicationSystemTestCase
 
     fill_in "model[name]",	with: "Gaviota 74"
     attach_file 'model[image]', 'test/fixtures/files/brooks-logo.webp', make_visible: true
-    check "model[apma_accepted]"
-    check "model[discontinued]"
-    uncheck "model[discontinued]"
+    check "model[tags][apma_accepted]"
+    check "model[tags][discontinued]"
+    uncheck "model[tags][discontinued]"
     fill_in "model[heel_to_toe_drop]",	with: "8"
     fill_in "model[weight]",	with: "598.2"
     select @hoka_bondi_collection.name_with_brand, from: "model[collection_id]"
@@ -68,9 +68,9 @@ class ModelsTest < ApplicationSystemTestCase
 
     fill_in "model[name]",	with: "Gaviota 74"
     attach_file 'model[image]', 'test/fixtures/files/brooks-logo.webp', make_visible: true
-    check "model[apma_accepted]"
-    check "model[discontinued]"
-    uncheck "model[discontinued]"
+    check "model[tags][apma_accepted]"
+    check "model[tags][discontinued]"
+    uncheck "model[tags][discontinued]"
     fill_in "model[heel_to_toe_drop]",	with: "8"
     fill_in "model[weight]",	with: "598.2"
     check "Road running"
@@ -108,8 +108,8 @@ class ModelsTest < ApplicationSystemTestCase
     assert_field "model[name]", with: @hoka_speedgoat_5.name
     fill_in "model[name]",	with: new_model_name
 
-    assert_checked_field "model[apma_accepted]"
-    assert_no_checked_field "model[discontinued]"
+    assert_checked_field "model[tags][apma_accepted]"
+    assert_no_checked_field "model[tags][discontinued]"
 
     assert_field "model[heel_to_toe_drop]", with: @hoka_speedgoat_5.heel_to_toe_drop
     fill_in "model[heel_to_toe_drop]",	with: "2"
@@ -122,8 +122,8 @@ class ModelsTest < ApplicationSystemTestCase
 
     check 'Walking'
 
-    choose "model[tags][cushioning]", with: 0
-    choose "model[tags][support]", with: "Stability"
+    choose "model[tags][cushioning_level]", with: 1
+    choose "model[tags][support]", with: "stability"
 
     click_on 'Update Model'
 

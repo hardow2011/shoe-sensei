@@ -3,8 +3,6 @@
 # Table name: models
 #
 #  id               :bigint           not null, primary key
-#  apma_accepted    :boolean          not null
-#  discontinued     :boolean          not null
 #  handle           :string           not null
 #  heel_to_toe_drop :integer          not null
 #  name             :string           not null
@@ -38,7 +36,6 @@ class Model < ApplicationRecord
   validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }
   validates :heel_to_toe_drop, :name, :weight, presence: true
   validates :name, uniqueness: { scope: :collection, case_sensitive: false }
-  validates :apma_accepted, :discontinued, inclusion: [ true, false ]
   validates :heel_to_toe_drop, numericality: { greater_than_or_equal_to: 0 }
   validates :weight, numericality: { greater_than_or_equal_to: 0.1 }
   validates_presence_of :collection
@@ -49,7 +46,7 @@ class Model < ApplicationRecord
 
   validate :tags_validity
 
-  scope :order_by_cushioning, ->(order = :asc) { order(Arel.sql("tags ->> 'cushioning' #{ order == :desc ? 'DESC' : 'ASC' }, name")) }
+  scope :order_by_cushioning_level, ->(order = :asc) { order(Arel.sql("tags ->> 'cushioning_level' #{ order == :desc ? 'DESC' : 'ASC' }, name")) }
   scope :order_by_weight, ->(order = :asc) { order(weight: order) }
   scope :order_by_heel_to_toe_drop, ->(order = :asc) { order(heel_to_toe_drop: order) }
 
@@ -68,30 +65,45 @@ class Model < ApplicationRecord
   end
 
   def cushioning_name
-    AllowedTags::CUSHIONING_OPTIONS[self.tags[:cushioning].to_i]
+    AllowedTags::CUSHIONING_OPTIONS[self.tags[:cushioning_level] - 1]
   end
 
   private
   def tags_validity
     if tags[:activities].nil?
       errors.add(:activities, "must exist")
-      else
-        errors.add(:activities, "must have at least one type") if self.tags[:activities].size < 1
-        self.tags[:activities].each do |tag|
-          errors.add(:activities, "can't include #{tag}") if AllowedTags::ACTIVITY_OPTIONS.exclude?(tag)
-        end
+    elsif !tags[:activities].is_a?(Array)
+      errors.add(:activities, "must be list of allowed activities")
+    else
+      self.tags[:activities].each do |tag|
+        errors.add(:activities, "can't include #{tag}") if AllowedTags::ACTIVITY_OPTIONS.exclude?(tag)
+      end
     end
 
-    if tags[:cushioning].nil?
-      errors.add(:cushioning, "must exist")
-    elsif !tags[:cushioning].to_i.between?(0, AllowedTags::CUSHIONING_OPTIONS.size-1)
-      errors.add(:cushioning, "must be between 0 and #{AllowedTags::CUSHIONING_OPTIONS.size-1}")
+    if tags[:cushioning_level].nil?
+      errors.add(:cushioning_level, "must exist")
+    elsif !tags[:cushioning_level].is_a? Integer
+      errors.add(:cushioning_level, "must be an Integer")
+    elsif !tags[:cushioning_level].between?(1, AllowedTags::CUSHIONING_OPTIONS.size)
+      errors.add(:cushioning_level, "must be between 1 and #{AllowedTags::CUSHIONING_OPTIONS.size}")
     end
 
     if tags[:support].nil?
       errors.add(:support, "must exist")
-    elsif AllowedTags::SUPPORT_OPTIONS.exclude?(self.tags[:support])
-      errors.add(:support, "can't include #{self.tags[:support]}")
+    else
+      errors.add(:support, "can't be #{self.tags[:support]}") if AllowedTags::SUPPORT_OPTIONS.exclude?(self.tags[:support])
+    end
+
+    if tags[:apma_accepted].nil?
+      errors.add(:apma_accepted, "must exist")
+    else
+      errors.add(:apma_accepted, "must be either true or false") if AllowedTags::BOOLEAN_OPTIONS.exclude?(self.tags[:apma_accepted])
+    end
+
+    if tags[:discontinued].nil?
+      errors.add(:discontinued, "must exist")
+    else
+      errors.add(:discontinued, "must be either true or false") if AllowedTags::BOOLEAN_OPTIONS.exclude?(self.tags[:discontinued])
     end
   end
 end

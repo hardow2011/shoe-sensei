@@ -58,7 +58,7 @@ class PagesTest < ApplicationSystemTestCase
       assert_text @on_cloud_x_4.name
       assert_selector 'a', text: @on_cloud_x_4.brand.name
       assert_text "Weight: #{@on_cloud_x_4.weight} gr / #{@on_cloud_x_4.weight(to_oz = true)} oz"
-      assert_text "Cushioning: #{@on_cloud_x_4.cushioning_name}"
+      assert_text "Cushioning: #{@on_cloud_x_4.cushioning_name.capitalize}"
 
       within('.cushioning_info') do
         assert_selector 'span.icon', count: 3
@@ -76,7 +76,7 @@ class PagesTest < ApplicationSystemTestCase
       assert_text @hoka_bondi_8.name
       assert_selector 'a', text: @hoka_bondi_8.brand.name
       assert_text "Weight: #{@hoka_bondi_8.weight} gr / #{@hoka_bondi_8.weight(to_oz = true)} oz"
-      assert_text "Cushioning: #{@hoka_bondi_8.cushioning_name}"
+      assert_text "Cushioning: #{@hoka_bondi_8.cushioning_name.capitalize}"
 
       within('.cushioning_info') do
         assert_selector 'span.icon', count: 3
@@ -140,7 +140,7 @@ class PagesTest < ApplicationSystemTestCase
     # Assert models ordered by selected 'Cushioning (low to high)'
     within('.models-grid') do
       all(:css, '.model-box').each_with_index do |model_box, i|
-        model_box.assert_text(Model.order_by_cushioning[i].name)
+        model_box.assert_text(Model.order_by_cushioning_level[i].name)
       end
     end
 
@@ -153,7 +153,7 @@ class PagesTest < ApplicationSystemTestCase
     # Assert models ordered by selected 'Cushioning (high to low)'
     within('.models-grid') do
       all(:css, '.model-box').each_with_index do |model_box, i|
-        model_box.assert_text(Model.order_by_cushioning(:desc)[i].name)
+        model_box.assert_text(Model.order_by_cushioning_level(:desc)[i].name)
       end
     end
 

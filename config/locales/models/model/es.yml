@@ -5,17 +5,17 @@ es:
     cushioning: Amortiguación
     apma_accepted: Aceptado por la APMA
     not_apma_accepted: No aceptado por la APMA
-  tags:
-    activities:
-      road_running: Correr
-      trail_running: Correr por senderos
-      walking: Caminar
-      standing: Estar de pie
-      training_and_gym: Entrenamiento y gimnasio
-    cushionings:
-      low: Baja
-      mid: Mediana
-      high: Alta
-    supports:
-      neutral: Neutral
-      stability: Estabilidad
+    tags:
+      activities:
+        road_running: Correr
+        trail_running: Correr por senderos
+        walking: Caminar
+        standing: Estar de pie
+        training_and_gym: Entrenamiento y gimnasio
+      cushionings:
+        low: Baja
+        mid: Mediana
+        high: Alta
+      supports:
+        neutral: Neutral
+        stability: Estabilidad

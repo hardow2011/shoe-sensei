@@ -2,9 +2,9 @@
 <% cushioning_level = cushioning_level.to_i %>
 <p class="cushioning_info">
   <span class="icon-text">
-    <span><b><%= t('model.cushioning') %>:</b> <%= t("tags.cushionings.#{cushioning_name.parameterize(separator: '-')}") %></span>
+    <span><b><%= t('model.cushioning') %>:</b> <%= t("model.tags.cushionings.#{cushioning_name.parameterize(separator: '-')}") %></span>
     <% 3.times do |t| %>
-      <span class="icon <%= cushioning_level >= t ? icon_color[cushioning_level] : 'transparent-icon' %>">
+      <span class="icon <%= cushioning_level > t ? icon_color[cushioning_level - 1] : 'transparent-icon' %>">
         <i class="fas fa-lg fa-feather"></i>
       </span>
     <%end%>
