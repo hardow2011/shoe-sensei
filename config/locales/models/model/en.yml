@@ -19,5 +19,5 @@ en:
         stability: Stability
       apma_accepted: 
         true: APMA accepted
-        false: Not aceptado por la APMA
+        false: Not APMA accepted
       
