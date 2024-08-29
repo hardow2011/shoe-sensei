@@ -1,30 +1,30 @@
 <aside class="menu admin-menubar">
     <p class="menu-label">General</p>
     <ul class="menu-list">
-        <li><%= link_to 'Dashboard', admin_path %></li>
+        <li><%= link_to 'Dashboard', admin_path, class: "#{request.path == admin_path ? 'is-active' : nil}" %></li>
     </ul>
     <p class="menu-label">Content management</p>
     <ul class="menu-list">
         <li>
-            <%= link_to 'Brands', admin_brands_path, class: 'is-active' %>
+            <%= link_to 'Brands', admin_brands_path, class: "#{request.path == admin_brands_path ? 'is-active' : nil}" %>
             <ul>
-                <li><%= link_to 'Add a brand', new_admin_brand_path %></li>
+                <li><%= link_to 'Add a brand', new_admin_brand_path, class: "#{request.path == new_admin_brand_path ? 'is-active' : nil}" %></li>
             </ul>
         </li>
     </ul>
     <ul class="menu-list">
         <li>
-            <%= link_to 'Collections', admin_collections_path, class: 'is-active' %>
+            <%= link_to 'Collections', admin_collections_path, class: "#{request.path == admin_collections_path ? 'is-active' : nil}" %>
             <ul>
-                <li><%= link_to 'Add a collection', new_admin_collection_path %></li>
+                <li><%= link_to 'Add a collection', new_admin_collection_path, class: "#{request.path == new_admin_collection_path ? 'is-active' : nil}" %></li>
             </ul>
         </li>
     </ul>
     <ul class="menu-list">
         <li>
-            <%= link_to 'Models', admin_models_path, class: 'is-active' %>
+            <%= link_to 'Models', admin_models_path, class: "#{request.path == admin_models_path ? 'is-active' : nil}" %>
             <ul>
-                <li><%= link_to 'Add a model', new_admin_model_path %></li>
+                <li><%= link_to 'Add a model', new_admin_model_path, class: "#{request.path == new_admin_model_path ? 'is-active' : nil}" %></li>
             </ul>
         </li>
     </ul>
