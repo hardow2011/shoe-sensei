@@ -1,9 +1,12 @@
+# TODO: optimize this whole module.
+# DRY in the views.
+# Queries to slow/numerous
 module FilterPagination
 
   include AllowedTags
 
   SORTING_OPTIONS = [['Name (A to Z)', :name], ['Cushioning (low to high)', :cushioning_asc], ['Cushioning (high to low)', :cushioning_desc], ['Weight (low to high)', :weight_asc], ['Weight (high to low)', :weight_desc], ['Heel to toe drop (low to high)', :heel_to_toe_drop_asc], ['Heel to toe drop (high to low)', :heel_to_toe_drop_desc]]
-  ALLOWED_ADDITIONAL_FILTERS = [:apma_accepted, :discontinued]
+  ALLOWED_ADDITIONAL_FILTERS = [:apma_accepted, :show_discontinued]
 
   MODELS_PER_PAGE = 9
 
@@ -41,17 +44,20 @@ module FilterPagination
       query << "#{query.present? ? ' AND ' : nil } tags -> 'support' ?| array#{selected_supports.to_s.gsub('"',"'")}"  if selected_supports.any?
       query << "#{query.present? ? ' AND ' : nil } tags -> 'cushioning_level' <@ '#{selected_cushionings}'::jsonb"  if selected_cushionings.any?
 
-      (selected_aditional_filters - [:discontinued]).each do |filter|
+      (selected_aditional_filters - [:show_discontinued]).each do |filter|
         query << "#{query.present? ? ' AND ' : nil } tags ->> '#{filter}' = 'true'"
       end
 
-      show_discontinued_models = selected_aditional_filters.exclude?(:discontinued)
+      show_discontinued_models = selected_aditional_filters.exclude?(:show_discontinued)
 
-      if query.present?
-        @models = Model.where(query).only_still_in_production(show_discontinued_models)
-      else
-        @models  = Model.only_still_in_production(show_discontinued_models)
-      end
+      @models = Model.where(query).only_still_in_production(show_discontinued_models)
+
+      # if query.present?
+      #   @models = Model.where(query).only_still_in_production(show_discontinued_models)
+      # else
+      #   @models  = Model.only_still_in_production(show_discontinued_models)
+      # end
+
 
       filtered_brands = Brand.joins(:models).where(models: { id: @models.map(&:id) }).uniq.sort_by(&:name)
 
