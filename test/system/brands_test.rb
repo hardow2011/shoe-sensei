@@ -6,21 +6,21 @@ class BrandsTest < ApplicationSystemTestCase
     Rake::Task['run_models_save_callbacks'].invoke
     @brooks = brands(:brooks)
     @hoka = brands(:hoka)
-    @on = brands(:on_running)
+    @on_running = brands(:on_running)
   end
   test 'show brand page' do
     visit root_url
 
     within('.model-filter') do
-      check @brooks.name
+      check @on_running.name
     end
 
     within('.models-grid') do
-      click_on @brooks.name, match: :first
+      click_on @on_running.name, match: :first
     end
 
-    assert_text @brooks.name
-    assert_text @brooks.overview
+    assert_text @on_running.name
+    assert_text @on_running.overview
 
     within('.model-filter') do
       assert_no_text 'Brand'
@@ -31,32 +31,37 @@ class BrandsTest < ApplicationSystemTestCase
     end
 
     within('.models-grid') do
-      @brooks.models.first(3).each do |model|
+      @on_running.models.only_still_in_production.first(3).each do |model|
         assert_text model.name
+      end
+
+      @on_running.models.discontinued.each do |model|
+        assert_no_text model.name
+      end
+
+      @brooks.models.only_still_in_production.first(3).each do |model|
+        assert_no_text model.name
       end
 
       @hoka.models.first(3).each do |model|
         assert_no_text model.name
       end
-
-      @on.models.first(3).each do |model|
-        assert_no_text model.name
-      end
     end
 
     within('.model-filter') do
+      has_field? 'High'
       check 'High'
     end
 
-    brooks_with_high_cushioning = @brooks.models.select { |m| m.tags[:cushioning] == '2'}.first(3)
-    brooks_without_high_cushioning = (@brooks.models - brooks_with_high_cushioning).first(3)
+    on_with_high_cushioning = @brooks.models.select { |m| m.tags[:cushioning] == '2'}.first(3)
+    on_without_high_cushioning = (@brooks.models - on_with_high_cushioning).first(3)
 
     within('.models-grid') do
-      brooks_with_high_cushioning.each do |model|
+      on_with_high_cushioning.each do |model|
         assert_text model.name
       end
 
-      brooks_without_high_cushioning.each do |model|
+      on_without_high_cushioning.each do |model|
         assert_no_text model.name
       end
     end

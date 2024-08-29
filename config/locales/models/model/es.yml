@@ -3,8 +3,6 @@ es:
     weight: Peso
     heel_to_toe_drop: Inclinación
     cushioning: Amortiguación
-    apma_accepted: Aceptado por la APMA
-    not_apma_accepted: No aceptado por la APMA
     tags:
       activities:
         road_running: Correr
@@ -19,3 +17,6 @@ es:
       supports:
         neutral: Neutral
         stability: Estabilidad
+      apma_accepted: 
+        true: Aceptado por la APMA
+        false: No aceptado por la APMA

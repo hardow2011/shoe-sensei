@@ -49,6 +49,8 @@ class Model < ApplicationRecord
   scope :order_by_cushioning_level, ->(order = :asc) { order(Arel.sql("tags ->> 'cushioning_level' #{ order == :desc ? 'DESC' : 'ASC' }, name")) }
   scope :order_by_weight, ->(order = :asc) { order(weight: order) }
   scope :order_by_heel_to_toe_drop, ->(order = :asc) { order(heel_to_toe_drop: order) }
+  scope :only_still_in_production, ->(discontinued = true) { where("tags ->> 'discontinued' = '#{!discontinued}'") if discontinued }
+  scope :discontinued, ->(discontinued = true) { where("tags ->> 'discontinued' = '#{discontinued}'") }
 
   # scope :tagged_with_high_cushioning, -> { where("tags -> 'cushioning' ? 'High'") }
   # scope :tagged_with_mid_cushioning, -> { where("tags -> 'cushioning' ? 'Mid'") }

@@ -1,6 +1,6 @@
 <p class="apma_info">
     <span class="icon-text">
-        <span><b><%= apma_accepted ? t('model.apma_accepted') : t('model.not_apma_accepted')  %></b></span>
+        <span><b><%= t("model.tags.apma_accepted.#{apma_accepted}") %></b></span>
         <span class="icon <%= apma_accepted ? 'has-text-primary-30' : 'has-text-danger' %>">
             <i class="fas fa-lg <%= apma_accepted ? 'fa-medkit' : 'fa-ban' %>"></i>
         </span>

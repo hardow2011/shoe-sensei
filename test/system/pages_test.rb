@@ -6,6 +6,7 @@ class PagesTest < ApplicationSystemTestCase
     @hoka_speedgoat_5 = models(:hoka_speedgoat_5)
     @hoka_bondi_8 = models(:hoka_bondi_8)
     @on_cloud_x_4 = models(:on_cloud_x_4)
+    @brooks = brands(:brooks)
   end
   test "filtering the shoe models in the homepage" do
     visit root_path
@@ -127,7 +128,7 @@ class PagesTest < ApplicationSystemTestCase
     # Assert models ordered by default 'Name (A to Z)'
     within('.models-grid') do
       all(:css, '.model-box').each_with_index do |model_box, i|
-        model_box.assert_text(Model.order(:name)[i].name)
+        model_box.assert_text(Model.only_still_in_production.order(:name)[i].name)
       end
     end
 
@@ -140,7 +141,7 @@ class PagesTest < ApplicationSystemTestCase
     # Assert models ordered by selected 'Cushioning (low to high)'
     within('.models-grid') do
       all(:css, '.model-box').each_with_index do |model_box, i|
-        model_box.assert_text(Model.order_by_cushioning_level[i].name)
+        model_box.assert_text(Model.only_still_in_production.order_by_cushioning_level[i].name)
       end
     end
 
@@ -153,7 +154,7 @@ class PagesTest < ApplicationSystemTestCase
     # Assert models ordered by selected 'Cushioning (high to low)'
     within('.models-grid') do
       all(:css, '.model-box').each_with_index do |model_box, i|
-        model_box.assert_text(Model.order_by_cushioning_level(:desc)[i].name)
+        model_box.assert_text(Model.only_still_in_production.order_by_cushioning_level(:desc)[i].name)
       end
     end
 
@@ -166,7 +167,7 @@ class PagesTest < ApplicationSystemTestCase
     # Assert models ordered by selected 'Weight (low to high)'
     within('.models-grid') do
       all(:css, '.model-box').each_with_index do |model_box, i|
-        model_box.assert_text(Model.order_by_weight[i].name)
+        model_box.assert_text(Model.only_still_in_production.order_by_weight[i].name)
       end
     end
 
@@ -179,7 +180,7 @@ class PagesTest < ApplicationSystemTestCase
     # Assert models ordered by selected 'Weight (high to low)'
     within('.models-grid') do
       all(:css, '.model-box').each_with_index do |model_box, i|
-        model_box.assert_text(Model.order_by_weight(:desc)[i].name)
+        model_box.assert_text(Model.only_still_in_production.order_by_weight(:desc)[i].name)
       end
     end
 
@@ -192,7 +193,7 @@ class PagesTest < ApplicationSystemTestCase
     # Assert models ordered by selected 'Heel to toe drop (low to high)'
     within('.models-grid') do
       all(:css, '.model-box').each_with_index do |model_box, i|
-        model_box.assert_text(Model.order_by_heel_to_toe_drop[i].name)
+        model_box.assert_text(Model.only_still_in_production.order_by_heel_to_toe_drop[i].name)
       end
     end
 
@@ -205,7 +206,37 @@ class PagesTest < ApplicationSystemTestCase
     # Assert models ordered by selected 'Heel to toe drop (high to low)'
     within('.models-grid') do
       all(:css, '.model-box').each_with_index do |model_box, i|
-        model_box.assert_text(Model.order_by_heel_to_toe_drop(:desc)[i].name)
+        model_box.assert_text(Model.only_still_in_production.order_by_heel_to_toe_drop(:desc)[i].name)
+      end
+    end
+  end
+
+  test 'using additional filters in the homepage' do
+    visit root_url
+
+    within('.model-filter') do
+      has_field? 'APMA accepted only?'
+      has_field? 'Show discontinued models?'
+
+      has_field? @brooks.name
+      check @brooks.name
+
+      @brooks.models.only_still_in_production.first(3).each do |model|
+        assert_text model.name
+      end
+
+      @brooks.models.discontinued.each do |model|
+        assert_no_text model.name
+      end
+
+      check 'Show discontinued models?'
+
+      @brooks.models.only_still_in_production(false).first(3).each do |model|
+        assert_text model.name
+      end
+
+      @brooks.models.first(3).each do |model|
+        assert_text model.name
       end
     end
   end

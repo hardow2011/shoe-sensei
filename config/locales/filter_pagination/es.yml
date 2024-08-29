@@ -4,6 +4,10 @@ es:
     activities: Actividad
     cushioning: Amortiguación
     support: Soporte
+    additional_filters:
+      prompt: Filtros adicionales
+      apma_accepted: ¿Sólo aceptados por la APMA?
+      discontinued: ¿Mostrar modelos descontinuados?
     clear_filters: Limpiar filtros
   other_filter:
     prompt: Filtros adicionales

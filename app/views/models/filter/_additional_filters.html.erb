@@ -1,0 +1,14 @@
+    <div class="field">
+        <label class="label is-size-5"><%= title %></label>
+        <div class="control">
+            <% filter_list.each do |filter| %>
+                <div>
+                    <label class='is-inline-block py-1'>
+                        <%= form.check_box "additional_filters[]", { checked: filter[:checked], onchange: "this.form.requestSubmit()", include_hidden: false }, "#{filter[:name]}" %>
+                        <%= t("filter.additional_filters.#{filter[:name]}") %>
+                    </label>
+                </div>
+            <% end %>
+        </div>
+        <hr>
+    </div>

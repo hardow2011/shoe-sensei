@@ -1,10 +1,11 @@
-<div style="position: sticky; top: 24px">
+<div>
     <div class="<%= class_names('is-hidden': filter_list[:hide_brand_filter] ) %>">
         <%= render(partial: 'models/filter/checkboxes', locals: { title: t('filter.brand'), param_name: 'brand_ids', form: form, filter_list: filter_list[:brands] }) %>
     </div>
     <%= render partial: 'models/filter/checkboxes', locals: { title: t('filter.activities'), param_name: 'activities', form: form, filter_list: filter_list[:activities], translate: true } %>
     <%= render partial: 'models/filter/checkboxes', locals: { title: t('filter.cushioning'), param_name: 'cushionings', form: form, filter_list: filter_list[:cushionings], translate: true } %>
     <%= render partial: 'models/filter/checkboxes', locals: { title: t('filter.support'), param_name: 'supports', form: form, filter_list: filter_list[:supports], translate: true } %>
+    <%= render partial: 'models/filter/additional_filters', locals: { title: t('filter.additional_filters.prompt'), form: form, filter_list: filter_list[:additional_filters] } %>
     <%= hidden_field_tag :hide_brand_filter, filter_list[:hide_brand_filter] %>
     <%# TODO: hide clear filters btn when none selected %>
     <%= link_to t('filter.clear_filters'), filter_models_path %>

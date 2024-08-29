@@ -4,6 +4,10 @@ en:
     activities: Activity
     cushioning: Cushioning
     support: Support
+    additional_filters:
+      prompt: Additional filters
+      apma_accepted: APMA accepted only?
+      discontinued: Show discontinued models?
     clear_filters: Clear filters
   other_filter:
     prompt: Additional filters

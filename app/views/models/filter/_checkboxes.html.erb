@@ -5,7 +5,7 @@
     <% params_prefix = title.downcase.pluralize %>
     <div class="control">
         <% filter_list.each do |name, value| %>
-        <% id = title.downcase.pluralize + '_' + name.downcase + "_checkbox" %>
+            <% id = title.downcase.pluralize + '_' + name.downcase + "_checkbox" %>
             <div>
                 <label class='is-inline-block py-1'>
                     <%= form.check_box "#{param_name}[]", { id: id, checked: value[:checked], onchange: "this.form.requestSubmit()", include_hidden: false }, "#{value[:id]}" %>
