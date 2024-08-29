@@ -7,7 +7,7 @@ en:
     additional_filters:
       prompt: Additional filters
       apma_accepted: APMA accepted only?
-      discontinued: Show discontinued models?
+      show_discontinued: Show discontinued models?
     clear_filters: Clear filters
   other_filter:
     prompt: Additional filters
