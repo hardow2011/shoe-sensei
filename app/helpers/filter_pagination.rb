@@ -2,6 +2,7 @@
 # DRY in the views.
 # Queries to slow/numerous
 module FilterPagination
+  # TODO: remove hide_brand_filter from app
 
   include AllowedTags
 

@@ -1,9 +1,8 @@
 <div>
     <% if @brand&.id || params[:single_brand_id] %>
         <%= hidden_field_tag :single_brand_id, @brand&.id || filter_list[:single_brand_id] %>
-        <%#= hidden_field_tag 'brand_ids[]', @brand.id || filter_list[:single_brand_id] %>
     <% else %>
-        <div class="<%= class_names('is-hidden': filter_list[:hide_brand_filter] ) %>">
+        <div class="<%= class_names('is-hidden': filter_list[:single_brand_id] ) %>">
             <%= render(partial: 'models/filter/checkboxes', locals: { title: t('filter.brand'), param_name: 'brand_ids', form: form, filter_list: filter_list[:brands] }) %>
         </div>
     <% end %>
@@ -11,7 +10,6 @@
     <%= render partial: 'models/filter/checkboxes', locals: { title: t('filter.cushioning'), param_name: 'cushionings', form: form, filter_list: filter_list[:cushionings], translate: true } %>
     <%= render partial: 'models/filter/checkboxes', locals: { title: t('filter.support'), param_name: 'supports', form: form, filter_list: filter_list[:supports], translate: true } %>
     <%= render partial: 'models/filter/additional_filters', locals: { title: t('filter.additional_filters.prompt'), form: form, filter_list: filter_list[:additional_filters] } %>
-    <%= hidden_field_tag :hide_brand_filter, filter_list[:hide_brand_filter] %>
     <%# TODO: hide clear filters btn when none selected %>
     <%= link_to t('filter.clear_filters'), filter_models_path %>
 </div>

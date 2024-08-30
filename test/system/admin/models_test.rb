@@ -44,9 +44,9 @@ class ModelsTest < ApplicationSystemTestCase
 
     click_on 'Create Model'
 
-    assert_text 'Model was created successfully.'
-
     assert_no_text 'New model'
+
+    assert_text 'Model was created successfully.'
 
     assert_text 'Models', count: 2
     assert_text 'Add a model', count: 2
