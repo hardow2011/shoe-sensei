@@ -17,9 +17,9 @@ module FilterPagination
   end
 
   class ModelsFilter
-    attr_reader :filter_list, :models, :paged_models, :total_pages, :current_page, :selected_sort
+    attr_reader :filter_list, :models, :paged_models, :total_pages, :current_page, :selected_sort, :single_brand_id
     def initialize(selected_activities, selected_cushionings, selected_supports, selected_aditional_filters,
-                    brands_ids, hide_brand_filter, page, sort)
+                    brands_ids, single_brand_id, page, sort)
       selected_activities = selected_activities || []
       selected_cushionings = selected_cushionings&.map(&:to_i) || []
       selected_supports = selected_supports || []
@@ -31,12 +31,12 @@ module FilterPagination
       @current_page = page
 
       @filter_list = {}
-      @filter_list[:hide_brand_filter] = hide_brand_filter.to_boolean || false
       @filter_list[:brands] = {}
       @filter_list[:activities] = {}
       @filter_list[:cushionings] = {}
       @filter_list[:supports] = {}
       @filter_list[:additional_filters] = []
+      @filter_list[:single_brand_id] = single_brand_id&.to_i || nil
 
       show_discontinued_models = selected_aditional_filters.exclude?(:show_discontinued)
 
@@ -49,9 +49,11 @@ module FilterPagination
 
       # Get all brands from filtered models
       filtered_brands = Brand.joins(:models).where(models: { id: @models.map(&:id) }).uniq.sort_by(&:name)
+      # Get all models from filtered brands
+      models_from_filtered_brands = Model.joins(:brand).where(brand: { id: filtered_brands.map(&:id) }).uniq
 
       # Filter models based on selected brands
-      @models = @models.filter_by_brand_ids(brands_ids)
+      @models = @models.filter_by_brand_ids(single_brand_id.present? ? [single_brand_id] : brands_ids )
 
       # Create filter list for brands
       filtered_brands.each do |brand|
@@ -59,14 +61,14 @@ module FilterPagination
       end
 
       # Create filter list for activities
-      @filter_list[:activities] = build_filter(@models, selected_activities, :activities).sort_by { |activity| activity[0] }
+      @filter_list[:activities] = build_filter(@models & models_from_filtered_brands, selected_activities, :activities).sort_by { |activity| activity[0] }
 
       # Create filter list for supports
-      @filter_list[:supports] =  build_filter(@models, selected_supports, :support) # this is to sort the support tags
+      @filter_list[:supports] =  build_filter(@models & models_from_filtered_brands, selected_supports, :support) # this is to sort the support tags
                                   .sort_by { |k, v| AllowedTags::SUPPORT_OPTIONS.find_index(v[:id]) }
 
       # Create filter list for cushionings
-      @filter_list[:cushionings] = build_filter(@models, selected_cushionings, :cushioning_level)
+      @filter_list[:cushionings] = build_filter(@models & models_from_filtered_brands, selected_cushionings, :cushioning_level)
                                     .sort_by { |k, _| k }
                                     .map { |a, b| [ AllowedTags::CUSHIONING_OPTIONS[a.to_i - 1], b ] }
 
@@ -113,18 +115,18 @@ module FilterPagination
 
   private
 
-  def set_filtered_models(hide_brand_filter, brand_ids = nil)
+  def set_filtered_models(brand_ids, single_brand_id)
     brands_ids = params[:brand_ids] || brand_ids
     selected_activities = params[:activities]
     selected_cushionings = params[:cushionings]
     selected_supports = params[:supports]
-    hide_brand_filter = params[:hide_brand_filter] || hide_brand_filter
     page = params[:page]
     sort = params[:models_sorting]
     selected_aditional_filters = params[:additional_filters]
+    single_brand_id = params[:single_brand_id] || single_brand_id
 
     models_filter = ModelsFilter.new(selected_activities, selected_cushionings, selected_supports,
-                                      selected_aditional_filters, brands_ids, hide_brand_filter, page, sort)
+                                      selected_aditional_filters, brands_ids, single_brand_id, page, sort)
 
     @filter_list = models_filter.filter_list
     @models = models_filter.models

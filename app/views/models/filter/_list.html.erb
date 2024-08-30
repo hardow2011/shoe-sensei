@@ -1,7 +1,12 @@
 <div>
-    <div class="<%= class_names('is-hidden': filter_list[:hide_brand_filter] ) %>">
-        <%= render(partial: 'models/filter/checkboxes', locals: { title: t('filter.brand'), param_name: 'brand_ids', form: form, filter_list: filter_list[:brands] }) %>
-    </div>
+    <% if @brand&.id || params[:single_brand_id] %>
+        <%= hidden_field_tag :single_brand_id, @brand&.id || filter_list[:single_brand_id] %>
+        <%#= hidden_field_tag 'brand_ids[]', @brand.id || filter_list[:single_brand_id] %>
+    <% else %>
+        <div class="<%= class_names('is-hidden': filter_list[:hide_brand_filter] ) %>">
+            <%= render(partial: 'models/filter/checkboxes', locals: { title: t('filter.brand'), param_name: 'brand_ids', form: form, filter_list: filter_list[:brands] }) %>
+        </div>
+    <% end %>
     <%= render partial: 'models/filter/checkboxes', locals: { title: t('filter.activities'), param_name: 'activities', form: form, filter_list: filter_list[:activities], translate: true } %>
     <%= render partial: 'models/filter/checkboxes', locals: { title: t('filter.cushioning'), param_name: 'cushionings', form: form, filter_list: filter_list[:cushionings], translate: true } %>
     <%= render partial: 'models/filter/checkboxes', locals: { title: t('filter.support'), param_name: 'supports', form: form, filter_list: filter_list[:supports], translate: true } %>
