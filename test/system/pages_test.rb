@@ -230,6 +230,7 @@ class PagesTest < ApplicationSystemTestCase
       end
 
       check 'Show discontinued models?'
+      check 'Brooks'
 
       @brooks.models.only_still_in_production(false).first(3).each do |model|
         assert_text model.name

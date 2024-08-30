@@ -23,7 +23,7 @@ module FilterPagination
       selected_activities = selected_activities || []
       selected_cushionings = selected_cushionings&.map(&:to_i) || []
       selected_supports = selected_supports || []
-      brands_ids = brands_ids || []
+      brands_ids = brands_ids&.map(&:to_i) || []
       selected_aditional_filters = selected_aditional_filters&.map(&:to_sym) || []
       page = page.to_i || 0
       sort = sort&.to_sym || SORTING_OPTIONS.first[1]
@@ -38,57 +38,44 @@ module FilterPagination
       @filter_list[:supports] = {}
       @filter_list[:additional_filters] = []
 
-      # Model.where("tags -> 'activities' ?| array[:activities] AND tags -> 'cushioning' ?| array[:cushioning] AND tags -> 'support' ?| array[:support]", activities: ['Road running', 'Training and gym'], cushioning: ['High'], support: ['Neutral'])
-      query = ''
-      query << "tags -> 'activities' ?| array#{selected_activities.to_s.gsub('"',"'")} "  if selected_activities.any?
-      query << "#{query.present? ? ' AND ' : nil } tags -> 'support' ?| array#{selected_supports.to_s.gsub('"',"'")}"  if selected_supports.any?
-      query << "#{query.present? ? ' AND ' : nil } tags -> 'cushioning_level' <@ '#{selected_cushionings}'::jsonb"  if selected_cushionings.any?
-
-      (selected_aditional_filters - [:show_discontinued]).each do |filter|
-        query << "#{query.present? ? ' AND ' : nil } tags ->> '#{filter}' = 'true'"
-      end
-
       show_discontinued_models = selected_aditional_filters.exclude?(:show_discontinued)
 
-      @models = Model.where(query).only_still_in_production(show_discontinued_models)
+      # Filter models based on selected filters (excluding brands)
+      @models = Model.only_still_in_production(show_discontinued_models)
+                      .filter_by_activities(selected_activities)
+                      .filter_by_supports(selected_supports)
+                      .filter_by_cushioning_levels(selected_cushionings)
+                      .filter_by_apma_accepted(selected_aditional_filters.include?(:apma_accepted))
 
-      # if query.present?
-      #   @models = Model.where(query).only_still_in_production(show_discontinued_models)
-      # else
-      #   @models  = Model.only_still_in_production(show_discontinued_models)
-      # end
-
-
+      # Get all brands from filtered models
       filtered_brands = Brand.joins(:models).where(models: { id: @models.map(&:id) }).uniq.sort_by(&:name)
 
-      if brands_ids.any?
-        brands_ids = brands_ids.map(&:to_i)
-        @models = @models.joins(:brand).where(brand: { id: brands_ids })
+      # Filter models based on selected brands
+      @models = @models.filter_by_brand_ids(brands_ids)
+
+      # Create filter list for brands
+      filtered_brands.each do |brand|
+        @filter_list[:brands][brand.name] = { id: brand.id, checked: brands_ids.include?(brand.id) }
       end
 
+      # Create filter list for activities
+      @filter_list[:activities] = build_filter(@models, selected_activities, :activities).sort_by { |activity| activity[0] }
 
-      @filter_list[:activities] = build_filter(selected_activities, :activities).sort_by { |activity| activity[0] }
-
-      @filter_list[:supports] =  build_filter(selected_supports, :support) # this is to sort the support tags
+      # Create filter list for supports
+      @filter_list[:supports] =  build_filter(@models, selected_supports, :support) # this is to sort the support tags
                                   .sort_by { |k, v| AllowedTags::SUPPORT_OPTIONS.find_index(v[:id]) }
 
-      @filter_list[:cushionings] = build_filter(selected_cushionings, :cushioning_level)
+      # Create filter list for cushionings
+      @filter_list[:cushionings] = build_filter(@models, selected_cushionings, :cushioning_level)
                                     .sort_by { |k, _| k }
                                     .map { |a, b| [ AllowedTags::CUSHIONING_OPTIONS[a.to_i - 1], b ] }
+
+      # Create filter list for additional filters
       ALLOWED_ADDITIONAL_FILTERS.each do |filter|
         @filter_list[:additional_filters] << { name: filter, checked: selected_aditional_filters.include?(filter) }
       end
 
-      unless @filter_list[:hide_brand_filter]
-
-        filtered_brands.each do |brand|
-          @filter_list[:brands][brand.name] = { id: brand.id, checked: brands_ids.include?(brand.id) }
-        end
-      else
-        brand = Brand.find_by(id: brands_ids.first)
-        @filter_list[:brands][brand.name] = { id: brand.id, checked: brands_ids.include?(brand.id) }
-      end
-
+      # Sort filtered models
       case sort
       when :name
         @models = @models.order(:name)
@@ -114,9 +101,9 @@ module FilterPagination
 
     private
 
-    def build_filter(selected_filter, tags_attr)
+    def build_filter(models, selected_filter, tags_attr)
       filter_list = {}
-      available_filters = (selected_filter + @models.map { |m| m.tags[tags_attr] }.flatten).uniq
+      available_filters = (selected_filter + models.map { |m| m.tags[tags_attr] }.flatten).uniq
       available_filters.each do |a|
         filter_list[a] = { id: a, checked: selected_filter.include?(a) }
       end
@@ -138,6 +125,7 @@ module FilterPagination
 
     models_filter = ModelsFilter.new(selected_activities, selected_cushionings, selected_supports,
                                       selected_aditional_filters, brands_ids, hide_brand_filter, page, sort)
+
     @filter_list = models_filter.filter_list
     @models = models_filter.models
     @paged_models = models_filter.paged_models
