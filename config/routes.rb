@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
     get 'filter_models', to: 'pages#filter_models', as: 'filter_models'
     resources :brands, only: %i[show]
-    get 'collections/:brand_id/:id', to: 'collections#show', as: 'collection'
-    get 'models/:brand_id/:collection_id/:id', to: 'models#show', as: 'model'
+    # get 'collections/:brand_id/:id', to: 'collections#show', as: 'collection'
+    # get 'models/:brand_id/:collection_id/:id', to: 'models#show', as: 'model'
   end
 end

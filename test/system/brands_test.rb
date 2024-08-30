@@ -19,6 +19,11 @@ class BrandsTest < ApplicationSystemTestCase
       click_on @on_running.name, match: :first
     end
 
+    @on_running.collections.each do |on_collection|
+      assert_text on_collection.name
+      assert_text on_collection.overview
+    end
+
     assert_text @on_running.name
     assert_text @on_running.overview
 

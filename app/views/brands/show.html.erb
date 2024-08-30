@@ -19,3 +19,10 @@
         <%= render partial: 'models/filter', locals: { paged_models: @paged_models, total_pages: @total_pages, current_page: @current_page, selected_sort: @selected_sort, filter_list: @filter_list } %>
     </div>
 </div>
+<div class="section">
+    <hr>
+    <div class="container is-widescreen">
+        <h3 class="title is-2">Collections</h3>
+        <%= render partial: 'collections/collection', collection: @brand.collections %>
+    </div>
+</div>
