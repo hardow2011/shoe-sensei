@@ -46,9 +46,11 @@
 .model-box {
     height: 100%;
 
-    a {
-        display: block;
-        height: 100%;
+    .img {
+        a {
+            display: block;
+            height: 100%;
+        }
     }
 }
 
