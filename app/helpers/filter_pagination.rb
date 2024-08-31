@@ -1,6 +1,7 @@
 # TODO: optimize this whole module.
 # DRY in the views.
 # Queries to slow/numerous
+# TODO: check that params are valid before processing them
 module FilterPagination
   include AllowedTags
 
