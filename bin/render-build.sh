@@ -11,6 +11,6 @@ bundle exec rails assets:clean
 # Uncomment the following line:
 
 bundle exec rails db:migrate
-bundle exec rails db:fixtures:load
 
-bundle exec rails test:all
+# TODO: find out how to run tests automatically when deploying
+# bundle exec rails test:all
