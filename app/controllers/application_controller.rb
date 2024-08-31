@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   around_action :switch_locale
+  before_action :set_meta_tags
 
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
@@ -26,6 +27,13 @@ class ApplicationController < ActionController::Base
     # locale = extract_locale_from_accepted_language_header
     # logger.debug  "* Locale set to #{locale}"
     # I18n.with_locale(locale, &action)
+  end
+
+  def set_meta_tags
+    @meta_tags = {
+      title: 'SoleFacts',
+      description: I18n.t('site_default_description')
+    }
   end
 
   private

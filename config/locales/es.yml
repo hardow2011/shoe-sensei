@@ -5,5 +5,8 @@ es:
     spanish: Español
   brands: Marcas
   all_brands: Todas las marcas
+  list_of_all_brands: Lista de todas las marcas
+  brand_overview: "Descripción general de %{brand_name}"
+  site_default_description: 'Una base de conocimiento de zapatos para encontrar el mejor par para usted'
   some_notable_collections_include: Algunas colecciones notables incluyen
   read_more: Leer más
