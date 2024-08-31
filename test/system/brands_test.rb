@@ -8,6 +8,21 @@ class BrandsTest < ApplicationSystemTestCase
     @hoka = brands(:hoka)
     @on_running = brands(:on_running)
   end
+
+  test 'show brands index page' do
+    visit root_url
+
+    # TODO: find out how to hover then click on dropdown
+    within('.navbar') do
+      click_on 'Brooks'
+    end
+
+    brands.each do |b|
+      assert_text b.name
+      assert_text b.overview
+    end
+  end
+
   test 'show brand page' do
     visit root_url
 

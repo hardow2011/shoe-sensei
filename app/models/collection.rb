@@ -20,6 +20,7 @@
 #
 #  fk_rails_...  (brand_id => brands.id)
 #
+# TODO: translate overview
 class Collection < ApplicationRecord
   include DataFormatting
   belongs_to :brand

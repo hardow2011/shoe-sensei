@@ -1,0 +1,6 @@
+<div class="section">
+    <div class="container is-widescreen">
+        <h1 class="title is-1"><%= t('brands') %></h1>
+        <%= render partial: 'brands/brand', collection: @brands, cached: ->(brand) {[I18n.locale, brand]} %>
+    </div>
+</div>

@@ -5,6 +5,10 @@ class BrandsController < ApplicationController
     set_filtered_models(nil, @brand.id)
   end
 
+  def index
+    @brands = Brand.order(:name)
+  end
+
   def show
   end
 
