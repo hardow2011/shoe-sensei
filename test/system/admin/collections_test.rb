@@ -18,7 +18,8 @@ class Admin::CollectionsTest < ApplicationSystemTestCase
     click_on 'Add a collection'
 
     fill_in "collection[name]",	with: "MadeUpCollection"
-    fill_in "collection[overview]",	with: "For challenging trails."
+    fill_in "collection[overview_en]",	with: "For challenging trails."
+    fill_in "collection[overview_es]",	with: "Para senderos desafiantes"
     select 'On', from: 'collection[brand_id]'
 
     click_on 'Create Collection'
@@ -41,7 +42,8 @@ class Admin::CollectionsTest < ApplicationSystemTestCase
     click_on 'Add Collection'
 
     fill_in "collection[name]",	with: "MadeUpCollection"
-    fill_in "collection[overview]",	with: "For challenging trails."
+    fill_in "collection[overview_en]",	with: "For challenging trails."
+    fill_in "collection[overview_es]",	with: "Para senderos desafiantes"
 
     click_on 'Add Collection'
 
@@ -59,7 +61,8 @@ class Admin::CollectionsTest < ApplicationSystemTestCase
     click_on 'Edit', match: :first
 
     fill_in "collection[name]",	with: "UpdatedCollection"
-    fill_in "collection[overview]",	with: "A minimalistic casual shoe."
+    fill_in "collection[overview_en]",	with: "A minimalistic casual shoe."
+    fill_in "collection[overview_es]",	with: "Un zapato minimalista y casual."
 
     click_on 'Update Collection'
 
@@ -74,7 +77,8 @@ class Admin::CollectionsTest < ApplicationSystemTestCase
     click_on 'Add a collection', match: :first
 
     fill_in "collection[name]",	with: "ToDelete"
-    fill_in "collection[overview]",	with: "Will be deleted"
+    fill_in "collection[overview_en]",	with: "Will be deleted"
+    fill_in "collection[overview_es]",	with: "Será borrado"
     select 'On', from: 'collection[brand_id]'
 
     click_on 'Create Collection'

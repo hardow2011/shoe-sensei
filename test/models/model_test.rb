@@ -23,6 +23,20 @@ class ModelTest < ActiveSupport::TestCase
     assert_not_empty model.errors[:name]
   end
 
+  test "invalid without unique name within collection" do
+    model = @on_cloud_x.models.first.dup
+    refute model.valid?
+    assert_not_empty model.errors[:name], 'no validation errors for non unique name'
+  end
+
+
+  test "invalid without unique handle within collection" do
+    model = @on_cloud_x.models.first.dup
+    model.save
+    refute model.valid?
+    assert_not_empty model.errors[:handle], 'no validation errors for non unique handle'
+  end
+
   test "invalid without image" do
     model = @valid_model
     model.image = nil

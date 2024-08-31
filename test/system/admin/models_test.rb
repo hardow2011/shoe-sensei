@@ -86,7 +86,8 @@ class ModelsTest < ApplicationSystemTestCase
     assert_text 'Add a collection', count: 1
 
     assert_field "collection[name]", with: @brooks_ghost_max_collection.name
-    assert_field "collection[overview]", with: @brooks_ghost_max_collection.overview
+    assert_field "collection[overview_en]", with: @brooks_ghost_max_collection.overview_en
+    assert_field "collection[overview_es]", with: @brooks_ghost_max_collection.overview_es
 
     assert_text 'Gaviota 74'
   end

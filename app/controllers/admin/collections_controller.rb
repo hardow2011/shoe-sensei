@@ -30,7 +30,7 @@ class Admin::CollectionsController < Admin::AdminController
           @collections = Collection.where(brand: @collection.brand).order(:name)
         end
       end
-      else
+    else
         render :new, status: :unprocessable_entity
     end
   end
@@ -61,7 +61,7 @@ class Admin::CollectionsController < Admin::AdminController
   private
 
   def collection_params
-    params.require(:collection).permit(:name, :overview, :brand_id)
+    params.require(:collection).permit(:name, :overview_en, :overview_es, :brand_id)
   end
 
   def set_collection

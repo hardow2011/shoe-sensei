@@ -3,71 +3,83 @@
 brooks_ghost:
   name: Ghost
   handle: ghost
-  overview: The Brooks Ghost line of shoes is renowned for its balanced cushioning and smooth ride, making it a favorite among neutral runners. These shoes offer a versatile fit, reliable comfort, and durability, catering to both everyday training and long-distance running. The Ghost series consistently receives high praise for its performance and comfort.
+  overview_en: The Brooks Ghost line of shoes is renowned for its balanced cushioning and smooth ride, making it a favorite among neutral runners. These shoes offer a versatile fit, reliable comfort, and durability, catering to both everyday training and long-distance running. The Ghost series consistently receives high praise for its performance and comfort.
+  overview_es: La línea de zapatillas Brooks Ghost es famosa por su amortiguación equilibrada y su pisada suave, lo que la convierte en una de las favoritas entre los corredores neutrales. Estas zapatillas ofrecen un ajuste versátil, comodidad confiable y durabilidad, y se adaptan tanto al entrenamiento diario como a las carreras de larga distancia. La serie Ghost recibe constantemente grandes elogios por su rendimiento y comodidad.
   brand: brooks
 
 brooks_ghost_max:
   name: Ghost Max
   handle: ghost-max
-  overview: The Brooks Ghost Max is a cushioned running shoe designed to provide maximum comfort and support. It features enhanced cushioning and a soft, smooth ride, making it ideal for runners seeking extra protection and comfort during their runs. The Ghost Max combines the reliable performance of the Ghost line with added cushioning for a plush running experience.
+  overview_en: The Brooks Ghost Max is a cushioned running shoe designed to provide maximum comfort and support. It features enhanced cushioning and a soft, smooth ride, making it ideal for runners seeking extra protection and comfort during their runs. The Ghost Max combines the reliable performance of the Ghost line with added cushioning for a plush running experience.
+  overview_es: Brooks Ghost Max es una zapatilla para correr con amortiguación diseñada para brindar máxima comodidad y soporte. Cuenta con una amortiguación mejorada y una pisada suave y uniforme, lo que la hace ideal para corredores que buscan protección y comodidad adicionales durante sus carreras. Ghost Max combina el rendimiento confiable de la línea Ghost con una amortiguación adicional para una experiencia de carrera suave.
   brand: brooks
 
 brooks_adrenaline_gts:
   name: Adrenaline GTS
   handle: adrenaline-gts
-  overview: The Brooks Adrenaline GTS is a stability running shoe designed to offer balanced support and cushioning. Known for its GuideRails support system, it helps runners maintain proper alignment, reducing the risk of injury. The Adrenaline GTS is popular for its reliable comfort, stability, and smooth ride, catering to overpronators and those seeking added support.
+  overview_en: The Brooks Adrenaline GTS is a stability running shoe designed to offer balanced support and cushioning. Known for its GuideRails support system, it helps runners maintain proper alignment, reducing the risk of injury. The Adrenaline GTS is popular for its reliable comfort, stability, and smooth ride, catering to overpronators and those seeking added support.
+  overview_es: Brooks Adrenaline GTS es una zapatilla para correr con estabilidad diseñada para ofrecer un soporte y una amortiguación equilibrados. Conocida por su sistema de soporte GuideRails, ayuda a los corredores a mantener una alineación adecuada, lo que reduce el riesgo de lesiones. Adrenaline GTS es popular por su comodidad confiable, estabilidad y pisada suave, ideal para pronadores y quienes buscan un soporte adicional.
   brand: brooks
 
 hoka_bondi:
   name: Bondi
   handle: bondi
-  overview: The Hoka Bondi line of shoes is renowned for its maximal cushioning and plush comfort, making it one of the most cushioned road running shoes available. Designed for long-distance running and high-impact activities, the Bondi series provides a smooth and stable ride, catering to runners seeking superior cushioning and support.
+  overview_en: The Hoka Bondi line of shoes is renowned for its maximal cushioning and plush comfort, making it one of the most cushioned road running shoes available. Designed for long-distance running and high-impact activities, the Bondi series provides a smooth and stable ride, catering to runners seeking superior cushioning and support.
+  overview_es: La línea de zapatillas Bondi de Hoka es famosa por su máxima amortiguación y comodidad, lo que la convierte en una de las zapatillas para correr en ruta con mayor amortiguación disponible. Diseñada para carreras de larga distancia y actividades de alto impacto, la serie Bondi ofrece una pisada suave y estable, ideal para corredores que buscan una amortiguación y un soporte superiores.
   brand: hoka
 
 hoka_clifton:
   name: Clifton
   handle: clifton
-  overview: The Hoka Clifton line of shoes is celebrated for its lightweight design and balanced cushioning, offering a smooth and responsive ride. Ideal for daily training and long-distance running, the Clifton series combines comfort with performance, making it a favorite among runners seeking a versatile and reliable shoe.
+  overview_en: The Hoka Clifton line of shoes is celebrated for its lightweight design and balanced cushioning, offering a smooth and responsive ride. Ideal for daily training and long-distance running, the Clifton series combines comfort with performance, making it a favorite among runners seeking a versatile and reliable shoe.
+  overview_es: La línea de zapatillas Hoka Clifton es famosa por su diseño liviano y amortiguación equilibrada, que ofrece una pisada suave y reactiva. Ideal para el entrenamiento diario y las carreras de larga distancia, la serie Clifton combina comodidad con rendimiento, lo que la convierte en una de las favoritas entre los corredores que buscan una zapatilla versátil y confiable.
   brand: hoka
 
 hoka_gaviota:
   name: Gaviota
   handle: gaviota
-  overview: The Hoka Gaviota is a stability running shoe designed to provide maximum cushioning and support for overpronators. It features a plush, cushioned ride combined with Hoka’s signature stability technologies to help maintain proper alignment and reduce the risk of injury, making it ideal for long-distance runs and daily training.
+  overview_en: The Hoka Gaviota is a stability running shoe designed to provide maximum cushioning and support for overpronators. It features a plush, cushioned ride combined with Hoka’s signature stability technologies to help maintain proper alignment and reduce the risk of injury, making it ideal for long-distance runs and daily training.
+  overview_es: La Gaviota de Hoka es una zapatilla de running con estabilidad diseñada para proporcionar la máxima amortiguación y sujeción a los pronadores. Ofrece una pisada suave y amortiguada combinada con las tecnologías de estabilidad exclusivas de Hoka para ayudar a mantener la alineación adecuada y reducir el riesgo de lesiones, lo que la hace ideal para carreras de larga distancia y entrenamiento diario.
   brand: hoka
 
 hoka_speedgoat:
   name: Speedgoat
   handle: speedgoat
-  overview: The Hoka Speedgoat is a trail running shoe designed for rugged terrain and challenging conditions. Known for its aggressive traction, durable construction, and ample cushioning, the Speedgoat provides excellent stability and comfort on rough and uneven surfaces, making it a popular choice for trail runners seeking performance and protection.
+  overview_en: The Hoka Speedgoat is a trail running shoe designed for rugged terrain and challenging conditions. Known for its aggressive traction, durable construction, and ample cushioning, the Speedgoat provides excellent stability and comfort on rough and uneven surfaces, making it a popular choice for trail runners seeking performance and protection.
+  overview_es: La Speedgoat de Hoka es una zapatilla para trail running diseñada para terrenos accidentados y condiciones difíciles. Conocida por su tracción agresiva, su construcción duradera y su amplia amortiguación, la Speedgoat proporciona una excelente estabilidad y comodidad en superficies irregulares y ásperas, lo que la convierte en una opción popular para corredores de trail que buscan rendimiento y protección.
   brand: hoka
 
 on_cloudmonster:
   name: Cloudmonster
   handle: cloudmonster
-  overview: The On Cloudmonster line features high-cushioning running shoes designed to deliver a plush, comfortable ride with a distinctive "monster" CloudTec sole. Engineered for maximum comfort and energy return, the Cloudmonster provides a smooth and cushioned experience, making it ideal for runners seeking both softness and performance.
+  overview_en: The On Cloudmonster line features high-cushioning running shoes designed to deliver a plush, comfortable ride with a distinctive "monster" CloudTec sole. Engineered for maximum comfort and energy return, the Cloudmonster provides a smooth and cushioned experience, making it ideal for runners seeking both softness and performance.
+  overview_es: La línea On Cloudmonster cuenta con zapatillas para correr con gran amortiguación diseñadas para ofrecer una pisada suave y cómoda con una distintiva suela CloudTec "monstruosa". Diseñadas para lograr la máxima comodidad y retorno de energía, las Cloudmonster brindan una experiencia suave y amortiguada, lo que las hace ideales para corredores que buscan suavidad y rendimiento.
   brand: on_running
 
 on_cloudvista:
   name: Cloudvista
   handle: cloudvista
-  overview: The On Cloudvista is a trail running shoe designed for versatility and comfort on various terrains. It features a responsive CloudTec sole and enhanced traction, providing a cushioned and stable ride for trail runners navigating diverse and challenging surfaces.
+  overview_en: The On Cloudvista is a trail running shoe designed for versatility and comfort on various terrains. It features a responsive CloudTec sole and enhanced traction, providing a cushioned and stable ride for trail runners navigating diverse and challenging surfaces.
+  overview_es: On Cloudvista es una zapatilla para trail running diseñada para ofrecer versatilidad y comodidad en distintos terrenos. Cuenta con una suela CloudTec reactiva y una tracción mejorada, lo que proporciona una pisada amortiguada y estable para corredores de trail que transitan por superficies diversas y desafiantes.
   brand: on_running
 
 on_cloudsurfer_trail:
   name: Cloudsurfer Trail
   handle: cloudsurfer-trail
-  overview: The On Cloudsurfer Trail is a trail running shoe that combines cushioned comfort with responsive performance. Featuring On’s signature CloudTec technology and a durable outsole, it offers a smooth, adaptive ride and reliable traction on varied trail surfaces, making it ideal for runners seeking both comfort and performance on rugged terrain.
+  overview_en: The On Cloudsurfer Trail is a trail running shoe that combines cushioned comfort with responsive performance. Featuring On’s signature CloudTec technology and a durable outsole, it offers a smooth, adaptive ride and reliable traction on varied trail surfaces, making it ideal for runners seeking both comfort and performance on rugged terrain.
+  overview_es: Las On Cloudsurfer Trail son unas zapatillas para trail running que combinan comodidad y amortiguación con un rendimiento reactivo. Con la tecnología CloudTec característica de On y una suela exterior duradera, ofrecen una pisada suave y adaptable y una tracción fiable en diversas superficies de senderos, lo que las hace ideales para corredores que buscan comodidad y rendimiento en terrenos difíciles.
   brand: on_running
 
 on_cloud_x:
   name: Cloud X
   handle: cloud-x
-  overview: The On Cloud X line of shoes is designed for versatile performance, suitable for both running and cross-training. Combining lightweight construction with responsive cushioning, the Cloud X features a flexible and durable design. It offers a comfortable, adaptive fit, making it ideal for athletes seeking a multipurpose shoe that excels in various activities.
+  overview_en: The On Cloud X line of shoes is designed for versatile performance, suitable for both running and cross-training. Combining lightweight construction with responsive cushioning, the Cloud X features a flexible and durable design. It offers a comfortable, adaptive fit, making it ideal for athletes seeking a multipurpose shoe that excels in various activities.
+  overview_es: La línea de zapatillas On Cloud X está diseñada para ofrecer un rendimiento versátil, adecuada tanto para correr como para el entrenamiento cruzado. Al combinar una construcción liviana con una amortiguación reactiva, las Cloud X presentan un diseño flexible y duradero. Ofrecen un ajuste cómodo y adaptable, lo que las hace ideales para los atletas que buscan una zapatilla multiusos que se destaque en diversas actividades.
   brand: on_running
 
 new_balance_fresh_foam_1080:
   name: Fresh Foam X 1080
   handle: fresh-foam-x-1080
-  overview: The New Balance Fresh Foam 1080 line is known for its plush cushioning and plush comfort, designed to provide a smooth and supportive ride for long-distance running. Featuring New Balance’s Fresh Foam midsole technology, the 1080 series delivers a responsive yet cushioned experience, making it ideal for runners seeking a blend of softness and performance.
+  overview_en: The New Balance Fresh Foam 1080 line is known for its plush cushioning and plush comfort, designed to provide a smooth and supportive ride for long-distance running. Featuring New Balance’s Fresh Foam midsole technology, the 1080 series delivers a responsive yet cushioned experience, making it ideal for runners seeking a blend of softness and performance.
+  overview_es: La línea Fresh Foam 1080 de New Balance es conocida por su amortiguación y comodidad, diseñadas para brindar una pisada suave y con soporte para carreras de larga distancia. Con la tecnología de entresuela Fresh Foam de New Balance, la serie 1080 brinda una experiencia reactiva y amortiguada, lo que la hace ideal para corredores que buscan una combinación de suavidad y rendimiento.
   brand: new_balance

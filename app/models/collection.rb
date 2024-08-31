@@ -2,13 +2,14 @@
 #
 # Table name: collections
 #
-#  id         :bigint           not null, primary key
-#  handle     :string           not null
-#  name       :string           not null
-#  overview   :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  brand_id   :bigint           not null
+#  id          :bigint           not null, primary key
+#  handle      :string           not null
+#  name        :string           not null
+#  overview_en :string           not null
+#  overview_es :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  brand_id    :bigint           not null
 #
 # Indexes
 #
@@ -20,7 +21,6 @@
 #
 #  fk_rails_...  (brand_id => brands.id)
 #
-# TODO: translate overview
 class Collection < ApplicationRecord
   include DataFormatting
   extend Mobility

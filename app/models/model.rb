@@ -35,7 +35,7 @@ class Model < ApplicationRecord
 
   validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }
   validates :heel_to_toe_drop, :name, :weight, presence: true
-  validates :name, uniqueness: { scope: :collection, case_sensitive: false }
+  validates :name, :handle, uniqueness: { scope: :collection, case_sensitive: false }
   validates :heel_to_toe_drop, numericality: { greater_than_or_equal_to: 0 }
   validates :weight, numericality: { greater_than_or_equal_to: 0.1 }
   validates_presence_of :collection

@@ -12,7 +12,6 @@ class BrandsTest < ApplicationSystemTestCase
   test 'show brands index page' do
     visit root_url
 
-    # TODO: find out how to hover then click on dropdown
     within('.navbar') do
       # find('.brands-dropdown').hover
       click_on 'Brands'
