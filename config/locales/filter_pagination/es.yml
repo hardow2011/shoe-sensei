@@ -26,3 +26,6 @@ es:
     weight_high_to_low: Peso (mayor a menor)
     heel_to_toe_drop_low_to_high: Inclinación (menor a mayor)
     heel_to_toe_drop_high_to_low: Inclinación (mayor a menor)
+  filters:
+    prompt: Filtros
+    change: Cambiar filtros
