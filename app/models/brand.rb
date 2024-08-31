@@ -27,10 +27,8 @@ class Brand < ApplicationRecord
 
   after_save :renew_models_cache
 
-  validates :name, :handle, :company_color, presence: true
+  validates :name, :handle, :company_color, :overview_en, :overview_es, presence: true
   validates :company_color, length: { is: 7 }, format: { with:   /\#?([a-f0-9]{6}|[a-f0-9]{3})\z/,message: "only allows letters" }
-  validates :overview_en, presence: true
-  validates :overview_es, presence: true
   validates :name, :handle, uniqueness: true
   validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }
 
