@@ -1,5 +1,6 @@
 es:
   filter:
+    no_models_for_selection: No hay modelos disponibles para su selección.
     brand: Marca
     activities: Actividad
     cushioning: Amortiguación

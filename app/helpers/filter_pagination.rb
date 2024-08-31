@@ -2,8 +2,6 @@
 # DRY in the views.
 # Queries to slow/numerous
 module FilterPagination
-  # TODO: remove hide_brand_filter from app
-
   include AllowedTags
 
   SORTING_OPTIONS = [['Name (A to Z)', :name], ['Cushioning (low to high)', :cushioning_asc], ['Cushioning (high to low)', :cushioning_desc], ['Weight (low to high)', :weight_asc], ['Weight (high to low)', :weight_desc], ['Heel to toe drop (low to high)', :heel_to_toe_drop_asc], ['Heel to toe drop (high to low)', :heel_to_toe_drop_desc]]

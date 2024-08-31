@@ -1,5 +1,6 @@
 en:
   filter:
+    no_models_for_selection: No available models for your selection.
     brand: Brand
     activities: Activity
     cushioning: Cushioning

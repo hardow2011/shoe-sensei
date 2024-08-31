@@ -7,6 +7,7 @@ class PagesTest < ApplicationSystemTestCase
     @hoka_bondi_8 = models(:hoka_bondi_8)
     @on_cloud_x_4 = models(:on_cloud_x_4)
     @brooks = brands(:brooks)
+    @brooks_ghost_max_1 = models(:brooks_ghost_max_1)
   end
   test "filtering the shoe models in the homepage" do
     visit root_path
@@ -240,5 +241,60 @@ class PagesTest < ApplicationSystemTestCase
         assert_text model.name
       end
     end
+  end
+
+  test 'show message when no models available for selection' do
+    visit root_url
+
+    assert_no_text @brooks_ghost_max_1.name
+
+    within('.model-filter') do
+      check 'Brooks'
+
+      assert_no_field 'Low'
+      assert_field 'Mid'
+      assert_no_field 'High'
+    end
+
+    @brooks.models.only_still_in_production(true).each do |model|
+      assert_text model.name
+    end
+
+    @brooks.models.discontinued.each do |model|
+      assert_no_text model.name
+    end
+
+    within('.model-filter') do
+      assert_field 'Show discontinued models?'
+      check 'Show discontinued models?'
+
+      assert_field 'High'
+    end
+
+    @brooks.models.each do |model|
+      assert_text model.name
+    end
+
+    within('.model-filter') do
+      check 'High'
+    end
+
+    @brooks.models.discontinued.each do |model|
+      assert_text model.name
+    end
+
+    @brooks.models.only_still_in_production(true).each do |model|
+      assert_no_text model.name
+    end
+
+    within('.model-filter') do
+      uncheck 'Show discontinued models?'
+    end
+
+    @brooks.models.each do |model|
+      assert_no_text model.name
+    end
+
+    assert_text 'No available models for your selection.'
   end
 end

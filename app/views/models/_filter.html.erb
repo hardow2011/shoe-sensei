@@ -23,11 +23,15 @@
             </div>
             <hr/>
             <%= render partial: 'models/filter/pagination', locals: { total_pages: total_pages, current_page: current_page } %>
-            <div class="fixed-grid has-1-cols-mobile has-3-cols models-page">
-                <div class="grid models-grid">
-                    <%= render partial: 'models/model', collection: paged_models, locals: { hide_brand_filter: filter_list[:single_brand_id] }, cached: ->(model) { [I18n.locale, filter_list[:single_brand_id], model] } %>
+            <% if paged_models %>
+                <div class="fixed-grid has-1-cols-mobile has-3-cols models-page">
+                    <div class="grid models-grid">
+                        <%= render partial: 'models/model', collection: paged_models, locals: { hide_brand_filter: filter_list[:single_brand_id] }, cached: ->(model) { [I18n.locale, filter_list[:single_brand_id], model] } %>
+                    </div>
                 </div>
-            </div>
+            <% else %>
+                <p class="is-size-4"><%= t('filter.no_models_for_selection') %></p>
+            <% end %>
             <%= render partial: 'models/filter/pagination', locals: { total_pages: total_pages, current_page: current_page } %>
             </div>
         </div>
