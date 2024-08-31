@@ -56,7 +56,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_26_222211) do
 
   create_table "collections", force: :cascade do |t|
     t.string "name", null: false
-    t.string "overview", null: false
+    t.string "overview_en", null: false
+    t.string "overview_es", null: false
     t.string "handle", null: false
     t.bigint "brand_id", null: false
     t.datetime "created_at", null: false

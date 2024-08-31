@@ -23,10 +23,13 @@
 # TODO: translate overview
 class Collection < ApplicationRecord
   include DataFormatting
+  extend Mobility
+  translates :overview
+
   belongs_to :brand
   has_many :models, dependent: :destroy
 
-  validates :name, :overview, :handle, presence: true
+  validates :name, :overview_en, :overview_es, :handle, presence: true
   validates :name, :handle, uniqueness: { scope: :brand, case_sensitive: false }
   validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }
   validates_presence_of :brand
