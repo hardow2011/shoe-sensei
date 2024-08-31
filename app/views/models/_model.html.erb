@@ -9,11 +9,17 @@
   <div class="card-content">
     <div class="media is-align-items-center	">
       <div class="media-left">
-        <figure>
+        <% unless hide_brand_filter %>
           <%= link_to brand_path(model.brand.handle), class: "image is-48x48 is-flex is-align-items-center", data: { turbo: false } do %>
-            <%= image_tag model.brand.logo.variant(:thumb), alt: "#{model.brand.name} logo", title: "#{model.brand.name} logo", style: "height: 100%;object-fit: contain;" %>
+            <figure>
+                <%= image_tag model.brand.logo.variant(:thumb), alt: "#{model.brand.name} logo", title: "#{model.brand.name} logo", style: "height: 100%;object-fit: contain;" %>
+            </figure>
           <% end %>
-        </figure>
+        <% else %>
+            <figure class="image is-48x48 is-flex is-align-items-center">
+                <%= image_tag model.brand.logo.variant(:thumb), alt: "#{model.brand.name} logo", title: "#{model.brand.name} logo", style: "height: 100%;object-fit: contain;" %>
+            </figure>
+        <% end %>
       </div>
       <div class="media-content is-flex is-flex-direction-column is-align-self-stretch is-justify-content-space-evenly">
         <% unless hide_brand_filter %>

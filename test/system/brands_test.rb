@@ -14,7 +14,8 @@ class BrandsTest < ApplicationSystemTestCase
 
     # TODO: find out how to hover then click on dropdown
     within('.navbar') do
-      click_on 'Brooks'
+      # find('.brands-dropdown').hover
+      click_on 'Brands'
     end
 
     brands.each do |b|

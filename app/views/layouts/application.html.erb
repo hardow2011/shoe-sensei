@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Footwearapp</title>
+    <% if @meta_tags&.fetch(:title, false) %>
+      <title><%= @meta_tags[:title] %></title>
+    <% end %>
+    <% if @meta_tags&.fetch(:description, false) %>
+      <meta name="description" content="<%= @meta_tags[:description] %>"/>
+    <% end %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
