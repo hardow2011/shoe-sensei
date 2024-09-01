@@ -164,3 +164,17 @@ html.is-clipped {
         }
     }
 }
+
+.filter-wrapper {
+    @include mixins.mobile {
+        .filter-list-wrapper {
+            display: none;
+        }
+
+        &.mobile-filter-active {
+            .filter-list-wrapper {
+                display: block;
+            }   
+        }
+    }
+}

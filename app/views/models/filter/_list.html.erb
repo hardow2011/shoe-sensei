@@ -9,4 +9,4 @@
 <%= render partial: 'models/filter/checkboxes', locals: { title: t('filter.cushioning'), param_name: 'cushionings', form: form, filter_list: filter_list[:cushionings], translate: true } %>
 <%= render partial: 'models/filter/checkboxes', locals: { title: t('filter.support'), param_name: 'supports', form: form, filter_list: filter_list[:supports], translate: true } %>
 <%= render partial: 'models/filter/additional_filters', locals: { title: t('filter.additional_filters.prompt'), form: form, filter_list: filter_list[:additional_filters] } %>
-<%= button_to t('filter.clear_filters'), filter_models_path(single_brand_id: @brand&.id || params[:single_brand_id]), class: 'button is-light is-link' %>
+<%= link_to t('filter.clear_filters'), filter_models_path(single_brand_id: @brand&.id || params[:single_brand_id]), class: 'button is-light is-link' %>
