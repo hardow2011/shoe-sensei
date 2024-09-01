@@ -2,7 +2,7 @@
     <%= turbo_frame_tag 'models-filter' do %>
         <%= form_with url: filter_models_path, method: :get, class: 'model-filter block' do |f| %>
             <div id="filter-wrapper" class="filter-wrapper columns">
-                <div class="filter-list-wrapper column has-background-white is-one-third-tablet is-one-fourth-desktop is-one-fifth-widescreen">
+                <div class="filter-list-wrapper column has-background-inherit	 is-one-third-tablet is-one-fourth-desktop is-one-fifth-widescreen">
                     <button type="button" class="button mobile-filter-toggle mb-5 is-hidden-tablet" data-turbo="false" onclick="toggleMobileFilter()"><%= t('filters.toggle') %></button>
                     <%= render partial: 'models/filter/list', locals: { form: f, filter_list: filter_list } %>
                 </div>
