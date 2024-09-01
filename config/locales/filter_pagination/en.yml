@@ -28,5 +28,4 @@ en:
     heel_to_toe_drop_high_to_low: 'Heel to toe drop (high to low)'
   filters:
     prompt: Filters
-    change: Change filters
-    hide: Hide filters
+    toggle: Toggle filters

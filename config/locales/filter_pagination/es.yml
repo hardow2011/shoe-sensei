@@ -28,5 +28,4 @@ es:
     heel_to_toe_drop_high_to_low: Inclinación (mayor a menor)
   filters:
     prompt: Filtros
-    change: Cambiar filtros
-    hide: Esconder filtros
+    toggle: Alternar filtros
