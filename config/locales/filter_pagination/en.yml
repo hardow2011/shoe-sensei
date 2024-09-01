@@ -29,3 +29,4 @@ en:
   filters:
     prompt: Filters
     change: Change filters
+    hide: Hide filters

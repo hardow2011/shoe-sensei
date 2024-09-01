@@ -17,11 +17,11 @@
           <% Brand.order(:name).first(3).each do |b| %>
             <%= link_to b.name, brand_path(b.handle), class: "navbar-item #{request.path == brand_path(b.handle) ? 'is-selected has-text-white' : nil}" %>
           <% end %>
-          <hr class="navbar-divider">
+          <hr class="navbar-divider"/>
           <%= link_to t('all_brands'), brands_path, class: "navbar-item #{request.path == brands_path ? 'is-selected has-text-white' : nil}" %>
+        </div>
       </div>
     </div>
-  </div>
 
     <div class="navbar-end">
       <div class="navbar-item has-dropdown is-hoverable">

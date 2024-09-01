@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
         el.classList.toggle('is-active');
         $target.classList.toggle('is-active');
+        document.querySelector('nav.navbar').classList.toggle('is-active');
 
         document.documentElement.classList.toggle("is-clipped");
   
@@ -21,3 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
   });
+
+  window.addEventListener('resize', function(event) {
+    const $htmlTag = document.documentElement;
+    if($htmlTag.classList.contains('is-clipped') && window.screen.width > 768) {
+      document.documentElement.classList.remove('is-clipped');
+      document.querySelector('nav.navbar').classList.remove('is-active');
+      document.querySelector('.navbar-menu').classList.remove('is-active');
+      document.querySelector('.navbar-burger').classList.remove('is-active');
+    }
+}, true);

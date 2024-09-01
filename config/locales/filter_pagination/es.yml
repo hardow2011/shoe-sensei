@@ -29,3 +29,4 @@ es:
   filters:
     prompt: Filtros
     change: Cambiar filtros
+    hide: Esconder filtros

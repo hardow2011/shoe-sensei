@@ -9,3 +9,4 @@ import './direct_uploads'
 import "@fortawesome/fontawesome-free/js/all";
 import './img_upload_previews'
 import './navbar_burger'
+import './model_filter_mobile'

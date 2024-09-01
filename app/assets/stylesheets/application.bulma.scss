@@ -124,15 +124,19 @@
     }
 }
 
-nav {
-    .navbar-menu {
-        @include mixins.touch {
-            position: absolute;
-            width: 100%;
-            height: 100vh;
+nav.navbar.is-active {
+    @include mixins.touch {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        // overflow: scroll;
+        .navbar-menu.is-active {
+            height: 100%;
             overflow: scroll;
-          }
-    }
+        }
+      }
 }
 
 .filter-sorting-block {
@@ -141,4 +145,22 @@ nav {
             width: 100%;
         }
       }
+}
+
+.filter-list-wrapper {
+    width: 100%;
+
+    .mobile-filter-toggle {
+        width: 100%;
+    }
+}
+
+html.is-clipped {
+    @include mixins.mobile {
+        height: 100vh;
+
+        body {
+            height: 100vh;
+        }
+    }
 }
