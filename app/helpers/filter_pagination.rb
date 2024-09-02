@@ -62,14 +62,14 @@ module FilterPagination
       end
 
       # Create filter list for activities
-      @filter_list[:activities] = build_filter(@models | models_from_filtered_brands, selected_activities, :activities).sort_by { |activity| activity[0] }
+      @filter_list[:activities] = build_filter(@models & models_from_filtered_brands, selected_activities, :activities).sort_by { |activity| activity[0] }
 
       # Create filter list for supports
-      @filter_list[:supports] =  build_filter(@models | models_from_filtered_brands, selected_supports, :support) # this is to sort the support tags
+      @filter_list[:supports] =  build_filter(@models & models_from_filtered_brands, selected_supports, :support) # this is to sort the support tags
                                   .sort_by { |k, v| AllowedTags::SUPPORT_OPTIONS.find_index(v[:id]) }
 
       # Create filter list for cushionings
-      @filter_list[:cushionings] = build_filter(@models | models_from_filtered_brands, selected_cushionings, :cushioning_level)
+      @filter_list[:cushionings] = build_filter(@models & models_from_filtered_brands, selected_cushionings, :cushioning_level)
                                     .sort_by { |k, _| k }
                                     .map { |a, b| [ AllowedTags::CUSHIONING_OPTIONS[a.to_i - 1], b ] }
 
