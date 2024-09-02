@@ -24,6 +24,11 @@ class BrandsController < ApplicationController
   private
 
   def set_brand
-    @brand = Brand.find_by_handle(params[:id])
+    begin
+      @brand = Brand.find_by_handle!(params[:id])
+    rescue StandardError => e
+      Rails.error.report(e)
+      redirect_to brands_path, notice: 'Brand not found'
+    end
   end
 end

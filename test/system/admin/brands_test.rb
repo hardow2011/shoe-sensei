@@ -97,4 +97,16 @@ class Admin::BrandsTest < ApplicationSystemTestCase
 
     assert_no_text 'ToDelete'
   end
+
+  test 'redirect to brands index page upon not finding brand' do
+    visit brand_path(id: 'brooksss')
+
+    assert_text 'Brand not found'
+
+    assert_text 'Brands'
+
+    brands.each do |b|
+      assert_text b.name
+    end
+  end
 end

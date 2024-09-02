@@ -45,6 +45,7 @@ en:
   all_brands: All brands
   list_of_all_brands: List of all brands
   brand_overview: "%{brand_name} overview"
+  brand_not_found: 'Brand not found'
   site_default_description: 'A shoe knowledge base to find the perfect pair for your needs'
   some_notable_collections_include: Some notable collections include
   read_more: Read more

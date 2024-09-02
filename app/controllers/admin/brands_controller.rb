@@ -46,8 +46,12 @@ class Admin::BrandsController < Admin::AdminController
   end
 
   def set_brand
-    # TODO: add fallback if brand not found
-    @brand = Brand.find(params[:id])
+    begin
+      @brand = Brand.find(params[:id])
+    rescue StandardError => e
+      Rails.error.report(e)
+      redirect_to admin_brands_path, notice: 'Brand not found'
+    end
   end
 
 end
