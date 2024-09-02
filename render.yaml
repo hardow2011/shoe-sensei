@@ -1,21 +1,21 @@
 databases:
-  - name: mysite
-    databaseName: mysite
+  - name: prod_db
+    databaseName: footwear_db
     user: postgres
     plan: free
 
 services:
   - type: web
-    name: mysite
+    name: footwear_rails_app
     runtime: ruby
-    plan: free
+    # plan: free
     buildCommand: "./bin/render-build.sh"
     # preDeployCommand: "bundle exec rails db:migrate" # preDeployCommand only available on paid instance types
     startCommand: "bundle exec rails server"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysite
+          name: prod_db
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
