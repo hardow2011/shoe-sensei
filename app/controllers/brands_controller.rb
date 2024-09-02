@@ -28,7 +28,7 @@ class BrandsController < ApplicationController
       @brand = Brand.find_by_handle!(params[:id])
     rescue StandardError => e
       Rails.error.report(e)
-      redirect_to brands_path, notice: 'Brand not found'
+      redirect_to brands_path, notice: I18n.t('brand_not_found')
     end
   end
 end
