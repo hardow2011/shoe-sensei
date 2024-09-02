@@ -34,8 +34,7 @@ class CreateActiveStorageTables < ActiveRecord::Migration[7.0]
       end
 
       t.index [ :record_type, :record_id, :name, :blob_id ], name: :index_active_storage_attachments_uniqueness, unique: true
-      # deferrable: :deferred for the fixtures load to work in render without making rails a superuser
-      t.foreign_key :active_storage_blobs, column: :blob_id, deferrable: :deferred
+      t.foreign_key :active_storage_blobs, column: :blob_id
     end
 
     create_table :active_storage_variant_records, id: primary_key_type do |t|
