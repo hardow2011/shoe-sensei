@@ -1,5 +1,5 @@
 databases:
-  - name: prod_db
+  - name: footwear_prod_db
     databaseName: footwear_db
     user: footwear
     plan: free
