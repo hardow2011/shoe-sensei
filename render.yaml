@@ -1,7 +1,7 @@
 databases:
   - name: prod_db
     databaseName: footwear_db
-    user: postgres
+    user: footwear
     plan: free
 
 services:
