@@ -42,41 +42,50 @@ module FilterPagination
       show_discontinued_models = selected_aditional_filters.exclude?(:show_discontinued)
 
       # Filter models based on selected filters (excluding brands)
-      @models = Model.only_still_in_production(show_discontinued_models)
-                      .filter_by_activities(selected_activities)
-                      .filter_by_supports(selected_supports)
-                      .filter_by_cushioning_levels(selected_cushionings)
-                      .filter_by_apma_accepted(selected_aditional_filters.include?(:apma_accepted))
+      models_pre_brand_filter = Model.only_still_in_production(show_discontinued_models)
 
-      # Get all brands from filtered models
-      filtered_brands = Brand.joins(:models).where(models: { id: @models.map(&:id) }).uniq.sort_by(&:name)
+      if brands_ids.any?
+        models_to_filter = models_pre_brand_filter.filter_by_brand_ids(single_brand_id.present? ? [single_brand_id] : brands_ids )
+      else
+        models_to_filter = models_pre_brand_filter
+      end
 
       # TODO: make the filters building async
 
+      # Create filter list for activities
+      @filter_list[:activities] = build_filter(models_to_filter, selected_activities, AllowedTags::ACTIVITY_OPTIONS,
+      'filter_by_activities', :activities).sort_by { |activity| activity[0] }
+
+      models_to_filter = models_to_filter.filter_by_activities(selected_activities)
+
+      # Create filter list for supports
+      @filter_list[:supports] =  build_filter(models_to_filter, selected_supports,
+                                              AllowedTags::SUPPORT_OPTIONS, 'filter_by_supports', :support)
+                                              # this is to sort the support tags
+                                              .sort_by { |k, v| AllowedTags::SUPPORT_OPTIONS.find_index(v[:id]) }
+
+      models_to_filter = models_to_filter.filter_by_supports(selected_supports)
+
+      # Create filter list for cushionings
+      @filter_list[:cushionings] = build_filter(models_to_filter, selected_cushionings,
+                                                [*1..AllowedTags::CUSHIONING_OPTIONS.size], 'filter_by_cushioning_levels',
+                                                :cushioning_level)
+                                                .sort_by { |k, _| k }
+                                                .map { |a, b| [ AllowedTags::CUSHIONING_OPTIONS[a.to_i - 1], b ] }
+
+      models_to_filter = models_to_filter.filter_by_cushioning_levels(selected_cushionings)
+                      .filter_by_apma_accepted(selected_aditional_filters.include?(:apma_accepted))
+
       # Filter models based on selected brands
-      @models = @models.filter_by_brand_ids(single_brand_id.present? ? [single_brand_id] : brands_ids )
+      @models = models_to_filter.filter_by_brand_ids(single_brand_id.present? ? [single_brand_id] : brands_ids )
+
+      # Get all brands from filtered models
+      filtered_brands = Brand.joins(:models).where(models: { id: (brands_ids.any? ? models_pre_brand_filter : (@models & models_pre_brand_filter)).map(&:id) }).uniq.sort_by(&:name)
 
       # Create filter list for brands
       filtered_brands.each do |brand|
         @filter_list[:brands][brand.name] = { id: brand.id, checked: brands_ids.include?(brand.id) }
       end
-
-      # Create filter list for activities
-      @filter_list[:activities] = build_filter(@models, selected_activities, AllowedTags::ACTIVITY_OPTIONS,
-                                                'filter_by_activities', :activities).sort_by { |activity| activity[0] }
-
-      # Create filter list for supports
-      @filter_list[:supports] =  build_filter(@models, selected_supports,
-                                              AllowedTags::SUPPORT_OPTIONS, 'filter_by_supports', :support)
-                                              # this is to sort the support tags
-                                              .sort_by { |k, v| AllowedTags::SUPPORT_OPTIONS.find_index(v[:id]) }
-
-      # Create filter list for cushionings
-      @filter_list[:cushionings] = build_filter(@models, selected_cushionings,
-                                                [*1..AllowedTags::CUSHIONING_OPTIONS.size], 'filter_by_cushioning_levels',
-                                                :cushioning_level)
-                                                .sort_by { |k, _| k }
-                                                .map { |a, b| [ AllowedTags::CUSHIONING_OPTIONS[a.to_i - 1], b ] }
 
       # Create filter list for additional filters
       ALLOWED_ADDITIONAL_FILTERS.each do |filter|
