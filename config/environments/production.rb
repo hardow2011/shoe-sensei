@@ -98,4 +98,7 @@ Rails.application.configure do
 
   # TODO: set host for production
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Use render storage disk
+  Rails.application.config.active_storage.service = :render
 end
