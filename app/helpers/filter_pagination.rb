@@ -112,7 +112,6 @@ module FilterPagination
     # This filter makes sure that the remaining avilable filters have at least one model
     def build_filter(models, selected_filter, filter_options, filter_method, tags_attr)
       filter_list = {}
-      # available_filters = (selected_filter + models.map { |m| m.tags[tags_attr] }.flatten).uniq
       available_filters = []
 
       filter_options.each do |a|
