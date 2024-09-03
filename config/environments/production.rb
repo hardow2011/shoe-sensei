@@ -101,4 +101,6 @@ Rails.application.configure do
 
   # Use render storage disk
   Rails.application.config.active_storage.service = :render
+
+  Rails.application.routes.default_url_options[:host] = 'footwear-rails-app.onrender.com/'
 end
