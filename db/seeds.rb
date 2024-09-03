@@ -92,7 +92,7 @@ brooks_ghost_max_1 = Model.create!(name: 'Ghost Max', weight: 283.5, heel_to_toe
 
 brooks_adrenaline_gts_23 = Model.create!(name: 'Adrenaline GTS 23', weight: 286.3, heel_to_toe_drop: 12, collection: brooks_adrenaline_gts,
   image: File.open('test/fixtures/files/brooks-adrenaline-gts-23.webp'),
-  tags: { activities: ['road_running', 'walking'], cushioning_level: 3, support: 'neutral', apma_accepted: true, discontinued: false })
+  tags: { activities: ['road_running', 'walking'], cushioning_level: 2, support: 'stability', apma_accepted: true, discontinued: false })
 
 hoka_bondi_8 = Model.create!(name: 'Bondi 8', weight: 306.2, heel_to_toe_drop: 4, collection: hoka_bondi,
   image: File.open('test/fixtures/files/hoka-bondi-8.WEBP'),
