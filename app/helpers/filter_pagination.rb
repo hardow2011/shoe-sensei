@@ -44,7 +44,7 @@ module FilterPagination
       # Filter models based on selected filters (excluding brands)
       models_pre_brand_filter = Model.only_still_in_production(show_discontinued_models)
 
-      if brands_ids.any?
+      if brands_ids.any? or single_brand_id
         models_to_filter = models_pre_brand_filter.filter_by_brand_ids(single_brand_id.present? ? [single_brand_id] : brands_ids )
       else
         models_to_filter = models_pre_brand_filter
