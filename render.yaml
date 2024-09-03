@@ -10,9 +10,7 @@ services:
     runtime: ruby
     # plan: free
     buildCommand: "./bin/render-build.sh"
-    preDeployCommand: "bundle install" # preDeployCommand only available on paid instance types
-    preDeployCommand: "bundle exec rails db:migrate"
-    preDeployCommand: "bundle exec rails test:all"
+    preDeployCommand: "./bin/render-pre-deploy.sh" # preDeployCommand only available on paid instance types
     startCommand: "bundle exec rails server"
     envVars:
       - key: DATABASE_URL
