@@ -50,8 +50,8 @@ module FilterPagination
 
       # Get all brands from filtered models
       filtered_brands = Brand.joins(:models).where(models: { id: @models.map(&:id) }).uniq.sort_by(&:name)
-      # Get all models from filtered brands
-      models_from_filtered_brands = Model.joins(:brand).where(brand: { id: filtered_brands.map(&:id) }).uniq
+
+      # TODO: make the filters building async
 
       # Filter models based on selected brands
       @models = @models.filter_by_brand_ids(single_brand_id.present? ? [single_brand_id] : brands_ids )
@@ -62,16 +62,21 @@ module FilterPagination
       end
 
       # Create filter list for activities
-      @filter_list[:activities] = build_filter(@models & models_from_filtered_brands, selected_activities, :activities).sort_by { |activity| activity[0] }
+      @filter_list[:activities] = build_filter(@models, selected_activities, AllowedTags::ACTIVITY_OPTIONS,
+                                                'filter_by_activities', :activities).sort_by { |activity| activity[0] }
 
       # Create filter list for supports
-      @filter_list[:supports] =  build_filter(@models & models_from_filtered_brands, selected_supports, :support) # this is to sort the support tags
-                                  .sort_by { |k, v| AllowedTags::SUPPORT_OPTIONS.find_index(v[:id]) }
+      @filter_list[:supports] =  build_filter(@models, selected_supports,
+                                              AllowedTags::SUPPORT_OPTIONS, 'filter_by_supports', :support)
+                                              # this is to sort the support tags
+                                              .sort_by { |k, v| AllowedTags::SUPPORT_OPTIONS.find_index(v[:id]) }
 
       # Create filter list for cushionings
-      @filter_list[:cushionings] = build_filter(@models & models_from_filtered_brands, selected_cushionings, :cushioning_level)
-                                    .sort_by { |k, _| k }
-                                    .map { |a, b| [ AllowedTags::CUSHIONING_OPTIONS[a.to_i - 1], b ] }
+      @filter_list[:cushionings] = build_filter(@models, selected_cushionings,
+                                                [*1..AllowedTags::CUSHIONING_OPTIONS.size], 'filter_by_cushioning_levels',
+                                                :cushioning_level)
+                                                .sort_by { |k, _| k }
+                                                .map { |a, b| [ AllowedTags::CUSHIONING_OPTIONS[a.to_i - 1], b ] }
 
       # Create filter list for additional filters
       ALLOWED_ADDITIONAL_FILTERS.each do |filter|
@@ -104,9 +109,16 @@ module FilterPagination
 
     private
 
-    def build_filter(models, selected_filter, tags_attr)
+    # This filter makes sure that the remaining avilable filters have at least one model
+    def build_filter(models, selected_filter, filter_options, filter_method, tags_attr)
       filter_list = {}
-      available_filters = (selected_filter + models.map { |m| m.tags[tags_attr] }.flatten).uniq
+      # available_filters = (selected_filter + models.map { |m| m.tags[tags_attr] }.flatten).uniq
+      available_filters = []
+
+      filter_options.each do |a|
+        models.send(filter_method, [a]).any? ? available_filters << a : nil
+      end
+
       available_filters.each do |a|
         filter_list[a] = { id: a, checked: selected_filter.include?(a) }
       end
