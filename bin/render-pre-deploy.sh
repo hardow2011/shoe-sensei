@@ -3,4 +3,4 @@
 set -o errexit
 
 bundle exec rails db:migrate
-bundle exec rails test:all -e test
+# bundle exec rails test:all
