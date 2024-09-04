@@ -6,7 +6,7 @@ databases:
 
 services:
   - type: web
-    name: footwear_rails_app
+    name: footwear_prod_rails_app
     runtime: ruby
     buildCommand: "./bin/render-build.sh"
     preDeployCommand: "./bin/render-pre-deploy.sh" # preDeployCommand only available on paid instance types
