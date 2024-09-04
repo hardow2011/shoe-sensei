@@ -58,8 +58,6 @@ gem 'actionpack-action_caching'
 gem 'delayed_job_active_record'
 gem 'resque'
 
-gem "capybara"
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
@@ -79,7 +77,9 @@ group :development do
   gem 'annotate'
 end
 
-group :test do
+# Had to comment test env, for Render pre-deploy script
+# group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem "capybara"
   gem "selenium-webdriver"
-end
+# end
