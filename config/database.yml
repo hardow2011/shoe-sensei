@@ -82,4 +82,5 @@ production:
   <<: *default
   database: footwearapp_production
   username: footwearapp
-  password: <%= ENV["FOOTWEARAPP_DATABASE_PASSWORD"] %>
+  # password: <%= ENV["FOOTWEARAPP_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
