@@ -1,6 +1,7 @@
 databases:
   - name: footwear_prod_db
     databaseName: footwear_prod_db
+    region: ohio
     user: footwear
     plan: free
 
@@ -8,6 +9,7 @@ services:
   - type: web
     name: footwear_prod_rails_app
     runtime: ruby
+    region: ohio
     buildCommand: "./bin/render-build.sh"
     preDeployCommand: "./bin/render-pre-deploy.sh" # preDeployCommand only available on paid instance types
     startCommand: "bundle exec rails server"
