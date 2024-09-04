@@ -3,10 +3,6 @@ databases:
     databaseName: footwear_prod_db
     user: footwear
     plan: free
-  - name: footwear_test_db
-    databaseName: footwear_test_db
-    user: footwear
-    plan: free
 
 services:
   - type: web
@@ -19,10 +15,6 @@ services:
       - key: DATABASE_URL
         fromDatabase:
           name: footwear_prod_db
-          property: connectionString
-      - key: TEST_DATABASE_URL
-        fromDatabase:
-          name: footwear_test_db
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
