@@ -32,7 +32,8 @@ class ApplicationController < ActionController::Base
   def set_meta_tags
     @meta_tags = {
       title: 'SoleFacts',
-      description: I18n.t('site_default_description')
+      description: I18n.t('site_default_description'),
+      google_tag: true
     }
   end
 
