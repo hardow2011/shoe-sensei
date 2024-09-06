@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   around_action :switch_locale
-  before_action :set_meta_tags
   before_action :set_app_name
+  before_action :set_meta_tags
   attr_accessor :app_name
 
   def set_app_name
