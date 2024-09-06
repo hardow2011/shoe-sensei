@@ -25,14 +25,14 @@
 
     <div class="navbar-end">
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
+        <p class="navbar-link">
           <span class="icon-text is-align-items-center is-gap-1">
               <span><%= t('language.prompt') %></span>
               <span class="icon is-medium">
                   <i class="fas fa-2x fa-language"></i>
               </span>
           </span>
-        </a>
+        </p>
 
         <div class="navbar-dropdown is-right">
           <%= link_to t('language.english'), url_for(locale: :en), class: "navbar-item #{I18n.locale == :en ? 'is-selected has-text-white' : nil}" %>
