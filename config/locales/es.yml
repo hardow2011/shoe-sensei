@@ -12,3 +12,4 @@ es:
   site_default_description: 'Una base de conocimiento de zapatos para encontrar el mejor par para usted'
   some_notable_collections_include: Algunas colecciones notables incluyen
   read_more: Leer más...
+  app_created_by_html: "<strong>%{app_name}</strong> creado por <span class='is-underlined'>%{developer_name}</span>."

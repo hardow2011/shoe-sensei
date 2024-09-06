@@ -178,3 +178,9 @@ html.is-clipped {
         }
     }
 }
+
+body {
+    @extend .is-flex;
+    @extend .is-flex-direction-column;
+    min-height: 100vh;
+}

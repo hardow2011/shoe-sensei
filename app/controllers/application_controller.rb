@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   def set_app_name
     @app_name = 'Shoe Sensei'
+    @developer_name = 'Louvens Raphael'
   end
 
   def after_sign_in_path_for(resource)
