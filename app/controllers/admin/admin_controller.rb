@@ -4,7 +4,7 @@ class Admin::AdminController < ApplicationController
 
   before_action do
     @meta_tags = {
-      title: 'SoleFacts Admin'
+      title: @app_name
     }
   end
 end

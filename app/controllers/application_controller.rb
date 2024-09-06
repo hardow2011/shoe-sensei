@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
   around_action :switch_locale
   before_action :set_meta_tags
+  before_action :set_app_name
+  attr_accessor :app_name
+
+  def set_app_name
+    @app_name = 'Shoe Sensei'
+  end
 
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
@@ -31,7 +37,7 @@ class ApplicationController < ActionController::Base
 
   def set_meta_tags
     @meta_tags = {
-      title: 'SoleFacts',
+      title: @app_name,
       description: I18n.t('site_default_description'),
       google_tag: true
     }
