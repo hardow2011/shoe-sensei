@@ -78,8 +78,8 @@ group :development do
 end
 
 # Had to comment test env, for Render pre-deploy script
-# group :test do
+group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-# end
+end
