@@ -11,7 +11,7 @@ services:
     region: oregon
     plan: free
     ipAllowList: []
-    maxmemorypolicy: allkeys-lfu
+    maxmemoryPolicy: allkeys-lfu
   - type: web
     name: footwear_prod_rails_app
     runtime: ruby
