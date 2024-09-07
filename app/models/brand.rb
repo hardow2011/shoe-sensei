@@ -36,7 +36,7 @@ class Brand < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [500, 500], preprocessed: true
   end
 
-  validates :logo, attached: true, content_type: ['image/png', 'image/webp', 'image/jpeg', 'image/jpg'],
+  validates :logo, attached: true, content_type: ['image/webp'],
                   size: { less_than_or_equal_to: 2.megabytes }
 
   private

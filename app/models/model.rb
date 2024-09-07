@@ -39,7 +39,7 @@ class Model < ApplicationRecord
   validates :heel_to_toe_drop, numericality: { greater_than_or_equal_to: 0 }
   validates :weight, numericality: { greater_than_or_equal_to: 0.1 }
   validates_presence_of :collection
-  validates :image, attached: true, content_type: ['image/png', 'image/webp', 'image/jpeg', 'image/jpg'],
+  validates :image, attached: true, content_type: ['image/webp'],
                     size: { less_than_or_equal_to: 2.megabytes }
 
   before_validation :assign_handle
