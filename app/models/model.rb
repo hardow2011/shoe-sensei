@@ -40,7 +40,7 @@ class Model < ApplicationRecord
   validates :weight, numericality: { greater_than_or_equal_to: 0.1 }
   validates_presence_of :collection
   validates :image, attached: true, content_type: ['image/webp'],
-                    size: { less_than_or_equal_to: 2.megabytes }
+                    size: { less_than_or_equal_to: 250.kilobytes }
 
   before_validation :assign_handle
 

@@ -37,7 +37,7 @@ class Brand < ApplicationRecord
   end
 
   validates :logo, attached: true, content_type: ['image/webp'],
-                  size: { less_than_or_equal_to: 2.megabytes }
+                  size: { less_than_or_equal_to: 250.kilobytes }
 
   private
 
