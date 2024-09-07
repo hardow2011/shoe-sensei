@@ -58,7 +58,7 @@ class Admin::BrandsTest < ApplicationSystemTestCase
     end
 
     fill_in "brand[name]",	with: "Saucony"
-    attach_file 'brand[logo]', 'test/fixtures/files/new-balance-logo.png', make_visible: true
+    attach_file 'brand[logo]', 'test/fixtures/files/new-balance-logo.webp', make_visible: true
     fill_in "brand[company_color]",	with: "#2232bf"
     fill_in "brand[overview_en]",	with: "I do not know much about this one."
     fill_in "brand[overview_es]",	with: "No sé mucho de esta."
@@ -80,7 +80,7 @@ class Admin::BrandsTest < ApplicationSystemTestCase
     click_on 'Add a brand', match: :first
 
     fill_in "brand[name]",	with: "ToDelete"
-    attach_file 'brand[logo]', 'test/fixtures/files/on-logo.png', make_visible: true
+    attach_file 'brand[logo]', 'test/fixtures/files/on-logo.webp', make_visible: true
     fill_in "brand[overview_en]",	with: "Will be deleted"
     fill_in "brand[overview_es]",	with: "Será borrada"
 
