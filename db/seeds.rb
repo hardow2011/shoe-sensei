@@ -95,11 +95,11 @@ brooks_adrenaline_gts_23 = Model.create!(name: 'Adrenaline GTS 23', weight: 286.
   tags: { activities: ['road_running', 'walking'], cushioning_level: 2, support: 'stability', apma_accepted: true, discontinued: false })
 
 hoka_bondi_8 = Model.create!(name: 'Bondi 8', weight: 306.2, heel_to_toe_drop: 4, collection: hoka_bondi,
-  image: File.open('test/fixtures/files/hoka-bondi-8.WEBP'),
+  image: File.open('test/fixtures/files/hoka-bondi-8.webp'),
   tags: { activities: ['road_running', 'walking'], cushioning_level: 3, support: 'neutral', apma_accepted: true, discontinued: false })
 
 hoka_clifton_9 = Model.create!(name: 'Clifton 9', weight: 246.6, heel_to_toe_drop: 5, collection: hoka_clifton,
-  image: File.open('test/fixtures/files/hoka-clifton-9.WEBP'),
+  image: File.open('test/fixtures/files/hoka-clifton-9.webp'),
   tags: { activities: ['road_running', 'walking'], cushioning_level: 2, support: 'neutral', apma_accepted: true, discontinued: false })
 
 hoka_gaviota_5 = Model.create!(name: 'Gaviota 5', weight: 309.0, heel_to_toe_drop: 6, collection: hoka_gaviota,
@@ -127,5 +127,5 @@ on_cloud_x_4  = Model.create!(name: 'Cloud X 4', weight: 263, heel_to_toe_drop: 
   tags: { activities: ['training_and_gym'], cushioning_level: 1, support: 'neutral', apma_accepted: false, discontinued: false })
 
 new_balance_fresh_foam_x_1080v13  = Model.create!(name: 'Fresh Foam X 1080v13', weight: 262, heel_to_toe_drop: 6, collection: new_balance_fresh_foam_1080,
-  image: File.open('test/fixtures/files/new-balance-fresh-foam-x-1080v13.WEBP'),
+  image: File.open('test/fixtures/files/new-balance-fresh-foam-x-1080v13.webp'),
   tags: { activities: ['road_running', 'walking'], cushioning_level: 3, support: 'neutral', apma_accepted: true, discontinued: false })
