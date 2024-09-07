@@ -25,6 +25,9 @@
 // $input-border-color: transparent;
 // $input-shadow: none;
 
+// https://bulma.io/documentation/sass/responsive-mixins/
+@use "bulma/sass/utilities/mixins";
+
 // Import only what you need from Bulma
 // @import "bulma/sass/utilities/_all.sass";
 // @import "bulma/sass/base/_all.sass";
@@ -36,10 +39,8 @@
 // @import "bulma/sass/layout/hero.sass";
 // @import "bulma/sass/layout/section.sass";
 
-// https://bulma.io/documentation/sass/responsive-mixins/
-@use "bulma/sass/utilities/mixins";
-
 @import 'bulma/css/bulma';
+@import "bulma/sass/utilities/initial-variables.scss";
 // @import 'bulma/bulma';
 @import './direct_uploads.css';
 
@@ -183,4 +184,11 @@ body {
     @extend .is-flex;
     @extend .is-flex-direction-column;
     min-height: 100vh;
+}
+
+.table-of-contents {
+    // @extend .has-background-white-ter;
+    @extend .p-5;
+    border: 1px solid $grey-light;
+    border-radius: $radius-large;
 }

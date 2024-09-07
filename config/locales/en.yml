@@ -51,3 +51,5 @@ en:
   some_notable_collections_include: Some notable collections include
   read_more: Read more...
   app_created_by_html: "<strong>%{app_name}</strong> created by <span class='is-underlined'>%{developer_name}</span>."
+  table_of_contents: Table of contents
+  collections: Collections

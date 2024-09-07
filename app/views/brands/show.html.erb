@@ -28,7 +28,27 @@
 <div class="section">
     <hr>
     <div class="container is-widescreen">
-        <h3 class="title is-2">Collections</h3>
-        <%= render partial: 'collections/collection', collection: @brand.collections %>
+        <h3 class="title is-2"><%= t('collections') %></h3>
+        <div class="columns">
+            <div class="column is-one-third-tablet is-one-fourth-desktop is-one-fifth-widescreen">
+                <div class="table-of-contents">
+
+                <div class="menu">
+                    <p class="is-size-5"><%= t('table_of_contents') %></p>
+                    <hr/>
+                    <ul class="menu-list">
+                        <% @brand.collections.each do |collection| %>
+                            <li class="mt-2 is-size-5"><%= link_to collection.name, brand_path(@brand.handle, anchor: collection.handle) %></li>
+                        <% end %>
+                    </ul>
+                </div>
+
+
+                </div>
+            </div>
+            <div class="column">
+                <%= render partial: 'collections/collection', collection: @brand.collections %>
+            </div>
+        </div>
     </div>
 </div>
