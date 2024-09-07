@@ -6,6 +6,12 @@ databases:
     plan: free
 
 services:
+  - type: redis
+    name: footwear_prod_redis_cache_store
+    region: oregon
+    plan: free
+    ipAllowList: []
+    maxmemorypolicy: allkeys-lfu
   - type: web
     name: footwear_prod_rails_app
     runtime: ruby
@@ -17,6 +23,11 @@ services:
       - key: DATABASE_URL
         fromDatabase:
           name: footwear_prod_db
+          property: connectionString
+      - key: REDIS_CACHE_STORE_URL
+        fromService:
+          type: redis
+          name: footwear_prod_redis_cache_store
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
