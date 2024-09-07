@@ -49,7 +49,8 @@ class Admin::BrandsController < Admin::AdminController
     begin
       @brand = Brand.find(params[:id])
     rescue StandardError => e
-      Rails.error.report(e)
+      Sentry.capture_exception(e)
+      Sentry.capture_message(e.message)
       redirect_to admin_brands_path, notice: 'Brand not found'
     end
   end
