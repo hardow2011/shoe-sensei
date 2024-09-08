@@ -4,6 +4,6 @@ module AllowedTags
   SUPPORT_OPTIONS = ['neutral', 'stability']
   BOOLEAN_OPTIONS = [true, false]
   POSTS_OPTIONS = ACTIVITY_OPTIONS +
-                  ['healthcare', 'cost_conscious', 'accessories', 'support']
+                  ['healthcare', 'cost_conscious', 'accessories', 'support', 'comfort', 'plantar_fasciitis']
 
 end
