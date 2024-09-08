@@ -3,4 +3,7 @@ module AllowedTags
   CUSHIONING_OPTIONS = ['low', 'mid', 'high']
   SUPPORT_OPTIONS = ['neutral', 'stability']
   BOOLEAN_OPTIONS = [true, false]
+  POSTS_OPTIONS = ACTIVITY_OPTIONS +
+                  ['healthcare', 'cost_conscious', 'accessories', 'support']
+
 end

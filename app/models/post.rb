@@ -38,8 +38,7 @@ class Post < ApplicationRecord
   private
 
   def tags_validity
-    allowed_tags = AllowedTags::ACTIVITY_OPTIONS + AllowedTags::SUPPORT_OPTIONS
-    forbidden_tags = self.tags - allowed_tags
+    forbidden_tags = self.tags - AllowedTags::POSTS_OPTIONS
     if forbidden_tags.any?
       errors.add(:tags, "#{forbidden_tags} tags not allowed")
     end
