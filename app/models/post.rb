@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: articles
+# Table name: posts
 #
 #  id         :bigint           not null, primary key
 #  handle     :string           not null
@@ -13,9 +13,9 @@
 #
 # Indexes
 #
-#  index_articles_on_handle  (handle) UNIQUE
+#  index_posts_on_handle  (handle) UNIQUE
 #
-class Article < ApplicationRecord
+class Post < ApplicationRecord
   include DataFormatting
   include AllowedTags
   extend Mobility

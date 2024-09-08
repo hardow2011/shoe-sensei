@@ -36,7 +36,7 @@ en:
       collection:
         overview_en: "English translation of overview"
         overview_es: "Spanish translation of overview"
-      article:
+      post:
         content_en: "English translation of content"
         content_es: "Spanish translation of content"
         title_en: "English translation of title"

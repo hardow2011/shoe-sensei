@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       resources :brands, except: %i[show]
       resources :collections, except: %i[show]
       resources :models, except: %i[show]
-      resources :articles, except: %i[show]
+      resources :posts, except: %i[show]
     end
 
     get 'filter_models', to: 'pages#filter_models', as: 'filter_models'

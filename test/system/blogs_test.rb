@@ -1,13 +1,13 @@
 require 'application_system_test_case'
 
-class ArticlesTest < ApplicationSystemTestCase
+class PostsTest < ApplicationSystemTestCase
   setup do
     sign_in_as_admin
   end
 
-  test 'list all articles' do
+  test 'list all posts' do
     within('.navbar') do
-      click_on 'Article'
+      click_on 'Post'
     end
   end
 end

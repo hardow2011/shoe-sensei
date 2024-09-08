@@ -1,7 +1,7 @@
-<%= form_with model: [:admin, article] do |f| %>
-    <% if article.errors.any? %>
+<%= form_with model: [:admin, post] do |f| %>
+    <% if post.errors.any? %>
         <div>
-            <%= article.errors.full_messages.to_sentence.capitalize %>
+            <%= post.errors.full_messages.to_sentence.capitalize %>
         </div>
     <% end %>
     <div class="field">

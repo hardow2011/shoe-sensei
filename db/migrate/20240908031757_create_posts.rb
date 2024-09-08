@@ -1,6 +1,6 @@
-class CreateArticles < ActiveRecord::Migration[7.1]
+class CreatePosts < ActiveRecord::Migration[7.1]
   def change
-    create_table :articles do |t|
+    create_table :posts do |t|
       t.string :title_en, null: false
       t.string :title_es, null: false
       t.string :handle, null: false, index: { unique: true }
