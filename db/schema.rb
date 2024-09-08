@@ -118,6 +118,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_08_031757) do
   create_table "posts", force: :cascade do |t|
     t.string "title_en", null: false
     t.string "title_es", null: false
+    t.string "overview_en", null: false
+    t.string "overview_es", null: false
     t.string "handle", null: false
     t.boolean "published", null: false
     t.string "tags", default: [], null: false, array: true

@@ -2,14 +2,16 @@
 #
 # Table name: posts
 #
-#  id         :bigint           not null, primary key
-#  handle     :string           not null
-#  published  :boolean          not null
-#  tags       :string           default([]), not null, is an Array
-#  title_en   :string           not null
-#  title_es   :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :bigint           not null, primary key
+#  handle      :string           not null
+#  overview_en :string           not null
+#  overview_es :string           not null
+#  published   :boolean          not null
+#  tags        :string           default([]), not null, is an Array
+#  title_en    :string           not null
+#  title_es    :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 # Indexes
 #
