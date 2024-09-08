@@ -52,7 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_08_031757) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "blogs", force: :cascade do |t|
+  create_table "articles", force: :cascade do |t|
     t.string "title_en", null: false
     t.string "title_es", null: false
     t.string "handle", null: false
@@ -60,7 +60,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_08_031757) do
     t.string "tags", default: [], null: false, array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["handle"], name: "index_blogs_on_handle", unique: true
+    t.index ["handle"], name: "index_articles_on_handle", unique: true
   end
 
   create_table "brands", force: :cascade do |t|
