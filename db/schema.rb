@@ -52,17 +52,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_08_031757) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "title_en", null: false
-    t.string "title_es", null: false
-    t.string "handle", null: false
-    t.boolean "published", null: false
-    t.string "tags", default: [], null: false, array: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["handle"], name: "index_posts_on_handle", unique: true
-  end
-
   create_table "brands", force: :cascade do |t|
     t.string "name", null: false
     t.string "handle", null: false
@@ -124,6 +113,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_08_031757) do
     t.string "handle", null: false
     t.index ["collection_id"], name: "index_models_on_collection_id"
     t.index ["name", "collection_id"], name: "index_models_on_name_and_collection_id", unique: true
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title_en", null: false
+    t.string "title_es", null: false
+    t.string "handle", null: false
+    t.boolean "published", null: false
+    t.string "tags", default: [], null: false, array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["handle"], name: "index_posts_on_handle", unique: true
   end
 
   create_table "users", force: :cascade do |t|
