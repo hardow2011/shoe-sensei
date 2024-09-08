@@ -26,7 +26,7 @@ class CollectionTest < ActiveSupport::TestCase
     collection.overview_en = nil
     collection.save
     refute collection.valid?
-    assert_not_empty collection.errors[:overview_en], 'no validation error for name present'
+    assert_not_empty collection.errors[:overview_en], 'no validation error for English ovewrview present'
   end
 
   test 'invalid without Spanish overview' do
@@ -34,7 +34,7 @@ class CollectionTest < ActiveSupport::TestCase
     collection.overview_es = nil
     collection.save
     refute collection.valid?
-    assert_not_empty collection.errors[:overview_es], 'no validation error for name present'
+    assert_not_empty collection.errors[:overview_es], 'no validation error for Spanish ovewrview present'
   end
 
   test "correct name parameterization to handle" do

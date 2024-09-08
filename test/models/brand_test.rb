@@ -43,7 +43,7 @@ class BrandTest < ActiveSupport::TestCase
     brand = Brand.new(name: 'Adidas', overview_en: 'A very hip brand!', company_color: '#2232bf', logo: @brooks_logo)
     brand.save
     refute brand.valid?, 'brand valid without Spanish overview'
-    assert_not_empty brand.errors[:overview_es], 'no validation error for English overview present'
+    assert_not_empty brand.errors[:overview_es], 'no validation error for Spanish overview present'
   end
 
   test "correct name parameterization to handle" do
