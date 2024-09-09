@@ -28,4 +28,12 @@
             </ul>
         </li>
     </ul>
+    <ul class="menu-list">
+        <li>
+            <%= link_to 'Posts', admin_posts_path, class: "#{request.path == admin_posts_path ? 'is-active' : nil}" %>
+            <ul>
+                <li><%= link_to 'Add a post', new_admin_post_path, class: "#{request.path == admin_posts_path ? 'is-active' : nil}" %></li>
+            </ul>
+        </li>
+    </ul>
 </aside>

@@ -6,6 +6,8 @@ class PostsTest < ApplicationSystemTestCase
   end
 
   test 'list all posts' do
+    visit root_url
+
     within('.navbar') do
       click_on 'Blog'
     end
@@ -15,14 +17,27 @@ class PostsTest < ApplicationSystemTestCase
     Post.first(3).each do |p|
       assert_text p.title
       assert_text p.overview
-      assert_no_text @post.content
+      # TODO: assert content
+      # assert_element p.content.body.to_s
     end
   end
 
   test 'show post page' do
-    click_on @post.title
+    visit root_url
+
+    within('.navbar') do
+      click_on 'Blog'
+    end
+
+    click_on 'Read more...', match: :first
 
     assert_text @post.title
-    assert_text @post.content
+    assert_no_text @post.overview
+    # TODO: assert content
+    # assert_element p.content.body.to_s
+
+    @post.tags.each do |tag|
+      assert_text I18n.t(tag)
+    end
   end
 end

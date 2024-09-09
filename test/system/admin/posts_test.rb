@@ -1,5 +1,6 @@
 require 'application_system_test_case'
 
+# TODO: pass these tests
 class PostsTest < ApplicationSystemTestCase
   setup do
     sign_in_as_admin
@@ -101,6 +102,26 @@ class PostsTest < ApplicationSystemTestCase
 
     assert_no_text @new_post[:title_en]
     assert_no_text @new_post[:overview_en]
+  end
+
+  test 'editing a post' do
+    click_on 'Posts'
+
+    click_on Post.first.title
+
+    assert_button 'Publish Updates'
+    assert_button 'Delete Post'
+    assert_button 'Unpublish and Save as Draft'
+    assert_no_button 'Save as Draft'
+    click_on 'Unpublish and Save as Draft'
+
+    assert_text 'Post unpublished successfuly'
+    assert_text @new_post[:title_en]
+
+    visit blogs_url
+
+    assert_no_text Post.first.title
+    assert_no_text Post.first.overview
   end
 
   test 'unpublishing a post' do

@@ -17,6 +17,18 @@
         </div>
     </div>
     <div class="field">
+        <label class="label"><%= f.label :overview_en %></label>
+        <div class="control">
+            <%= f.text_field :overview_en, autofocus: true, class: 'input' %>
+        </div>
+    </div>
+        <div class="field">
+        <label class="label"><%= f.label :overview_es %></label>
+        <div class="control">
+            <%= f.text_field :overview_es, autofocus: true, class: 'input' %>
+        </div>
+    </div>
+    <div class="field">
         <label class="label"><%= f.label :content_en %></label>
         <div class="control">
             <%= f.rich_text_area :content_en %>
@@ -30,8 +42,8 @@
     </div>
     <div class="field">
         <div class="buttons is-right">
-            <%= f.submit t('save_as_draft'), class: 'button is-link' %>
-            <%= f.submit class: 'button is-success' %>
+            <%= f.submit post.new_record? ? t('save_as_draft') : t('unpublish_post_and_save_as_draft'), class: 'button is-link' %>
+            <%= f.submit post.new_record? ? t('publish_post') : t('publish_updates'), class: 'button is-success' %>
         </div>
     </div>
 <% end %>

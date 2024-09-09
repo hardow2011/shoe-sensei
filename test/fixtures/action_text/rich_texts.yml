@@ -1,6 +1,6 @@
 weve_all_been_there_en:
   record: my_doctor_told_me (Post)
-  name: content
+  name: content_en
   body: <p>Yep, we've <b>all</b> been there</p>
 
 weve_all_been_there_es:

@@ -51,6 +51,7 @@ en:
   list_of_all_brands: List of all brands
   brand_overview: "%{brand_name} overview"
   brand_not_found: 'Brand not found'
+  post_not_found: 'Post not found'
   collection_not_found: 'Collection not found'
   site_default_description: 'A shoe knowledge base to find the perfect pair for your needs'
   some_notable_collections_include: Some notable collections include
@@ -59,8 +60,13 @@ en:
   table_of_contents: Table of contents
   collections: Collections
   save_as_draft: Save as Draft
+  publish_post: Publish Post
+  publish_updates: Publish Updates
+  unpublish_post_and_save_as_draft: Unpublish and Save as Draft
   healthcare: Healthcare
   cost_conscious: Cost-conscious
   accessories: Accesorios
   comfort: Comfort
   plantar_fasciitis: Plantar fasciitis
+  blog: Blog
+  tags: Tags

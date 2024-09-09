@@ -4,13 +4,7 @@ my_doctor_told_me:
   title_en: The doctor told me to get a new pair of shoes, but didn't specify the model, what should I do?
   title_es: El doctor me dijo que consiguiera nuevos zapatos, pero no especificó el modelo, ¿qué debería hacer?
   handle: the-doctor-told-me-to-get-a-new-pair-of-shoes-but
-  overview_en: >
-    Picture this scenario... you visit the doctor and he recommends you to get new shoes and mentions the Hokas. 
-    Excited, the next day you visit the shoe store and notice the impressive variety of Hokas, including models 
-    from Bondi and Clifton, to Ahari and Gaviota. Your doctor did not specify any particular model, so which one should you pick?
-  overview_es: >
-    Imagina la siguiente situación... visitas al doctor y te recomienda un nuevo par de zapatos y menciona a los Hoka.
-    Emocionado, al siguiente día visitas la tienda de zapatos y te encuentras con la gran variedad de zapatos Hoka, desde el Bondi 
-    y Clifton, hasta el Arahi y Gaviota. Pero el doctor no mencionó ningún modelo en específico, entonces, ¿cuál deberías comprar?
+  overview_en: Picture this scenario... you visit the doctor and he recommends you to get new shoes and mentions the Hokas. Excited, the next day you visit the shoe store and notice the impressive variety of Hokas, including models from Bondi and Clifton, to Ahari and Gaviota. Your doctor did not specify any particular model, so which one should you pick?
+  overview_es: Imagina la siguiente situación... visitas al doctor y te recomienda un nuevo par de zapatos y menciona a los Hoka. Emocionado, al siguiente día visitas la tienda y te encuentras con la gran variedad de zapatos Hoka, desde el Bondi y Clifton, hasta el Arahi y Gaviota. Pero el doctor no mencionó ningún modelo en específico, entonces, ¿cuál deberías comprar?
   published: true
   tags: ['healthcare']

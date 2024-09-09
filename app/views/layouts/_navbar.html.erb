@@ -1,6 +1,6 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <%= link_to @app_name, root_path, class: "navbar-item", data: { turbo: false } %>
+    <%= link_to @app_name, root_path, class: "navbar-item #{request.path == root_path ? 'is-selected has-text-white' : nil}", data: { turbo: false } %>
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu" onclick="toggleNavbar(this)">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -21,6 +21,7 @@
           <%= link_to t('all_brands'), brands_path, class: "navbar-item #{request.path == brands_path ? 'is-selected has-text-white' : nil}" %>
         </div>
       </div>
+      <%= link_to t('blog'), posts_path, class: "navbar-item #{request.path == posts_path ? 'is-selected has-text-white' : nil}" %>
     </div>
 
     <div class="navbar-end">

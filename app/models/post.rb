@@ -22,10 +22,9 @@ class Post < ApplicationRecord
   include AllowedTags
   extend Mobility
 
-  # TODO: validate presence of content
   has_rich_text :content_en
   has_rich_text :content_es
-  translates :content
+  translates :overview
   translates :title
 
   validates :title_en, :title_es, :content_en, :content_es, :overview_en, :overview_es, :handle, :tags, presence: true
@@ -36,6 +35,12 @@ class Post < ApplicationRecord
   validate :tags_validity
 
   before_validation :assign_handle
+
+  scope :published, -> { where(published: true) }
+
+  def content
+    self.send("content_#{I18n.locale.to_s}")
+  end
 
   private
 
