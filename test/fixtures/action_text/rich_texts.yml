@@ -1,4 +1,9 @@
-# one:
-#   record: name_of_fixture (ClassOfFixture)
-#   name: content
-#   body: <p>In a <i>million</i> stars!</p>
+weve_all_been_there_en:
+  record: my_doctor_told_me (Post)
+  name: content
+  body: <p>Yep, we've <b>all</b> been there</p>
+
+weve_all_been_there_es:
+  record: my_doctor_told_me (Post)
+  name: content_es
+  body: <p>Sí, <b>todos</b> hemos pasado por eso</p>
