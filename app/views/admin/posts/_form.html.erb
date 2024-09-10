@@ -41,9 +41,27 @@
         </div>
     </div>
     <div class="field">
-        <div class="buttons is-right">
-            <%= f.submit post.new_record? ? t('save_as_draft') : t('unpublish_post_and_save_as_draft'), class: 'button is-link' %>
-            <%= f.submit post.new_record? ? t('publish_post') : t('publish_updates'), class: 'button is-success' %>
+        <label class="label">Tags</label>
+        <div class="control">
+            <% AllowedTags::POSTS_OPTIONS.each do |t| %>
+                <div>
+                    <label class='checkbox'>
+                        <%= check_box_tag 'post[tags][]', id: nil, value: t, checked: post.tags.include?(t) %>
+                        <%= t(t) %>
+                    </label>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="field mt-6">
+        <div class="is-flex is-3 is-flex-wrap-wrap-reverse is-justify-content-space-between is-mobile" style="gap: 1.75rem">
+            <% unless post.new_record? %>
+                <%= button_to('Delete Post', [:admin, post], method: :delete, class: "button is-danger") %>
+            <% end %>
+            <div class="buttons <%= post.new_record? ? 'ml-auto' : nil %>">
+                <%= f.submit(post.new_record? ? t('save_as_draft') : t('unpublish_post_and_save_as_draft'), class: 'button is-link') %>
+                <%= f.submit post.new_record? ? t('publish_post') : t('publish_updates'), class: 'button is-success' %>
+            </div>
         </div>
     </div>
 <% end %>

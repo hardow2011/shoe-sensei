@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_brand, only: %i[show]
 
   def index
-    @posts = Post.published.order(created_at: :asc)
+    @posts = Post.published.order(created_at: :desc)
   end
 
   def show

@@ -13,7 +13,7 @@
         <div class="column">
             <div class="buttons is-right">
                 <%= link_to 'Edit', edit_admin_collection_path(collection), class: "button is-link" %>
-                <%= button_to('Delete', [:admin, collection], method: :delete, class: "button is-danger", data: { turbo: defined?(brand) ? nil : false }) %>
+                <%= button_to('Delete Post', [:admin, collection], method: :delete, class: "button is-danger", data: { turbo: defined?(brand) ? nil : false }) %>
             </div>
         </div>
     </div>

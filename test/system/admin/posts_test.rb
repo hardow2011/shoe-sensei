@@ -1,6 +1,5 @@
 require 'application_system_test_case'
 
-# TODO: pass these tests
 class PostsTest < ApplicationSystemTestCase
   setup do
     sign_in_as_admin
@@ -9,8 +8,20 @@ class PostsTest < ApplicationSystemTestCase
       title_es: "Los mejores zapatos del mundo",
       overview_en: "A short presentation on the best shoes",
       overview_es: "Una corta presentación de los meores zapatos",
-      content_en: "The list is the following",
-      content_es: "La lista es la siguiente"
+      content_en: "<div>The list is the following</div>
+                  <ol>
+                    <li>Bondi 8</li>
+                    <li>Ghost Max</li>
+                    <li>Cloudmonster</li>
+                  </ol>
+                  <div>Very nice choices!!!</div>",
+      content_es: "<div>La lista es la siguiente</div>
+                  <ol>
+                    <li>Bondi 8</li>
+                    <li>Ghost Max</li>
+                    <li>Cloudmonster</li>
+                  </ol>
+                  <div>¡¡¡Muy buenas elecciones!!!</div>"
     }
   end
 
@@ -38,8 +49,8 @@ class PostsTest < ApplicationSystemTestCase
     fill_in "post[title_es]",	with: @new_post[:title_es]
     fill_in "post[overview_en]", with: @new_post[:overview_en]
     fill_in "post[overview_es]", with: @new_post[:overview_es]
-    fill_in "post[content_en]",	with: @new_post[:content_en]
-    fill_in "post[content_es]",	with: @new_post[:content_es]
+    fill_in_rich_text_area "post[content_en]",	with: @new_post[:content_en]
+    fill_in_rich_text_area "post[content_es]",	with: @new_post[:content_es]
     check 'Healthcare'
     check 'Accessories'
     check 'Road running'
@@ -54,16 +65,21 @@ class PostsTest < ApplicationSystemTestCase
     assert_text 'Post published successfuly'
     assert_text @new_post[:title_en]
 
-    visit blogs_url
+    visit posts_url
 
     assert_text @new_post[:title_en]
     assert_text @new_post[:overview_en]
 
-    click_on @new_post[:title_en]
+    click_on 'Read more...', match: :first
 
     assert_text @new_post[:title_en]
     assert_no_text @new_post[:overview_en]
-    assert_text @new_post[:content_en]
+    assert_text 'The list is the following'
+    assert_selector 'ol' do
+      assert_selector 'li', text: 'Bondi 8'
+      assert_selector 'li', text: 'Ghost Max'
+      assert_selector 'li', text: 'Cloudmonster'
+    end
   end
 
   test 'saving a post as draft' do
@@ -82,8 +98,8 @@ class PostsTest < ApplicationSystemTestCase
     fill_in "post[title_es]",	with: @new_post[:title_es]
     fill_in "post[overview_en]", with: @new_post[:overview_en]
     fill_in "post[overview_es]", with: @new_post[:overview_es]
-    fill_in "post[content_en]",	with: @new_post[:content_en]
-    fill_in "post[content_es]",	with: @new_post[:content_es]
+    fill_in_rich_text_area "post[content_en]",	with: @new_post[:content_en]
+    fill_in_rich_text_area "post[content_es]",	with: @new_post[:content_es]
     check 'Healthcare'
     check 'Accessories'
     check 'Road running'
@@ -91,37 +107,17 @@ class PostsTest < ApplicationSystemTestCase
 
     assert_button 'Publish Post'
     assert_button 'Save as Draft'
-    assert_button 'Delete Post'
+    assert_no_button 'Delete Post'
     assert_no_button 'Unpublish and Save as Draft'
     click_on 'Save as Draft'
 
     assert_text 'Post saved as draft successfuly'
     assert_text @new_post[:title_en]
 
-    visit blogs_url
+    visit posts_url
 
     assert_no_text @new_post[:title_en]
     assert_no_text @new_post[:overview_en]
-  end
-
-  test 'editing a post' do
-    click_on 'Posts'
-
-    click_on Post.first.title
-
-    assert_button 'Publish Updates'
-    assert_button 'Delete Post'
-    assert_button 'Unpublish and Save as Draft'
-    assert_no_button 'Save as Draft'
-    click_on 'Unpublish and Save as Draft'
-
-    assert_text 'Post unpublished successfuly'
-    assert_text @new_post[:title_en]
-
-    visit blogs_url
-
-    assert_no_text Post.first.title
-    assert_no_text Post.first.overview
   end
 
   test 'unpublishing a post' do
@@ -129,18 +125,18 @@ class PostsTest < ApplicationSystemTestCase
 
     click_on Post.first.title
 
+    assert_text 'Edit post'
+
     assert_button 'Publish Updates'
     assert_button 'Delete Post'
     assert_button 'Unpublish and Save as Draft'
-    assert_no_button 'Save as Draft'
+    assert_no_selector "input[value='Save as Draft']"
     click_on 'Unpublish and Save as Draft'
 
-    assert_text 'Post unpublished successfuly'
-    assert_text @new_post[:title_en]
+    assert_text 'Post saved as draft successfuly'
+    assert_text Post.first.title
 
-    visit blogs_url
-
-    visit blogs_url
+    visit posts_url
 
     assert_no_text Post.first.title
     assert_no_text Post.first.overview
