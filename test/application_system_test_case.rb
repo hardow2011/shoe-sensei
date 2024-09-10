@@ -12,6 +12,9 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
   # Clear attached files after each system test
   # https://guides.rubyonrails.org/active_storage_overview.html#system-tests
+  parallelize_setup do |i|
+    ActiveStorage::Blob.service.root = "#{ActiveStorage::Blob.service.root}-#{i}"
+  end
   def after_teardown
     super
     FileUtils.rm_rf(ActiveStorage::Blob.service.root)

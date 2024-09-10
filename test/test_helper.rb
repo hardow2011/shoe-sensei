@@ -14,7 +14,7 @@ module ActiveSupport
 
     # Remove test files after integration tests
     # https://guides.rubyonrails.org/active_storage_overview.html#integration-tests
-    Minitest.after_run do
+    parallelize_teardown do |i|
       FileUtils.rm_rf(ActiveStorage::Blob.services.fetch(:test_fixtures).root)
     end
   end
