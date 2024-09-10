@@ -27,6 +27,7 @@
 
 // https://bulma.io/documentation/sass/responsive-mixins/
 @use "bulma/sass/utilities/mixins";
+@import "bulma/sass/utilities/derived-variables";
 
 // Import only what you need from Bulma
 // @import "bulma/sass/utilities/_all.sass";
@@ -196,4 +197,23 @@ body {
 
 .card-border-radius {
     border-radius: $radius-large;
+}
+
+a {
+    &.is-link:hover {
+    color: lighten($link, 10%)
+    }
+
+    &.title:hover {
+        color: lighten($text, 10%);
+    }
+}
+
+.table-of-contents {
+    position: sticky;
+    top: $size-2;
+
+    .menu-list a {
+        color: $link;
+    }
 }

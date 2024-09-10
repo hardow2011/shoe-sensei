@@ -1,8 +1,8 @@
 <% image_wrapper_classes = 'is-flex is-align-items-center has-background-white p-1 card-border-radius' %>
-<div class="card model-box" data-model="<%= model.brand.name %> <%= model.name %>">
+<div class="card model-box is-clipped" data-model="<%= model.brand.name %> <%= model.name %>">
   <div class="card-image">
     <figure class="image is-5by3">
-        <%= link_to brand_path(model.brand.handle, anchor: model.collection.handle), data: { turbo: false } do %>
+        <%= link_to brand_path(model.brand.handle, anchor: model.collection.handle), class: 'has-background-white', data: { turbo: false } do %>
           <%= image_tag model.image, alt: "#{model.name} image", title: "#{model.name} image", class: 'px-5', style: "height: 100%;object-fit: contain;" %>
         <% end %>
     </figure>
