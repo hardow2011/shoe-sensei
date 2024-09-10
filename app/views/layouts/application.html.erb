@@ -20,7 +20,7 @@
 
     <% if Rails.env != 'test' %>
       <link rel="alternate" href="<%= Rails.application.routes.default_url_options[:host] + url_for(request.params.replace(locale: nil)) %>" hrefland="x-default">
-      <link rel="alternate" href="<%= Rails.application.routes.default_url_options[:host] + url_for(request.params.replace(locale: :en)) %>" hrefland="en">
+      <link rel="alternate" href="<%= Rails.application.routes.default_url_options[:host] + url_for(request.params.replace(locale: nil)) %>" hrefland="en">
       <link rel="alternate" href="<%= Rails.application.routes.default_url_options[:host] + url_for(request.params.replace(locale: :es)) %>" hrefland="es">
     <% end %>
 

@@ -17,14 +17,6 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|es/ do
     root "pages#home"
 
-    namespace :admin do
-      get '', to: 'pages#home'
-      resources :brands, except: %i[show]
-      resources :collections, except: %i[show]
-      resources :models, except: %i[show]
-      resources :posts, except: %i[show]
-    end
-
     get 'filter_models', to: 'pages#filter_models', as: 'filter_models'
 
     get 'blog', to: 'posts#index', as: 'posts'
@@ -34,4 +26,13 @@ Rails.application.routes.draw do
     # get 'collections/:brand_id/:id', to: 'collections#show', as: 'collection'
     # get 'models/:brand_id/:collection_id/:id', to: 'models#show', as: 'model'
   end
+
+  namespace :admin do
+    get '', to: 'pages#home'
+    resources :brands, except: %i[show]
+    resources :collections, except: %i[show]
+    resources :models, except: %i[show]
+    resources :posts, except: %i[show]
+  end
+
 end

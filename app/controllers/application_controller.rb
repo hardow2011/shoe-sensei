@@ -18,7 +18,13 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options
-    { locale: I18n.locale }
+    path_is_admin = request.path.split('/')[1] == 'admin'
+    default_locale_not_in_path = !(I18n.locale == :en and request.path.split('/')[1] != 'en')
+    if !path_is_admin and default_locale_not_in_path
+      { locale: I18n.locale }
+    else
+      { locale: nil }
+    end
   end
 
   def switch_locale(&action)

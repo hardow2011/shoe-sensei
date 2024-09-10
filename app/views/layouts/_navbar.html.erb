@@ -36,7 +36,7 @@
         </p>
 
         <div class="navbar-dropdown is-right">
-          <%= link_to t('language.english'), url_for(locale: :en), class: "navbar-item #{I18n.locale == :en ? 'is-selected has-text-white' : nil}" %>
+          <%= link_to t('language.english'), url_for(locale: nil), class: "navbar-item #{I18n.locale == :en ? 'is-selected has-text-white' : nil}" %>
           <%= link_to t('language.spanish'), url_for(locale: :es), class: "navbar-item #{I18n.locale == :es ? 'is-selected has-text-white' : nil}" %>
         </div>
       </div>
