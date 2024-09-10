@@ -1,6 +1,10 @@
 <div class="section">
     <div class="container is-widescreen">
         <h1 class="title is-1"><%= t('blog') %></h1>
-        <%= render partial: 'posts/post', collection: @posts, cached: ->(post) {[I18n.locale, post]} %>
+        <% if @posts.any? %>
+            <%= render partial: 'posts/post', collection: @posts, cached: ->(post) {[I18n.locale, post]} %>
+        <% else %>
+            <p class="is-size-4"><%= t('no_available_posts') %></p>
+        <% end %>
     </div>
 </div>
