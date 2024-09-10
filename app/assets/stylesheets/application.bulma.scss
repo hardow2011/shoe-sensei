@@ -217,3 +217,45 @@ a {
         color: $link;
     }
 }
+
+#filter-wrapper.is-loading {
+    .model-box {
+        .media-content {
+            * {
+                @extend .is-skeleton;
+            }
+        }
+        .icon {
+            visibility: hidden;
+        }
+        p {
+            @extend .is-skeleton;
+        }
+        .card-image {
+            @extend .is-skeleton
+        }
+        figure {
+            @extend .is-skeleton;
+            image {
+
+                visibility: hidden;
+            }
+        }
+    }
+
+    .pagination a, .field-label label {
+        @extend .is-skeleton
+    }
+
+    .field-body {
+        @extend .has-skeleton;
+
+        * {
+            visibility: hidden;
+        }
+
+        &::after {
+            width: 100%;
+        }
+    }
+}

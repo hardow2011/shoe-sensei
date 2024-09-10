@@ -22,14 +22,14 @@
                             <div class="column">
                                 <div class="field is-horizontal">
                                     <div class="field-label is-normal">
-                                        <label class="label"><%= t('sorting.prompt') %>:</label>
+                                        <label class="label is-inline"><%= t('sorting.prompt') %>:</label>
                                     </div>
                                     <div class="field-body sorting-field">
                                         <div class="field is-narrow">
                                             <div class="control">
                                                 <div class="select is-fullwidth">
                                                     <% options_for_select = FilterPagination::SORTING_OPTIONS.map { |o,v| [t("sorting.#{o.parameterize(separator: '_')}"), v] } %>
-                                                    <%= f.select(:models_sorting, options_for_select(options_for_select, selected: selected_sort), { }, onchange: "this.form.requestSubmit()") %>
+                                                    <%= f.select(:models_sorting, options_for_select(options_for_select, selected: selected_sort), { }, onchange: "submit_filter_form(this)") %>
                                                 </div>
                                             </div>
                                         </div>
