@@ -2,12 +2,12 @@
     <div class="container is-widescreen">
         <%= cache [I18n.locale, @brand] do  %>
             <div class="columns is-multiline is-8-desktop">
-                <div class="column is-full-tablet is-one-third-desktop is-flex is-justify-content-center brand-hero">
-                    <figure class="image is-5by3">
-                        <%= image_tag @brand.logo, class: 'px-5', style: "height: 100%;object-fit: contain;" %>
+                <div class="column is-half-mobile is-one-third-tablet is-flex is-justify-content-center brand-hero">
+                    <figure class="image is-5 card-border-radius has-background-white">
+                        <%= image_tag @brand.logo, class: 'p-3', style: "height: 100%;object-fit: contain;" %>
                     </figure>
                 </div>
-                <div class="column is-full-tablet is-two-thirds-desktop">
+                <div class="column is-full-mobile is-two-thirds-desktop">
                     <div>
                         <div class="content ">
                             <h1 class="title is-1"><%= @brand.name %></h1>
