@@ -1,12 +1,15 @@
-<div class="columns">
-    <div class="column is-narrow is-flex is-align-items-center">
-        <p>
-            <%= link_to post.title, edit_admin_post_path(post) %>
-        </p>
-    </div>
-    <div class="column">
-        <div class="buttons is-right">
-            <%= link_to 'Edit', edit_admin_post_path(post), class: "button is-link" %>
+<div>
+    <div class="columns">
+        <div class="column is-narrow is-flex is-align-items-center">
+            <p>
+                <%= post.title %>
+            </p>
+        </div>
+        <div class="column">
+            <div class="buttons is-right">
+                <%= link_to 'Edit', edit_admin_post_path(post), class: "button is-link" %>
+            </div>
         </div>
     </div>
+    <hr>
 </div>

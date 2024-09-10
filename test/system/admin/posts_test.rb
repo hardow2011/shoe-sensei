@@ -123,7 +123,7 @@ class PostsTest < ApplicationSystemTestCase
   test 'unpublishing a post' do
     click_on 'Posts'
 
-    click_on Post.first.title
+    click_on 'Edit', match: :first
 
     assert_text 'Edit post'
 
