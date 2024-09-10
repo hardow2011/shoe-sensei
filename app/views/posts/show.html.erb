@@ -9,7 +9,7 @@
                     <div class="tags">
                         <span><%= t('tags') %>:</span>
                         <% @post.tags.each do |tag| %>
-                            <span class="tag"><%= t(tag) %></span>
+                            <span class="tag"><%= t("filter.#{tag}") %></span>
                         <% end %>
                     </div>
                 <% end %>

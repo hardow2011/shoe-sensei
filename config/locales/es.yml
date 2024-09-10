@@ -16,16 +16,5 @@ es:
   app_created_by_html: "<strong>%{app_name}</strong> creado por <span class='is-underlined'>%{developer_name}</span>."
   table_of_contents: Tabla de contenido
   collections: Colecciones
-  healthcare: Salud
-  cost_conscious: Atento a los costos
-  accessories: Accesorios
-  comfort: Comodidad
-  support: Soporte
-  plantar_fasciitis: Fascitis plantar
   blog: Blog
   tags: Etiquetas
-  road_running: Correr
-  trail_running: Correr por senderos
-  walking: Caminar
-  standing: Estar de pie
-  training_and_gym: Entrenamiento y gimnasio

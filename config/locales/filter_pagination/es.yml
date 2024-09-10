@@ -5,6 +5,16 @@ es:
     activities: Actividad
     cushioning: Amortiguación
     support: Soporte
+    healthcare: Salud
+    cost_conscious: Atento a los costos
+    accessories: Accesorios
+    comfort: Comodidad
+    road_running: Correr
+    trail_running: Correr por senderos
+    walking: Caminar
+    standing: Estar de pie
+    training_and_gym: Entrenamiento y gimnasio
+    plantar_fasciitis: Fascitis plantar
     additional_filters:
       prompt: Filtros adicionales
       apma_accepted: ¿Sólo aceptados por la APMA?

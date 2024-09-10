@@ -5,6 +5,16 @@ en:
     activities: Activity
     cushioning: Cushioning
     support: Support
+    healthcare: Healthcare
+    cost_conscious: Cost-conscious
+    accessories: Accessories
+    comfort: Comfort
+    road_running: Road running
+    trail_running: Trail running
+    walking: Walking
+    standing: Standing
+    training_and_gym: Training and gym
+    plantar_fasciitis: Plantar fasciitis
     additional_filters:
       prompt: Additional filters
       apma_accepted: APMA accepted only?

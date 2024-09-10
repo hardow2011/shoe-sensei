@@ -37,7 +37,7 @@ class PostsTest < ApplicationSystemTestCase
     # assert_element p.content.body.to_s
 
     @post.tags.each do |tag|
-      assert_text I18n.t(tag)
+      assert_text I18n.t("filter.#{tag}")
     end
   end
 end

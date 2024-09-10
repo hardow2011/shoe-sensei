@@ -47,7 +47,7 @@
                 <div>
                     <label class='checkbox'>
                         <%= check_box_tag 'post[tags][]', id: nil, value: t, checked: post.tags.include?(t) %>
-                        <%= t(t) %>
+                        <%= t("filter.#{t}") %>
                     </label>
                 </div>
             <% end %>
