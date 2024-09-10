@@ -3,9 +3,17 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.published.order(created_at: :desc)
+    @meta_tags = {
+      title: t('blog_title', app_name: @app_name),
+      description: t('blog_description', app_name: @app_name)
+    }
   end
 
   def show
+    @meta_tags = {
+      title: t('blog_post_meta_title', title: @post.title, app_name: @app_name),
+      description: @post.overview
+    }
   end
 
   private

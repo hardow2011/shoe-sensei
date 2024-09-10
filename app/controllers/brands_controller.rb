@@ -9,14 +9,14 @@ class BrandsController < ApplicationController
     @brands = Brand.order(:name)
 
     @meta_tags = {
-      title: I18n.t('all_brands'),
+      title: I18n.t('all_brands') + " | " + @app_name,
       description: I18n.t('list_of_all_brands')
     }
   end
 
   def show
     @meta_tags = {
-      title: @brand.name,
+      title: @brand.name + " | " + @app_name,
       description: I18n.t('brand_overview', brand_name: @brand.name)
     }
   end

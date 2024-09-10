@@ -19,3 +19,6 @@ es:
   blog: Blog
   tags: Etiquetas
   no_available_posts: Disculpa. En este momento no hay artículos disponibles.
+  blog_title: Guías y Reseñas de Zapatos | Blog de %{app_name}
+  blog_description: Obtén opiniones informadas, reseñas detalladas de zapatos y consejos esenciales de compra para elegir el mejor calzado para cualquier actividad. Mantente informado con el blog de %{app_name}.
+  blog_post_meta_title: "%{title} | Blog de %{app_name}"
