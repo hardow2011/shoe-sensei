@@ -129,3 +129,15 @@ on_cloud_x_4  = Model.create!(name: 'Cloud X 4', weight: 263, heel_to_toe_drop: 
 new_balance_fresh_foam_x_1080v13  = Model.create!(name: 'Fresh Foam X 1080v13', weight: 262, heel_to_toe_drop: 6, collection: new_balance_fresh_foam_1080,
   image: File.open('test/fixtures/files/new-balance-fresh-foam-x-1080v13.webp'),
   tags: { activities: ['road_running', 'walking'], cushioning_level: 3, support: 'neutral', apma_accepted: true, discontinued: false })
+
+# Posts
+my_doctor_told_me = Post.create!(
+  title_en: "The doctor told me to get a new pair of shoes, but didn't specify the model, what should I do?",
+  title_es: "El doctor me dijo que consiguiera nuevos zapatos, pero no especificó el modelo, ¿qué debería hacer?",
+  overview_en: "Picture this scenario... you visit the doctor and he recommends you to get new shoes and mentions the Hokas. Excited, the next day you visit the shoe store and notice the impressive variety of Hokas, including models from Bondi and Clifton, to Ahari and Gaviota. Your doctor did not specify any particular model, so which one should you pick?",
+  overview_es: "Imagina la siguiente situación... visitas al doctor y te recomienda un nuevo par de zapatos y menciona a los Hoka. Emocionado, al siguiente día visitas la tienda y te encuentras con la gran variedad de zapatos Hoka, desde el Bondi y Clifton, hasta el Arahi y Gaviota. Pero el doctor no mencionó ningún modelo en específico, entonces, ¿cuál deberías comprar?",
+  content_en: '<div>This is the short and informative content of this blog.</div>',
+  content_es: '<div>Este es el contenido corto e informativo de este blog.</div>',
+  published: true,
+  tags: ['healthcare']
+  )
