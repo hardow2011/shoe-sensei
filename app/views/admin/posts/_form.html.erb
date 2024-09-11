@@ -43,14 +43,16 @@
     <div class="field">
         <label class="label">Tags</label>
         <div class="control">
-            <% AllowedTags::POSTS_OPTIONS.each do |t| %>
-                <div>
-                    <label class='checkbox'>
-                        <%= check_box_tag 'post[tags][]', id: nil, value: t, checked: post.tags.include?(t) %>
-                        <%= t("filter.#{t}") %>
-                    </label>
-                </div>
-            <% end %>
+            <div class="tags">
+                <% AllowedTags::POSTS_OPTIONS.each do |t| %>
+                    <span class="tag">
+                        <label class='checkbox is-size-6 is-flex is-align-items-center is-gap-0.5'>
+                            <%= check_box_tag 'post[tags][]', id: nil, value: t, checked: post.tags.include?(t) %>
+                            <%= t("filter.#{t}") %>
+                        </label>
+                    </span>
+                <% end %>
+            </div>
         </div>
     </div>
     <div class="field mt-6">
