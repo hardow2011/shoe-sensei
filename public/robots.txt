@@ -1,5 +1,5 @@
 # See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
 User-agent: *
 Disallow: /admin/
-Disallow: /filter_models/
-Disallow: /*?
+Disallow: /*filter_models*/
+Disallow: /*?page=*
