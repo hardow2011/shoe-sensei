@@ -1,3 +1,4 @@
+import 'trix'
 
 Trix.config.blockAttributes.heading2 = {
   tagName: 'h2',

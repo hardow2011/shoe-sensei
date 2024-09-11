@@ -11,6 +11,6 @@ import './img_upload_previews'
 import './navbar_burger'
 import './model_filter_mobile'
 import './model_grid_skeleton'
-import "trix"
-import "./trix_customization"
+// import "trix"
+// import "./trix_customization"
 import "@rails/actiontext"
