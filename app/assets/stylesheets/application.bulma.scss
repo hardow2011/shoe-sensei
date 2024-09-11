@@ -260,3 +260,7 @@ a {
         }
     }
 }
+
+.field:not(:last-child) {
+    margin-bottom: 1.75rem;
+}

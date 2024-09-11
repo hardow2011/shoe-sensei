@@ -41,6 +41,8 @@ en:
         content_es: "Spanish translation of content"
         title_en: "English translation of title"
         title_es: "Spanish translation of title"
+        overview_en: "English translation of overview"
+        overview_es: "Spanish translation of overview"
   language:
     prompt: Language
     english: English
