@@ -109,4 +109,15 @@ class PostTest < ActiveSupport::TestCase
     refute post.valid?
     assert_not_empty post.errors[:tags], 'no validation for tags'
   end
+
+  test 'content sanitized' do
+    post = @valid_post.dup
+    post.content_en = '<h1>This is important!!!</h1><p>It really is.</p>'
+    post.content_es = '<h1>¡¡¡Esto es importante!!!</h1><p>Realmente lo es.</p>'
+    post.save
+    assert post.valid?
+
+    assert_equal post.content_en.body.to_s.gsub(/\n/, ''), '<h2>This is important!!!</h2><p>It really is.</p>'
+    assert_equal post.content_es.body.to_s.gsub(/\n/, ''), '<h2>¡¡¡Esto es importante!!!</h2><p>Realmente lo es.</p>'
+  end
 end

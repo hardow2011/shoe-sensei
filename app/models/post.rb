@@ -32,6 +32,8 @@ class Post < ApplicationRecord
   validates :published, inclusion: { in: AllowedTags::BOOLEAN_OPTIONS }
   validates :handle, :title_en, :title_es, uniqueness: true
 
+  before_save :sanitize_content
+
   validate :tags_validity
 
   before_validation :assign_handle
@@ -76,5 +78,10 @@ class Post < ApplicationRecord
         end
       end
     end
+  end
+
+  def sanitize_content
+    self.content_en = content_en.to_s.gsub(/<h1>/, '<h2>').gsub(/<\/h1>/, '</h2>')
+    self.content_es = content_es.to_s.gsub(/<h1>/, '<h2>').gsub(/<\/h1>/, '</h2>')
   end
 end

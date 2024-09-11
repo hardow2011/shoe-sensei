@@ -6,6 +6,10 @@ class PostsTest < ApplicationSystemTestCase
   end
 
   test 'list all posts' do
+    # TODO: investigate this
+    # The sleep is necessary or otherwise, the test would use the admin window
+    # for some reason, even after the visit root_url
+    sleep 1
     visit root_url
 
     within('.navbar') do
@@ -23,6 +27,10 @@ class PostsTest < ApplicationSystemTestCase
   end
 
   test 'show post page' do
+    # TODO: investigate this
+    # The sleep is necessary or otherwise, the test would use the admin window
+    # for some reason, even after the visit root_url
+    sleep 1
     visit root_url
 
     within('.navbar') do

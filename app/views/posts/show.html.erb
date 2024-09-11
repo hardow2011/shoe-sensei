@@ -3,7 +3,9 @@
         <%= cache [I18n.locale, @post] do  %>
             <div class="content ">
                 <h1 class="title is-3"><%= @post.title %></h1>
-                <%= @post.content %>
+                <div class="content">
+                    <%= @post.content %>
+                <div>
                 <hr>
                 <% if @post.tags.any? %>
                     <div class="tags">
