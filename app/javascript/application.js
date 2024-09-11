@@ -12,4 +12,5 @@ import './navbar_burger'
 import './model_filter_mobile'
 import './model_grid_skeleton'
 import "trix"
+import "./trix_customization"
 import "@rails/actiontext"
