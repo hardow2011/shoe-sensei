@@ -1,6 +1,6 @@
 # TODO: optimize this whole module.
 # DRY in the views.
-# Queries to slow/numerous
+# Queries too slow/numerous
 # TODO: check that params are valid before processing them
 # TODO: figure out how I want the filter to work. This is not adding up
 module FilterPagination
@@ -25,9 +25,45 @@ module FilterPagination
       selected_cushionings = selected_cushionings&.map(&:to_i) || []
       selected_supports = selected_supports || []
       brands_ids = brands_ids&.map(&:to_i) || []
-      selected_aditional_filters = selected_aditional_filters&.map(&:to_sym) || []
+      selected_aditional_filters = selected_aditional_filters || []
       page = page.to_i || 0
       sort = sort&.to_sym || SORTING_OPTIONS.first[1]
+
+      @invalid = false
+
+      fobidden_tags = Rails.error.handle(severity: :warning, fallback: -> {true}) do
+        error_message = ""
+        forbidden_activities = selected_activities - AllowedTags::ACTIVITY_OPTIONS
+        if forbidden_activities.any?
+          error_message << "#{forbidden_activities} not allowed activities tags. "
+          selected_activities = selected_activities & AllowedTags::ACTIVITY_OPTIONS
+        end
+
+        forbidden_cushionings = selected_cushionings - [*1..AllowedTags::CUSHIONING_OPTIONS.size]
+        if forbidden_cushionings.any?
+          error_message << "#{forbidden_cushionings} not allowed cushionings tags. "
+          selected_cushionings = selected_cushionings & [*1..AllowedTags::CUSHIONING_OPTIONS.size]
+        end
+
+        forbidden_supports = selected_supports - AllowedTags::SUPPORT_OPTIONS
+        if forbidden_supports.any?
+          error_message << "#{forbidden_supports} not allowed supports tags"
+          selected_supports = selected_supports & AllowedTags::SUPPORT_OPTIONS
+        end
+
+        forbidden_additionals = selected_aditional_filters - AllowedTags::ADDITIONAL_OPTIONS
+        if forbidden_additionals.any?
+          error_message << "#{forbidden_additionals} not allowed additional tags."
+          selected_aditional_filters = selected_aditional_filters & AllowedTags::ADDITIONAL_OPTIONS
+        end
+        raises error_message if error_message.present?
+      end
+
+      if fobidden_tags
+        @invalid = true
+      end
+
+      selected_aditional_filters = selected_aditional_filters&.map(&:to_sym)
 
       @current_page = page
 
@@ -116,6 +152,10 @@ module FilterPagination
       @selected_sort = SORTING_OPTIONS.select { |o| o[1] == sort }.first
     end
 
+    def invalid?
+      @invalid
+    end
+
     private
 
     # This filter makes sure that the remaining avilable filters have at least one model
@@ -155,5 +195,14 @@ module FilterPagination
     @total_pages = models_filter.total_pages
     @current_page = models_filter.current_page
     @selected_sort = models_filter.selected_sort
+
+    if models_filter.invalid?
+      flash.now[:notice] = I18n.t('invalid_filter_tags')
+    end
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 end

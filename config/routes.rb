@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|es/ do
     root "pages#home"
 
-    get 'filter_models', to: 'pages#filter_models', as: 'filter_models'
+    get 'filter_models', to: 'pages#filter_models', as: 'filter_models', defaults: { format: :turbo_stream }
 
     get 'blog', to: 'posts#index', as: 'posts'
     resources :posts, only: %i[show]

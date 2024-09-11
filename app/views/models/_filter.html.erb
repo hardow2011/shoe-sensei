@@ -1,5 +1,5 @@
-<div class="filter-wrapper">
-    <%= turbo_frame_tag 'models-filter' do %>
+<%= turbo_frame_tag 'models-filter' do %>
+    <div class="filter-wrapper">
         <%= form_with url: filter_models_path, method: :get, class: 'model-filter block' do |f| %>
             <div id="filter-wrapper" class="filter-wrapper columns">
                 <div class="filter-list-wrapper column has-background-inherit	 is-one-third-tablet is-one-fourth-desktop is-one-fifth-widescreen">
@@ -53,5 +53,5 @@
                 </div>
             </div>
         <% end %>
-    <% end %>
-</div>
+    </div>
+<% end %>
