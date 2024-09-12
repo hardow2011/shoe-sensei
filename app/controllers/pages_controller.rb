@@ -1,13 +1,11 @@
 class PagesController < ApplicationController
   include FilterPagination
 
-  before_action only: %i[home filter_models] do
-    set_filtered_models(nil, nil)
-  end
-
   def home
+    @models_count = Model.only_still_in_production.count
   end
 
   def filter_models
+    set_filtered_models(nil, params[:brand_id] || nil)
   end
 end

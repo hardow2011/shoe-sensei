@@ -1,4 +1,4 @@
-<% if @brand&.id || params[:single_brand_id] %>
+<% if @brand&.id || filter_list[:single_brand_id] %>
     <%= hidden_field_tag :single_brand_id, @brand&.id || filter_list[:single_brand_id] %>
 <% else %>
     <div class="<%= class_names('is-hidden': filter_list[:single_brand_id] ) %>">

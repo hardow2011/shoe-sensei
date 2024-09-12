@@ -1,0 +1,32 @@
+<% image_wrapper_classes = 'is-flex is-align-items-center has-background-white p-1 card-border-radius' %>
+<div class="card model-box is-clipped">
+  <div class="card-image">
+    <figure class="image is-5by3">
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="media is-align-items-center">
+      <div class="media-left">
+          <div>
+            <figure class="image is-48x48">
+            </figure>
+          </div>
+      </div>
+      <div class="media-content is-flex is-flex-direction-column is-align-self-stretch is-justify-content-space-evenly">
+        <div class="content is-skeleton">
+            <p>Lorem Ipsum</p>
+            <p>Lorem Ipsum</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <p class="is-skeleton is-display-inline-block">Lorem Ipsum Ipsum Ipsum</p>
+      <p class="is-skeleton is-display-inline-block">Lorem Ipsum Ipsum Ipsum</p>
+      <p class="is-skeleton is-display-inline-block">Lorem Ipsum Ipsum Ipsum</p>
+      <p class="is-skeleton is-display-inline-block">Lorem Ipsum Ipsum Ipsum</p>
+      <%#= render partial: 'models/cushioning', locals: { cushioning_level: model.tags[:cushioning_level], cushioning_name: model.cushioning_name } %>
+      <%#= render partial: 'models/apma_accepted', locals: { apma_accepted: model.tags[:apma_accepted]  } %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<% if total_pages > 1 %>
+    <nav class="pagination" role="navigation" aria-label="pagination">
+        <%= link_to "Lorem Ipsum", '', class: "pagination-previous is-disabled" %>
+        <%= link_to "Lorem Ipsum", '', class: "pagination-next is-disabled" %>
+        <ul class="pagination-list">
+            <% total_pages.times do |i| %>
+                <li>
+                    <%= link_to i+1, '', class: 'pagination-link is-disabled', disabled: true %>
+                </li>
+            <% end %>
+        </ul>
+    </nav>
+<% end %>

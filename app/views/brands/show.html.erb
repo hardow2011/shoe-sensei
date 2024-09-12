@@ -22,7 +22,9 @@
 </div>
 <div class="section">
     <div class="container is-widescreen">
-        <%= render partial: 'models/filter', locals: { paged_models: @paged_models, total_pages: @total_pages, current_page: @current_page, selected_sort: @selected_sort, filter_list: @filter_list } %>
+        <%= turbo_frame_tag 'models-filter', src: filter_models_path(brand_id: @brand.id) do %>
+            <%= render partial: 'models/filter/skeleton/grid', locals: { models_count: @models_count } %>
+        <% end %>
     </div>
 </div>
 <div class="section">

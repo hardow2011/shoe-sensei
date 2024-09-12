@@ -1,9 +1,6 @@
 class BrandsController < ApplicationController
   include FilterPagination
   before_action :set_brand, only: %i[show]
-  before_action only: %i[show] do
-    set_filtered_models(nil, @brand.id)
-  end
 
   def index
     @brands = Brand.order(:name)
@@ -15,6 +12,7 @@ class BrandsController < ApplicationController
   end
 
   def show
+    @models_count = @brand.models.only_still_in_production.count
     @meta_tags = {
       title: @brand.name + " | " + @app_name,
       description: I18n.t('brand_overview', brand_name: @brand.name)

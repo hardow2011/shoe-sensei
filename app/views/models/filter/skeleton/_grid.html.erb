@@ -1,0 +1,54 @@
+<% total_pages = (models_count / FilterPagination::MODELS_PER_PAGE.to_f).ceil  %>
+<% models_count = models_count > 9 ? 9 : models_count  %>
+<div class="filter-wrapper columns is-loading">
+    <div class="filter-list-wrapper column has-background-inherit is-one-third-tablet is-one-fourth-desktop is-one-fifth-widescreen">
+        <button type="button" class="button mobile-filter-toggle mb-5 is-hidden-tablet is-disabled" disabled><%= t('filters.toggle') %></button>
+        <% 5.times do %>
+            <%= render partial: 'models/filter/skeleton/checkbox_list', locals: { checkbox_count: 1 } %>
+        <% end %>
+        <%= link_to 'Lorem Ipsum', '', class: 'button is-disabled is-skeleton' %>
+    </div>
+    <div class="column">
+        <div class="block filter-sorting-block">
+            <div class="columns">
+                <div class="column is-hidden-tablet">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label"><%= t('filters.prompt') %>:</label>
+                        </div>
+                        <div class="field-body sorting-field">
+                            <button type="button" class="button mobile-filter-toggle is-disabled" disabled><%= t('filters.toggle') %></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label is-inline"><%= t('sorting.prompt') %>:</label>
+                        </div>
+                        <div class="field-body sorting-field">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <%# options_for_select = FilterPagination::SORTING_OPTIONS.map { |o,v| [t("sorting.#{o.parameterize(separator: '_')}"), v] } %>
+                                        <%= select_tag(nil, options_for_select(['Lorem Ipsum Ipsum Ipsum']), { }) %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <hr/>
+    <%= render partial: 'models/filter/skeleton/pagination', locals: { total_pages: total_pages } %>
+    <div class="fixed-grid has-1-cols-mobile has-2-cols-tablet has-3-cols-desktop models-page">
+        <div class="grid models-grid">
+            <% models_count.times do %>
+                <%= render partial: 'models/filter/skeleton/model' %>
+            <% end %>
+        </div>
+    </div>
+    <%= render partial: 'models/filter/skeleton/pagination', locals: { total_pages: total_pages } %>
+    </div>
+</div>
