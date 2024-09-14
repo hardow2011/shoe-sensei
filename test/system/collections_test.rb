@@ -8,7 +8,7 @@ class CollectionsTest < ApplicationSystemTestCase
   test 'access brand collection section from homepage' do
     visit root_url
 
-    within('.model-filter') do
+    within('.models-filter') do
       check @brooks.name
     end
 

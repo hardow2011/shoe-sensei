@@ -1,5 +1,5 @@
 
   
 window.toggleMobileFilter = function () {
-  document.querySelector('.filter-wrapper').classList.toggle('mobile-filter-active');
+  document.querySelector('#models-filter').classList.toggle('mobile-filter-active');
 }

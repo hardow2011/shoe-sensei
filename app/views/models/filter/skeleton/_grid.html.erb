@@ -1,6 +1,6 @@
 <% total_pages = (models_count / FilterPagination::MODELS_PER_PAGE.to_f).ceil  %>
 <% models_count = models_count > 9 ? 9 : models_count  %>
-<div class="filter-wrapper columns is-loading">
+<div class="models-filter columns is-loading">
     <div class="filter-list-wrapper column has-background-inherit is-one-third-tablet is-one-fourth-desktop is-one-fifth-widescreen">
         <button type="button" class="button mobile-filter-toggle mb-5 is-hidden-tablet is-disabled" disabled><%= t('filters.toggle') %></button>
         <% 5.times do %>

@@ -169,17 +169,15 @@ html.is-clipped {
     }
 }
 
-.filter-wrapper {
-    @include mixins.mobile {
-        .filter-list-wrapper {
-            display: none;
-        }
+@include mixins.mobile {
+    .filter-list-wrapper {
+        display: none;
+    }
 
-        &.mobile-filter-active {
-            .filter-list-wrapper {
-                display: block;
-            }   
-        }
+    .mobile-filter-active {
+        .filter-list-wrapper {
+            display: block;
+        }   
     }
 }
 
@@ -219,7 +217,7 @@ a {
     }
 }
 
-.filter-wrapper.is-loading {
+.models-filter.is-loading {
     .model-box {
         .media-content {
             * {

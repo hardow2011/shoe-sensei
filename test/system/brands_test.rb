@@ -26,7 +26,7 @@ class BrandsTest < ApplicationSystemTestCase
   test 'show brand page' do
     visit root_url
 
-    within('.model-filter') do
+    within('.models-filter') do
       check @on_running.name
     end
 
@@ -42,7 +42,7 @@ class BrandsTest < ApplicationSystemTestCase
     assert_text @on_running.name
     assert_text @on_running.overview
 
-    within('.model-filter') do
+    within('.models-filter') do
       assert_no_text 'Brand'
 
       brands.each do |b|
@@ -68,7 +68,7 @@ class BrandsTest < ApplicationSystemTestCase
       end
     end
 
-    within('.model-filter') do
+    within('.models-filter') do
       has_field? 'High'
       check 'High'
     end

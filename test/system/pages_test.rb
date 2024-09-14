@@ -16,7 +16,7 @@ class PagesTest < ApplicationSystemTestCase
       assert_any_of_selectors(:css, 'div.model-box')
     end
 
-    within('.model-filter') do
+    within('.models-filter') do
       has_field? 'Training and gym'
 
       has_field? 'Brooks'
@@ -37,7 +37,7 @@ class PagesTest < ApplicationSystemTestCase
       assert_text @hoka_bondi_8.brand.name
     end
 
-    within('.model-filter') do
+    within('.models-filter') do
       check 'Road running'
     end
 
@@ -47,7 +47,7 @@ class PagesTest < ApplicationSystemTestCase
       assert_text @hoka_bondi_8.brand.name
     end
 
-    within('.model-filter') do
+    within('.models-filter') do
       has_no_field? 'Low'
       has_field? 'On'
       check 'On'
@@ -104,7 +104,7 @@ class PagesTest < ApplicationSystemTestCase
       click_on '2'
     end
 
-    within('.model-filter') do
+    within('.models-filter') do
       check 'On'
     end
 
@@ -117,12 +117,12 @@ class PagesTest < ApplicationSystemTestCase
 
     sort_options = FilterPagination::SORTING_OPTIONS.map { |o| o[0]}
 
-    within('.model-filter') do
+    within('.models-filter') do
       assert_select :models_sorting, with_options: sort_options
     end
 
     # Assert default 'Name (A to Z)' is selected
-    within('.model-filter') do
+    within('.models-filter') do
       assert_select :models_sorting, selected: 'Name (A to Z)'
     end
 
@@ -134,7 +134,7 @@ class PagesTest < ApplicationSystemTestCase
     end
 
     # Select 'Cushioning (low to high) order and assert selected
-    within('.model-filter') do
+    within('.models-filter') do
       select 'Cushioning (low to high)', from: :models_sorting
       assert_select :models_sorting, selected: 'Cushioning (low to high)'
     end
@@ -147,7 +147,7 @@ class PagesTest < ApplicationSystemTestCase
     end
 
     # Select 'Cushioning (high to low)' order and assert selected
-    within('.model-filter') do
+    within('.models-filter') do
       select 'Cushioning (high to low)', from: :models_sorting
       assert_select :models_sorting, selected: 'Cushioning (high to low)'
     end
@@ -160,7 +160,7 @@ class PagesTest < ApplicationSystemTestCase
     end
 
     # Select 'Weight (low to high)' order and assert selected
-    within('.model-filter') do
+    within('.models-filter') do
       select 'Weight (low to high)', from: :models_sorting
       assert_select :models_sorting, selected: 'Weight (low to high)'
     end
@@ -173,7 +173,7 @@ class PagesTest < ApplicationSystemTestCase
     end
 
     # Select 'Weight (high to low)' order and assert selected
-    within('.model-filter') do
+    within('.models-filter') do
       select 'Weight (high to low)', from: :models_sorting
       assert_select :models_sorting, selected: 'Weight (high to low)'
     end
@@ -186,7 +186,7 @@ class PagesTest < ApplicationSystemTestCase
     end
 
     # Select 'Heel to toe drop (low to high)' order and assert selected
-    within('.model-filter') do
+    within('.models-filter') do
       select 'Heel to toe drop (low to high)', from: :models_sorting
       assert_select :models_sorting, selected: 'Heel to toe drop (low to high)'
     end
@@ -199,7 +199,7 @@ class PagesTest < ApplicationSystemTestCase
     end
 
     # Select 'Heel to toe drop (high to low)' order and assert selected
-    within('.model-filter') do
+    within('.models-filter') do
       select 'Heel to toe drop (high to low)', from: :models_sorting
       assert_select :models_sorting, selected: 'Heel to toe drop (high to low)'
     end
@@ -215,7 +215,7 @@ class PagesTest < ApplicationSystemTestCase
   test 'using additional filters in the homepage' do
     visit root_url
 
-    within('.model-filter') do
+    within('.models-filter') do
       has_field? 'APMA accepted only?'
       has_field? 'Show discontinued models?'
 
@@ -248,7 +248,7 @@ class PagesTest < ApplicationSystemTestCase
 
     assert_no_text @brooks_ghost_max_1.name
 
-    within('.model-filter') do
+    within('.models-filter') do
       check 'Brooks'
 
       assert_no_field 'Low'
@@ -264,7 +264,7 @@ class PagesTest < ApplicationSystemTestCase
       assert_no_text model.name
     end
 
-    within('.model-filter') do
+    within('.models-filter') do
       assert_field 'Show discontinued models?'
       check 'Show discontinued models?'
 
@@ -275,7 +275,7 @@ class PagesTest < ApplicationSystemTestCase
       assert_text model.name
     end
 
-    within('.model-filter') do
+    within('.models-filter') do
       check 'High'
     end
 
@@ -287,7 +287,7 @@ class PagesTest < ApplicationSystemTestCase
       assert_no_text model.name
     end
 
-    within('.model-filter') do
+    within('.models-filter') do
       uncheck 'Show discontinued models?'
     end
 
