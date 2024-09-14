@@ -36,7 +36,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
-  # Store uploaded files on the local file system (see config/storage.yml for options).
+  # Use render storage disk
   config.active_storage.service = :render
 
   # Mount Action Cable outside main process or domain.
@@ -97,9 +97,6 @@ Rails.application.configure do
 
   # TODO: set host for production
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
-  # Use render storage disk
-  Rails.application.config.active_storage.service = :render
 
   Rails.application.routes.default_url_options[:host] = 'https://www.shoesensei.com/'
 end
