@@ -1,39 +1,41 @@
-<%= form_with url: filter_models_path, method: :get, class: 'models-filter block columns' do |f| %>
-        <div class="filter-list-wrapper column has-background-inherit is-one-third-tablet is-one-fourth-desktop is-one-fifth-widescreen">
-            <div class="is-hidden-tablet mb-5">
-                <div class="field-label is-normal">
-                    <label class="label"><%= t('filters.prompt') %>:</label>
+<%= turbo_frame_tag 'models-filter' do %>
+    <%= form_with url: filter_models_path, method: :get, class: 'models-filter block columns' do |f| %>
+            <div class="filter-list-wrapper column has-background-inherit is-one-third-tablet is-one-fourth-desktop is-one-fifth-widescreen">
+                <div class="is-hidden-tablet mb-5">
+                    <div class="field-label is-normal">
+                        <label class="label"><%= t('filters.prompt') %>:</label>
+                    </div>
+                    <div class="field-body sorting-field">
+                        <button type="button" class="button mobile-filter-toggle" data-turbo="false" onclick="toggleMobileFilter()"><%= t('filters.toggle') %></button>
+                    </div>
                 </div>
-                <div class="field-body sorting-field">
-                    <button type="button" class="button mobile-filter-toggle" data-turbo="false" onclick="toggleMobileFilter()"><%= t('filters.toggle') %></button>
-                </div>
+                <%= render partial: 'models/filter/list', locals: { form: f, filter_list: filter_list } %>
             </div>
-            <%= render partial: 'models/filter/list', locals: { form: f, filter_list: filter_list } %>
-        </div>
-        <div class="column">
-            <div class="block filter-sorting-block">
-                <div class="columns">
-                    <div class="column is-hidden-tablet">
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal">
-                                <label class="label"><%= t('filters.prompt') %>:</label>
-                            </div>
-                            <div class="field-body sorting-field">
-                                <button type="button" class="button mobile-filter-toggle" data-turbo="false" onclick="toggleMobileFilter()"><%= t('filters.toggle') %></button>
+            <div class="column">
+                <div class="block filter-sorting-block">
+                    <div class="columns">
+                        <div class="column is-hidden-tablet">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label"><%= t('filters.prompt') %>:</label>
+                                </div>
+                                <div class="field-body sorting-field">
+                                    <button type="button" class="button mobile-filter-toggle" data-turbo="false" onclick="toggleMobileFilter()"><%= t('filters.toggle') %></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="column">
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal">
-                                <label class="label is-inline"><%= t('sorting.prompt') %>:</label>
-                            </div>
-                            <div class="field-body sorting-field">
-                                <div class="field is-narrow">
-                                    <div class="control">
-                                        <div class="select is-fullwidth">
-                                            <% options_for_select = FilterPagination::SORTING_OPTIONS.map { |o,v| [t("sorting.#{o.parameterize(separator: '_')}"), v] } %>
-                                            <%= f.select(:models_sorting, options_for_select(options_for_select, selected: selected_sort), { }, onchange: "submit_filter_form(this)") %>
+                        <div class="column">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label is-inline"><%= t('sorting.prompt') %>:</label>
+                                </div>
+                                <div class="field-body sorting-field">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <div class="select is-fullwidth">
+                                                <% options_for_select = FilterPagination::SORTING_OPTIONS.map { |o,v| [t("sorting.#{o.parameterize(separator: '_')}"), v] } %>
+                                                <%= f.select(:models_sorting, options_for_select(options_for_select, selected: selected_sort), { }, onchange: "submit_filter_form(this)") %>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -41,18 +43,18 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        <hr/>
-        <%= render partial: 'models/filter/pagination', locals: { total_pages: total_pages, current_page: current_page } %>
-        <% if paged_models %>
-            <div class="fixed-grid has-1-cols-mobile has-2-cols-tablet has-3-cols-desktop	 models-page">
-                <div class="grid models-grid">
-                    <%= render partial: 'models/model', collection: paged_models, locals: { hide_brand_filter: filter_list[:single_brand_id] }, cached: ->(model) { [I18n.locale, filter_list[:single_brand_id], model] } %>
+            <hr/>
+            <%= render partial: 'models/filter/pagination', locals: { total_pages: total_pages, current_page: current_page } %>
+            <% if paged_models %>
+                <div class="fixed-grid has-1-cols-mobile has-2-cols-tablet has-3-cols-desktop	 models-page">
+                    <div class="grid models-grid">
+                        <%= render partial: 'models/model', collection: paged_models, locals: { hide_brand_filter: filter_list[:single_brand_id] }, cached: ->(model) { [I18n.locale, filter_list[:single_brand_id], model] } %>
+                    </div>
                 </div>
+            <% else %>
+                <p class="is-size-4"><%= t('filter.no_models_for_selection') %></p>
+            <% end %>
+            <%= render partial: 'models/filter/pagination', locals: { total_pages: total_pages, current_page: current_page } %>
             </div>
-        <% else %>
-            <p class="is-size-4"><%= t('filter.no_models_for_selection') %></p>
-        <% end %>
-        <%= render partial: 'models/filter/pagination', locals: { total_pages: total_pages, current_page: current_page } %>
-        </div>
+    <% end %>
 <% end %>
