@@ -32,6 +32,10 @@ class Brand < ApplicationRecord
   validates :name, :handle, uniqueness: true
   validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }
 
+  scope :order_by_models_count, ->(limit = 3) { joins(:models)
+    .select('brands.id, brands.handle, brands.name, count(models.id) as models_count')
+    .group(:id).order(models_count: :desc).limit(limit) }
+
   has_one_attached :logo do |attachable|
     attachable.variant :thumb, resize_to_limit: [500, 500], preprocessed: true
   end
