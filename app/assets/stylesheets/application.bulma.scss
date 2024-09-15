@@ -94,6 +94,19 @@
     }
 }
 
+@keyframes temp-highlight {
+    100% {
+        background-color: none;
+    }
+    0% {
+        background-color: $yellow;
+    }
+}
+
+.highlighted-background {
+    animation: temp-highlight 1.5s normal;
+}
+
 .transparent-icon {
     opacity: .35;
 }

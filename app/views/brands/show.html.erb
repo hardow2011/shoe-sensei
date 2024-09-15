@@ -54,3 +54,8 @@
         </div>
     </div>
 </div>
+
+<%# TODO: include in highlight_collection assets pipeline and remove admin specific js from application.js %>
+<% content_for :head do %>
+    <%= javascript_include_tag 'highlight_collection', "data-turbo-track": "reload" %>
+<% end %>
