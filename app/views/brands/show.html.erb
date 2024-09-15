@@ -2,8 +2,8 @@
     <div class="container is-widescreen">
         <%= cache [I18n.locale, @brand] do  %>
             <div class="columns is-multiline is-8-desktop">
-                <div class="column is-half-mobile is-one-third-tablet is-flex is-justify-content-center brand-hero">
-                    <figure class="image is-5 card-border-radius has-background-white">
+                <div class="column is-three-fifths-mobile is-one-third-tablet is-flex is-justify-content-center brand-hero">
+                    <figure class="image is-5 is-5by3 card-border-radius has-background-white">
                         <%= image_tag @brand.logo, class: 'p-3', style: "height: 100%;object-fit: contain;" %>
                     </figure>
                 </div>
