@@ -254,26 +254,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rails/actiontext@npm:^7.2.100":
-  version: 7.2.100
-  resolution: "@rails/actiontext@npm:7.2.100"
-  dependencies:
-    "@rails/activestorage": ">= 7.2.0-alpha"
-  peerDependencies:
-    trix: ^2.0.0
-  checksum: f1bcd22ed59d42ba35b64f6bdca490a1cca32eeb792b8bef91ef5160820ca126652afecf35469fa6122860256f271d4b78eca9fe0663b9e8edcce9764bcbc9e3
-  languageName: node
-  linkType: hard
-
-"@rails/activestorage@npm:>= 7.2.0-alpha":
-  version: 7.2.100
-  resolution: "@rails/activestorage@npm:7.2.100"
-  dependencies:
-    spark-md5: ^3.0.1
-  checksum: 1c9f24a983287bfff7b091c26c3c4e64ac116577b41033f9758a5864bb513ade8308a30dc949f8671bcc7c7428af60840781a12bef336e4f3a25e3eace08f438
-  languageName: node
-  linkType: hard
-
 "@rails/activestorage@npm:^7.2.0":
   version: 7.2.0
   resolution: "@rails/activestorage@npm:7.2.0"
@@ -356,12 +336,10 @@ __metadata:
     "@fortawesome/fontawesome-free": ^5
     "@hotwired/stimulus": ^3.2.2
     "@hotwired/turbo-rails": ^8.0.5
-    "@rails/actiontext": ^7.2.100
     "@rails/activestorage": ^7.2.0
     bulma: ^1.0.2
     esbuild: ^0.23.0
     sass: ^1.77.8
-    trix: ^2.1.5
   languageName: unknown
   linkType: soft
 
@@ -1289,13 +1267,6 @@ __metadata:
   dependencies:
     is-number: ^7.0.0
   checksum: f76fa01b3d5be85db6a2a143e24df9f60dd047d151062d0ba3df62953f2f697b16fe5dad9b0ac6191c7efc7b1d9dcaa4b768174b7b29da89d4428e64bc0a20ed
-  languageName: node
-  linkType: hard
-
-"trix@npm:^2.1.5":
-  version: 2.1.5
-  resolution: "trix@npm:2.1.5"
-  checksum: 34b6108d8ade9a90e25b7185d1518da1c54c91298b9d0b21beb1c37775977efda57f4473c344da81a39e747706315967fe9c919092fd3bec2b2dd6660419b3cc
   languageName: node
   linkType: hard
 

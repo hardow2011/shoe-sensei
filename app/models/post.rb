@@ -3,6 +3,8 @@
 # Table name: posts
 #
 #  id          :bigint           not null, primary key
+#  content_en  :string           not null
+#  content_es  :string           not null
 #  handle      :string           not null
 #  overview_en :string           not null
 #  overview_es :string           not null
@@ -22,8 +24,6 @@ class Post < ApplicationRecord
   include AllowedTags
   extend Mobility
 
-  has_rich_text :content_en
-  has_rich_text :content_es
   translates :overview
   translates :title
 
