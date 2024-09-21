@@ -1,0 +1,53 @@
+.homepage-hero, .homepage-hero-inner {
+    height: calc(100vh - $navbar-height);
+}
+
+.logo-carousel-wrapper {
+    position:relative; 
+
+    .photobanner {
+        display: flex;
+        flex-direction: column;
+        overflow:hidden; 
+        white-space: nowrap;
+        animation: logo-carousel 50s linear infinite;
+
+        figure {    
+            margin: 0 0.5em 
+        }
+
+        img {
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .photobanner:nth-of-type(2n) {
+        animation-direction: reverse;
+    }
+}
+
+.title-container {
+    height: 100%;
+    h2 {
+        line-height: 1.35em;
+    }
+}
+
+.logo-carousel-background {
+    @extend .has-background-white;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    right: 0;
+}
+
+@keyframes logo-carousel {
+  0% {
+      transform: translate(0, 0);
+  }
+  100% {
+      transform: translate(0, -50%);
+  }
+}

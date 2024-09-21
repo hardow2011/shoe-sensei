@@ -1,3 +1,20 @@
+<div class="section is-flex is-clipped homepage-hero is-relative">
+    <div class="logo-carousel-background is-hidden-tablet">
+    </div>
+    <div class="column">
+        <div class="columns homepage-hero-inner">
+            <div class="column">
+                <div class="container title-container is-flex is-justify-content-center is-flex-direction-column">
+                    <h1 class="title is-1">Shoe Sensei</h1>
+                    <h2 class="title is-3"><%= t('home_hero_subtitle_html') %></h2>
+                </div>
+            </div>
+            <div class="column is-two-third-desktop">
+                <%= render partial: "shared/logo_carousel/carousel" %>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="section">
     <div class="container is-widescreen">
         <%= turbo_frame_tag 'models-filter', src: filter_models_path do %>

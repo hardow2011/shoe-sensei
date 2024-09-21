@@ -40,12 +40,15 @@
 // @import "bulma/sass/layout/hero.sass";
 // @import "bulma/sass/layout/section.sass";
 
+$navbar-height: 52px;
+
 @import 'bulma/css/bulma';
 @import "bulma/sass/utilities/initial-variables.scss";
 // @import 'bulma/bulma';
 @import './direct_uploads.css';
 @import 'actiontext.css';
 @import 'trix-overrides';
+@import 'logo-carousel';
 
 .model-box {
     height: 100%;

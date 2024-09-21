@@ -72,3 +72,4 @@ en:
   blog_description: Get knowledgeable insights, detailed shoe reviews, and essential buying tips to choose the best footwear for any activity. Stay informed with %{app_name}'s blog.
   blog_post_meta_title: "%{title} | %{app_name}'s Blog"
   invalid_filter_tags: "Invalid filter tags applied."
+  home_hero_subtitle_html: "Shoes Made Simple.<br>Expert Advice for Every Foot. Explore Our Guides to Find the Perfect Fit and Move with Confidence."
