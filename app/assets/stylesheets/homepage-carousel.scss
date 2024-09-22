@@ -100,11 +100,7 @@
     left: -10vw;
 }
 
-.try-filter-btn {
-    @extend .button;
-    @extend .is-link;
-    @extend .is-large;
-    @extend .has-text-white;
+.text-wrap {
     text-wrap: wrap;
 }
 

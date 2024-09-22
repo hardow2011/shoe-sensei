@@ -75,4 +75,5 @@ en:
   home_hero_subtitle_html: "Shoes Made Simple.<br>Expert Advice for Every Foot.<br>Explore Our Guides to Find the Perfect Fit and Move with Confidence."
   cta:
     try_our_shoe_filter: "Try Our Shoe Filter!"
-    read_blog_intead_html: "For detailed articles about footwear, jump straight to our %{blog_anchor}!"
+    read_blog_instead_html: "For detailed articles about footwear, jump straight to our %{blog_anchor}!"
+    visit_our_blog: Visit Our Blog
