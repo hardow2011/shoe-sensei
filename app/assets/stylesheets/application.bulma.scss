@@ -67,6 +67,7 @@ $navbar-height: 52px;
 
 .is-disabled {
     pointer-events: none;
+    user-select: none;
 }
 
 .flash {
