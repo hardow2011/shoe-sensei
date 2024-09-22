@@ -19,6 +19,10 @@
         padding-right: 0;
         border-bottom: 2px $grey-light solid;
     }
+
+    @include mixins.mobile {
+        padding-bottom: 24px;
+    }
 }
 
 .homepage-hero-outer {
@@ -93,6 +97,7 @@
 
 .homepage-carousel-background-mobile {
     @extend .has-background-white;
+    border-bottom: 2px $grey-light solid;
     position: absolute;
     height: 100%;
     top: 0;
