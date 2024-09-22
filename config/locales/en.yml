@@ -73,3 +73,5 @@ en:
   blog_post_meta_title: "%{title} | %{app_name}'s Blog"
   invalid_filter_tags: "Invalid filter tags applied."
   home_hero_subtitle_html: "Shoes Made Simple.<br>Expert Advice for Every Foot.<br>Explore Our Guides to Find the Perfect Fit and Move with Confidence."
+  cta:
+    try_our_shoe_filter: "Try Our Shoe Filter!"

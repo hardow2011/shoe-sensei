@@ -4,6 +4,10 @@
     }
 }
 
+.carousel-wrapper {
+    max-height: calc(100vh - $navbar-height);   
+}
+
 .homepage-hero-inner {
     @include mixins.touch {
         flex-direction: column;
@@ -30,8 +34,8 @@
         flex-direction: row;
         // overflow:hidden; 
         white-space: nowrap;
-        animation: homepage-carousel-horizontal 10s linear infinite;
-        height: 100px;
+        animation: homepage-carousel-horizontal 10s ease-in-out infinite;
+        height: 175px;
 
         &:first-of-type {
             display: flex;
@@ -60,7 +64,7 @@
     }
 
     .photobanner:nth-of-type(2n) {
-        animation-direction: reverse;
+        animation-name: homepage-carousel-vertical-reverse;
     }
 }
 
@@ -96,12 +100,23 @@
     left: -10vw;
 }
 
+.try-filter-btn {
+    @extend .button;
+    @extend .is-link;
+    @extend .is-large;
+    @extend .has-text-white;
+    text-wrap: wrap;
+}
+
 @keyframes homepage-carousel-horizontal {
   0% {
       transform: translate(0, 0);
   }
+  50% {
+    transform: translate(-50%, 0);
+  }
   100% {
-      transform: translate(-50%, 0);
+      transform: translate(0%, 0);
   }
 }
 
@@ -109,6 +124,21 @@
     0% {
         transform: translate(0, 0);
     }
+    50% {
+        transform: translate(0, -50%);
+      }
+    100% {
+        transform: translate(0, 0%);
+    }
+  }
+
+  @keyframes homepage-carousel-vertical-reverse {
+    0% {
+        transform: translate(0, -50%);
+    }
+    50% {
+        transform: translate(0, 0%);
+      }
     100% {
         transform: translate(0, -50%);
     }
