@@ -1,16 +1,41 @@
 .homepage-hero, .homepage-hero-inner {
-    height: calc(100vh - $navbar-height);
+    @include mixins.desktop {
+        height: calc(100vh - $navbar-height);
+    }
+}
+
+.homepage-hero-inner {
+    @include mixins.touch {
+        flex-direction: column;
+    }
+}
+
+.homepage-hero {
+    @include mixins.desktop {
+        padding-right: 0;
+        border-bottom: 2px $grey-light solid;
+    }
+}
+
+.homepage-hero-outer {
+    width: 100%;
 }
 
 .logo-carousel-wrapper {
     position:relative; 
 
     .photobanner {
-        display: flex;
-        flex-direction: column;
-        overflow:hidden; 
+        // display: flex;
+        display: none;
+        flex-direction: row;
+        // overflow:hidden; 
         white-space: nowrap;
-        animation: logo-carousel 50s linear infinite;
+        animation: logo-carousel-horizontal 10s linear infinite;
+        height: 100px;
+
+        &:first-of-type {
+            display: flex;
+        }
 
         figure {    
             margin: 0 0.5em 
@@ -19,6 +44,18 @@
         img {
             height: 100%;
             object-fit: contain;
+        }
+
+        @include mixins.tablet {
+            animation-duration: 25s;
+        }
+
+        @include mixins.desktop {
+            display: flex;
+            flex-direction: column;
+            height: unset;
+            animation-name: logo-carousel-vertical;
+            animation-duration: 50s;
         }
     }
 
@@ -32,6 +69,13 @@
     h2 {
         line-height: 1.35em;
     }
+    
+    margin-bottom: 24px;
+    
+    @include mixins.desktop {
+        padding-right: 48px;
+        margin-bottom: 0;
+    }
 }
 
 .logo-carousel-background {
@@ -43,11 +87,29 @@
     right: 0;
 }
 
-@keyframes logo-carousel {
+.logo-carousel-background-mobile {
+    @extend .has-background-white;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    width: 110vw;
+    left: -10vw;
+}
+
+@keyframes logo-carousel-horizontal {
   0% {
       transform: translate(0, 0);
   }
   100% {
-      transform: translate(0, -50%);
+      transform: translate(-50%, 0);
   }
 }
+
+@keyframes logo-carousel-vertical {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(0, -50%);
+    }
+  }

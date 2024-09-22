@@ -1,7 +1,7 @@
 <div class="section is-flex is-clipped homepage-hero is-relative">
-    <div class="logo-carousel-background is-hidden-tablet">
+    <div class="logo-carousel-background is-hidden-touch">
     </div>
-    <div class="column">
+    <div class="column homepage-hero-outer">
         <div class="columns homepage-hero-inner">
             <div class="column">
                 <div class="container title-container is-flex is-justify-content-center is-flex-direction-column">
@@ -9,7 +9,7 @@
                     <h2 class="title is-3"><%= t('home_hero_subtitle_html') %></h2>
                 </div>
             </div>
-            <div class="column is-two-third-desktop">
+            <div class="column is-relative">
                 <%= render partial: "shared/logo_carousel/carousel" %>
             </div>
         </div>
