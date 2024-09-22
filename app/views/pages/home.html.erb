@@ -6,8 +6,9 @@
             <div class="column">
                 <div class="container title-container is-flex is-justify-content-center is-flex-direction-column">
                     <h1 class="title is-1"><%= @app_name %></h1>
-                    <h2 class="is-size-3 mb-6"><%= t('home_hero_subtitle_html') %></h2>
-                    <%= link_to t('cta.try_our_shoe_filter'), '#homepage-filter', class: 'try-filter-btn', data: { turbo: false } %>
+                    <h2 class="is-size-3 mb-5"><%= t('home_hero_subtitle_html') %></h2>
+                    <%= link_to t('cta.try_our_shoe_filter'), '#homepage-filter', class: 'try-filter-btn mb-4', data: { turbo: false } %>
+                    <p class="is-size-5"><%= t('cta.read_blog_intead_html', blog_anchor: link_to(t('blog'), posts_path)) %></p>
                 </div>
             </div>
             <div class="column is-relative carousel-wrapper">

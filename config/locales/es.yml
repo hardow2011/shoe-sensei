@@ -26,3 +26,4 @@ es:
   home_hero_subtitle_html: "Zapatos Hechos Fáciles.<br>Consejos Expertos para tus Pies.<br>Explora Nuestras Guías para Encontrar el Ajuste Perfecto y Muévete con Confianza."
   cta:
     try_our_shoe_filter: "¡Prueba Nuestro Selector de Zapatos!"
+    read_blog_intead_html: "¡Para artículos detallados sobre zapatos, salta directamente a nuestro %{blog_anchor}!"
