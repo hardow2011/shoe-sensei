@@ -1,17 +1,10 @@
 
 <div class="photobanner column">
-    <% 8.times do %>
-        <figure class="image is-1by1">
-            <%= image_tag "on-logo.webp", class: 'p-2' %>
-        </figure>
-        <figure class="image is-1by1">
-            <%= image_tag "brooks-logo.webp" %>
-        </figure>
-        <figure class="image is-1by1">
-            <%= image_tag "new-balance-logo.webp" %>
-        </figure>
-        <figure class="image is-1by1">
-            <%= image_tag "hoka-logo.webp" %>
-        </figure>
+    <% 2.times do %>
+        <% images.each do |image| %>
+            <figure class="image is-1by1">
+                <%= image_tag image %>
+            </figure>
+        <% end %>
     <% end %>
 </div>
