@@ -1,12 +1,16 @@
 .homepage-hero, .homepage-hero-inner {
     @include mixins.desktop {
-        height: calc(100vh - $navbar-height);
+        min-height: calc(100vh - $navbar-height);
     }
 }
 
 .carousel-wrapper {
     max-height: calc(100vh - $navbar-height);
     
+    @include mixins.touch {
+        display: none;
+    }
+
     .homepage-carousel-wrapper {
         position:relative;
         
@@ -76,8 +80,6 @@
     h2 {
         line-height: 1.35em;
     }
-    
-    margin-bottom: 24px;
     
     @include mixins.desktop {
         padding-right: 48px;
