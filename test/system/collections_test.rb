@@ -8,6 +8,8 @@ class CollectionsTest < ApplicationSystemTestCase
   test 'access brand collection section from homepage' do
     visit root_url
 
+    click_on "Try Our Shoe Filter!"
+
     within('.models-filter') do
       check @brooks.name
     end
