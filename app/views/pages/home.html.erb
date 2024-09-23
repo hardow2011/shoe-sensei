@@ -1,6 +1,27 @@
-<div class="section">
+<div class="section is-flex is-clipped homepage-hero is-relative">
+    <div class="homepage-carousel-background is-hidden-touch">
+    </div>
+    <div class="column homepage-hero-outer">
+        <div class="columns homepage-hero-inner">
+            <div class="column">
+                <div class="container title-container is-flex is-justify-content-center is-flex-direction-column">
+                    <h1 class="title is-1"><%= @app_name %></h1>
+                    <h2 class="is-size-3 mb-5"><%= t('home_hero_subtitle_html') %></h2>
+                    <div class="buttons is-flex-wrap-wrap-reverse">
+                        <%= link_to t('cta.try_our_shoe_filter'), '#homepage-filter', class: 'button is-link is-large has-text-white text-wrap text-wrap', data: { turbo: false } %>
+                        <%= link_to t('cta.visit_our_blog'), posts_path, class: 'button is-link is-large text-wrap is-light text-wrap', data: { turbo: false } %>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-relative carousel-wrapper">
+                <%= render partial: "shared/homepage_carousel/carousel" %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section" id="homepage-filter">
     <div class="container is-widescreen">
-        <%= turbo_frame_tag 'models-filter', src: filter_models_path do %>
+        <%= turbo_frame_tag 'models-filter-frame', src: filter_models_path, loading: :lazy do %>
             <%= render partial: 'models/filter/skeleton/grid', locals: { models_count: @models_count } %>
         <% end %>
     </div>

@@ -1,0 +1,15 @@
+<div class="section">
+    <div class="container is-widescreen">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+            <ul>
+                <% pages.each_with_index do |page, i| %>
+                    <% unless i == pages.length - 1 %>
+                        <li><%= link_to page[0], page[1] %></li>
+                    <% else %>
+                        <li class="is-active"><%= link_to page[0], '#', 'aria-current': 'page', class: 'has-text-weight-bold' %></li> 
+                    <% end %>
+                <% end %>
+            </ul>
+        </nav>
+    </div>
+</div>

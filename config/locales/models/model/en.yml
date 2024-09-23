@@ -12,7 +12,7 @@ en:
         training_and_gym: Training and gym
       cushionings:
         low: Low
-        mid: Mid
+        medium: Medium
         high: High
       supports:
         neutral: Neutral

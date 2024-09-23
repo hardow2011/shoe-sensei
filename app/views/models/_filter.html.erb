@@ -1,5 +1,5 @@
-<%= turbo_frame_tag 'models-filter' do %>
-    <%= form_with url: filter_models_path, method: :get, class: 'models-filter block columns' do |f| %>
+<%= turbo_frame_tag 'models-filter-frame' do %>
+    <%= form_with url: filter_models_path, method: :get, class: 'block columns models-filter' do |f| %>
             <div class="filter-list-wrapper column has-background-inherit is-one-third-tablet is-one-fourth-desktop is-one-fifth-widescreen">
                 <div class="is-hidden-tablet mb-5">
                     <div class="field-label is-normal">

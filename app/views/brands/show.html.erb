@@ -1,3 +1,4 @@
+<%= render partial: 'shared/breadcrumbs', locals: { pages: [[t('brands'), brands_path], [@brand.name, brand_path(@brand.handle)]] } %>
 <div class="section">
     <div class="container is-widescreen">
         <%= cache [I18n.locale, @brand] do  %>
@@ -22,7 +23,7 @@
 </div>
 <div class="section">
     <div class="container is-widescreen">
-        <%= turbo_frame_tag 'models-filter', src: filter_models_path(brand_id: @brand.id) do %>
+        <%= turbo_frame_tag 'models-filter-frame', src: filter_models_path(brand_id: @brand.id), loading: :lazy do %>
             <%= render partial: 'models/filter/skeleton/grid', locals: { models_count: @models_count } %>
         <% end %>
     </div>
@@ -34,18 +35,15 @@
         <div class="columns">
             <div class="column is-one-third-tablet is-one-fourth-desktop is-one-fifth-widescreen">
                 <div class="table-of-contents">
-
-                <div class="menu">
-                    <p class="is-size-5"><%= t('table_of_contents') %></p>
-                    <hr/>
-                    <ul class="menu-list">
-                        <% @brand.collections.each do |collection| %>
-                            <li class="mt-2 is-size-5"><%= link_to collection.name, brand_path(@brand.handle, anchor: collection.handle) %></li>
-                        <% end %>
-                    </ul>
-                </div>
-
-
+                    <div class="menu">
+                        <p class="is-size-5"><%= t('table_of_contents') %></p>
+                        <hr/>
+                        <ul class="menu-list">
+                            <% @brand.collections.each do |collection| %>
+                                <li class="mt-2 is-size-5"><%= link_to collection.name, brand_path(@brand.handle, anchor: collection.handle) %></li>
+                            <% end %>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="column">
@@ -55,7 +53,6 @@
     </div>
 </div>
 
-<%# TODO: include in highlight_collection assets pipeline and remove admin specific js from application.js %>
 <% content_for :head do %>
     <%= javascript_include_tag 'highlight_collection' %>
 <% end %>

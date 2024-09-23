@@ -5,7 +5,9 @@ import "./controllers"
 import * as ActiveStorage from "@rails/activestorage"
 ActiveStorage.start()
 
-import "@fortawesome/fontawesome-free/js/all";
+import "@fortawesome/fontawesome-free/js/solid.min";
+// import "@fortawesome/fontawesome-free/js/brands.min";
+import "@fortawesome/fontawesome-free/js/fontawesome.min";
 import './navbar_burger'
 import './model_filter_mobile'
 import './model_grid_skeleton'

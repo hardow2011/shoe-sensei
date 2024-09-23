@@ -1,0 +1,144 @@
+.homepage-hero, .homepage-hero-inner {
+    @include mixins.desktop {
+        min-height: calc(100vh - $navbar-height);
+    }
+}
+
+.carousel-wrapper {
+    max-height: calc(100vh - $navbar-height);
+    
+    @include mixins.touch {
+        display: none;
+    }
+
+    .homepage-carousel-wrapper {
+        position:relative;
+        
+        @include mixins.touch {
+            display: none;
+        }
+    
+        .photobanner {
+            display: flex;
+            flex-direction: row;
+            // overflow:hidden; 
+            white-space: nowrap;
+            animation: homepage-carousel-horizontal 10s ease-in-out infinite;
+            height: 175px;
+    
+            figure {    
+                margin: 0 0.5em 
+            }
+    
+            img {
+                height: 100%;
+                object-fit: contain;
+            }
+    
+            @include mixins.tablet {
+                animation-duration: 25s;
+            }
+    
+            @include mixins.desktop {
+                display: flex;
+                flex-direction: column;
+                height: unset;
+                animation-name: homepage-carousel-vertical;
+                animation-duration: 50s;
+            }
+        }
+    
+        .photobanner:nth-of-type(2n) {
+            animation-name: homepage-carousel-vertical-reverse;
+        }
+    }
+}
+
+.homepage-hero-inner {
+    @include mixins.touch {
+        flex-direction: column;
+    }
+}
+
+.homepage-hero {
+    @include mixins.desktop {
+        padding-right: 0;
+        border-bottom: 2px $grey-light solid;
+    }
+
+    @include mixins.mobile {
+        padding-bottom: 24px;
+    }
+}
+
+.homepage-hero-outer {
+    width: 100%;
+}
+
+.title-container {
+    height: 100%;
+    h2 {
+        line-height: 1.35em;
+    }
+    
+    @include mixins.desktop {
+        padding-right: 48px;
+        margin-bottom: 0;
+    }
+
+    .button {
+        @include mixins.mobile {
+            display: flex;
+            width: 100%;
+        }
+    }
+}
+
+.homepage-carousel-background {
+    @extend .has-background-white;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    right: 0;
+}
+
+.text-wrap {
+    text-wrap: wrap;
+}
+
+@keyframes homepage-carousel-horizontal {
+  0% {
+      transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-50%, 0);
+  }
+  100% {
+      transform: translate(0%, 0);
+  }
+}
+
+@keyframes homepage-carousel-vertical {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(0, -50%);
+      }
+    100% {
+        transform: translate(0, 0%);
+    }
+  }
+
+  @keyframes homepage-carousel-vertical-reverse {
+    0% {
+        transform: translate(0, -50%);
+    }
+    50% {
+        transform: translate(0, 0%);
+      }
+    100% {
+        transform: translate(0, -50%);
+    }
+  }
