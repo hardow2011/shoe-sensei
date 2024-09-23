@@ -103,4 +103,28 @@ class BrandsTest < ApplicationSystemTestCase
       assert_text b.name
     end
   end
+
+  test 'breadcrumbs' do
+    visit root_url
+
+    assert_selector 'a', text: "Try Our Shoe Filter!"
+    assert_selector 'a', text: "Visit Our Blog"
+
+    within('.navbar') do
+      # find('.brands-dropdown').hover
+      click_on 'Brands'
+    end
+
+    assert_no_selector '.breadcrumb'
+
+    click_on 'Read more...', match: :first
+
+    assert_selector '.breadcrumb'
+
+    within('.breadcrumb') do
+      assert_selector 'a', count: 2
+      assert_selector 'a', text: 'Brands'
+      assert_selector 'a[href="#"]', text: 'Brooks'
+    end
+  end
 end
