@@ -7,4 +7,6 @@ my_doctor_told_me:
   overview_en: Picture this scenario... you visit the doctor and he recommends you to get new shoes and mentions the Hokas. Excited, the next day you visit the shoe store and notice the impressive variety of Hokas, including models from Bondi and Clifton, to Ahari and Gaviota. Your doctor did not specify any particular model, so which one should you pick?
   overview_es: Imagina la siguiente situación... visitas al doctor y te recomienda un nuevo par de zapatos y menciona a los Hoka. Emocionado, al siguiente día visitas la tienda y te encuentras con la gran variedad de zapatos Hoka, desde el Bondi y Clifton, hasta el Arahi y Gaviota. Pero el doctor no mencionó ningún modelo en específico, entonces, ¿cuál deberías comprar?
   published: true
+  content_en: This is a test
+  content_es: Esto es un test
   tags: ['healthcare']

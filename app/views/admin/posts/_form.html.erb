@@ -31,13 +31,13 @@
     <div class="field">
         <label class="label"><%= f.label :content_en %></label>
         <div class="control">
-            <%= f.rich_text_area :content_en %>
+            <%= f.text_area :content_en, class: "tinymce", rows: 40, cols: 120 %>
         </div>
     </div>
     <div class="field">
         <label class="label"><%= f.label :content_es %></label>
         <div class="control">
-            <%= f.rich_text_area :content_es %>
+            <%= f.text_area :content_es, class: "tinymce", rows: 40, cols: 120 %>
         </div>
     </div>
     <div class="field">
@@ -67,3 +67,5 @@
         </div>
     </div>
 <% end %>
+
+<%= tinymce %>

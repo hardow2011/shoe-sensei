@@ -11,4 +11,3 @@ import "@fortawesome/fontawesome-free/js/fontawesome.min";
 import './navbar_burger'
 import './model_filter_mobile'
 import './model_grid_skeleton'
-import "@rails/actiontext"
