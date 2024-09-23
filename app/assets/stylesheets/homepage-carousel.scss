@@ -101,17 +101,6 @@
     right: 0;
 }
 
-.homepage-carousel-background-mobile {
-    @extend .has-background-white;
-    @extend .is-hidden-touch;
-    border-bottom: 2px $grey-light solid;
-    position: absolute;
-    height: 100%;
-    top: 0;
-    width: 110vw;
-    left: -10vw;
-}
-
 .text-wrap {
     text-wrap: wrap;
 }
