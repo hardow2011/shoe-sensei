@@ -5,7 +5,49 @@
 }
 
 .carousel-wrapper {
-    max-height: calc(100vh - $navbar-height);   
+    max-height: calc(100vh - $navbar-height);
+    
+    .homepage-carousel-wrapper {
+        position:relative;
+        
+        @include mixins.touch {
+            display: none;
+        }
+    
+        .photobanner {
+            display: flex;
+            flex-direction: row;
+            // overflow:hidden; 
+            white-space: nowrap;
+            animation: homepage-carousel-horizontal 10s ease-in-out infinite;
+            height: 175px;
+    
+            figure {    
+                margin: 0 0.5em 
+            }
+    
+            img {
+                height: 100%;
+                object-fit: contain;
+            }
+    
+            @include mixins.tablet {
+                animation-duration: 25s;
+            }
+    
+            @include mixins.desktop {
+                display: flex;
+                flex-direction: column;
+                height: unset;
+                animation-name: homepage-carousel-vertical;
+                animation-duration: 50s;
+            }
+        }
+    
+        .photobanner:nth-of-type(2n) {
+            animation-name: homepage-carousel-vertical-reverse;
+        }
+    }
 }
 
 .homepage-hero-inner {
@@ -27,49 +69,6 @@
 
 .homepage-hero-outer {
     width: 100%;
-}
-
-.homepage-carousel-wrapper {
-    position:relative; 
-
-    .photobanner {
-        // display: flex;
-        display: none;
-        flex-direction: row;
-        // overflow:hidden; 
-        white-space: nowrap;
-        animation: homepage-carousel-horizontal 10s ease-in-out infinite;
-        height: 175px;
-
-        &:first-of-type {
-            display: flex;
-        }
-
-        figure {    
-            margin: 0 0.5em 
-        }
-
-        img {
-            height: 100%;
-            object-fit: contain;
-        }
-
-        @include mixins.tablet {
-            animation-duration: 25s;
-        }
-
-        @include mixins.desktop {
-            display: flex;
-            flex-direction: column;
-            height: unset;
-            animation-name: homepage-carousel-vertical;
-            animation-duration: 50s;
-        }
-    }
-
-    .photobanner:nth-of-type(2n) {
-        animation-name: homepage-carousel-vertical-reverse;
-    }
 }
 
 .title-container {
