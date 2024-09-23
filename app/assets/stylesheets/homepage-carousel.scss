@@ -103,6 +103,7 @@
 
 .homepage-carousel-background-mobile {
     @extend .has-background-white;
+    @extend .is-hidden-touch;
     border-bottom: 2px $grey-light solid;
     position: absolute;
     height: 100%;
