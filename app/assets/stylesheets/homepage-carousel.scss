@@ -84,6 +84,13 @@
         padding-right: 48px;
         margin-bottom: 0;
     }
+
+    .button {
+        @include mixins.mobile {
+            display: flex;
+            width: 100%;
+        }
+    }
 }
 
 .homepage-carousel-background {
