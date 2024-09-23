@@ -1,3 +1,4 @@
+<%= render partial: 'shared/breadcrumbs', locals: { pages: [[t('brands'), brands_path], [@brand.name, brand_path(@brand.handle)]] } %>
 <div class="section">
     <div class="container is-widescreen">
         <%= cache [I18n.locale, @brand] do  %>
