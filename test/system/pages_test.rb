@@ -261,7 +261,7 @@ class PagesTest < ApplicationSystemTestCase
       check 'Brooks'
 
       assert_no_field 'Low'
-      assert_field 'Mid'
+      assert_field 'Medium'
       assert_no_field 'High'
     end
 
