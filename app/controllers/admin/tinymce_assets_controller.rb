@@ -1,5 +1,7 @@
 class Admin::TinymceAssetsController < Admin::AdminController
   protect_from_forgery with: :null_session
+
+  # TODO: remove unnatached files from DB
   def create
     # Take upload from params[:file] and store it somehow...
     # Optionally also accept params[:hint] and consume if needed

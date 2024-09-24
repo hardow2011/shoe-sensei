@@ -1,0 +1,5 @@
+<% class_name = object.class.name.underscore %>
+<div class="tinymce" name="<%= class_name %>[<%= attr_name.to_s %>]">
+    <%= object.send(attr_name.to_s).html_safe %>
+</div>
+<%= form.hidden_field attr_name %>

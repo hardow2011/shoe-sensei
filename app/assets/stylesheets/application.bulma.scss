@@ -280,3 +280,17 @@ a {
 .field:not(:last-child) {
     margin-bottom: 1.75rem;
 }
+
+.content {
+    table {
+        @extend .table;
+        @extend .is-bordered;
+    }
+}
+
+.tinymce {
+    @extend .content;
+    @extend .textarea;
+    max-height: unset;
+    height: unset;
+}
