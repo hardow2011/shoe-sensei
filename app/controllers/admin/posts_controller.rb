@@ -13,6 +13,7 @@ class Admin::PostsController < Admin::AdminController
     @post = Post.new(post_params)
 
     @post.published = get_published_value_from_params
+    @post.images_ids = get_images_to_attach
 
     if @post.save
       redirect_to admin_posts_path, notice: notice_message_from_published_status(@post)
@@ -26,7 +27,10 @@ class Admin::PostsController < Admin::AdminController
 
   def update
     @post.published = get_published_value_from_params
+    @post.images_ids = get_images_to_attach
+
     if @post.update(post_params)
+
       redirect_to admin_posts_path, notice: notice_message_from_published_status(@post)
     else
       render :edit, status: :unprocessable_entity
@@ -42,6 +46,17 @@ class Admin::PostsController < Admin::AdminController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  # Get the signed ids from the uploaded images redirect signed ids
+  # <img src="...rails/active_storage/blobs/redirect/<signed_id>/..."
+  def get_images_to_attach(*strings_to_scan)
+    # TODO: move to model
+    images_to_attach = []
+    images_to_attach += post_params[:content_en].scan(/rails\/active_storage\/blobs\/redirect\/(.+?)\//).flatten.uniq
+    images_to_attach += post_params[:content_es].scan(/rails\/active_storage\/blobs\/redirect\/(.+?)\//).flatten.uniq
+
+    images_to_attach
   end
 
   def post_params

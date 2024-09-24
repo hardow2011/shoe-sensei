@@ -24,6 +24,10 @@ class Post < ApplicationRecord
   include AllowedTags
   extend Mobility
 
+  # TODO: update tests to use tinymce
+  has_many_attached :images
+  before_validation :update_images_attachments
+
   translates :overview
   translates :title
 
@@ -38,6 +42,8 @@ class Post < ApplicationRecord
 
   before_validation :assign_handle
 
+  attr_accessor :images_ids
+
   scope :published, -> { where(published: true) }
 
   def content
@@ -45,6 +51,15 @@ class Post < ApplicationRecord
   end
 
   private
+
+  # If either the content_en or content_es changed, then purged exising images
+  # ... and attached the ones just received
+  def update_images_attachments
+    if content_en_changed? || content_es_changed?
+      self.images.purge_later
+      self.images.attach(images_ids)
+    end
+  end
 
   def tags_validity
     forbidden_tags = self.tags - AllowedTags::POSTS_OPTIONS

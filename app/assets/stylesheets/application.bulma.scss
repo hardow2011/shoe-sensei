@@ -291,6 +291,6 @@ a {
 .tinymce {
     @extend .content;
     @extend .textarea;
-    max-height: unset;
+    max-height: unset !important;
     height: unset;
 }
