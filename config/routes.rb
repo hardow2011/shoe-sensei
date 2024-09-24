@@ -32,6 +32,6 @@ Rails.application.routes.draw do
     resources :collections, except: %i[show]
     resources :models, except: %i[show]
     resources :posts, except: %i[show]
+    post '/tinymce_assets' => 'tinymce_assets#create'
   end
-
 end

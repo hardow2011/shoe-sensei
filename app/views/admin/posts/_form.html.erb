@@ -13,19 +13,19 @@
     <div class="field">
         <label class="label"><%= f.label :title_es %></label>
         <div class="control">
-            <%= f.text_field :title_es, autofocus: true, class: 'input' %>
+            <%= f.text_field :title_es, class: 'input' %>
         </div>
     </div>
     <div class="field">
         <label class="label"><%= f.label :overview_en %></label>
         <div class="control">
-            <%= f.text_field :overview_en, autofocus: true, class: 'input' %>
+            <%= f.text_field :overview_en, class: 'input' %>
         </div>
     </div>
         <div class="field">
         <label class="label"><%= f.label :overview_es %></label>
         <div class="control">
-            <%= f.text_field :overview_es, autofocus: true, class: 'input' %>
+            <%= f.text_field :overview_es, class: 'input' %>
         </div>
     </div>
     <div class="field">
@@ -68,4 +68,12 @@
     </div>
 <% end %>
 
+<script>
+    // This is necessary to tinymce after turbo does its thing
+    tinymce.remove()
+</script>
 <%= tinymce %>
+
+<%= content_for :head do %>
+    <%= tinymce_assets data: { turbo_track: "reload" } %>
+<% end %>

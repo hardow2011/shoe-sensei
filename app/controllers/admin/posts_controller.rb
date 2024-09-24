@@ -4,8 +4,9 @@ class Admin::PostsController < Admin::AdminController
   def index
     @posts = Post.order(updated_at: :desc)
   end
+
   def new
-    @post = Post.new
+    @post = Post.new(title_en: 'bgfdvfd', title_es: 'fghjkl', overview_en: 'fgdsgfd', overview_es: '567ydhcjedw')
   end
 
   def create
@@ -16,7 +17,7 @@ class Admin::PostsController < Admin::AdminController
     if @post.save
       redirect_to admin_posts_path, notice: notice_message_from_published_status(@post)
     else
-      render :new, status: :unprocessed_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -54,7 +55,7 @@ class Admin::PostsController < Admin::AdminController
       return true
     else
       Rails.error.report("Commit value #{params[:commit]} not allowed")
-      render :new, status: :unprocessed_entity
+      render :new, status: :unprocessable_entity
       return
     end
   end
