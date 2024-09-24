@@ -11,7 +11,6 @@ test_fixtures:
   root: <%= Rails.root.join("tmp/storage_fixtures") %>
 
 # https://guides.rubyonrails.org/active_storage_overview.html#purging-unattached-uploads
-# TODO: Purging Unattached Uploads
 render:
   service: Disk
   root: /var/data

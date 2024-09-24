@@ -61,7 +61,6 @@ class ModelTest < ActiveSupport::TestCase
     assert_not_empty model.errors[:weight]
   end
 
-  # TODO: finish testing
   test "invalid without tags" do
     model = @valid_model.dup
     model.tags = nil

@@ -2,7 +2,6 @@
 # DRY in the views.
 # Queries too slow/numerous
 # TODO: check that params are valid before processing them
-# TODO: figure out how I want the filter to work. This is not adding up
 module FilterPagination
   include AllowedTags
 

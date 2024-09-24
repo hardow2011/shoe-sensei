@@ -51,7 +51,6 @@ class Admin::PostsController < Admin::AdminController
   # Get the signed ids from the uploaded images redirect signed ids
   # <img src="...rails/active_storage/blobs/redirect/<signed_id>/..."
   def get_images_to_attach(*strings_to_scan)
-    # TODO: move to model
     images_to_attach = []
     images_to_attach += post_params[:content_en].scan(/rails\/active_storage\/blobs\/redirect\/(.+?)\//).flatten.uniq
     images_to_attach += post_params[:content_es].scan(/rails\/active_storage\/blobs\/redirect\/(.+?)\//).flatten.uniq
