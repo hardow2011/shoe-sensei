@@ -30,7 +30,6 @@ class Admin::PostsController < Admin::AdminController
     @post.images_ids = get_images_to_attach
 
     if @post.update(post_params)
-
       redirect_to admin_posts_path, notice: notice_message_from_published_status(@post)
     else
       render :edit, status: :unprocessable_entity
