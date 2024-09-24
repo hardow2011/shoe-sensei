@@ -26,7 +26,6 @@ class Post < ApplicationRecord
 
   # TODO: update tests to use tinymce
   has_many_attached :images
-  before_validation :update_images_attachments
 
   translates :overview
   translates :title
@@ -42,6 +41,8 @@ class Post < ApplicationRecord
 
   before_validation :assign_handle
 
+  after_validation :update_images_attachments
+
   attr_accessor :images_ids
 
   scope :published, -> { where(published: true) }
@@ -52,13 +53,8 @@ class Post < ApplicationRecord
 
   private
 
-  # If either the content_en or content_es changed, then purged exising images
-  # ... and attached the ones just received
   def update_images_attachments
-    if content_en_changed? || content_es_changed?
-      self.images.purge_later
-      self.images.attach(images_ids)
-    end
+    self.images = images_ids
   end
 
   def tags_validity
