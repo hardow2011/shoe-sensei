@@ -30,16 +30,19 @@ class Post < ApplicationRecord
   translates :overview
   translates :title
 
-  validates :title_en, :title_es, :content_en, :content_es, :overview_en, :overview_es, :handle, :tags, presence: true
-  validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }
+  validates :title_en, :title_es, presence: true
   validates :published, inclusion: { in: AllowedTags::BOOLEAN_OPTIONS }
-  validates :handle, :title_en, :title_es, uniqueness: true
+  validates :content_en, :content_es, :overview_en, :overview_es, :handle, :tags, presence: true, if: -> { published }
+  validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }, if: -> { published }
+  validates :title_en, :title_es, uniqueness: true
+  validates :handle, uniqueness: true, if: -> { published }
 
   before_save :sanitize_content
 
   validate :tags_validity
 
-  before_validation :assign_handle
+  before_validation :assign_blank_if_null
+  before_validation :assign_handle, if: -> { published }
 
   after_validation :update_images_attachments
 
@@ -94,5 +97,13 @@ class Post < ApplicationRecord
   def sanitize_content
     self.content_en = content_en.to_s.gsub(/<h1>/, '<h2>').gsub(/<\/h1>/, '</h2>')
     self.content_es = content_es.to_s.gsub(/<h1>/, '<h2>').gsub(/<\/h1>/, '</h2>')
+  end
+
+  def assign_blank_if_null
+    self.handle = '' unless self.handle
+    self.content_en = '' unless self.content_en
+    self.content_es = '' unless self.content_es
+    self.overview_en = '' unless self.overview_en
+    self.overview_es = '' unless self.overview_es
   end
 end

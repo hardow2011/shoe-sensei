@@ -120,4 +120,32 @@ class PostTest < ActiveSupport::TestCase
     assert_equal post.content_en.gsub(/\n/, ''), '<h2>This is important!!!</h2><p>It really is.</p>'
     assert_equal post.content_es.gsub(/\n/, ''), '<h2>¡¡¡Esto es importante!!!</h2><p>Realmente lo es.</p>'
   end
+
+  test 'saving a draft with missing attributes' do
+    post = Post.new(published: false)
+
+    post.save
+    refute post.valid?
+
+    assert_not_empty post.errors[:title_en]
+    assert_not_empty post.errors[:title_es]
+
+    post.title_en = @valid_post.title_en
+    post.save
+    refute post.valid?
+
+    assert_empty post.errors[:title_en]
+    assert_not_empty post.errors[:title_es]
+
+    post.title_es = @valid_post.title_es
+    post.save
+    assert post.valid?
+
+    assert_empty post.errors[:title_en]
+    assert_empty post.errors[:title_es]
+
+    post.published = true
+    post.save
+    refute post.valid?
+  end
 end
