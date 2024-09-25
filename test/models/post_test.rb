@@ -117,7 +117,7 @@ class PostTest < ActiveSupport::TestCase
     post.save
     assert post.valid?
 
-    assert_equal post.content_en.body.to_s.gsub(/\n/, ''), '<h2>This is important!!!</h2><p>It really is.</p>'
-    assert_equal post.content_es.body.to_s.gsub(/\n/, ''), '<h2>¡¡¡Esto es importante!!!</h2><p>Realmente lo es.</p>'
+    assert_equal post.content_en.gsub(/\n/, ''), '<h2>This is important!!!</h2><p>It really is.</p>'
+    assert_equal post.content_es.gsub(/\n/, ''), '<h2>¡¡¡Esto es importante!!!</h2><p>Realmente lo es.</p>'
   end
 end

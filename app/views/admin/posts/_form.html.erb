@@ -1,3 +1,4 @@
+<%# I used data: { turbo: false } in the form because turbo was acting weird %>
 <%= form_with model: [:admin, post], html: {onsubmit: 'updateTinymceFields()'}, data: { turbo: false } do |f| %>
     <% if post.errors.any? %>
         <div>
@@ -58,7 +59,9 @@
     <div class="field mt-6">
         <div class="is-flex is-3 is-flex-wrap-wrap-reverse is-justify-content-space-between is-mobile" style="gap: 1.75rem">
             <% unless post.new_record? %>
-                <%= button_to('Delete Post', [:admin, post], method: :delete, class: "button is-danger") %>
+                <%# Here I used a delete link instead of a button, because the delete button uses a form wrapper... %>
+                <%# and since the delete button is already in a form, that would cause problems %>
+                <%= link_to('Delete Post', [:admin, post], method: :delete, class: "button is-danger") %>
             <% end %>
             <div class="buttons <%= post.new_record? ? 'ml-auto' : nil %>">
                 <%= f.submit(post.new_record? ? t('save_as_draft') : t('unpublish_post_and_save_as_draft'), class: 'button is-link') %>
@@ -72,11 +75,12 @@
     // This is necessary to tinymce after turbo does its thing
     tinymce.remove()
 </script>
-<%= tinymce %>
 
 <%= content_for :head do %>
     <%= tinymce_assets data: { turbo_track: "reload" } %>
 <% end %>
+
+<%= tinymce %>
 
 <script>
     function updateTinymceFields() {
