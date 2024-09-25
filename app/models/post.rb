@@ -30,19 +30,22 @@ class Post < ApplicationRecord
   translates :overview
   translates :title
 
+  before_validation :assign_blank_if_null
+
   validates :title_en, :title_es, presence: true
   validates :published, inclusion: { in: AllowedTags::BOOLEAN_OPTIONS }
-  validates :content_en, :content_es, :overview_en, :overview_es, :handle, :tags, presence: true, if: -> { published }
-  validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }, if: -> { published }
   validates :title_en, :title_es, uniqueness: true
-  validates :handle, uniqueness: true, if: -> { published }
+  validate :tags_validity
 
   before_save :sanitize_content
 
-  validate :tags_validity
-
-  before_validation :assign_blank_if_null
-  before_validation :assign_handle, if: -> { published }
+  # Only run the following valiations if the post is published
+  with_options if: -> { published } do
+    validates :content_en, :content_es, :overview_en, :overview_es, :handle, :tags, presence: true
+    validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }
+    validates :handle, uniqueness: true
+    before_validation :assign_handle
+  end
 
   after_validation :update_images_attachments
 
