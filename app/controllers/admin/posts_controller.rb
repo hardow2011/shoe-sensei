@@ -6,7 +6,7 @@ class Admin::PostsController < Admin::AdminController
   end
 
   def new
-    @post = Post.new(title_en: 'bgfdvfd', title_es: 'fghjkl', overview_en: 'fgdsgfd', overview_es: '567ydhcjedw')
+    @post = Post.new
   end
 
   def create
