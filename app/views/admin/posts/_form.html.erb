@@ -64,7 +64,7 @@
                 <%= link_to('Delete Post', [:admin, post], method: :delete, class: "button is-danger") %>
             <% end %>
             <div class="buttons <%= post.new_record? ? 'ml-auto' : nil %>">
-                <%= f.submit(post.new_record? ? t('save_as_draft') : t('unpublish_post_and_save_as_draft'), class: 'button is-link') %>
+                <%= f.submit(!post.published ? t('save_as_draft') : t('unpublish_post_and_save_as_draft'), class: 'button is-link') %>
                 <%= f.submit post.new_record? ? t('publish_post') : t('publish_updates'), class: 'button is-success' %>
             </div>
         </div>
