@@ -1,3 +1,4 @@
+# TODO: test in prod
 # Use this file to easily define all of your cron jobs.
 env :PATH, ENV['PATH']
 set :chronic_options, hours24: true
