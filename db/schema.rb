@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_21_171023) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_26_234819) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -110,7 +110,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_21_171023) do
     t.string "title_es", null: false
     t.string "overview_en", null: false
     t.string "overview_es", null: false
-    t.string "handle", null: false
+    t.string "handle"
     t.boolean "published", null: false
     t.string "tags", default: [], null: false, array: true
     t.datetime "created_at", null: false

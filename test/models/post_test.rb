@@ -148,4 +148,17 @@ class PostTest < ActiveSupport::TestCase
     post.save
     refute post.valid?
   end
+
+  test 'saving two drafts with no handle' do
+    post_1 = Post.new(title_en: 'p1_en', title_es: 'p1_en', published: false)
+    post_2 = Post.new(title_en: 'p2_en', title_es: 'p2_en', published: false)
+
+    post_1.save
+    assert post_1.valid?
+    assert_empty post_1.errors[:handle]
+
+    post_2.save
+    assert post_2.valid?
+    assert_empty post_2.errors[:handle]
+  end
 end

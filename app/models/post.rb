@@ -5,7 +5,7 @@
 #  id          :bigint           not null, primary key
 #  content_en  :string           not null
 #  content_es  :string           not null
-#  handle      :string           not null
+#  handle      :string
 #  overview_en :string           not null
 #  overview_es :string           not null
 #  published   :boolean          not null
@@ -103,7 +103,9 @@ class Post < ApplicationRecord
   end
 
   def assign_blank_if_null
-    self.handle = '' unless self.handle
+    # Leave handle as nil until post published.
+    # Then, assign handle with assign_handle method
+    # self.handle = '' unless self.handle
     self.content_en = '' unless self.content_en
     self.content_es = '' unless self.content_es
     self.overview_en = '' unless self.overview_en
