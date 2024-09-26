@@ -111,7 +111,7 @@ class PostsTest < ApplicationSystemTestCase
     assert_text 'Edit post'
 
     assert_button 'Publish Updates'
-    assert_selector 'a[data-method="delete"]'
+    assert_selector 'a', text: 'Delete Post'
     assert_button 'Unpublish and Save as Draft'
     assert_no_selector "input[value='Save as Draft']"
     click_on 'Unpublish and Save as Draft'
