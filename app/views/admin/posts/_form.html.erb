@@ -73,16 +73,8 @@
 
 <script>
     // This is necessary to tinymce after turbo does its thing
-    tinymce.remove()
-</script>
+    tinymce.remove();
 
-<%= content_for :head do %>
-    <%= tinymce_assets %>
-<% end %>
-
-<%= tinymce %>
-
-<script>
     function updateTinymceFields() {
         const tinymceFields = document.querySelectorAll('.tinymce');
 
@@ -93,4 +85,7 @@
             console.log(hiddenInput);
         });
     }
+
 </script>
+
+<%= tinymce %>
