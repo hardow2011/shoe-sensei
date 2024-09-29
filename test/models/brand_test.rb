@@ -49,7 +49,7 @@ class BrandTest < ActiveSupport::TestCase
   test "correct name parameterization to handle" do
     brand = Brand.new(name: 'This is an imaginary Company, Or what?', overview: 'A very hip brand!', company_color: '#2232bf', logo: @brooks_logo)
     brand.save
-    assert_equal brand.handle, 'this-is-an-imaginary-company-or-what', 'handle malformed'
+    assert_equal 'this-is-an-imaginary-company-or-what', brand.handle, 'handle malformed'
   end
 
   test 'unique name' do

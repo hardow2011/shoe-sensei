@@ -28,9 +28,11 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     click_on 'Log in'
   end
 
+  # TODO: fix assert_img_src
   def assert_img_src(img)
     # assert_selector :css, "img[src=\"#{url_for(img)}\"]"
   end
+  # TODO: fix assert_no_img_src
   def assert_no_img_src(img)
     assert_no_selector :css, "img[src=\"#{url_for(img)}\"]"
   end

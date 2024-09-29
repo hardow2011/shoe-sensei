@@ -40,7 +40,7 @@ class CollectionTest < ActiveSupport::TestCase
   test "correct name parameterization to handle" do
     collection = @valid_collection
     collection.save
-    assert_equal collection.handle, 'intergalactic-comfort', 'handle malformed'
+    assert_equal 'intergalactic-comfort', collection.handle, 'handle malformed'
   end
 
   test 'unique name within brand' do

@@ -75,7 +75,7 @@ class PostTest < ActiveSupport::TestCase
     post = @valid_post
     post.save
     assert post.valid?
-    assert_equal post.handle, 'the-best-looking-shoes', 'handle malformed'
+    assert_equal 'the-best-looking-shoes', post.handle, 'handle malformed'
   end
 
   test 'correct handle cut-off' do
@@ -117,8 +117,8 @@ class PostTest < ActiveSupport::TestCase
     post.save
     assert post.valid?
 
-    assert_equal post.content_en.gsub(/\n/, ''), '<h2>This is important!!!</h2><p>It really is.</p>'
-    assert_equal post.content_es.gsub(/\n/, ''), '<h2>¡¡¡Esto es importante!!!</h2><p>Realmente lo es.</p>'
+    assert_equal '<h2>This is important!!!</h2><p>It really is.</p>', post.content_en.gsub(/\n/, '')
+    assert_equal '<h2>¡¡¡Esto es importante!!!</h2><p>Realmente lo es.</p>', post.content_es.gsub(/\n/, '')
   end
 
   test 'saving a draft with missing attributes' do
