@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_brand, only: %i[show]
+  before_action :set_post, only: %i[show]
 
   def index
     @posts = Post.published.order(created_at: :desc)
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
   private
 
-  def set_brand
+  def set_post
     begin
       @post = Post.find_by_handle!(params[:id])
     rescue StandardError => e
