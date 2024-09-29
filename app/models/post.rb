@@ -71,7 +71,10 @@ class Post < ApplicationRecord
   end
 
   def assign_handle
-    if self.title_en && self.title_en_changed?
+    # self.published && !self.handle -- if the first time gettin published
+    # self.title_en_changed? -- if the title changed
+    # self.title_en -- only chec for the other conditions if the title exists to begin with
+    if self.title_en && ((self.published && !self.handle) || self.title_en_changed?)
       # .parameterize[0..50] get first 50 chars of parameterized title
       self.handle = self.title_en.parameterize[0..50]
 
@@ -85,7 +88,6 @@ class Post < ApplicationRecord
 
       if Post.find_by(handle: self.handle).present?
         # self.handle = self.handle + '-' + index.to_s
-
         original_handle = self.handle.dup
         handle_index = 2
 

@@ -4,7 +4,7 @@ class PostTest < ActiveSupport::TestCase
   setup do
     @valid_post = Post.new(title_en: 'The best looking shoes', title_es: 'Los zapatos más bonitos',
       overview_en: 'We talk about the prettiest shoes', overview_es: 'hablamos de los zapatos más bonitos',
-      content_en: 'Let\s start by explaining what makes shoes appealing',
+      content_en: 'Let\'s start by explaining what makes shoes appealing',
       content_es: 'Empecemos por explicar qué hacen los zapatos visualmente apetecibles',
       tags: ['road_running', 'walking', 'cost_conscious', 'support'],
       published: true)
@@ -83,14 +83,14 @@ class PostTest < ActiveSupport::TestCase
     post.title_en = "I went to the store to get some nw shoes, but they ran out of the models I wanted. So I went home sad"
     post.save
     assert post.valid?
-    assert_equal post.handle, 'i-went-to-the-store-to-get-some-nw-shoes-but-they', 'handle malformed'
+    assert_equal 'i-went-to-the-store-to-get-some-nw-shoes-but-they', post.handle, 'handle malformed'
 
     new_post = @valid_post
     new_post.title_en = "I went to the store to get some nw shoes, but they ran out of the models I wanted. So I went home sad Pt.2"
     new_post.title_es = "No importa"
     new_post.save
     assert new_post.valid?
-    assert_equal new_post.handle, 'i-went-to-the-store-to-get-some-nw-shoes-but-they-2', 'handle iteration malformed'
+    assert_equal 'i-went-to-the-store-to-get-some-nw-shoes-but-they-2', new_post.handle, 'handle iteration malformed'
   end
 
   test 'unique title' do
@@ -160,5 +160,19 @@ class PostTest < ActiveSupport::TestCase
     post_2.save
     assert post_2.valid?
     assert_empty post_2.errors[:handle]
+  end
+
+  test 'handle assigned after publication' do
+    post = @valid_post.dup
+    post.published = false
+    post.save
+
+    assert post.valid?
+    assert_nil post.handle
+    assert_empty post.errors[:handle]
+
+    post.published = true
+    post.save
+    assert_empty post.errors[:handle]
   end
 end
