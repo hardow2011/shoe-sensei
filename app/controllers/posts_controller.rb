@@ -22,8 +22,7 @@ class PostsController < ApplicationController
     begin
       @post = Post.find_by_handle!(params[:id])
     rescue StandardError => e
-      Sentry.capture_exception(e)
-      Sentry.capture_message(e.message)
+      Rails.error.report(e, severity: :info)
       redirect_to posts_path, notice: I18n.t('post_not_found')
     end
   end

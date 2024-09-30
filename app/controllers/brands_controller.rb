@@ -25,8 +25,7 @@ class BrandsController < ApplicationController
     begin
       @brand = Brand.find_by_handle!(params[:id])
     rescue StandardError => e
-      Sentry.capture_exception(e)
-      Sentry.capture_message(e.message)
+      Rails.error.report(e, severity: :info)
       redirect_to brands_path, notice: I18n.t('brand_not_found')
     end
   end
