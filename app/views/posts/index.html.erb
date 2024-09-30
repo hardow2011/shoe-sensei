@@ -1,5 +1,5 @@
 <div class="section">
-    <div class="container is-widescreen">
+    <div class="container is-widescreen is-max-desktop">
         <h1 class="title is-1"><%= t('blog') %></h1>
         <% if @posts.any? %>
             <%= render partial: 'posts/post', collection: @posts, cached: ->(post) {[I18n.locale, post]} %>
