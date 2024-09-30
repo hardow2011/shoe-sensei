@@ -1,6 +1,6 @@
 selector: .tinymce
 toolbar:
-  - undo redo | blocks | bold italic | bullist numlist | table | alignleft aligncenter alignright | bullist numlist outdent indent | removeformat
+  - undo redo | blocks | bold italic | superscript | bullist numlist | table | alignleft aligncenter alignright | bullist numlist outdent indent | removeformat
   - image | link
 plugins:
   - image
