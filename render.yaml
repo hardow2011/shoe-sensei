@@ -3,7 +3,7 @@ databases:
     databaseName: footwear_prod_db
     region: ohio
     user: footwear
-    plan: free
+    plan: starter
 
 services:
   - type: redis
