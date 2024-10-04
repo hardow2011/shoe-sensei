@@ -326,6 +326,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   mobility (~> 1.3.0.rc3)
+  nokogiri
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.4)
