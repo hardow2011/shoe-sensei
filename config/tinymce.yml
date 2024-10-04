@@ -1,6 +1,7 @@
 selector: .tinymce
 toolbar:
-  - undo redo | blocks | bold italic | superscript | bullist numlist | table | alignleft aligncenter alignright | bullist numlist outdent indent | removeformat
+  - undo redo | blocks | bold italic | superscript | bullist numlist | alignleft aligncenter alignright | bullist numlist outdent indent | removeformat
+  - code | table | hr
   - image | link
 plugins:
   - image
@@ -8,6 +9,8 @@ plugins:
   - table
   - lists
   - advlist
+  - hr
+  - code
 block_formats: 'Paragraph=p; Header 2=h2; Header 3=h3; Header 4=h4; Header 5=h5; Header 6=h6'
 images_upload_url: '/admin/tinymce_assets' # for automatic_uploads
 images_upload_credentials: true # sends session information with the upload
