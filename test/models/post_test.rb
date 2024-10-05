@@ -4,8 +4,8 @@ class PostTest < ActiveSupport::TestCase
   setup do
     @valid_post = Post.new(title_en: 'The best looking shoes', title_es: 'Los zapatos más bonitos',
       overview_en: 'We talk about the prettiest shoes', overview_es: 'hablamos de los zapatos más bonitos',
-      content_en: 'Let\'s start by explaining what makes shoes appealing',
-      content_es: 'Empecemos por explicar qué hacen los zapatos visualmente apetecibles',
+      content_en: '<h2>Introduction</h2><h2>History of Shoes</h2><h3>Early Years</h3><h3>Industrial Development</h3><h4>Other Occurrences</h4><h2>Rise and Fall</h2><h4>Sources</h4><h5>Further Reading</h5>',
+      content_es: '<h2>Introducción</h2><h2>Historia de los zapatos</h2><h3>Primeros Años</h3><h3>Desarrollo Industrial</h3><h4>Otros acontecimientos</h4><h2>Surgimiento y Caída</h2><h4>Fuentes</h4><h5>Leer Más</h5>',
       tags: ['road_running', 'walking', 'cost_conscious', 'support'],
       published: true)
   end
@@ -117,8 +117,8 @@ class PostTest < ActiveSupport::TestCase
     post.save
     assert post.valid?
 
-    assert_equal '<h2>This is important!!!</h2><p>It really is.</p>', post.content_en.gsub(/\n/, '')
-    assert_equal '<h2>¡¡¡Esto es importante!!!</h2><p>Realmente lo es.</p>', post.content_es.gsub(/\n/, '')
+    assert_equal '<h2 id="this-is-important">This is important!!!</h2><p>It really is.</p>', post.content_en.gsub(/\n/, '')
+    assert_equal '<h2 id="esto-es-importante">¡¡¡Esto es importante!!!</h2><p>Realmente lo es.</p>', post.content_es.gsub(/\n/, '')
   end
 
   test 'saving a draft with missing attributes' do
@@ -174,5 +174,15 @@ class PostTest < ActiveSupport::TestCase
     post.published = true
     post.save
     assert_empty post.errors[:handle]
+  end
+
+  test 'valid table_of_contents' do
+    post = @valid_post.dup
+    post.save
+
+    assert post.valid?
+
+    assert_equal [{:tag=>"h2", :title=>"Introduction", :id=>"introduction"}, {:tag=>"h2", :title=>"History of Shoes", :id=>"history-of-shoes"}, {:tag=>"h3", :title=>"Early Years", :id=>"early-years"}, {:tag=>"h3", :title=>"Industrial Development", :id=>"industrial-development"}, {:tag=>"h2", :title=>"Rise and Fall", :id=>"rise-and-fall"}], post.table_of_contents_en
+    assert_equal [{:tag=>"h2", :title=>"Introducción", :id=>"introduccion"}, {:tag=>"h2", :title=>"Historia de los zapatos", :id=>"historia-de-los-zapatos"}, {:tag=>"h3", :title=>"Primeros Años", :id=>"primeros-anos"}, {:tag=>"h3", :title=>"Desarrollo Industrial", :id=>"desarrollo-industrial"}, {:tag=>"h2", :title=>"Surgimiento y Caída", :id=>"surgimiento-y-caida"}], post.table_of_contents_es
   end
 end

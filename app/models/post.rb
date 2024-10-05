@@ -2,18 +2,20 @@
 #
 # Table name: posts
 #
-#  id          :bigint           not null, primary key
-#  content_en  :string           not null
-#  content_es  :string           not null
-#  handle      :string
-#  overview_en :string           not null
-#  overview_es :string           not null
-#  published   :boolean          not null
-#  tags        :string           default([]), not null, is an Array
-#  title_en    :string           not null
-#  title_es    :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id                   :bigint           not null, primary key
+#  content_en           :string           not null
+#  content_es           :string           not null
+#  handle               :string
+#  overview_en          :string           not null
+#  overview_es          :string           not null
+#  published            :boolean          not null
+#  table_of_contents_en :jsonb            not null
+#  table_of_contents_es :jsonb            not null
+#  tags                 :string           default([]), not null, is an Array
+#  title_en             :string           not null
+#  title_es             :string           not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #
 # Indexes
 #
@@ -23,6 +25,9 @@ class Post < ApplicationRecord
   include DataFormatting
   include AllowedTags
   extend Mobility
+
+  # serialize :table_of_contents_en, coder: HashSerializer
+  # serialize :table_of_contents_es, coder: HashSerializer
 
   # TODO: update tests to use tinymce
   has_many_attached :images
@@ -36,9 +41,11 @@ class Post < ApplicationRecord
   validates :published, inclusion: { in: AllowedTags::BOOLEAN_OPTIONS }
   validates :title_en, :title_es, uniqueness: true
   validate :tags_validity
+  validate :table_of_contents_validity
 
   before_save :sanitize_content
 
+  before_validation :assign_table_of_contents
   # Only run the following valiations if the post is published
   with_options if: -> { published } do
     validates :content_en, :content_es, :overview_en, :overview_es, :handle, :tags, presence: true
@@ -67,6 +74,55 @@ class Post < ApplicationRecord
     forbidden_tags = self.tags - AllowedTags::POSTS_OPTIONS
     if forbidden_tags.any?
       errors.add(:tags, "#{forbidden_tags} tags not allowed")
+    end
+  end
+
+  def table_of_contents_validity
+    necessary_keys = [:tag, :title, :id]
+    table_of_contents_columns = ['table_of_contents_en', 'table_of_contents_es']
+
+    table_of_contents_columns.each do |table_of_contents_column|
+      unless self[table_of_contents_column.to_sym].is_a?(Array)
+        errors.add(table_of_contents_column.to_sym, "Table of contents must be an Array")
+      else
+        self[table_of_contents_column.to_sym].each do |tag|
+          unless tag.is_a?(Hash)
+            errors.add(table_of_contents_column.to_sym, "#{tag} must be a Hash")
+          else
+            necessary_keys.each do |key|
+              tag.has_key?(key) ? nil : errors.add(table_of_contents_column.to_sym, "#{tag} must have #{key} key")
+            end
+          end
+        end
+      end
+    end
+  end
+
+  def assign_table_of_contents
+    self.table_of_contents_en = []
+    doc_content_en = Nokogiri::HTML(self.content_en)
+
+    self.table_of_contents_es = []
+    doc_content_es = Nokogiri::HTML(self.content_es)
+
+    if self.content_en.present?
+      doc_content_en.css('h2,h3').each do |tag|
+        id = tag.content.parameterize
+        tag['id'] = id
+        self.table_of_contents_en << {tag: tag.name, title: tag.content, id: id }
+      end
+
+      self.content_en = doc_content_en.at('body').inner_html
+    end
+
+    if self.content_es.present?
+      doc_content_es.css('h2,h3').each do |tag|
+        id = tag.content.parameterize
+        tag['id'] = id
+        self.table_of_contents_es << {tag: tag.name, title: tag.content, id: id }
+      end
+
+      self.content_es = doc_content_es.at('body').inner_html
     end
   end
 
@@ -104,6 +160,7 @@ class Post < ApplicationRecord
     self.content_es = content_es.to_s.gsub(/<h1>/, '<h2>').gsub(/<\/h1>/, '</h2>')
   end
 
+  # TODO: remove this nonsense and allow nil instead
   def assign_blank_if_null
     # Leave handle as nil until post published.
     # Then, assign handle with assign_handle method
