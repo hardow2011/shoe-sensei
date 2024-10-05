@@ -34,6 +34,8 @@ class Post < ApplicationRecord
 
   translates :overview
   translates :title
+  translates :table_of_contents
+  translates :content
 
   before_validation :assign_blank_if_null
 
@@ -60,10 +62,6 @@ class Post < ApplicationRecord
 
   scope :published, -> { where(published: true) }
 
-  def content
-    self.send("content_#{I18n.locale.to_s}")
-  end
-
   private
 
   def update_images_attachments
@@ -77,9 +75,12 @@ class Post < ApplicationRecord
     end
   end
 
+  def table_of_contents_columns
+    ['table_of_contents_en', 'table_of_contents_es']
+  end
+
   def table_of_contents_validity
     necessary_keys = [:tag, :title, :id]
-    table_of_contents_columns = ['table_of_contents_en', 'table_of_contents_es']
 
     table_of_contents_columns.each do |table_of_contents_column|
       unless self[table_of_contents_column.to_sym].is_a?(Array)
@@ -99,30 +100,51 @@ class Post < ApplicationRecord
   end
 
   def assign_table_of_contents
-    self.table_of_contents_en = []
-    doc_content_en = Nokogiri::HTML(self.content_en)
+    table_of_contents_columns.each do |table_of_contents_column|
+      # Set tables of contents to nil
+      self[table_of_contents_column.to_sym] = []
+      # Get associated content columns.
+      content_column =
+        if table_of_contents_column == 'table_of_contents_en'
+          'content_en'
+        elsif table_of_contents_column == 'table_of_contents_es'
+          'content_es'
+        end
+      doc_content = Nokogiri::HTML(self[content_column.to_sym])
 
-    self.table_of_contents_es = []
-    doc_content_es = Nokogiri::HTML(self.content_es)
-
-    if self.content_en.present?
-      doc_content_en.css('h2,h3').each do |tag|
-        id = tag.content.parameterize
-        tag['id'] = id
-        self.table_of_contents_en << {tag: tag.name, title: tag.content, id: id }
+      if self[content_column.to_sym].present?
+        # Get all h2 and h3 tags
+        tags = doc_content.css('h2,h3')
+        # Loop through the tags
+        tags.each_with_index do |tag, i|
+          # Tag name
+          name = tag.name
+          # Skip iteration of tag not h2
+          next if name != 'h2'
+          # Tag content
+          content = tag.content
+          # Tag id
+          id = content.parameterize
+          tag['id'] = id
+          tag = {tag: name, title: content, id: id }
+          # Start looking fot next h3 tags
+          h3_tag_index = i+1
+          while tags[h3_tag_index] && tags[h3_tag_index].name == 'h3'
+            h3_name = tags[h3_tag_index].name
+            h3_content = tags[h3_tag_index].content
+            h3_id = h3_content.parameterize
+            # Assign tag[:nested_tags] to empty array of it did not exist
+            tag[:nested_tags].nil? ? tag[:nested_tags] = [] : nil
+            # Assign the h3 tags in the nested_tags attributes inside the h2 tag
+            tag[:nested_tags] << {tag: h3_name, title: h3_content, id: h3_id }
+            h3_tag_index += 1
+          end
+          # Append tag to list of tags
+          self[table_of_contents_column.to_sym] << tag
+        end
+        # overwrite the content column to include the ids set with nokogiri
+        self[content_column.to_sym] = doc_content.at('body').inner_html
       end
-
-      self.content_en = doc_content_en.at('body').inner_html
-    end
-
-    if self.content_es.present?
-      doc_content_es.css('h2,h3').each do |tag|
-        id = tag.content.parameterize
-        tag['id'] = id
-        self.table_of_contents_es << {tag: tag.name, title: tag.content, id: id }
-      end
-
-      self.content_es = doc_content_es.at('body').inner_html
     end
   end
 

@@ -182,7 +182,7 @@ class PostTest < ActiveSupport::TestCase
 
     assert post.valid?
 
-    assert_equal [{:tag=>"h2", :title=>"Introduction", :id=>"introduction"}, {:tag=>"h2", :title=>"History of Shoes", :id=>"history-of-shoes"}, {:tag=>"h3", :title=>"Early Years", :id=>"early-years"}, {:tag=>"h3", :title=>"Industrial Development", :id=>"industrial-development"}, {:tag=>"h2", :title=>"Rise and Fall", :id=>"rise-and-fall"}], post.table_of_contents_en
-    assert_equal [{:tag=>"h2", :title=>"Introducción", :id=>"introduccion"}, {:tag=>"h2", :title=>"Historia de los zapatos", :id=>"historia-de-los-zapatos"}, {:tag=>"h3", :title=>"Primeros Años", :id=>"primeros-anos"}, {:tag=>"h3", :title=>"Desarrollo Industrial", :id=>"desarrollo-industrial"}, {:tag=>"h2", :title=>"Surgimiento y Caída", :id=>"surgimiento-y-caida"}], post.table_of_contents_es
+    assert_equal [{:tag=>"h2", :title=>"Introduction", :id=>"introduction"}, {:tag=>"h2", :title=>"History of Shoes", :id=>"history-of-shoes", nested_tags: [{:tag=>"h3", :title=>"Early Years", :id=>"early-years"}, {:tag=>"h3", :title=>"Industrial Development", :id=>"industrial-development"}]}, {:tag=>"h2", :title=>"Rise and Fall", :id=>"rise-and-fall"}], post.table_of_contents_en
+    assert_equal [{:tag=>"h2", :title=>"Introducción", :id=>"introduccion"}, {:tag=>"h2", :title=>"Historia de los zapatos", :id=>"historia-de-los-zapatos", nested_tags: [{:tag=>"h3", :title=>"Primeros Años", :id=>"primeros-anos"}, {:tag=>"h3", :title=>"Desarrollo Industrial", :id=>"desarrollo-industrial"}]}, {:tag=>"h2", :title=>"Surgimiento y Caída", :id=>"surgimiento-y-caida"}], post.table_of_contents_es
   end
 end

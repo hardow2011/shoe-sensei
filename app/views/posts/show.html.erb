@@ -1,21 +1,51 @@
 <div class="section">
-    <div class="container is-max-desktop">
-        <%= cache [I18n.locale, @post] do  %>
-            <div class="content ">
-                <h1 class="title is-3"><%= @post.title %></h1>
-                <div class="content">
-                    <%= @post.content.html_safe %>
+    <div class="container is-widescreen">
+        <div class="columns">
+            <% if @post.table_of_contents.present? %>
+                <div class="column is-two-fifths-tablet is-one-fourth-desktop is-one-quarter-widescreen">
+                    <div class="table-of-contents mb-5">
+                        <div class="menu">
+                            <p class="is-size-5"><%= t('table_of_contents') %></p>
+                            <hr/>
+                            <ul class="menu-list">
+                                <% @post.table_of_contents.each_with_index do |entry, i| %>
+                                    <% if entry['tag'] == 'h2' %>
+                                        <li>
+                                            <%= link_to entry['title'], post_path(@post.handle, anchor: entry['id']) %>
+                                        <% if entry['nested_tags'].present? %>
+                                            <ul>
+                                                <% entry['nested_tags']&.each do |h3_tag| %>
+                                                <li><%= link_to h3_tag['title'], post_path(@post.handle, anchor: h3_tag['id']) %></li>
+                                                <% end %>
+                                            </ul>
+                                        <% end %>
+                                        </li>
+                                    <% end %>
+                                <% end %>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <hr>
-                <% if @post.tags.any? %>
-                    <div class="tags">
-                        <span><%= t('tags') %>:</span>
-                        <% @post.tags.each do |tag| %>
-                            <span class="tag"><%= t("filter.#{tag}") %></span>
+            <% end %>
+            <div class="column">
+                <%= cache [I18n.locale, @post] do  %>
+                    <div class="content ">
+                        <h1 class="title is-3"><%= @post.title %></h1>
+                        <div class="content">
+                            <%= @post.content.html_safe %>
+                        </div>
+                        <hr>
+                        <% if @post.tags.any? %>
+                            <div class="tags">
+                                <span><%= t('tags') %>:</span>
+                                <% @post.tags.each do |tag| %>
+                                    <span class="tag"><%= t("filter.#{tag}") %></span>
+                                <% end %>
+                            </div>
                         <% end %>
                     </div>
                 <% end %>
             </div>
-        <% end %>
+        </div>
     </div>
 </div>

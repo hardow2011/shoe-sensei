@@ -228,7 +228,7 @@ a {
 
 .table-of-contents {
     position: sticky;
-    top: $size-2;
+    top: calc($navbar-height + 3rem);
 
     .menu-list a {
         color: $link;
@@ -293,4 +293,9 @@ a {
     @extend .textarea;
     max-height: unset !important;
     height: unset;
+}
+
+.menu-list li ul {
+    margin-top: 0;
+    margin-bottom: 0;
 }

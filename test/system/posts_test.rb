@@ -48,4 +48,26 @@ class PostsTest < ApplicationSystemTestCase
       assert_text I18n.t("filter.#{tag}")
     end
   end
+
+  test 'post table of contents' do
+    sleep 1
+    visit root_url
+
+    within('.navbar') do
+      click_on 'Blog'
+    end
+
+    click_on 'Read more...', match: :first
+
+    assert_text @post.title
+    assert_no_text @post.overview
+
+    header_tags = find_all('.content h2')
+
+    header_tags.each do |tag|
+      within('.table-of-contents') do
+        assert_selector 'a', text: tag.text
+      end
+    end
+  end
 end
