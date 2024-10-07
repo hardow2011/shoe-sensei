@@ -285,6 +285,13 @@ a {
     table {
         @extend .table;
         @extend .is-bordered;
+        // Todo: find how to display good tables for mobile usrrs instead of hiding it
+        @include mixins.mobile {
+            display: none;
+        }
+    }
+    a {
+        overflow-wrap: anywhere;
     }
 }
 
@@ -298,8 +305,4 @@ a {
 .menu-list li ul {
     margin-top: 0;
     margin-bottom: 0;
-}
-
-.content a {
-    overflow-wrap: anywhere;
 }
