@@ -7,6 +7,7 @@ class PostTest < ActiveSupport::TestCase
       content_en: '<h2>Introduction</h2><h2>History of Shoes</h2><h3>Early Years</h3><h3>Industrial Development</h3><h4>Other Occurrences</h4><h2>Rise and Fall</h2><h4>Sources</h4><h5>Further Reading</h5>',
       content_es: '<h2>Introducción</h2><h2>Historia de los zapatos</h2><h3>Primeros Años</h3><h3>Desarrollo Industrial</h3><h4>Otros acontecimientos</h4><h2>Surgimiento y Caída</h2><h4>Fuentes</h4><h5>Leer Más</h5>',
       tags: ['road_running', 'walking', 'cost_conscious', 'support'],
+      published_at: Date.parse("Jan 15 2022"),
       published: true)
   end
   test "valid post" do
@@ -69,6 +70,14 @@ class PostTest < ActiveSupport::TestCase
     post.save
     refute post.valid?
     assert_not_empty post.errors[:published], 'no validation for published'
+  end
+
+  test 'invalid without published_at' do
+    post = @valid_post
+    post.published_at = nil
+    post.save
+    refute post.valid?
+    assert_not_empty post.errors[:published_at], 'no validation for published_at'
   end
 
   test 'correct title parameterization to handle' do

@@ -6,6 +6,12 @@
         </div>
     <% end %>
     <div class="field">
+        <label class="label"><%= f.label :published_at %></label>
+        <div class="control">
+            <%= f.date_field :published_at, class: 'input', style: 'width: fit-content' %>
+        </div>
+    </div>
+    <div class="field">
         <label class="label"><%= f.label :title_en %></label>
         <div class="control">
             <%= f.text_field :title_en, autofocus: true, class: 'input' %>

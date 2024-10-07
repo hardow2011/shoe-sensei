@@ -21,6 +21,7 @@ class PostsTest < ApplicationSystemTestCase
     Post.first(3).each do |p|
       assert_text p.title
       assert_text p.overview
+      assert_text p.published_at.to_fs(:rfc822)
       # TODO: assert content
       # assert_element p.content.body.to_s
     end
@@ -41,6 +42,7 @@ class PostsTest < ApplicationSystemTestCase
 
     assert_text @post.title
     assert_no_text @post.overview
+    assert_text '06 Oct 2024'
     # TODO: assert content
     # assert_element p.content.body.to_s
 
