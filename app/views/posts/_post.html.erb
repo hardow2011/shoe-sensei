@@ -1,6 +1,6 @@
 <div class="content">
     <%= render partial: 'posts/published_on', locals: { published_date: post.humanized_published_at } %>                            
-    <h4 class="title is-5 mb-4"><%= post.title %></h4>
+    <h4 class="title is-4 mb-4"><%= post.title %></h4>
     <p><%= post.overview %></p>
     <%= render partial: 'posts/tags', locals: { tags: post.tags } %>
     <%= link_to t('read_more'), post_path(post.handle) %>
