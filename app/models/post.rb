@@ -64,7 +64,7 @@ class Post < ApplicationRecord
   scope :published, -> { where(published: true) }
 
   def humanized_published_at
-    self.published_at&.to_fs(:rfc822)
+    self.published_at.present? ? I18n.l(self.published_at, format: :long) : nil
   end
 
   private

@@ -28,3 +28,4 @@ es:
     try_our_shoe_filter: "¡Prueba Nuestro Selector de Zapatos!"
     read_blog_instead_html: "¡Para artículos detallados sobre zapatos, salta directamente a nuestro %{blog_anchor}!"
     visit_our_blog: Visita Nuestro Blog
+  published_on: Publicado el
