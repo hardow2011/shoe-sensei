@@ -9,7 +9,8 @@ class PostsTest < ApplicationSystemTestCase
       overview_en: "A short presentation on the best shoes",
       overview_es: "Una corta presentación de los meores zapatos",
       content_en: "The list is the following",
-      content_es: "La lista es la siguiente"
+      content_es: "La lista es la siguiente",
+      published_at:'2023-05-19'
     }
   end
 
@@ -33,6 +34,7 @@ class PostsTest < ApplicationSystemTestCase
 
     assert_text 'New post'
 
+    fill_in 'post[published_at]', with: @new_post[:published_at]
     fill_in "post[title_en]",	with: @new_post[:title_en]
     fill_in "post[title_es]",	with: @new_post[:title_es]
     fill_in "post[overview_en]", with: @new_post[:overview_en]

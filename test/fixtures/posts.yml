@@ -34,3 +34,4 @@ my_doctor_told_me:
       title: "Shoes Recommendations"
   table_of_contents_es: []
   tags: ['healthcare', 'road_running', 'support', 'comfort']
+  published_at: <%= Date.parse("Oct 6 2024") %>

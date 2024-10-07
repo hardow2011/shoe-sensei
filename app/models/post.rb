@@ -9,6 +9,7 @@
 #  overview_en          :string           not null
 #  overview_es          :string           not null
 #  published            :boolean          not null
+#  published_at         :date             default(Mon, 07 Oct 2024)
 #  table_of_contents_en :jsonb            not null
 #  table_of_contents_es :jsonb            not null
 #  tags                 :string           default([]), not null, is an Array
@@ -50,7 +51,7 @@ class Post < ApplicationRecord
   before_validation :assign_table_of_contents
   # Only run the following valiations if the post is published
   with_options if: -> { published } do
-    validates :content_en, :content_es, :overview_en, :overview_es, :handle, :tags, presence: true
+    validates :content_en, :content_es, :overview_en, :overview_es, :handle, :tags, :published_at, presence: true
     validates :handle, format: { with: DataFormatting::HANDLE_FORMAT }
     validates :handle, uniqueness: true
     before_validation :assign_handle
@@ -61,6 +62,10 @@ class Post < ApplicationRecord
   attr_accessor :images_ids
 
   scope :published, -> { where(published: true) }
+
+  def humanized_published_at
+    self.published_at&.to_fs(:rfc822)
+  end
 
   private
 

@@ -6,7 +6,7 @@ class Admin::PostsController < Admin::AdminController
   end
 
   def new
-    @post = Post.new
+    @post = Post.new(published_at: Date.current)
   end
 
   def create
@@ -58,7 +58,7 @@ class Admin::PostsController < Admin::AdminController
   end
 
   def post_params
-    params.require(:post).permit(:title_en, :title_es, :overview_en, :overview_es, :content_en, :content_es, tags: [])
+    params.require(:post).permit(:title_en, :title_es, :overview_en, :overview_es, :content_en, :content_es, :published_at, tags: [])
   end
 
   def get_published_value_from_params

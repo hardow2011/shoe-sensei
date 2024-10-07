@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_04_032204) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_07_020455) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -119,6 +119,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_04_032204) do
     t.string "content_es", null: false
     t.jsonb "table_of_contents_en", default: [], null: false
     t.jsonb "table_of_contents_es", default: [], null: false
+    t.date "published_at", default: "2024-10-07"
     t.index ["handle"], name: "index_posts_on_handle", unique: true
   end
 
