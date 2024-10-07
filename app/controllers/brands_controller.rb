@@ -7,7 +7,7 @@ class BrandsController < ApplicationController
 
     @meta_tags = {
       title: I18n.t('all_brands') + " | " + @app_name,
-      description: I18n.t('list_of_all_brands')
+      description: I18n.t('explore_our_brands')
     }
   end
 
