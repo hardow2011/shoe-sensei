@@ -1,14 +1,18 @@
 <% collections = brand.collections.first(3) %>
 <div id="<%= brand.handle %>" class="content">
-    <div class="is-flex is-align-items-center mb-4 is-gap-2">
-        <figure class="image is-96x96">
-            <%= link_to brand_path(brand.handle), class: "image is-96x96" do %>
-                <%= image_tag brand.logo.variant(:thumb), alt: "#{brand.name} logo", title: "#{brand.name} logo", style: "height: 100%;object-fit: contain;" %>
+    <div class="columns is-align-items-center mb-4 is-1 is-4-tablet">
+        <div class="column is-narrow">
+            <figure class="image is-96x96">
+                <%= link_to brand_path(brand.handle), class: "image is-96x96" do %>
+                    <%= image_tag brand.logo.variant(:thumb), alt: "#{brand.name} logo", title: "#{brand.name} logo", style: "height: 100%;object-fit: contain;" %>
+                <% end %>
+            </figure>
+        </div>
+        <div class="column is-narrow">
+            <%= link_to brand_path(brand.handle), class: "title is-2" do %>
+                <h4 class="mb-0"><%= brand.name %></h4>
             <% end %>
-        </figure>
-        <%= link_to brand_path(brand.handle), class: "title is-2" do %>
-            <h4 class="mb-0"><%= brand.name %></h4>
-        <% end %>
+        </div>
     </div>
     <p class="is-size-5"><%= brand.overview %></p>
     <% if collections.any? %>
