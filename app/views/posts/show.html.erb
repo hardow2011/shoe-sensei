@@ -35,14 +35,7 @@
                             <%= @post.content.html_safe %>
                         </div>
                         <hr>
-                        <% if @post.tags.any? %>
-                            <div class="tags">
-                                <span><%= t('tags') %>:</span>
-                                <% @post.tags.each do |tag| %>
-                                    <span class="tag"><%= t("filter.#{tag}") %></span>
-                                <% end %>
-                            </div>
-                        <% end %>
+                        <%= render partial: 'posts/tags', locals: { tags: @post.tags } %>
                     </div>
                 <% end %>
             </div>

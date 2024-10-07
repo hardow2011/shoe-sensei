@@ -1,0 +1,8 @@
+<% if tags.any? %>
+    <div class="tags">
+        <span><%= t('tags') %>:</span>
+        <% tags.each do |tag| %>
+            <span class="tag"><%= t("filter.#{tag}") %></span>
+        <% end %>
+    </div>
+<% end %>
