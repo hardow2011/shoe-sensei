@@ -14,16 +14,21 @@ window.toggleNavbar = function(clickBtn) {
 // Remove the is-clipped style (if present) from the html tag after page visit
 document.addEventListener('turbo:load', () => {
   if (document.documentElement.classList.contains("is-clipped")) {
-    document.documentElement.classList.remove("is-clipped");
+    removeMobileMenu()
   }
 });
+
 
 window.addEventListener('resize', function(event) {
   const $htmlTag = document.documentElement;
   if($htmlTag.classList.contains('is-clipped') && window.screen.width > 768) {
-    document.documentElement.classList.remove('is-clipped');
-    document.querySelector('nav.navbar').classList.remove('is-active');
-    document.querySelector('.navbar-menu').classList.remove('is-active');
-    document.querySelector('.navbar-burger').classList.remove('is-active');
+    removeMobileMenu();
   }
 }, true);
+
+function removeMobileMenu() {
+  document.documentElement.classList.remove('is-clipped');
+  document.querySelector('nav.navbar').classList.remove('is-active');
+  document.querySelector('.navbar-menu').classList.remove('is-active');
+  document.querySelector('.navbar-burger').classList.remove('is-active');
+}
