@@ -55,7 +55,7 @@ en:
   brand_not_found: 'Brand not found'
   post_not_found: 'Post not found'
   collection_not_found: 'Collection not found'
-  site_default_description: 'A shoe knowledge base to find the perfect pair for your needs'
+  site_default_description: 'Discover the perfect shoes for you at Shoe Sensei. Find reviews, expert advice, and recommendations for all foot types.'
   some_notable_collections_include: Some notable collections include
   read_more: Read more...
   app_created_by_html: "<strong>%{app_name}</strong> created by <span class='is-underlined'>%{developer_name}</span>."
