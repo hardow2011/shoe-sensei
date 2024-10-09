@@ -71,7 +71,7 @@ class Post < ApplicationRecord
 
   def update_images_attachments
     # uniq here to prevent index unique constraint problem on copy and pasting images from tinymce
-    self.images = images_ids.uniq
+    self.images = images_ids&.uniq
   end
 
   def tags_validity
