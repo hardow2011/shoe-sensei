@@ -12,7 +12,7 @@ es:
         training_and_gym: Entrenamiento y gimnasio
       cushionings:
         low: Baja
-        mid: Mediana
+        medium: Mediana
         high: Alta
       supports:
         neutral: Neutral
