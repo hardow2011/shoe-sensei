@@ -29,6 +29,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <link rel="icon" type="image/x-icon" href="<%= image_path("logo/favicon.ico") %>">
     <%= content_for :head %>
     <%= Sentry.get_trace_propagation_meta.html_safe %>
   </head>
