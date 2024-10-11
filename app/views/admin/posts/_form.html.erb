@@ -36,6 +36,15 @@
         </div>
     </div>
     <div class="field">
+        <div class="control">
+            <label class='checkbox'>
+                <%#= f.hidden_field :has_affiliate_links, false %>
+                <%= f.check_box :has_affiliate_links %>
+                <%= 'Does the content contain affiliate links?' %>
+            </label>
+        </div>
+    </div>
+    <div class="field">
         <label class="label"><%= f.label :content_en %></label>
         <div class="control">
             <%= render partial: 'admin/tinymce_field', locals: { form: f, object: post, attr_name: :content_en } %>

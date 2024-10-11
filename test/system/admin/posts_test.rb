@@ -41,6 +41,7 @@ class PostsTest < ApplicationSystemTestCase
     fill_in "post[overview_es]", with: @new_post[:overview_es]
     find('.tinymce[name="post[content_en]"]').set(@new_post[:content_en])
     find('.tinymce[name="post[content_es]"]').set(@new_post[:content_es])
+    check 'Does the content contain affiliate links?'
     check 'Healthcare'
     check 'Accessories'
     check 'Road running'
@@ -64,6 +65,9 @@ class PostsTest < ApplicationSystemTestCase
 
     assert_text @new_post[:title_en]
     assert_no_text @new_post[:overview_en]
+    within('.post-content') do
+      assert_text I18n.t('associate_disclaimer')
+    end
     assert_text 'The list is the following'
   end
 

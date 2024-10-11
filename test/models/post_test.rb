@@ -8,6 +8,7 @@ class PostTest < ActiveSupport::TestCase
       content_es: '<h2>Introducción</h2><h2>Historia de los zapatos</h2><h3>Primeros Años</h3><h3>Desarrollo Industrial</h3><h4>Otros acontecimientos</h4><h2>Surgimiento y Caída</h2><h4>Fuentes</h4><h5>Leer Más</h5>',
       tags: ['road_running', 'walking', 'cost_conscious', 'support'],
       published_at: Date.parse("Jan 15 2022"),
+      has_affiliate_links: true,
       published: true)
   end
   test "valid post" do
@@ -78,6 +79,14 @@ class PostTest < ActiveSupport::TestCase
     post.save
     refute post.valid?
     assert_not_empty post.errors[:published_at], 'no validation for published_at'
+  end
+
+  test 'invalid without has_affiliate_links' do
+    post = @valid_post
+    post.has_affiliate_links = nil
+    post.save
+    refute post.valid?
+    assert_not_empty post.errors[:has_affiliate_links], 'no validation for has_affiliate_links'
   end
 
   test 'correct title parameterization to handle' do

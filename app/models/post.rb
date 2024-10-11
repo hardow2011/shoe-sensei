@@ -6,6 +6,7 @@
 #  content_en           :string           not null
 #  content_es           :string           not null
 #  handle               :string
+#  has_affiliate_links  :boolean          default(FALSE)
 #  overview_en          :string           not null
 #  overview_es          :string           not null
 #  published            :boolean          not null
@@ -41,7 +42,7 @@ class Post < ApplicationRecord
   before_validation :assign_blank_if_null
 
   validates :title_en, :title_es, presence: true
-  validates :published, inclusion: { in: AllowedTags::BOOLEAN_OPTIONS }
+  validates :published, :has_affiliate_links, inclusion: { in: AllowedTags::BOOLEAN_OPTIONS }
   validates :title_en, :title_es, uniqueness: true
   validate :tags_validity
   validate :table_of_contents_validity
