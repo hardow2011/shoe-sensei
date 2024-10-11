@@ -4,55 +4,6 @@
     }
 }
 
-.carousel-wrapper {
-    max-height: calc(100vh - $navbar-height - 6rem);
-    
-    @include mixins.touch {
-        display: none;
-    }
-
-    .homepage-carousel-wrapper {
-        position:relative;
-        
-        @include mixins.touch {
-            display: none;
-        }
-    
-        .photobanner {
-            display: flex;
-            flex-direction: row;
-            // overflow:hidden; 
-            white-space: nowrap;
-            animation: homepage-carousel-horizontal 10s ease-in-out infinite;
-            height: 175px;
-    
-            figure {    
-                margin: 0 0.5em 
-            }
-    
-            img {
-                height: 100%;
-                object-fit: contain;
-            }
-    
-            @include mixins.tablet {
-                animation-duration: 25s;
-            }
-    
-            @include mixins.desktop {
-                display: flex;
-                flex-direction: column;
-                height: unset;
-                animation-name: homepage-carousel-vertical;
-                animation-duration: 50s;
-            }
-        }
-    
-        .photobanner:nth-of-type(2n) {
-            animation-name: homepage-carousel-vertical-reverse;
-        }
-    }
-}
 
 .homepage-hero-inner {
     @include mixins.touch {
@@ -94,7 +45,11 @@
     }
 }
 
-.homepage-carousel-background {
+.text-wrap {
+    text-wrap: wrap;
+}
+
+.homepage-video-background {
     @extend .has-background-white;
     position: absolute;
     width: 50%;
@@ -102,43 +57,3 @@
     top: 0;
     right: 0;
 }
-
-.text-wrap {
-    text-wrap: wrap;
-}
-
-@keyframes homepage-carousel-horizontal {
-  0% {
-      transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(-50%, 0);
-  }
-  100% {
-      transform: translate(0%, 0);
-  }
-}
-
-@keyframes homepage-carousel-vertical {
-    0% {
-        transform: translate(0, 0);
-    }
-    50% {
-        transform: translate(0, -50%);
-      }
-    100% {
-        transform: translate(0, 0%);
-    }
-  }
-
-  @keyframes homepage-carousel-vertical-reverse {
-    0% {
-        transform: translate(0, -50%);
-    }
-    50% {
-        transform: translate(0, 0%);
-      }
-    100% {
-        transform: translate(0, -50%);
-    }
-  }

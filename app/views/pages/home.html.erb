@@ -1,5 +1,8 @@
 <div class="section is-flex is-clipped homepage-hero is-relative">
-    <div class="homepage-carousel-background is-hidden-touch">
+    <div class="homepage-video-background is-hidden-touch">
+        <video autoplay muted loop>
+            <source src="<%= asset_path('running-man.mp4') %>" type="video/mp4" />
+        </video>
     </div>
     <div class="column homepage-hero-outer">
         <div class="columns homepage-hero-inner">
@@ -13,8 +16,7 @@
                     </div>
                 </div>
             </div>
-            <div class="column is-relative carousel-wrapper">
-                <%= render partial: "shared/homepage_carousel/carousel" %>
+            <div class="column">
             </div>
         </div>
     </div>
