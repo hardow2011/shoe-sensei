@@ -1,11 +1,6 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a href="<%= root_path %>" class="navbar-item <%= request.path == root_path ? 'has-text-link has-background-white' : nil%>" data-turbo="false" >
-      <figure class="image is-32x32">
-        <%= image_tag "logo/official.webp", style: "height: 100%;object-fit: contain;" %>
-      </figure>
-      <p><%= @app_name %></p>
-    </a>
+    <%= render partial: 'shared/navbar_root_btn', locals: { root: root_path } %>
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu" onclick="toggleNavbar(this)">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>

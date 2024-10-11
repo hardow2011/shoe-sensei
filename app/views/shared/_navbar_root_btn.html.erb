@@ -1,0 +1,6 @@
+<a href="<%= root %>" class="is-gap-0.5 navbar-item <%= request.path == root ? 'has-text-link-40 has-background-link-light' : nil%>" data-turbo="false" >
+    <figure class="image is-32x32">
+    <%= image_tag "logo/official.webp", style: "height: 100%;object-fit: contain;" %>
+    </figure>
+    <p><%= @app_name %></p>
+</a>
