@@ -9,6 +9,17 @@
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-PRTXNJGN');</script>
       <!-- End Google Tag Manager -->
+
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-HPZY3GYRWR"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-HPZY3GYRWR');
+      </script>
+
     <% end %>
     <% if @meta_tags&.fetch(:title, false) %>
       <title><%= @meta_tags[:title] %></title>
