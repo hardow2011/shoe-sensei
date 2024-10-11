@@ -12,7 +12,9 @@ class PagesTest < ApplicationSystemTestCase
   test "filtering the shoe models in the homepage" do
     visit root_path
 
-    click_on "Try Our Shoe Filter!"
+    within('.title-container') do
+      click_on "Try Our Shoe Filter"
+    end
 
     within('.models-grid') do
       assert_any_of_selectors(:css, 'div.model-box')
@@ -98,7 +100,9 @@ class PagesTest < ApplicationSystemTestCase
   test 'paginating through the shoe models in the homepage' do
     visit root_path
 
-    click_on "Try Our Shoe Filter!"
+    within('.title-container') do
+      click_on "Try Our Shoe Filter"
+    end
 
     within('.pagination', match: :first) do
       assert_any_of_selectors(:css, '.pagination-list > li')
@@ -118,7 +122,9 @@ class PagesTest < ApplicationSystemTestCase
   test 'sorting the models in the homepage' do
     visit root_url
 
-    click_on "Try Our Shoe Filter!"
+    within('.title-container') do
+      click_on "Try Our Shoe Filter"
+    end
 
     sort_options = FilterPagination::SORTING_OPTIONS.map { |o| o[0]}
 
@@ -220,7 +226,9 @@ class PagesTest < ApplicationSystemTestCase
   test 'using additional filters in the homepage' do
     visit root_url
 
-    click_on "Try Our Shoe Filter!"
+    within('.title-container') do
+      click_on "Try Our Shoe Filter"
+    end
 
     within('.models-filter') do
       has_field? 'APMA accepted only?'
@@ -253,7 +261,9 @@ class PagesTest < ApplicationSystemTestCase
   test 'show message when no models available for selection' do
     visit root_url
 
-    click_on "Try Our Shoe Filter!"
+    within('.title-container') do
+      click_on "Try Our Shoe Filter"
+    end
 
     assert_no_text @brooks_ghost_max_1.name
 

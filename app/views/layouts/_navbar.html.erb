@@ -14,8 +14,7 @@
         <%= link_to t('brands'), brands_path, class: "navbar-link" %>
 
         <div class="navbar-dropdown">
-          <%# TODO: cache this query %>
-          <% Brand.order_by_models_count(3).each do |b| %>
+          <% @nav_footer_brands.each do |b| %>
             <%= link_to b.name, brand_path(b.handle), class: "navbar-item #{request.path == brand_path(b.handle) ? 'is-selected has-text-white' : nil}" %>
           <% end %>
           <hr class="navbar-divider"/>

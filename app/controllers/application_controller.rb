@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   around_action :switch_locale
   before_action :set_app_name
   before_action :set_meta_tags
+  before_action :set_nav_footer_brands
   attr_accessor :app_name
 
   def set_app_name
@@ -48,6 +49,11 @@ class ApplicationController < ActionController::Base
       description: I18n.t('site_default_description'),
       google_tag: true
     }
+  end
+
+  def set_nav_footer_brands
+    # TODO: cache this query
+    @nav_footer_brands = Brand.order_by_models_count(3)
   end
 
   private

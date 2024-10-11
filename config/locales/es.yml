@@ -25,7 +25,11 @@ es:
   invalid_filter_tags: "Filtros no permitidos aplicados."
   home_hero_subtitle_html: "Zapatos Hechos Fáciles.<br>Explora Nuestras Guías para Encontrar el Ajuste Perfecto y Muévete con Confianza."
   cta:
-    try_our_shoe_filter: "¡Prueba Nuestro Selector de Zapatos!"
+    try_our_shoe_filter: "Prueba Nuestro Selector de Zapatos"
     read_blog_instead_html: "¡Para artículos detallados sobre zapatos, salta directamente a nuestro %{blog_anchor}!"
-    visit_our_blog: Visita Nuestro Blog
+    visit_our_blog: ¡Visita Nuestro Blog!
   published_on: Publicado el
+  slogan: Muévete con Confianza
+  explore: Explora
+  footer_short_description: Shoe Sensei ofrece consejos expertos y guías para ayudarte a encontrar el par de zapatos perfecto para cualquier actividad.
+  associate_disclaimer: Algunos enlaces en este sitio son enlaces de afiliados, lo que significa que podemos ganar una comisión cuando haces clic y realizas una compra sin costo adicional para ti.

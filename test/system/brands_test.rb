@@ -12,7 +12,7 @@ class BrandsTest < ApplicationSystemTestCase
   test 'show brands index page' do
     visit root_url
 
-    assert_selector 'a', text: "Try Our Shoe Filter!"
+    assert_selector 'a', text: "Try Our Shoe Filter"
     assert_selector 'a', text: "Visit Our Blog"
 
     within('.navbar') do
@@ -29,7 +29,9 @@ class BrandsTest < ApplicationSystemTestCase
   test 'show brand page' do
     visit root_url
 
-    click_on "Try Our Shoe Filter!"
+    within('.title-container') do
+      click_on "Try Our Shoe Filter"
+    end
 
     within('.models-filter') do
       check @on_running.name
@@ -107,7 +109,7 @@ class BrandsTest < ApplicationSystemTestCase
   test 'breadcrumbs' do
     visit root_url
 
-    assert_selector 'a', text: "Try Our Shoe Filter!"
+    assert_selector 'a', text: "Try Our Shoe Filter"
     assert_selector 'a', text: "Visit Our Blog"
 
     within('.navbar') do

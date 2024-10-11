@@ -1,7 +1,34 @@
 <footer class="footer mt-auto">
-  <div class="content has-text-centered">
-    <p>
-        <%= t('app_created_by_html', app_name: @app_name, developer_name: @developer_name) %>
-    </p>
+  <div class="content container is-widescreen">
+    <div class="columns">
+      <div class="column">
+        <h2>
+          <a href="<%= root_path %>" class="mb-4 is-gap-0.5 is-flex is-align-items-center is-block" data-turbo="false" >
+              <figure class="image is-96x96">
+              <%= image_tag "logo/official.webp", style: "height: 100%;object-fit: contain;" %>
+              </figure>
+              <span><%= @app_name %></span>
+          </a>
+        </h2>
+        <p><em><%= t('slogan') %></em></p>
+      </div>
+      <div class="column">
+        <h4><%= t('brands') %></h4>
+        <% @nav_footer_brands.each do |b| %>
+          <p><%= link_to b.name, brand_path(b.handle) %></p>
+        <% end %>
+        <p><%= link_to t('all_brands'), brands_path %></p>
+      </div>
+      <div class="column">
+        <h4><%= t('explore') %></h4>
+        <p><%= link_to t('cta.visit_our_blog'), posts_path %></p>
+        <p><%= link_to t('cta.try_our_shoe_filter'), root_path(anchor: 'homepage-filter') %></p>
+      </div>
+    </div>
+    <hr>
+    <div class="mt-5">
+      <p><b><%= t('footer_short_description') %></b></p>
+      <p><em><%= t('associate_disclaimer') %></em></p>
+    </div>
   </div>
 </footer>

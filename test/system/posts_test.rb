@@ -64,7 +64,7 @@ class PostsTest < ApplicationSystemTestCase
     assert_text @post.title
     assert_no_text @post.overview
 
-    header_tags = find_all('.content h2')
+    header_tags = find_all('.post-content h2')
 
     header_tags.each do |tag|
       within('.table-of-contents') do
