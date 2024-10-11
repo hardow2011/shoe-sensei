@@ -1,25 +1,19 @@
-<div class="section is-flex is-clipped homepage-hero is-relative">
-    <div class="homepage-video-background is-hidden-touch">
-        <video autoplay muted loop>
-            <source src="<%= asset_path('running-man.mp4') %>" type="video/mp4" />
-        </video>
-    </div>
-    <div class="column homepage-hero-outer">
-        <div class="columns homepage-hero-inner">
-            <div class="column">
-                <div class="container title-container is-flex is-justify-content-center is-flex-direction-column">
-                    <h1 class="title is-1"><%= @app_name %></h1>
-                    <h2 class="is-size-3 mb-5"><%= t('home_hero_subtitle_html') %></h2>
-                    <div class="buttons is-flex-wrap-wrap-reverse">
-                        <%= link_to t('cta.try_our_shoe_filter'), '#homepage-filter', class: 'button is-link is-large has-text-white text-wrap text-wrap', data: { turbo: false } %>
-                        <%= link_to t('cta.visit_our_blog'), posts_path, class: 'button is-link is-large text-wrap is-light text-wrap', data: { turbo: false } %>
-                    </div>
+<div class="section columns homepage-hero is-relative">
+        <div class="column">
+            <div class="container title-container is-flex is-justify-content-center is-flex-direction-column">
+                <h1 class="title is-1"><%= @app_name %></h1>
+                <h2 class="is-size-3 mb-5"><%= t('home_hero_subtitle_html') %></h2>
+                <div class="buttons is-flex-wrap-wrap-reverse">
+                    <%= link_to t('cta.try_our_shoe_filter'), '#homepage-filter', class: 'button is-link is-large has-text-white text-wrap text-wrap', data: { turbo: false } %>
+                    <%= link_to t('cta.visit_our_blog'), posts_path, class: 'button is-link is-large text-wrap is-light text-wrap', data: { turbo: false } %>
                 </div>
             </div>
-            <div class="column">
-            </div>
         </div>
-    </div>
+        <div class="column homepage-video-background is-hidden-mobile">
+            <video autoplay muted loop alt class="is-disabled">
+                <source src="<%= asset_path('running-man.mp4') %>" type="video/mp4" />
+            </video>
+        </div>
 </div>
 <div class="section" id="homepage-filter">
     <div class="container is-widescreen">
