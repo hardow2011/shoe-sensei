@@ -30,9 +30,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <% if Rails.env != 'test' %>
-      <link rel="alternate" href="<%= Rails.application.routes.default_url_options[:host] + url_for(request.params.replace(locale: nil)) %>" hreflang="x-default">
-      <link rel="alternate" href="<%= Rails.application.routes.default_url_options[:host] + url_for(request.params.replace(locale: :en)) %>" hreflang="en">
-      <link rel="alternate" href="<%= Rails.application.routes.default_url_options[:host] + url_for(request.params.replace(locale: :es)) %>" hreflang="es">
+      <link rel="alternate" href="<%= Rails.application.routes.default_url_options[:host].gsub!(/\/$/, "") + url_for(request.params.replace(locale: nil)) %>" hreflang="x-default">
+      <link rel="alternate" href="<%= Rails.application.routes.default_url_options[:host].gsub!(/\/$/, "") + url_for(request.params.replace(locale: :en)) %>" hreflang="en">
+      <link rel="alternate" href="<%= Rails.application.routes.default_url_options[:host].gsub!(/\/$/, "") + url_for(request.params.replace(locale: :es)) %>" hreflang="es">
     <% end %>
 
     <%= csrf_meta_tags %>
