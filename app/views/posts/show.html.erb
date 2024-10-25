@@ -15,7 +15,7 @@
                                         <% if entry['nested_tags'].present? %>
                                             <ul>
                                                 <% entry['nested_tags']&.each do |h3_tag| %>
-                                                <li><%= link_to h3_tag['title'], post_path(@post.handle, anchor: h3_tag['id']) %></li>
+                                                <li><%= link_to h3_tag['title'], post_path(@post.handle, anchor: h3_tag['id']), class: 'px-2' %></li>
                                                 <% end %>
                                             </ul>
                                         <% end %>
