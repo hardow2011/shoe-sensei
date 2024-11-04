@@ -32,7 +32,6 @@
     <% if Rails.env != 'test' %>
       <%# TODO: remove hardcodded "https://shoesensei.com" %>
       <link rel="alternate" href="<%= ["https://shoesensei.com", url_for(request.params.replace(locale: nil))].join('') %>" hreflang="en">
-      <%# <link rel="alternate" href="<%= ["https://shoesensei.com", url_for(request.params.replace(locale: :en))].join('') %>" hreflang="en"> %>
       <link rel="alternate" href="<%= ["https://shoesensei.com", url_for(request.params.replace(locale: :es))].join('') %>" hreflang="es">
       <link rel="alternate" href="<%= ["https://shoesensei.com", url_for(request.params.replace(locale: nil))].join('') %>" hreflang="x-default">
     <% end %>
