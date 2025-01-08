@@ -28,9 +28,15 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#blog">Blog</a></li>
-    <li><a href="#testing">Testing</a></li>
+    <li>
+      <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#shoe-filter-sort-and-pagination">Shoe filter, sort and pagination</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#testing">Testing</a></li>
+      </ul>
+    </li>
+    </li>
   </ol>
 </details>
 
