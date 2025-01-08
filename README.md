@@ -81,7 +81,7 @@ This command starts the web server; the js and css watchers.
 
 ### Shoe filter, sort and pagination
 Shoe Sensei provides a handy, custom-made shoe filter to assist interested parties in their search for the right footwear for the occasion.
-<img width="704" alt="image" src="https://github.com/user-attachments/assets/dee4a979-524c-418d-9eb8-fdc1b1698d4f" />
+<img width="704" alt="Shoe filter" src="https://github.com/user-attachments/assets/dee4a979-524c-418d-9eb8-fdc1b1698d4f" />
 
 The filter is comprised of:
 1. Brand
@@ -113,7 +113,14 @@ Including when the request is already filtering shoes.
 filter_models?brand_ids%5B%5D=40&activities%5B%5D=road_running&activities%5B%5D=trail_running&cushionings%5B%5D=2&page=1&models_sorting=name
 ```
 
-The [FilterPagination module](https://github.com/hardow2011/shoe-sensei/blob/main/app/helpers/filter_pagination.rb) is also responsible for sorting the results by passing the `models_sorting` to the resquest. 
+The [FilterPagination module](https://github.com/hardow2011/shoe-sensei/blob/main/app/helpers/filter_pagination.rb) is also responsible for sorting the results by passing the `models_sorting` to the resquest.
+
+### Performance optimizations
+To optimize the page performance, the shoe filter in the homepage is not loaded until it is scrolled into view.
+Until the content is loaded, a [skeleton](https://github.com/hardow2011/shoe-sensei/blob/main/app/views/models/filter/skeleton/_grid.html.erb) is put in its place.
+<img width="946" alt="Shoe filter skeleton" src="https://github.com/user-attachments/assets/57df2658-eec8-4ef0-a484-df84dfe1e136" />
+
+Additionally, the filters contents are cached by language, and stored in a Redis cache store in Render; making the page load extremelly fast.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
