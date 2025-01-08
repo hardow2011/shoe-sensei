@@ -36,7 +36,7 @@
         <li><a href="#testing">Testing</a></li>
       </ul>
     </li>
-    </li>
+    <li><a href="deployment-and-storage">Deployment and Storage</a></li>
   </ol>
 </details>
 
@@ -180,6 +180,13 @@ Two types of tests were embedded in the code:
 1. [Model Tests](https://github.com/hardow2011/shoe-sensei/tree/main/test/models) to ensure the models logic and functions work as intended.
 
 2. [System Tests](https://github.com/hardow2011/shoe-sensei/tree/main/test/system) tverify the interaction with the system from the end user perspective.
+
+## Deployment and Storage
+
+The web app, database and cache store are being held in [Render](https://render.com/).
+The Active Storage images and stored in an AWS S3 bucket.
+
+The production variables are stored in the credential files.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
