@@ -74,7 +74,46 @@ Make sure the Postgre service is running
  ```sh
    bin/dev
    ```
-This command starts the web server; the js and css watchers. 
+This command starts the web server; the js and css watchers.
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+### Shoe filter, sort and pagination
+Shoe Sensei provides a handy, custom-made shoe filter to assist interested parties in their search for the right footwear for the occasion.
+<img width="704" alt="image" src="https://github.com/user-attachments/assets/dee4a979-524c-418d-9eb8-fdc1b1698d4f" />
+
+The filter is comprised of:
+1. Brand
+2. Activity
+3. Cushioning
+4. Support
+5. Additional filters
+
+It also includes navigation buttons.
+
+The filter is made storing custom jsonb attributes in the shoes tags columns in the PostgreSQL database.
+Those tags are passed to `PagesController.filter_models` by url params, which are then processed by the [FilterPagination module](https://github.com/hardow2011/shoe-sensei/blob/main/app/helpers/filter_pagination.rb).
+
+For example, the following request would return every shoe with the following characteristics:
+1. Brand: Hoka
+2. Activity: Road running or Trail running
+3. Cushioning: Medium
+```
+filter_models?brand_ids%5B%5D=40&activities%5B%5D=road_running&activities%5B%5D=trail_running&cushionings%5B%5D=2&models_sorting=name
+```
+
+The `page` parameter can also be added to the request to paginate the results.
+```
+filter_models?page=1
+```
+
+Including when the request is already filtering shoes.
+```
+filter_models?brand_ids%5B%5D=40&activities%5B%5D=road_running&activities%5B%5D=trail_running&cushionings%5B%5D=2&page=1&models_sorting=name
+```
+
+The [FilterPagination module](https://github.com/hardow2011/shoe-sensei/blob/main/app/helpers/filter_pagination.rb) is also responsible for sorting the results by passing the `models_sorting` to the resquest. 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
