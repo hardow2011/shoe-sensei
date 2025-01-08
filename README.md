@@ -11,6 +11,29 @@
     Shoes Made Simple.
 </div>
 
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#testing">Testing</a></li>
+  </ol>
+</details>
+
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -138,6 +161,19 @@ Once received by the controller, it will be uploaded to the AWS S3 bucket and th
 Now, **every time** an image is pasted, it is automatically uploaded to storage, whether or not the blog post ends up getting saved. This creates an issue, because the storage will progresively accumulate unused media, and storage is not free.
 
 To remediate the issue, a [cron task](https://github.com/hardow2011/shoe-sensei/blob/main/config/schedule.rb) should run periodically to clean up the unattached files by executing the [cleanup:unnattached_files task](https://github.com/hardow2011/shoe-sensei/blob/main/lib/tasks/cleanup.rake).
+
+### Testing
+
+The development methodology used for building this project is **[Test-driven development (TDD)](https://en.wikipedia.org/wiki/Test-driven_development)**.
+
+The tests were built before the code to be implemented; the tests indicate how to software ought to behave.
+
+This approach to developing allows for a more future-proof app, and ensures that new features do not break parts of the code that were previously working.
+
+Two types of tests were embedded in the code:
+1. [Model Tests](https://github.com/hardow2011/shoe-sensei/tree/main/test/models) to ensure the models logic and functions work as intended.
+
+2. [System Tests](https://github.com/hardow2011/shoe-sensei/tree/main/test/system) tverify the interaction with the system from the end user perspective.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
