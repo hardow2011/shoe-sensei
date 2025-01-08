@@ -35,6 +35,7 @@ The blog section in Shoe Sensei uses TinyMCE for a flexible text editor interfac
 * [![Bulma][Bulma-logo]][Bulma-url]
 * [![Render][Render-logo]][Render-url]
 * [![Amazon S3][AmazonS3-logo]][AmazonS3-url]
+* [TinyMCE](https://www.tiny.cloud/)
 
 ## Getting Started
 
@@ -70,6 +71,10 @@ Make sure the Postgre service is running
  ```sh
    rails test:all
    ```
+6. Set up the cron jobs to periodically remove unattached images uploaded through TinyMCE.
+```sh
+whenever --update-crontab
+```
 ### Start The Local Server
  ```sh
    bin/dev
@@ -81,7 +86,7 @@ This command starts the web server; the js and css watchers.
 
 ### Shoe filter, sort and pagination
 Shoe Sensei provides a handy, custom-made shoe filter to assist interested parties in their search for the right footwear for the occasion.
-<img width="704" alt="Shoe filter" src="https://github.com/user-attachments/assets/dee4a979-524c-418d-9eb8-fdc1b1698d4f" />
+<img width="704" alt="image" src="https://github.com/user-attachments/assets/dee4a979-524c-418d-9eb8-fdc1b1698d4f" />
 
 The filter is comprised of:
 1. Brand
@@ -115,12 +120,24 @@ filter_models?brand_ids%5B%5D=40&activities%5B%5D=road_running&activities%5B%5D=
 
 The [FilterPagination module](https://github.com/hardow2011/shoe-sensei/blob/main/app/helpers/filter_pagination.rb) is also responsible for sorting the results by passing the `models_sorting` to the resquest.
 
-### Performance optimizations
-To optimize the page performance, the shoe filter in the homepage is not loaded until it is scrolled into view.
-Until the content is loaded, a [skeleton](https://github.com/hardow2011/shoe-sensei/blob/main/app/views/models/filter/skeleton/_grid.html.erb) is put in its place.
-<img width="946" alt="Shoe filter skeleton" src="https://github.com/user-attachments/assets/57df2658-eec8-4ef0-a484-df84dfe1e136" />
+### Blog
 
-Additionally, the filters contents are cached by language, and stored in a Redis cache store in Render; making the page load extremelly fast.
+The blog section of the [Shoe Sensei](https://shoesensei.com/) is made with TinyMCE.
+
+<img width="559" alt="image" src="https://github.com/user-attachments/assets/355e98fd-bf31-413a-88b6-3fb4ab20a57a" />
+<br/>
+<br/>
+I decided to use TinyMCE instead of the default [Action Text](https://guides.rubyonrails.org/action_text_overview.html) because the latter is too limited in functionality.
+TinyMCE is a feature-rich, flexible text editor with a vast amount of plugins, making it ideal for Shoe Sensei's use case.
+
+Since Rails does not support TinyMCE's image uploads by default, I had to build my omw implementation.
+
+Every time an image is pasted in the TinyMCE editor, it will be send by post request to `/admin/tinymce_assets` as specified by the config file [config/tinymce.yml](https://github.com/hardow2011/shoe-sensei/blob/main/config/tinymce.yml).
+Once received by the controller, it will be uploaded to the AWS S3 bucket and the url will then be returned to the editor, which will display it in the page.
+
+Now, **every time** an image is pasted, it is automatically uploaded to storage, whether or not the blog post ends up getting saved. This creates an issue, because the storage will progresively accumulate unused media, and storage is not free.
+
+To remediate the issue, a [cron task](https://github.com/hardow2011/shoe-sensei/blob/main/config/schedule.rb) should run periodically to clean up the unattached files by executing the [cleanup:unnattached_files task](https://github.com/hardow2011/shoe-sensei/blob/main/lib/tasks/cleanup.rake).
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
