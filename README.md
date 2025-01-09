@@ -212,6 +212,8 @@ The Active Storage images and stored in an AWS S3 bucket.
 
 The production variables are stored in the credential files.
 
+Every push to the main origin branch will be automatically deployed to Render.
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [RoR-logo]: https://img.shields.io/badge/Ruby%20on%20Rails-d40000?style=for-the-badge&logo=rubyonrails&logoColor=white
