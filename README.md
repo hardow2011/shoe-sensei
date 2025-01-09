@@ -133,17 +133,17 @@ For example, the following request would return every shoe with the following ch
 1. Brand: Hoka
 2. Activity: Road running or Trail running
 3. Cushioning: Medium
-```
+```ruby
 filter_models?brand_ids%5B%5D=40&activities%5B%5D=road_running&activities%5B%5D=trail_running&cushionings%5B%5D=2&models_sorting=name
 ```
 
 The `page` parameter can also be added to the request to paginate the results.
-```
+```ruby
 filter_models?page=1
 ```
 
 Including when the request is already filtering shoes.
-```
+```ruby
 filter_models?brand_ids%5B%5D=40&activities%5B%5D=road_running&activities%5B%5D=trail_running&cushionings%5B%5D=2&page=1&models_sorting=name
 ```
 
@@ -180,6 +180,30 @@ Two types of tests were embedded in the code:
 1. [Model Tests](https://github.com/hardow2011/shoe-sensei/tree/main/test/models) to ensure the models logic and functions work as intended.
 
 2. [System Tests](https://github.com/hardow2011/shoe-sensei/tree/main/test/system) tverify the interaction with the system from the end user perspective.
+
+### Internationalization
+
+Shoe Sensei is available in both in English and Spanish.
+
+<img width="539" alt="image" src="https://github.com/user-attachments/assets/133e2c78-ba9d-4cf4-b314-ea4a84b703c1" />
+<br/>
+<br/>
+The English interface is available at the default route and /en.
+
+The Spanish interface is available at /es.
+
+[Locales](https://github.com/hardow2011/shoe-sensei/tree/main/config/locales) have been used extensively to acheive an easy-to-use implementation of i18n.
+
+```ruby
+es:
+  language:
+    prompt: Idioma
+    english: English
+    spanish: Español
+  brands: Marcas
+  all_brands: Todas las marcas
+  ...
+```
 
 ## Deployment and Storage
 
