@@ -133,17 +133,17 @@ For example, the following request would return every shoe with the following ch
 1. Brand: Hoka
 2. Activity: Road running or Trail running
 3. Cushioning: Medium
-```ruby
+```
 filter_models?brand_ids%5B%5D=40&activities%5B%5D=road_running&activities%5B%5D=trail_running&cushionings%5B%5D=2&models_sorting=name
 ```
 
 The `page` parameter can also be added to the request to paginate the results.
-```ruby
+```
 filter_models?page=1
 ```
 
 Including when the request is already filtering shoes.
-```ruby
+```
 filter_models?brand_ids%5B%5D=40&activities%5B%5D=road_running&activities%5B%5D=trail_running&cushionings%5B%5D=2&page=1&models_sorting=name
 ```
 
