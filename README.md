@@ -1,9 +1,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://shoesensei.com">
+<!--   <a href="https://shoesensei.com"> -->
     <img src="https://github.com/user-attachments/assets/55edba10-f689-4f09-ac8a-c0b5f8d0af57" alt="Logo" width="80" height="80">
-  </a>
+<!--   </a> -->
 
   <h3 align="center">Shoe Sensei</h3>
 
@@ -151,7 +151,7 @@ The [FilterPagination module](https://github.com/hardow2011/shoe-sensei/blob/mai
 
 ### Blog
 
-The blog section of the [Shoe Sensei](https://shoesensei.com/) is made with TinyMCE.
+The blog section of Shoe Sensei is made with TinyMCE.
 
 <img width="559" alt="image" src="https://github.com/user-attachments/assets/355e98fd-bf31-413a-88b6-3fb4ab20a57a" />
 <br/>
