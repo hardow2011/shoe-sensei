@@ -72,6 +72,7 @@ This is an example of how you may give instructions on setting up your project l
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
+* Install the libpq-dev library
 * Install the libyaml-dev library
 * [Install Ruby version 3.2.2](https://github.com/rbenv/rbenv)
 * [Install PostgreSQL](https://www.postgresql.org/download/)
