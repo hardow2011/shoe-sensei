@@ -72,8 +72,9 @@ This is an example of how you may give instructions on setting up your project l
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
-* Install the libpq-dev library
 * Install the libyaml-dev library
+* Install the libpq-dev library
+* Install the ruby-railties library
 * [Install Ruby version 3.2.2](https://github.com/rbenv/rbenv)
 * [Install PostgreSQL](https://www.postgresql.org/download/)
 * [Install node version 18.17.1 or higher](https://nodejs.org/en/download)
