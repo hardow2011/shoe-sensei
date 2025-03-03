@@ -70,6 +70,9 @@ class Admin::ModelsController < Admin::AdminController
   end
 
   def format_model_tags
+    # skip the formatting if model is not valid.
+    # If model not valid, controller will return unprocessable entity
+    return 'Invalid model' unless @model.valid?
     @model.tags[:cushioning_level] = Integer(@model.tags[:cushioning_level])
 
     @model.tags[:apma_accepted] = ActiveModel::Type::Boolean.new.cast(@model.tags[:apma_accepted])
