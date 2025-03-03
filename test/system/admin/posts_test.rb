@@ -130,4 +130,16 @@ class PostsTest < ApplicationSystemTestCase
     assert_no_text Post.first.title
     assert_no_text Post.first.overview
   end
+
+  test 'deleting a post' do
+    click_on 'Posts'
+
+    click_on 'Edit', match: :first
+
+    assert_text 'Delete Post'
+
+    accept_alert 'Are you sure that you want to delete this post?' do
+      click_on 'Delete Post'
+    end
+  end
 end

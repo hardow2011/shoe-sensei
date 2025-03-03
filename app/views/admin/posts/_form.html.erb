@@ -76,7 +76,7 @@
             <% unless post.new_record? %>
                 <%# Here I used a delete link instead of a button, because the delete button uses a form wrapper... %>
                 <%# and since the delete button is already in a form, that would cause problems %>
-                <%= link_to('Delete Post', [:admin, post], data: {turbo_method: :delete}, class: "button is-danger") %>
+                <%= link_to('Delete Post', [:admin, post], data: {turbo_method: :delete, turbo_confirm: 'Are you sure that you want to delete this post?' }, class: "button is-danger") %>
             <% end %>
             <div class="buttons <%= post.new_record? ? 'ml-auto' : nil %>">
                 <%= f.submit(!post.published ? t('save_as_draft') : t('unpublish_post_and_save_as_draft'), class: 'button is-link') %>
