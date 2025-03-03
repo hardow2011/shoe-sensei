@@ -87,7 +87,9 @@ class Admin::CollectionsTest < ApplicationSystemTestCase
 
     assert_text 'ToDelete'
 
-    click_button 'Delete', match: :first
+    accept_alert 'Are you sure that you want to delete the On ToDelete collection?' do
+      click_button 'Delete', match: :first
+    end
 
     assert_text 'Collection was destroyed successfully.'
 

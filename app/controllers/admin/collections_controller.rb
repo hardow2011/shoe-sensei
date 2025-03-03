@@ -7,7 +7,7 @@ class Admin::CollectionsController < Admin::AdminController
       @collections = brand.collections if brand
       return
     end
-    @collections = Collection.order(created_at: :desc)
+    @collections = collections_by_default_order
   end
 
   def show
@@ -49,11 +49,23 @@ class Admin::CollectionsController < Admin::AdminController
 
   def destroy
     @collection.destroy
+    # If the request comes from the collections index page, then
+    # repopulate with all collection after deletion
+    if request.params["deleted_from_index"] == "true"
+      collections = collections_by_default_order
+    # Otherwise, the collection deletion request comes from the brand page
+    # Then, return only the collection belonging to that brand 
+    else
+      collections = Collection.where(brand: @collection.brand).order(:name)
+    end
     respond_to do |format|
       format.html { redirect_to admin_collections_path, notice: 'Collection was destroyed successfully.' }
       format.turbo_stream do
         flash.now[:notice] = 'Collection was destroyed successfully.'
-        @collections = Collection.where(brand: @collection.brand).order(:name)
+        @collections = collections
+        unless request.params["deleted_from_index"] == "true"
+          @brand = @collection.brand
+        end
       end
     end
   end
@@ -66,6 +78,10 @@ class Admin::CollectionsController < Admin::AdminController
 
   def set_collection
     @collection = Collection.find(params[:id])
+  end
+
+  def collections_by_default_order
+    Collection.order(created_at: :desc)
   end
 
 end

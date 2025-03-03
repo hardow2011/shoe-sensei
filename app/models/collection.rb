@@ -23,6 +23,7 @@
 #
 class Collection < ApplicationRecord
   include DataFormatting
+  include ActionView::Helpers::TextHelper
   extend Mobility
   translates :overview
 
@@ -35,6 +36,16 @@ class Collection < ApplicationRecord
   validates_presence_of :brand
 
   before_validation :assign_handle
+
+  def deletion_message
+    models_count = models.count
+    brand_name = brand.name
+    if models_count > 0
+      "Are you sure that you want to delete the #{brand_name} #{name} collection along with its #{pluralize(models_count, 'model')}?"
+    else
+      "Are you sure that you want to delete the #{brand_name} #{name} collection?"
+    end
+  end
 
   def name_with_brand
     "#{name} (#{brand.name})"
