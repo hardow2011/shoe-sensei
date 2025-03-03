@@ -2,7 +2,16 @@ class Admin::PostsController < Admin::AdminController
   before_action :set_post, only: %i[edit update destroy]
 
   def index
-    @posts = Post.order(updated_at: :desc)
+    @selected_filter = request.params['filter']
+    
+    case @selected_filter
+    when 'published'
+      @posts = Post.order(updated_at: :desc).where(published: true)
+    when 'drafted'
+      @posts = Post.order(updated_at: :desc).where(published: false)
+    else
+      @posts = Post.order(updated_at: :desc)
+    end
   end
 
   def new

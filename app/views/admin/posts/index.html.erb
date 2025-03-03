@@ -10,8 +10,17 @@
         </div>
     </div>
 </div>
-<div class="fixed-grid has-1-cols">
-    <div class="grid models-grid">
-        <%= render partial: 'admin/posts/post', collection: @posts %>
+<div>
+    <div class="tabs">
+        <ul>
+            <li class="<%= @selected_filter == 'all' || @selected_filter == nil ? 'is-active' : nil %>"><%= link_to 'All', admin_posts_path %></li>
+            <li class="<%= @selected_filter == 'published' ? 'is-active' : nil %>"><%= link_to 'Published', admin_posts_path(filter: 'published') %></li>
+            <li class="<%= @selected_filter == 'drafted' ? 'is-active' : nil %>"><%= link_to 'Drafted', admin_posts_path(filter: 'drafted') %></li>
+        </ul>
     </div>
+    <div class="fixed-grid has-1-cols">
+        <div class="grid models-grid">
+            <%= render partial: 'admin/posts/post', collection: @posts %>
+        </div>
+    </div>  
 </div>  

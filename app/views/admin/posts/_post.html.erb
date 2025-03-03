@@ -1,11 +1,16 @@
 <div>
+    <% if post.published %>
+        <p class="tag is-success">Published</p>
+    <% else %>
+        <p class="tag is-warning">Drafted</p>
+    <% end %>
     <div class="columns">
-        <div class="column is-narrow is-flex is-align-items-center">
-            <p>
+        <div class="column is-flex is-align-items-center">
+            <p class="is-size-5">
                 <%= post.title %>
             </p>
         </div>
-        <div class="column">
+        <div class="column is-narrow">
             <div class="buttons is-right">
                 <%= link_to 'Edit', edit_admin_post_path(post), class: "button is-link" %>
             </div>
