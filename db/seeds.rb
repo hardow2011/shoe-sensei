@@ -2,6 +2,9 @@
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
+# Admin user
+admin = User.create!(email: 'admin@email.com', password: 'admin1', password_confirmation: 'admin1'),
+
 # Brands
 brooks = Brand.create!(name: 'Brooks', company_color: '#1375b8',
   logo: File.open('test/fixtures/files/brooks-logo.webp'),
