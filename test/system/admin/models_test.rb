@@ -140,14 +140,15 @@ class ModelsTest < ApplicationSystemTestCase
 
   test 'destroying model' do
     model = models.first
+    brand_name = model.brand.name
+    collection_name = model.collection.name
     click_on 'Models'
 
     assert_text model.name
-    click_on 'Delete', match: :first
+    accept_alert "Are you sure that you want to delete the #{brand_name} #{model.name} model?" do
+      click_on 'Delete', match: :first
+    end
 
     assert_text 'Model was destroyed successfully.'
-
-    # TODO: find way to click specific delete button
-    # assert_no_text model.name
   end
 end

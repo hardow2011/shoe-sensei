@@ -77,6 +77,10 @@ class Model < ApplicationRecord
     AllowedTags::CUSHIONING_OPTIONS[self.tags[:cushioning_level] - 1]
   end
 
+  def deletion_message
+    "Are you sure that you want to delete the #{brand.name} #{name} model?"
+  end
+
   private
   def tags_validity
     if tags[:activities].nil?

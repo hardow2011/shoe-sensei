@@ -12,6 +12,8 @@
 </div>
 <div class="fixed-grid has-1-cols">
     <div class="grid models-grid">
-        <%= render partial: 'admin/models/model', collection: @models, locals: { disable_turbo: true } %>
+        <%= turbo_frame_tag 'models' do %>
+            <%= render partial: 'admin/models/model', collection: @models, locals: { disable_turbo: true } %>
+        <% end %>
     </div>
 </div>  

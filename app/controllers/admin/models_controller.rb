@@ -2,7 +2,7 @@ class Admin::ModelsController < Admin::AdminController
   before_action :set_model, only: %i[edit update destroy]
 
   def index
-    @models = Model.order(updated_at: :desc)
+    @models = models_by_default_order
   end
 
   def new
@@ -43,11 +43,22 @@ class Admin::ModelsController < Admin::AdminController
 
   def destroy
     @model.destroy
+    # If the request comes from the collections index page, then
+    # repopulate with all collection after deletion
+    if request.params["deleted_from_index"] == "true"
+      models = models_by_default_order
+    # Otherwise, the collection deletion request comes from the brand page
+    # Then, return only the collection belonging to that brand 
+    else
+      models = Model.where(collection: @model.collection).order(:name)
+    end
     respond_to do |format|
       format.html { redirect_to admin_models_path, notice: 'Model was destroyed successfully.' }
       format.turbo_stream do
         flash.now[:notice] = 'Model was destroyed successfully.'
-        @models = Model.where(collection: @model.collection).order(:name)
+        unless request.params["deleted_from_index"] == "true"
+          @collection = @model.collection
+        end
       end
     end
   end
@@ -68,5 +79,9 @@ class Admin::ModelsController < Admin::AdminController
 
   def model_params
     params.require(:model).permit(:name, :image, :heel_to_toe_drop, :weight, :collection_id, tags: [:cushioning_level, :support, :apma_accepted, :discontinued, activities: []])
+  end
+
+  def models_by_default_order
+    Model.order(updated_at: :desc)
   end
 end
