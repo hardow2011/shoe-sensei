@@ -18,6 +18,7 @@
 #
 class Brand < ApplicationRecord
   include DataFormatting
+  include ActionView::Helpers::TextHelper
   extend Mobility
   translates :overview
   has_many :collections, dependent: :destroy
@@ -44,9 +45,25 @@ class Brand < ApplicationRecord
   validates :logo, attached: true, content_type: ['image/webp'],
                   size: { less_than_or_equal_to: 250.kilobytes }
 
+  def deletion_message
+    if collections_count > 0 || models_count > 0
+      "Are you sure that you want to delete the #{name} brand along with its #{pluralize(collections_count, 'collection')} and #{pluralize(models_count, 'model')}?"
+    else
+      "Are you sure that you want to delete the #{name} brand?"
+    end
+  end
+
   private
 
   def renew_models_cache
     models.touch_all
+  end
+
+  def collections_count
+    self.collections.count
+  end
+
+  def models_count
+    self.models.count
   end
 end

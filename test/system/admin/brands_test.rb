@@ -90,8 +90,10 @@ class Admin::BrandsTest < ApplicationSystemTestCase
 
     assert_text 'ToDelete'
 
-    # click_on clicking on edit for some reason
-    click_button 'Delete', match: :first
+    accept_alert 'Are you sure that you want to delete the ToDelete brand?' do
+      # click_on clicking on edit for some reason
+      click_button 'Delete', match: :first
+    end
 
     assert_text 'Brand was destroyed successfully.'
 

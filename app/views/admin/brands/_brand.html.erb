@@ -11,8 +11,7 @@
         <div class="column">
             <div class="buttons is-right">
                 <%= link_to 'Edit', edit_admin_brand_path(brand), class: "button is-link" %>
-                <%# TODO: add confirmation before delete %>
-                <%= button_to 'Delete', [:admin, brand], method: :delete, class: "button is-danger" %>
+                <%= button_to 'Delete', [:admin, brand], method: :delete, form: { data: { turbo_confirm: "#{brand.deletion_message}" } }, class: "button is-danger" %>
             </div>
         </div>
     </div>
