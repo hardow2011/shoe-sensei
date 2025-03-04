@@ -1,14 +1,13 @@
 <%= form_with model: [:admin, brand] do |f| %>
     <% if brand.errors.any? %>
-        <div>
-            <%= brand.errors.full_messages.to_sentence.capitalize %>
-        </div>
+        <%= render partial: 'admin/shared/form_error_message' %>
     <% end %>
     <div class="field">
         <label class="label"><%= f.label :name %></label>
         <div class="control">
-            <%= f.text_field :name, autofocus: true, class: 'input' %>
+            <%= f.text_field :name, autofocus: true, class: "input #{brand.errors.full_messages_for(:name).present? ? 'is-danger' : nil}" %>
         </div>
+        <%= render partial: 'admin/shared/field_errors', locals: { object: brand, field: :name } %>
     </div>
     <div class="field">
         <label class="label"><%= f.label :logo %></label>
@@ -20,7 +19,7 @@
                         </div>
                     </figure>
                 </div>
-            <div class="file">
+            <div class="file <%= brand.errors.full_messages_for(:logo).present? ? 'is-danger' : nil %>">
                 <label class="file-label">
                     <%= f.hidden_field :logo, value: brand.logo.signed_id if brand.logo.attached? %>
                     <img id="loaded-img" style="max-width: 144px; max-height: 180px">
@@ -34,24 +33,28 @@
                 </label>
             </div>
         </div>
+        <%= render partial: 'admin/shared/field_errors', locals: { object: brand, field: :logo } %>
     </div>
     <div class="field">
         <label class="label"><%= f.label :company_color %></label>
         <div class="control">
-            <%= f.color_field :company_color, autofocus: true, class: 'input', style: 'max-width: 100px; width: 100%' %>
+            <%= f.color_field :company_color, autofocus: true, class: "input #{brand.errors.full_messages_for(:company_color).present? ? 'is-danger' : nil}", style: 'max-width: 100px; width: 100%' %>
         </div>
+        <%= render partial: 'admin/shared/field_errors', locals: { object: brand, field: :company_color } %>
     </div>
     <div class="field">
         <label class="label"><%= f.label :overview_en %></label>
         <div class="control">
-            <%= f.text_area :overview_en, class: 'textarea' %>
+            <%= f.text_area :overview_en, class: "textarea #{brand.errors.full_messages_for(:overview_en).present? ? 'is-danger' : nil}" %>
         </div>
+        <%= render partial: 'admin/shared/field_errors', locals: { object: brand, field: :overview_en } %>
     </div>
     <div class="field">
         <label class="label"><%= f.label :overview_es %></label>
         <div class="control">
-            <%= f.text_area :overview_es, class: 'textarea' %>
+            <%= f.text_area :overview_es, class: "textarea #{brand.errors.full_messages_for(:overview_es).present? ? 'is-danger' : nil}" %>
         </div>
+        <%= render partial: 'admin/shared/field_errors', locals: { object: brand, field: :overview_es } %>
     </div>
     <div class="field">
         <div class="control is-flex is-justify-content-end">

@@ -48,6 +48,7 @@ en:
     english: English
     spanish: Español
 
+  errors_prevent_save: Some errors prevent the records from being saved
   brands: Brands
   all_brands: All brands
   explore_our_brands: Explore our featured footwear brands designed to provide optimal support, comfort, and performance. Find the perfect pair for your daily needs and athletic activities, with trusted options like Brooks, Hoka, and more.
