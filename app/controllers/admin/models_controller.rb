@@ -16,7 +16,7 @@ class Admin::ModelsController < Admin::AdminController
 
     if @model.save
       respond_to do |format|
-        format.html { redirect_to admin_models_path, notice: 'Model was created successfully.' }
+        format.html { redirect_to new_admin_model_path, notice: 'Model was created successfully.' }
         format.turbo_stream do
           flash.now[:notice] = 'Model was created successfully.'
           @models = Model.where(collection: @model.collection).order(:name)
@@ -70,10 +70,9 @@ class Admin::ModelsController < Admin::AdminController
   end
 
   def format_model_tags
-    # skip the formatting if model is not valid.
-    # If model not valid, controller will return unprocessable entity
-    return 'Invalid model' unless @model.valid?
-    @model.tags[:cushioning_level] = Integer(@model.tags[:cushioning_level])
+    if @model.tags[:cushioning_level]
+      @model.tags[:cushioning_level] = Integer(@model.tags[:cushioning_level])
+    end
 
     @model.tags[:apma_accepted] = ActiveModel::Type::Boolean.new.cast(@model.tags[:apma_accepted])
 
