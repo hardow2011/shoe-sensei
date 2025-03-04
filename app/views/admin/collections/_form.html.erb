@@ -2,34 +2,36 @@
 <%= turbo_frame_tag collection, autoscroll: true do %>
     <%= form_with model: [:admin, collection] do |f| %>
         <% if collection.errors.any? %>
-            <div>
-                <%= collection.errors.full_messages.to_sentence.capitalize %>
-            </div>
+            <%= render partial: 'admin/shared/form_error_message' %>
         <% end %>
         <div class="field">
             <label class="label"><%= f.label :name %></label>
             <div class="control">
-                <%= f.text_field :name, autofocus: true, class: 'input' %>
+                <%= f.text_field :name, autofocus: true, class: "input #{collection.errors.full_messages_for(:name).present? ? 'is-danger' : nil}" %>
             </div>
+            <%= render partial: 'admin/shared/field_errors', locals: { object: collection, field: :name } %>
         </div>
         <div class="field">
             <label class="label"><%= f.label :overview_en %></label>
             <div class="control">
-                <%= f.text_area :overview_en, class: 'textarea' %>
+                <%= f.text_area :overview_en, class: "textarea #{collection.errors.full_messages_for(:overview_en).present? ? 'is-danger' : nil}" %>
             </div>
+            <%= render partial: 'admin/shared/field_errors', locals: { object: collection, field: :overview_en } %>
         </div>
         <div class="field">
             <label class="label"><%= f.label :overview_es %></label>
             <div class="control">
-                <%= f.text_area :overview_es, class: 'textarea' %>
+                <%= f.text_area :overview_es, class: "textarea #{collection.errors.full_messages_for(:overview_es).present? ? 'is-danger' : nil}" %>
             </div>
+            <%= render partial: 'admin/shared/field_errors', locals: { object: collection, field: :overview_es } %>
         </div>
         <div class="field">
             <label class="label"><%= f.label :brand_id, 'Brand' %></label>
             <div class="control">
-                <div class="select">
+                <div class="select #{collection.errors.full_messages_for(:brand).present? ? 'is-danger' : nil}">
                     <%= f.collection_select :brand_id, Brand.order(:name), :id, :name %>
                 </div>
+                <%= render partial: 'admin/shared/field_errors', locals: { object: collection, field: :brand } %>
             </div>
         </div>
         <div class="field">
