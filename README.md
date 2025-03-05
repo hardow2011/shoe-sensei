@@ -114,6 +114,14 @@ whenever --update-crontab
    ```
 This command starts the web server; the js and css watchers.
 
+### Admin login
+The admin login is:
+```
+email: admin@email.com
+
+password: admin1
+```
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 
