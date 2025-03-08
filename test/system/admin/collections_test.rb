@@ -1,6 +1,6 @@
-require 'application_system_test_case'
+require_relative './admin_system_test_case'
 
-class Admin::CollectionsTest < ApplicationSystemTestCase
+class Admin::CollectionsTest < Admin::AdminSystemTestCase
   setup do
     sign_in_as_admin
     @on_brand = brands(:on_running)

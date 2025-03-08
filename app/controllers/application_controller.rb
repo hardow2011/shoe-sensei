@@ -30,10 +30,6 @@ class ApplicationController < ActionController::Base
 
   def switch_locale(&action)
     locale = params[:locale] || I18n.default_locale
-    if locale == 'admin'
-      redirect_to admin_path
-      return
-    end
     I18n.with_locale(locale, &action)
 
     # Infer user local if explicit local not provided

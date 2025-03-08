@@ -1,6 +1,6 @@
-require 'application_system_test_case'
+require_relative './admin_system_test_case'
 
-class Admin::BrandsTest < ApplicationSystemTestCase
+class Admin::BrandsTest < Admin::AdminSystemTestCase
   setup do
     sign_in_as_admin
     @hoka = brands(:hoka)

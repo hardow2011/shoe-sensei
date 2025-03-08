@@ -1,6 +1,6 @@
-require 'application_system_test_case'
+require_relative './admin_system_test_case'
 
-class PostsTest < ApplicationSystemTestCase
+class Admin::PostsTest < Admin::AdminSystemTestCase
   setup do
     sign_in_as_admin
     @new_post = {

@@ -1,6 +1,6 @@
-require 'application_system_test_case'
+require_relative './admin_system_test_case'
 
-class ModelsTest < ApplicationSystemTestCase
+class Admin::ModelsTest < Admin::AdminSystemTestCase
   setup do
     sign_in_as_admin
     @hoka_speedgoat_5 = models(:hoka_speedgoat_5)

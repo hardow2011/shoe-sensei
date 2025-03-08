@@ -76,4 +76,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   Rails.application.routes.default_url_options[:host] = 'http://localhost:3000'
+
+  # This is necessary to be able to use subdomains in dev
+  config.action_dispatch.tld_length = 0
 end
