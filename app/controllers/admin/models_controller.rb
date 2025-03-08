@@ -16,7 +16,7 @@ class Admin::ModelsController < Admin::AdminController
 
     if @model.save
       respond_to do |format|
-        format.html { redirect_to new_admin_model_path, notice: 'Model was created successfully.' }
+        format.html { redirect_to admin_models_path, notice: 'Model was created successfully.' }
         format.turbo_stream do
           flash.now[:notice] = 'Model was created successfully.'
           @models = Model.where(collection: @model.collection).order(:name)
