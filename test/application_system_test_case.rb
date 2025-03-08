@@ -20,10 +20,10 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
   def sign_in_as_admin
     user = users(:charo)
-    visit new_user_session_url
+    visit new_admin_session_url
 
-    fill_in "user[email]",	with: user.email
-    fill_in "user[password]",	with: 'charo'
+    fill_in "admin[email]",	with: user.email
+    fill_in "admin[password]",	with: 'charo'
 
     click_on 'Log in'
   end

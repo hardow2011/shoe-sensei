@@ -26,15 +26,13 @@ Rails.application.routes.draw do
 
   # admin.localhost:3000
   constraints subdomain: 'admin' do
+      devise_for :admins, class_name: 'User', path: '',
+        controllers: { sessions: 'admin/devise/sessions' },
+        path_names: { sign_in: 'login', sign_out: 'logout',
+                      password: 'secret', confirmation: 'verification',
+                      unlock: 'unblock', registration: 'register',
+                      sign_up: 'signup' }
     namespace :admin, path: '' do
-      # singular: :user to keep the admin devise in the namespace,
-      # but without changing the methods, like authenticate_admin_user.
-      devise_for :users, path: '', singular: :user,
-      controllers: { sessions: 'admin/devise/sessions' },
-      path_names: { sign_in: 'login', sign_out: 'logout',
-                    password: 'secret', confirmation: 'verification',
-                    unlock: 'unblock', registration: 'register',
-                    sign_up: 'signup' }
       get '', to: 'pages#home'
       resources :brands, except: %i[show]
       resources :collections, except: %i[show]
