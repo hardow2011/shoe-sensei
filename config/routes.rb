@@ -11,9 +11,11 @@ Rails.application.routes.draw do
     devise_for :users, path: '',
     controllers: { sessions: 'user/sessions' },
     path_names: { sign_in: 'login', sign_out: 'logout',
-                  password: 'secret', confirmation: 'verification',
-                  unlock: 'unblock', registration: 'signup',
-                  sign_up: '' }
+    registration: 'signup', sign_up: '' }
+    # path_names: { sign_in: 'login', sign_out: 'logout',
+    #               password: 'secret', confirmation: 'verification',
+    #               unlock: 'unblock', registration: 'signup',
+    #               sign_up: '' }
 
     # Defines the root path route ("/")
     # get '/:locale' => "pages#home"
@@ -36,9 +38,11 @@ Rails.application.routes.draw do
       devise_for :admins, class_name: 'User', path: '',
         controllers: { sessions: 'admin/devise/sessions' },
         path_names: { sign_in: 'login', sign_out: 'logout',
-                      password: 'secret', confirmation: 'verification',
-                      unlock: 'unblock', registration: 'register',
-                      sign_up: 'signup' }
+                      registration: 'signup', sign_up: '' }
+        # path_names: { sign_in: 'login', sign_out: 'logout',
+        #               password: 'secret', confirmation: 'verification',
+        #               unlock: 'unblock', registration: 'register',
+        #               sign_up: 'signup' }
     namespace :admin, path: '' do
       get '', to: 'pages#home'
       resources :brands, except: %i[show]
