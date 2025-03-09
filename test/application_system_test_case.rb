@@ -25,7 +25,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     fill_in "admin[email]",	with: user.email
     fill_in "admin[password]",	with: 'charo'
 
-    click_on 'Log in'
+    click_on 'Log In'
   end
 
   # TODO: fix assert_img_src
