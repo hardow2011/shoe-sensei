@@ -3,7 +3,7 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
 # Admin user
-admin = User.create!(email: 'admin@email.com', password: 'admin1', password_confirmation: 'admin1'),
+admin = User.create!(email: 'admin@email.com', password: 'admin1', password_confirmation: 'admin1', confirmed_at: DateTime.new(2025, 10, 3)),
 
 # Brands
 brooks = Brand.create!(name: 'Brooks', company_color: '#1375b8',
