@@ -2,7 +2,7 @@ require 'application_system_test_case'
 
 class UsersTest < ApplicationSystemTestCase
     setup do
-        new_user = { username: 'armandez' name: 'Armando', password: 'Velez' }
+        @new_user = { username: 'armandez', name: 'Armando', password: 'Velez' }
     end
     
     test 'signup' do
@@ -18,15 +18,14 @@ class UsersTest < ApplicationSystemTestCase
 
         assert_text "Already have an account?"
         assert_no_text "Don't have an account yet?"
-        fill_in "user[username]", with: new_user[:username]
-        fill_in "user[email]", with: new_user[:email]
-        fill_in "user[password]", with: new_user[:password]
-        fill_in "user[password_confirmation]", with: new_user[:password]
+        fill_in "user[username]", with: @new_user[:username]
+        fill_in "user[email]", with: @new_user[:email]
+        fill_in "user[password]", with: @new_user[:password]
+        fill_in "user[password_confirmation]", with: @new_user[:password]
 
-        assert_enqueued_email_with 
-            UserMailer.with(username: new_user[:username], email: new_user[:email]),
-            :verification_email do
-            click_on 'Sign Up'
+        assert_enqueued_email_with UserMailer, :verification_email,
+            args: [ username: @new_user[:username], email: @new_user[:email] ] do
+                click_on 'Sign Up'
         end
 
         email = ActionMailer::Base.deliveries.last
