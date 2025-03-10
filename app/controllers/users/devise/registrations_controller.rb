@@ -57,8 +57,8 @@ class Users::Devise::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(resource)
-    # super(resource)
     flash[:do_not_fade] = true
-    new_session_path(resource)
+    super(resource)
+    # new_session_path(resource)
   end
 end
