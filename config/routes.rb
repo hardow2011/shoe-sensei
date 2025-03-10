@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     get "up" => "rails/health#show", as: :rails_health_check
 
     devise_for :users, path: '',
-    controllers: { sessions: 'users/devise/sessions' },
+    controllers: { sessions: 'users/devise/sessions',
+                    registrations: 'users/devise/registrations' },
     path_names: { sign_in: 'login', sign_out: 'logout',
                   registration: 'signup', sign_up: '',
                   confirmation: 'verification' }
