@@ -12,9 +12,16 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
-      admin_url
+      case resource.admin
+      when true
+        admin_url
+      when false
+        root_url
+      else
+        root_url
+      end
     else
-      raise 'Attempted log in s not of type User'
+      raise 'Attempted log in is not of type User'
     end
   end
 
