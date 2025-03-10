@@ -9,8 +9,7 @@ Rails.application.routes.draw do
     get "up" => "rails/health#show", as: :rails_health_check
 
     devise_for :users, path: '',
-    controllers: { sessions: 'users/devise/sessions',
-                    registrations: 'users/devise/registrations' },
+    module: 'users/devise',
     path_names: { sign_in: 'login', sign_out: 'logout',
                   registration: 'signup', sign_up: '',
                   confirmation: 'verification' }
@@ -38,7 +37,7 @@ Rails.application.routes.draw do
   # admin.localhost:3000
   constraints subdomain: 'admin' do
       devise_for :admins, class_name: 'User', path: '',
-        controllers: { sessions: 'admin/devise/sessions' },
+        module: 'admin/devise',
         path_names: { sign_in: 'login', sign_out: 'logout',
                       registration: 'signup', sign_up: '' }
         # path_names: { sign_in: 'login', sign_out: 'logout',
