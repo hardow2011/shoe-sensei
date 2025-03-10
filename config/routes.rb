@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     devise_for :users, path: '',
     controllers: { sessions: 'users/devise/sessions' },
     path_names: { sign_in: 'login', sign_out: 'logout',
-    registration: 'signup', sign_up: '' }
+                  registration: 'signup', sign_up: '',
+                  confirmation: 'verification' }
     # path_names: { sign_in: 'login', sign_out: 'logout',
     #               password: 'secret', confirmation: 'verification',
     #               unlock: 'unblock', registration: 'signup',
