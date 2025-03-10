@@ -1,0 +1,13 @@
+<p>Welcome <%= @email %>!</p>
+
+<p>Thank you for joining Shoe Sensei.</p>
+<p>You can confirm your account email through the link below:</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+
+<p>You may also use the following link instead:<br/>
+    <span>
+        <%= link_to confirmation_url(@resource, confirmation_token: @token), confirmation_url(@resource, confirmation_token: @token) %>
+    <span>
+</p>
