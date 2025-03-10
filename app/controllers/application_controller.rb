@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
-      case resource.admin
+      case resource.admin?
       when true
         admin_url
       when false
