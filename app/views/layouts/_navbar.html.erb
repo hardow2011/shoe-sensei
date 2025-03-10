@@ -41,7 +41,14 @@
         </div>
       </div>
       <% if user_signed_in? %>
-        <%= link_to t('account'), root_path, class: "navbar-item is-selected has-text-white" %>
+        <div class="navbar-item has-dropdown is-hoverable brands-dropdown">
+          <%= link_to t('account'), root_path, class: "navbar-link" %>
+          <div class="navbar-dropdown">
+              <%= link_to t('settings'), root_path, class: "navbar-item" %>
+            <hr class="navbar-divider"/>
+            <%= button_to t('log_out'), destroy_user_session_path, method: :delete, class: "navbar-item" %>
+          </div>
+        </div>
       <% else %>
         <%= link_to t('join'), new_user_session_path, class: "navbar-item is-selected has-text-white" %>
       <% end %>
