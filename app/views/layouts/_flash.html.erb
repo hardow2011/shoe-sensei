@@ -2,6 +2,7 @@
     <% if flash.any? %>
         <div class="notification <%= 'do-not-fade' if flash[:do_not_fade] %>">
             <% flash.each do |flash_type, message| %>
+                <% next if flash_type == 'do_not_fade' %>
                 <button class="delete" onclick="this.parentNode.style.display = 'none'"></button>
                 <p class="notice"><%= message %></p>
             <% end %>
