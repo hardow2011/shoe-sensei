@@ -82,7 +82,9 @@ $navbar-height: 52px;
     margin: 0 24px;
     
     .notification {
-        animation: appear-then-fade 2.5s both;
+        &:not(.do-not-fade) {
+            animation: appear-then-fade 2.5s both;
+        }
     }
 }
 
