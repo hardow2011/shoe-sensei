@@ -16,6 +16,13 @@
         </div>
 
         <div class="field">
+          <%= f.label :username, class: "label" %>
+          <div class="control">
+            <%= f.text_field :username, autofocus: true, autocomplete: "username", class: 'input' %>
+          </div>
+        </div>
+
+        <div class="field">
           <%= f.label :password, class: "label" %>
           <% if @minimum_password_length %>
             <p>
@@ -36,7 +43,7 @@
 
         <div class="field is-grouped is-grouped-right">
           <div class="control">
-            <%= f.submit "Sign up", class: 'button is-link' %>
+            <%= f.submit "Sign Up", class: 'button is-link' %>
           </div>
         </div>
       <% end %>
