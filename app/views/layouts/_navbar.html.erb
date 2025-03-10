@@ -40,6 +40,11 @@
           <%= link_to t('language.spanish'), url_for(locale: :es), class: "navbar-item #{I18n.locale == :es ? 'is-selected has-text-white' : nil}" %>
         </div>
       </div>
+      <% if user_signed_in? %>
+        <%= link_to t('account'), root_path, class: "navbar-item is-selected has-text-white" %>
+      <% else %>
+        <%= link_to t('join'), new_user_session_path, class: "navbar-item is-selected has-text-white" %>
+      <% end %>
     </div>
   </div>
 </nav>
