@@ -30,7 +30,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
-  validates :password, presence: true
   validates :password, length: { minimum: 8 }
   validates :password, format: { with: /[~!@#$%^&*()_\-+=`{}\[\]|\\:;"'<>.,?\/]+/, 
                                   message: 'must contain at least one special character' }
