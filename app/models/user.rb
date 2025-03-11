@@ -21,6 +21,7 @@
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_username              (username) UNIQUE
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -28,4 +29,28 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable
+
+  validates :password, presence: true
+  validates :password, length: { minimum: 8 }
+  validates :password, format: { with: /[~!@#$%^&*()_\-+=`{}\[\]|\\:;"'<>.,?\/]+/, 
+                                  message: 'must contain at least one special character' }
+  validates :password, format: { with: /[A-Z]+/, 
+                                message: 'must contain at least one uppercase letter' }
+  validates :password, format: { with: /[a-z]+/, 
+                                message: 'must contain at least one lowercase letter' }
+  validates :password, format: { with: /[0-9]+/, 
+                                message: 'must contain at least one number' }
+
+  with_options if: :admin? do |admin|
+    admin.validates :username, absence: true
+  end
+
+  with_options unless: :admin? do |non_admin|
+    non_admin.validates :username, presence: true
+    non_admin.validates :username, length: { minimum: 3 }
+    non_admin.validates :username, length: { maximum: 30 }
+    non_admin.validates :username, format: { with: /\A[a-zA-Z0-9_-]+\z/, 
+                                              message: 'must only contain alpha-numeric characters, dashes and underscores' }
+    non_admin.validates :username, uniqueness: true
+  end
 end
