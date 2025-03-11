@@ -78,6 +78,8 @@ class UsersTest < ApplicationSystemTestCase
 
         click_on 'Log Out'
 
+        assert_text 'Logged out successfully.'
+
         assert_selector 'a', text: 'Join'
         assert_no_selector 'a', text: 'Account'
     end

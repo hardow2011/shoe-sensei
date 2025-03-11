@@ -18,9 +18,11 @@ class Users::Devise::SessionsController < Devise::SessionsController
   end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    super
+    flash.now[:notice] = 'Logged out successfully.'
+    flash[:notice] = 'Logged out successfully.'
+  end
 
   # protected
 
