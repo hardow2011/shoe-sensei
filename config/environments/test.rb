@@ -65,7 +65,9 @@ Rails.application.configure do
   config.active_job.queue_adapter = :inline
 
   # The config.action_mailer.default_url_options 
-  # is being set in the setup of ApplicationSystemTestCase,
-  # so the mailer has a host for the system tests
-  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # is being set in the setup of so the tests involving mailers don't fail,
+  # like the model tests with user creation.
+  # It will be overwritten in the setup of ApplicationSystemTestCase so we can
+  # access the mail body content.
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
