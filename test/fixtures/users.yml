@@ -7,4 +7,10 @@
 charo:
   email: charo@email.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'charo') %>
+  admin: true
 
+yordania:
+  email: yordania@email.com
+  username: yordania01
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'yordania') %>
+  confirmed_at: 2025-12-03 09:19:01

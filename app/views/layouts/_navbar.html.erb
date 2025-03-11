@@ -42,7 +42,7 @@
       </div>
       <% if user_signed_in? %>
         <div class="navbar-item has-dropdown is-hoverable brands-dropdown">
-          <%= link_to t('account'), root_path, class: "navbar-link" %>
+          <%= link_to t('account'), root_path, class: "navbar-link account-dropdown" %>
           <div class="navbar-dropdown">
               <%= link_to t('settings'), root_path, class: "navbar-item" %>
             <hr class="navbar-divider"/>

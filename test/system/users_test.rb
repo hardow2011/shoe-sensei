@@ -1,8 +1,32 @@
 require 'application_system_test_case'
 
 class UsersTest < ApplicationSystemTestCase
+    include Devise::Test::IntegrationHelpers
+
     setup do
-        @new_user = { username: 'armandez', email: 'ar.lez@mail.com', name: 'aaaaaa', password: 'aaaaaa' }
+        @new_user = { username: 'armandez', email: 'ar.lez@mail.com', name: 'aaaaaa', password: 'P@tito-f3o' }
+    end
+
+    def login
+        user = users(:yordania)
+        visit root_url
+
+        assert_selector 'a', text: 'Join'
+
+        click_on 'Join'
+
+        assert_text "Don't have an account yet?"
+        assert_no_text "Already have an account?"
+
+        fill_in "user[email]", with: user[:email]
+        fill_in "user[password]", with: 'yordania'
+
+        click_on 'Log In'
+
+        assert_text 'Logged in successfully.'
+
+        assert_no_selector 'a', text: 'Join'
+        assert_selector 'a', text: 'Account'
     end
     
     test 'signup' do
@@ -43,21 +67,18 @@ class UsersTest < ApplicationSystemTestCase
         assert_selector 'a', text: 'Account'
     end
     
-    # test 'login' do
-    #     user = users(:bruce)
-    #     visit root_url
+    test 'login' do
+        login
+    end
 
-    #     assert_selector 'a', text: 'Join'
-    #     click_on 'Log In'
+    test 'logout' do
+        login
 
-    #     assert_text 'Log In'
+        find('.account-dropdown').hover
 
-    #     fill_in "user[email]", with: user.email
-    #     fill_in "user[password]", with: 'bruce'
+        click_on 'Log Out'
 
-    #     click_on 'Log In'
-
-    #     # TODO: after loggin on, the user should be brought back to the
-    #     # same page he was on
-    # end
+        assert_selector 'a', text: 'Join'
+        assert_no_selector 'a', text: 'Account'
+    end
 end
