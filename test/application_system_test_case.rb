@@ -6,6 +6,11 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   setup do
     # Necessary for tests to pass, given that the active storage urls now have the local added
     # default_url_options[:locale] = I18n.default_locale
+
+    # This is necessary so the mailer has a host for the system tests
+    host = Capybara.current_session.server.host
+    port = Capybara.current_session.server.port
+    Rails.application.config.action_mailer.default_url_options = { host: host, port: port }
   end
 
   # Clear attached files after each system test
