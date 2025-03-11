@@ -36,10 +36,10 @@ Rails.application.routes.draw do
 
   # admin.localhost:3000
   constraints subdomain: 'admin' do
-      # devise_for :admins, class_name: 'User', path: '',
-      #   module: 'admin/devise',
-      #   path_names: { sign_in: 'login', sign_out: 'logout',
-      #                 registration: 'signup', sign_up: '' }
+      devise_for :admins, class_name: 'User', path: '',
+        module: 'admin/devise',
+        path_names: { sign_in: 'login', sign_out: 'logout',
+                      registration: 'signup', sign_up: '' }
         # path_names: { sign_in: 'login', sign_out: 'logout',
         #               password: 'secret', confirmation: 'verification',
         #               unlock: 'unblock', registration: 'register',
