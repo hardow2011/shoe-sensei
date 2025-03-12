@@ -43,6 +43,8 @@ en:
         title_es: "Spanish translation of title"
         overview_en: "English translation of overview"
         overview_es: "Spanish translation of overview"
+      user:
+        login: Username or Email
   language:
     prompt: Language
     english: English

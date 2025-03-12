@@ -6,7 +6,7 @@
 
     <div class="block">
     <%= simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
-      <%= f.input :email, input_html: { autofocus: true, autocomplete: "email" } %>
+      <%= f.input :login, input_html: { autofocus: true, autocomplete: "email" } %>
       <%= f.input :password, input_html: { autocomplete: "current-password" } %>
       <% if devise_mapping.rememberable? %>
         <%= f.input :remember_me, as: :boolean, wrapper: :checkbox %>
