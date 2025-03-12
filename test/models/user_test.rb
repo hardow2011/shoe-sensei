@@ -48,7 +48,7 @@ class UserTest < ActiveSupport::TestCase
     user.save
     # Check username alpha-numeric, dashes and underscore format
     refute user.valid?
-    assert_includes user.errors[:username], "must only contain letters, number, dashes or underscores"
+    assert_includes user.errors[:username], "must only contain letters, number, dashes and underscores"
 
     too_long_username = ''
     30.times { |i| too_long_username << "#{i}" }

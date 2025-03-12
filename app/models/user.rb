@@ -48,7 +48,7 @@ class User < ApplicationRecord
     non_admin.validates :username, length: { minimum: 3 }
     non_admin.validates :username, length: { maximum: 30 }
     non_admin.validates :username, format: { with: /\A[a-zA-Z0-9_-]+\z/, 
-                                              message: 'must only contain letters, number, dashes or underscores' }
+                                              message: 'must only contain letters, number, dashes and underscores' }
     non_admin.validates :username, uniqueness: true
     non_admin.validates :password, length: { minimum: 8 }
   end
