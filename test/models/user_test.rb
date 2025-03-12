@@ -71,8 +71,8 @@ class UserTest < ActiveSupport::TestCase
     assert_not_includes new_user.errors[:username], "must be unique"
   end
 
-  test 'password should be well formatted' do
-    user = User.new(email: 'admin@email.com',  password: '', username: 'ol8')
+  test 'admin password should be well formatted' do
+    user = User.new(email: 'admin@email.com',  password: '', admin: true)
     user.save
     refute user.valid?
     # Check password blank and length
@@ -102,6 +102,28 @@ class UserTest < ActiveSupport::TestCase
     assert_not_includes user.errors[:password], "must contain at least one uppercase letter"
 
     user.password = 'P@tito-f3o'
+    user.save
+    assert user.valid?
+  end
+
+
+  test 'non-admin password should be well formatted' do
+    user = User.new(email: 'admin@email.com',  password: '', username: 'ol8')
+    user.save
+    refute user.valid?
+    # Check password blank and length
+    assert_includes user.errors[:password], "can't be blank"
+    assert_includes user.errors[:password], "is too short (minimum is 8 characters)"
+
+    user.password = '1234567'
+    user.save
+    refute user.valid?
+    assert_not_includes user.errors[:password], "can't be blank"
+    assert_includes user.errors[:password], "is too short (minimum is 8 characters)"
+    user.save
+    refute user.valid?
+
+    user.password = '12345678'
     user.save
     assert user.valid?
   end

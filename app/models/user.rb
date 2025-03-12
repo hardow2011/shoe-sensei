@@ -30,18 +30,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
-  validates :password, length: { minimum: 8 }
-  validates :password, format: { with: /[~!@#$%^&*()_\-+=`{}\[\]|\\:;"'<>.,?\/]+/, 
-                                  message: 'must contain at least one special character' }
-  validates :password, format: { with: /[A-Z]+/, 
-                                message: 'must contain at least one uppercase letter' }
-  validates :password, format: { with: /[a-z]+/, 
-                                message: 'must contain at least one lowercase letter' }
-  validates :password, format: { with: /[0-9]+/, 
-                                message: 'must contain at least one number' }
-
   with_options if: :admin? do |admin|
     admin.validates :username, absence: true
+    admin.validates :password, length: { minimum: 8 }
+    admin.validates :password, format: { with: /[~!@#$%^&*()_\-+=`{}\[\]|\\:;"'<>.,?\/]+/, 
+                                    message: 'must contain at least one special character' }
+    admin.validates :password, format: { with: /[A-Z]+/, 
+                                  message: 'must contain at least one uppercase letter' }
+    admin.validates :password, format: { with: /[a-z]+/, 
+                                  message: 'must contain at least one lowercase letter' }
+    admin.validates :password, format: { with: /[0-9]+/, 
+                                  message: 'must contain at least one number' }
   end
 
   with_options unless: :admin? do |non_admin|
@@ -51,5 +50,6 @@ class User < ApplicationRecord
     non_admin.validates :username, format: { with: /\A[a-zA-Z0-9_-]+\z/, 
                                               message: 'must only contain letters, number, dashes or underscores' }
     non_admin.validates :username, uniqueness: true
+    non_admin.validates :password, length: { minimum: 8 }
   end
 end
