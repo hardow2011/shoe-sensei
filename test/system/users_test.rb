@@ -7,7 +7,7 @@ class UsersTest < ApplicationSystemTestCase
         @new_user = { username: 'armandez', email: 'ar.lez@mail.com', name: 'aaaaaa', password: 'P@tito-f3o' }
     end
 
-    def login
+    def login(with_username=false)
         user = users(:yordania)
         visit root_url
 
@@ -18,7 +18,7 @@ class UsersTest < ApplicationSystemTestCase
         assert_text "Don't have an account yet?"
         assert_no_text "Already have an account?"
 
-        fill_in "user[email]", with: user[:email]
+        fill_in "user[login]", with: with_username ? user[:username] : user[:email]
         fill_in "user[password]", with: 'yordania'
 
         click_on 'Log In'
@@ -58,7 +58,7 @@ class UsersTest < ApplicationSystemTestCase
 
         assert_text 'Your email address has been successfully confirmed.'
 
-        fill_in "user[email]", with: @new_user[:email]
+        fill_in "user[login]", with: @new_user[:email]
         fill_in "user[password]", with: @new_user[:password]
 
         click_on 'Log In'
@@ -67,8 +67,12 @@ class UsersTest < ApplicationSystemTestCase
         assert_selector 'a', text: 'Account'
     end
     
-    test 'login' do
+    test 'login with email' do
         login
+    end
+
+    test 'login with username' do
+        login(with_username=true)
     end
 
     test 'logout' do
