@@ -6,10 +6,10 @@
 
     <div class="block">
       <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |f| %>
-        <%= render "users/devise/shared/error_messages", resource: resource %>
+        <%#= render "users/devise/shared/error_messages", resource: resource %>
         <%= f.input :email, input_html: { autofocus: true, autocomplete: "email" } %>
-        <%= f.input :username, input_html: { autocomplete: "email" } %>
-        <%= f.input :password, input_html: { autofocus: true, autocomplete: "new-password" } %>
+        <%= f.input :username, hint: 'Username must be at least 3 characters long and only contain letters, number, dashes or underscores', input_html: { autocomplete: "email" } %>
+        <%= f.input :password, hint: 'Password must be at least 8 characters long', input_html: { autofocus: true, autocomplete: "new-password" } %>
         <%= f.input :password_confirmation, input_html: { autofocus: true, autocomplete: "new-password" } %>
         <div class="field is-grouped is-grouped-right">
           <div class="control">
