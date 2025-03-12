@@ -55,13 +55,13 @@ SimpleForm.setup do |config|
     b.use :label, class: 'label'
     b.use :input, class: 'input', error_class: 'is-danger', wrap_with: { tag: :div, class: 'control' }
     # b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    # b.use :error, wrap_with: { tag: :span, class: :error }
+    # b.use :error, wrap_with: { tag: :p, class: 'help is-danger' }
 
     ## full_messages_for
     # If you want to display the full error message for the attribute, you can
     # use the component :full_error, like:
     #
-    # b.use :full_error, wrap_with: { tag: :span, class: :error }
+    b.use :full_error, wrap_with: { tag: :p, class: 'help is-danger' }
   end
 
   config.wrappers :checkbox, class: :field do |b|
