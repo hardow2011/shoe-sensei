@@ -12,6 +12,7 @@ class Users::Devise::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
+    flash.now[:do_not_fade] = true
     super
     flash.now[:notice] = 'Logged in successfully.'
     flash[:notice] = 'Logged in successfully.'
