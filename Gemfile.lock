@@ -150,6 +150,8 @@ GEM
     ffi (1.17.1-x86_64-darwin)
     ffi (1.17.1-x86_64-linux-gnu)
     ffi (1.17.1-x86_64-linux-musl)
+    formtastic (5.0.0)
+      actionpack (>= 6.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.7)
@@ -304,6 +306,9 @@ GEM
       logger (>= 1.6.2)
       rack (>= 3.1.0)
       redis-client (>= 0.23.2)
+    simple_form (5.3.1)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -362,6 +367,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise
+  formtastic (~> 5.0)
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
@@ -375,6 +381,7 @@ DEPENDENCIES
   sentry-rails
   sentry-ruby
   sidekiq
+  simple_form
   sprockets-rails
   stackprof
   stimulus-rails
