@@ -5,10 +5,10 @@ class UsersTest < ApplicationSystemTestCase
 
     setup do
         @new_user = { username: 'armandez', email: 'ar.lez@mail.com', name: 'aaaaaa', password: 'P@tito-f3o' }
+        @yordania = users(:yordania)
     end
 
-    def login(with_username=false)
-        user = users(:yordania)
+    def login(username: nil, email: nil, password: nil)
         visit root_url
 
         assert_selector 'a', text: 'Join'
@@ -18,8 +18,8 @@ class UsersTest < ApplicationSystemTestCase
         assert_text "Don't have an account yet?"
         assert_no_text "Already have an account?"
 
-        fill_in "user[login]", with: with_username ? user[:username] : user[:email]
-        fill_in "user[password]", with: 'yordania'
+        fill_in "user[login]", with: username ? username : email
+        fill_in "user[password]", with: password
 
         click_on 'Log In'
 
@@ -27,6 +27,21 @@ class UsersTest < ApplicationSystemTestCase
 
         assert_no_selector 'a', text: 'Join'
         assert_selector 'a', text: 'Account'
+    end
+
+    def visit_email_link(text)
+        sleep 1
+
+        email = ActionMailer::Base.deliveries.last
+        html = Nokogiri::HTML(email.body.to_s)
+        target_link = html.at("a:contains('#{text}')")
+        visit target_link['href']
+    end
+
+    def logout
+        find('.account-dropdown').hover
+
+        click_on 'Log Out'
     end
     
     test 'signup' do
@@ -49,12 +64,7 @@ class UsersTest < ApplicationSystemTestCase
 
         click_on 'Sign Up'
 
-        sleep 1
-
-        email = ActionMailer::Base.deliveries.last
-        html = Nokogiri::HTML(email.body.to_s)
-        target_link = html.at("a:contains('Confirm my account')")
-        visit target_link['href']
+        visit_email_link('Confirm my account')
 
         assert_text 'Your email address has been successfully confirmed.'
 
@@ -68,23 +78,43 @@ class UsersTest < ApplicationSystemTestCase
     end
     
     test 'login with email' do
-        login
+        login(email: @yordania.email, password: 'yordania')
     end
 
     test 'login with username' do
-        login(with_username=true)
+        login(username: @yordania.username, password: 'yordania')
     end
 
     test 'logout' do
-        login
+        login(email: @yordania.email, password: 'yordania')
 
-        find('.account-dropdown').hover
-
-        click_on 'Log Out'
+        logout
 
         assert_text 'Logged out successfully.'
 
         assert_selector 'a', text: 'Join'
         assert_no_selector 'a', text: 'Account'
+    end
+
+    test 'change email' do
+        login(email: @yordania.email, password: 'yordania')
+
+        find('.account-dropdown').hover
+
+        click_on 'Settings'
+
+        fill_in 'user[email]', with: 'new@email.com'
+
+        click_on 'Update'
+
+        assert_text 'You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address.'
+
+        visit_email_link('Confirm my account')
+
+        assert_text 'Your email address has been successfully confirmed.'
+
+        logout
+
+        login(email: 'new@email.com', password: 'yordania')
     end
 end
