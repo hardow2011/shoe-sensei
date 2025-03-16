@@ -44,7 +44,7 @@
         <div class="navbar-item has-dropdown is-hoverable brands-dropdown">
           <%= link_to t('account'), root_path, class: "navbar-link account-dropdown" %>
           <div class="navbar-dropdown">
-              <%= link_to t('settings'), root_path, class: "navbar-item" %>
+              <%= link_to t('settings'), edit_user_registration_path, class: "navbar-item" %>
             <hr class="navbar-divider"/>
             <%= button_to t('log_out'), destroy_user_session_path, method: :delete, class: "navbar-item" %>
           </div>
