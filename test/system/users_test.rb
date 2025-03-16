@@ -231,4 +231,27 @@ class UsersTest < ApplicationSystemTestCase
 
         login(email: @new_user[:email], password: @new_user[:password])
     end
+
+    test "admin user cannot log in non-admin interface" do
+        admin_user = users(:charo)
+        visit root_url
+
+        assert_selector 'a', text: 'Join'
+
+        click_on 'Join'
+
+        assert_text "Don't have an account yet?"
+        assert_no_text "Already have an account?"
+
+        fill_in "user[login]", with: admin_user[:username]
+        fill_in "user[password]", with: 'Ch@ro123'
+
+        click_on 'Log In'
+
+        assert_no_text 'Logged in successfully.'
+        assert_text 'Invalid Username or Email or password.'
+
+        assert_selector 'a', text: 'Join'
+        assert_no_selector 'a', text: 'Account'
+      end
 end

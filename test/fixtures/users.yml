@@ -16,3 +16,9 @@ yordania:
   username: yordania01
   encrypted_password: <%= Devise::Encryptor.digest(User, 'yordania') %>
   confirmed_at: 2025-12-03 09:19:01
+
+andris:
+  email: andris@email.com
+  username: andris98
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'An4r!s+Q') %>
+  confirmed_at: 2025-09-12 12:32:41
