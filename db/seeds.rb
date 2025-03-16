@@ -3,7 +3,7 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
 # Admin user
-admin = User.create!(email: 'admin@email.com', password: 'Adm!n123', password_confirmation: 'Adm!n123', confirmed_at: DateTime.new(2025, 10, 3), admin: true),
+admin = User.create!(email: 'admin@email.com', password: 'Adm!n123', password_confirmation: 'Adm!n123', confirmed_at: DateTime.new(2025, 10, 3), admin: true)
 
 # Brands
 brooks = Brand.create!(name: 'Brooks', company_color: '#1375b8',
@@ -144,3 +144,5 @@ my_doctor_told_me = Post.create!(
   published: true,
   tags: ['healthcare']
   )
+
+byebug
