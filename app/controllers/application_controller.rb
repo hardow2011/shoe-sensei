@@ -3,11 +3,16 @@ class ApplicationController < ActionController::Base
   before_action :set_app_name
   before_action :set_meta_tags
   before_action :set_nav_footer_brands
+  before_action :do_not_fade_flash, if: :devise_controller?
   attr_accessor :app_name
 
   def set_app_name
     @app_name = 'Shoe Sensei'
     @developer_name = 'Louvens Raphael'
+  end
+
+  def do_not_fade_flash
+    flash[:do_not_fade] = true
   end
 
   def after_sign_in_path_for(resource)

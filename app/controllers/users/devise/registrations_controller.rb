@@ -23,7 +23,6 @@ class Users::Devise::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    flash[:do_not_fade] = true
     super
   end
 
@@ -68,7 +67,6 @@ class Users::Devise::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(resource)
-    flash[:do_not_fade] = true
     super(resource)
     # new_session_path(resource)
   end

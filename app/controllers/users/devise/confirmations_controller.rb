@@ -15,7 +15,6 @@ class Users::Devise::ConfirmationsController < Devise::ConfirmationsController
 
   # GET /resource/confirmation?confirmation_token=abcdef
   def show
-    flash[:do_not_fade] = true
     super
   end
 

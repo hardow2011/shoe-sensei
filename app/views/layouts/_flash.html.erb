@@ -1,5 +1,5 @@
 <div id="flash" class="flash">
-    <% if flash.any? %>
+    <% if (flash.keys - ["do_not_fade"]).any? %>
         <div class="notification <%= 'do-not-fade' if flash[:do_not_fade] %>">
             <% flash.each do |flash_type, message| %>
                 <% next if flash_type == 'do_not_fade' %>
