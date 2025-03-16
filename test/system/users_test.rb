@@ -154,9 +154,39 @@ class UsersTest < ApplicationSystemTestCase
             click_link 'Cancel my account'
         end
 
-        assert_selector 'Bye! Your account has been successfully cancelled. We hope to see you again soon.'
+        assert_text 'Bye! Your account has been successfully cancelled. We hope to see you again soon.'
 
         assert_selector 'a', text: 'Join'
         assert_no_selector 'a', text: 'Account'
+    end
+
+    test 'recover password' do
+        new_password = 'kkkkkkkk'
+        
+        visit root_url
+
+        assert_selector 'a', text: 'Join'
+
+        click_on 'Join'
+
+        assert_selector 'a', text: 'Forgot your password?'
+        click_on 'Forgot your password?'
+
+        fill_in 'user[email]', with: @yordania.email
+        click_on 'Send me reset password instructions'
+
+        assert_text 'You will receive an email with instructions on how to reset your password in a few minutes.'
+
+        visit_email_link('Change my password')
+
+        fill_in 'user[password]', with: new_password
+        fill_in 'user[password_confirmation]', with: new_password
+
+        click_on 'Change my password'
+
+        assert_text 'Your password has been changed successfully. You are now signed in.'
+
+        assert_no_selector 'a', text: 'Join'
+        assert_selector 'a', text: 'Account'
     end
 end
