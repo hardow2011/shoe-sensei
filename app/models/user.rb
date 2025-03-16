@@ -32,15 +32,17 @@ class User < ApplicationRecord
 
   with_options if: :admin? do |admin|
     admin.validates :username, absence: true
-    admin.validates :password, length: { minimum: 8 }
+    # Only validate password on create.
+    # TODO: also validate password on update in the future
+    admin.validates :password, length: { minimum: 8 }, on: :create
     admin.validates :password, format: { with: /[~!@#$%^&*()_\-+=`{}\[\]|\\:;"'<>.,?\/]+/, 
-                                    message: 'must contain at least one special character' }
+                                    message: 'must contain at least one special character' }, on: :create
     admin.validates :password, format: { with: /[A-Z]+/, 
-                                  message: 'must contain at least one uppercase letter' }
+                                  message: 'must contain at least one uppercase letter' }, on: :create
     admin.validates :password, format: { with: /[a-z]+/, 
-                                  message: 'must contain at least one lowercase letter' }
+                                  message: 'must contain at least one lowercase letter' }, on: :create
     admin.validates :password, format: { with: /[0-9]+/, 
-                                  message: 'must contain at least one number' }
+                                  message: 'must contain at least one number' }, on: :create
   end
 
   with_options unless: :admin? do |non_admin|
