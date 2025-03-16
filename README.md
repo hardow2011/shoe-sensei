@@ -119,7 +119,7 @@ The admin login is:
 ```
 email: admin@email.com
 
-password: admin1
+password: Adm!n123
 ```
 
 <!-- USAGE EXAMPLES -->
