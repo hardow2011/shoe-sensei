@@ -44,6 +44,8 @@ class UsersTest < ApplicationSystemTestCase
         assert_button 'Log Out'
 
         click_on 'Log Out'
+
+        sleep 0.1
     end
     
     test 'signup' do
@@ -99,13 +101,14 @@ class UsersTest < ApplicationSystemTestCase
     end
 
     test 'change email' do
+        new_email = 'new@email.com'
         login(email: @yordania.email, password: 'yordania')
 
         find('.account-dropdown').hover
 
         click_on 'Settings'
 
-        fill_in 'user[email]', with: 'new@email.com'
+        fill_in 'user[email]', with: new_email
 
         click_on 'Update'
 
@@ -113,12 +116,30 @@ class UsersTest < ApplicationSystemTestCase
 
         visit_email_link('Confirm my account')
 
-        assert_text 'Your email address has been successfully confirmed.'
+        assert_text 'Your account address has been successfully confirmed.'
 
         logout
 
-        sleep 0.1
+        login(email: new_email, password: 'yordania')
+    end
 
-        login(email: 'new@email.com', password: 'yordania')
+    test 'change password' do
+        new_password = 'pppppppp'
+        login(email: @yordania.email, password: 'yordania')
+
+        find('.account-dropdown').hover
+
+        click_on 'Settings'
+
+        fill_in 'user[password]', with: new_password
+        fill_in 'user[password_confirmation]', with: new_password
+
+        click_on 'Update'
+
+        assert_text "Your account has been updated successfully."
+
+        logout
+
+        login(email: @yordania.email, password: new_password)
     end
 end
