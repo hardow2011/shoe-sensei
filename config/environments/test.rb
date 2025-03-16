@@ -70,4 +70,7 @@ Rails.application.configure do
   # It will be overwritten in the setup of ApplicationSystemTestCase so we can
   # access the mail body content.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # This is necessary to be able to use subdomains in test
+  config.action_dispatch.tld_length = 0
 end
