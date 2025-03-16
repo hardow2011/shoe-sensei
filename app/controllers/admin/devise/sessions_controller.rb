@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Devise::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+  before_action :configure_sign_in_params
   layout 'devise'
 
   # GET /resource/sign_in
@@ -10,9 +10,10 @@ class Admin::Devise::SessionsController < Devise::SessionsController
   end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    params[:admin][:subdomain] = request.subdomain
+    super
+  end
 
   # DELETE /resource/sign_out
   # def destroy
@@ -22,7 +23,7 @@ class Admin::Devise::SessionsController < Devise::SessionsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  # end
+  def configure_sign_in_params
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
+  end
 end

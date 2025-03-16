@@ -12,6 +12,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  subdomain              :string           default(""), not null
 #  unconfirmed_email      :string
 #  username               :string
 #  created_at             :datetime         not null
@@ -28,7 +29,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, authentication_keys: [ :login ]
+         :confirmable, authentication_keys: [ :login ],
+         request_keys: { subdomain: false }
 
   with_options if: :admin? do |admin|
     admin.validates :username, absence: true
@@ -56,6 +58,8 @@ class User < ApplicationRecord
     non_admin.validates :password, length: { minimum: 8 }, if: Proc.new { encrypted_password_changed? }
   end
 
+  validates :subdomain, presence: true
+
   attr_writer :login
 
   def login
@@ -66,9 +70,11 @@ class User < ApplicationRecord
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
+    subdomain = conditions[:subdomain] || ''
     if (login = conditions.delete(:login))
-      where(conditions).where(["username = :value OR lower(email) = lower(:value)", { :value => login }]).first
+      where(conditions).where(["username = :value OR lower(email) = lower(:value) AND subdomain = :subdomain", { :value => login, subdomain: subdomain }]).first
     elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+      byebug
       where(conditions.to_hash).first
     end
   end
