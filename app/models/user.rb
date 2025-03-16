@@ -74,7 +74,6 @@ class User < ApplicationRecord
     if (login = conditions.delete(:login))
       where(conditions).where(["username = :value OR lower(email) = lower(:value) AND subdomain = :subdomain", { :value => login, subdomain: subdomain }]).first
     elsif conditions.has_key?(:username) || conditions.has_key?(:email)
-      byebug
       where(conditions.to_hash).first
     end
   end
