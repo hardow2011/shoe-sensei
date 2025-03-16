@@ -116,7 +116,7 @@ class UsersTest < ApplicationSystemTestCase
 
         visit_email_link('Confirm my account')
 
-        assert_text 'Your account address has been successfully confirmed.'
+        assert_text 'Your email address has been successfully confirmed.'
 
         logout
 
@@ -141,5 +141,22 @@ class UsersTest < ApplicationSystemTestCase
         logout
 
         login(email: @yordania.email, password: new_password)
+    end
+
+    test 'delete account' do
+        login(email: @yordania.email, password: 'yordania')
+
+        find('.account-dropdown').hover
+
+        click_on 'Settings'
+
+        accept_alert 'Are you sure that you want to delete your account?' do
+            click_link 'Cancel my account'
+        end
+
+        assert_selector 'Bye! Your account has been successfully cancelled. We hope to see you again soon.'
+
+        assert_selector 'a', text: 'Join'
+        assert_no_selector 'a', text: 'Account'
     end
 end
