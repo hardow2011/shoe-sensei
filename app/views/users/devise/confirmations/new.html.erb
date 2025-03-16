@@ -1,0 +1,28 @@
+<div class="section">
+  <div class="container is-max-tablet">
+    <div class="block">
+      <h2 class="title is-2">Resend confirmation instructions</h2>
+    </div>
+
+    <div class="block">
+      <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+        <%= f.error_notification %>
+        <%= f.full_error :confirmation_token %>
+
+          <%= f.input :email,
+                      autofocus: true,
+                      value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+                      input_html: { autocomplete: "email" } %>
+
+                      <div class="form-actions">
+          <div class="field is-grouped is-grouped-right">
+            <div class="control">
+              <%= f.submit "Resend confirmation instructions", class: 'button is-link' %>
+            </div>
+          </div>          
+        </div>
+      <% end %>
+    </div>
+    <%= render "users/devise/shared/links" %>
+  </div>
+</div>
