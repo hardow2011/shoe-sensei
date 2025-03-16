@@ -28,7 +28,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     visit new_admin_session_url
 
     fill_in "admin[email]",	with: user.email
-    fill_in "admin[password]",	with: 'charo'
+    fill_in "admin[password]",	with: 'Ch@ro123'
 
     click_on 'Log In'
   end
