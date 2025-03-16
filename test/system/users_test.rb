@@ -212,8 +212,6 @@ class UsersTest < ApplicationSystemTestCase
 
         click_on 'Sign Up'
 
-        byebug
-
         assert_text "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
 
         assert_selector 'a', text: 'Join'

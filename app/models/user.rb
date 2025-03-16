@@ -27,6 +27,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  VALID_SUBDOMAINS = ['', 'admin']
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, authentication_keys: [ :login ],
@@ -58,7 +60,8 @@ class User < ApplicationRecord
     non_admin.validates :password, length: { minimum: 8 }, if: Proc.new { encrypted_password_changed? }
   end
 
-  validates :subdomain, presence: true
+  validates :subdomain, inclusion: { in: VALID_SUBDOMAINS,
+  message: "%{value} is not a valid subdomain" }
 
   attr_writer :login
 
