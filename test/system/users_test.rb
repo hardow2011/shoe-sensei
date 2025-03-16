@@ -41,6 +41,8 @@ class UsersTest < ApplicationSystemTestCase
     def logout
         find('.account-dropdown').hover
 
+        assert_button 'Log Out'
+
         click_on 'Log Out'
     end
     
@@ -114,6 +116,8 @@ class UsersTest < ApplicationSystemTestCase
         assert_text 'Your email address has been successfully confirmed.'
 
         logout
+
+        sleep 0.1
 
         login(email: 'new@email.com', password: 'yordania')
     end
