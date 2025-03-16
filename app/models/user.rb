@@ -50,7 +50,8 @@ class User < ApplicationRecord
     non_admin.validates :username, format: { with: /\A[a-zA-Z0-9_-]+\z/, 
                                               message: 'must only contain letters, number, dashes and underscores' }
     non_admin.validates :username, uniqueness: true
-    non_admin.validates :password, length: { minimum: 8 }
+    # "if: Proc.new { encrypted_password_changed? }" so devise does validate for password on email change 
+    non_admin.validates :password, length: { minimum: 8 }, if: Proc.new { encrypted_password_changed? }
   end
 
   attr_writer :login
