@@ -44,6 +44,7 @@ $navbar-height: 52px;
 @use 'bulma/css/bulma' as *;
 @use "bulma/sass/utilities/initial-variables.scss" as *;
 @use "bulma/sass/utilities/derived-variables" as *;
+@use "bulma/sass/form" as *;
 @use "bulma/sass/components/breadcrumb" with(
     $breadcrumb-item-separator-color: $grey-dark,
 );
@@ -324,4 +325,13 @@ hr {
             text-align: left;
         }
     }
+}
+
+.new-password-container {
+    @extend .p-4;
+    @extend .field;
+    border: 1px $scheme-main solid;
+    border-radius: $input-radius;
+    border-color: $input-border-color;
+    border-width: 1px;
 }
