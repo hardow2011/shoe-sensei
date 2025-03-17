@@ -7,8 +7,8 @@ window.updateTinymceFields = function updateTinymceFields() {
 
     tinymceFields.forEach((field, index) => {
         fieldName = field.getAttribute('name');
-        hiddenInput = document.querySelector(`input[name="${fieldName}"][type="hidden"]`);
+        parentForm = field.closest("form")
+        hiddenInput = parentForm.querySelector(`input[name="${fieldName}"][type="hidden"]`);
         hiddenInput.value = field.innerHTML;
-        console.log(hiddenInput);
     });
 }

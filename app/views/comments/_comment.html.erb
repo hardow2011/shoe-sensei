@@ -11,7 +11,7 @@
     <% end %>
     <div class="block p-3">
         <% comment.replies.each do |r| %>
-            <%= comment.replies.html_safe %>
+            <%= r.content.html_safe %>
         <% end %>
     </div>
 </div>
