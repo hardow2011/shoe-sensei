@@ -1,0 +1,5 @@
+<div class="tinymce comment-tinymce" name="comment[content]">
+    <%= comment.content.to_s&.html_safe %>
+</div>
+<%= form.hidden_field :content %>
+<%= tinymce :comment %>

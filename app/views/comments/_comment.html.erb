@@ -1,0 +1,4 @@
+<div class="block">
+    <p class="mb-2"><span class="has-text-weight-bold"><%= comment.user.username %></span> * <span class="has-text-weight-light"><%= distance_of_time_in_words(comment.created_at, DateTime.now) %> ago</span></p>
+    <%= comment.content.html_safe %>
+</div>

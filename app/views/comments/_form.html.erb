@@ -1,0 +1,17 @@
+<%= turbo_frame_tag comment do %>
+    <%= comment.content %>
+    <div class="block">
+        <%= simple_form_for(comment, url: post_comments_path, html: {onsubmit: 'updateTinymceFields()'}) do |f| %>
+            <%= f.hidden_field :post_id, value: comment.post.id%>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+
+            <%= render partial: "comments/content_field", locals: { form: f, comment: comment } %>
+            
+            <div class="field is-grouped is-grouped-right">
+                <div class="control">
+                <%= f.submit "Post Comment", class: 'button is-link' %>
+                </div>
+            </div>   
+        <% end %>
+    </div>   
+<% end %>

@@ -39,9 +39,16 @@
                             <h1 class="title is-3"><%= @post.title %></h1>
                             <%= render partial: 'posts/published_on', locals: { published_date: @post.humanized_published_at } %>                            
                         </div>
-                        <%= @post.content.html_safe %>
-                        <hr>
+                        <div class="block">
+                            <%= @post.content.html_safe %>
+                        </div>
                         <%= render partial: 'posts/tags', locals: { tags: @post.tags } %>
+                        <hr>
+                        <%= turbo_frame_tag Comment.new, src: new_post_comment_path(post_id: @post.id) do %>
+                        <% end %>
+                        <%= turbo_frame_tag 'comments', src: post_comments_path(post_id: @post.id), loading: :lazy do %>
+                        <% end %>
+                        </div>
                     </div>
                 <% end %>
             </div>

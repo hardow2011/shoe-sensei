@@ -7,7 +7,7 @@ class CommentsTests < ApplicationSystemTestCase
     
     test 'post comment under post' do
         comment_content = 'Very good information'
-        login(email: @user, password: @user)
+        login(email: @user.email, password: 'An4r!s+Q')
 
         click_on 'Blog'
 
@@ -15,11 +15,11 @@ class CommentsTests < ApplicationSystemTestCase
 
         assert_no_text comment_content
 
-        find('input[name="comment[content]"]').set(comment_content)
+        find('[name="comment[content]"]').set(comment_content)
 
         click_on 'Post Comment'
 
-        assert_text 'Comment posted succesfully.'
+        assert_text 'Comment posted successfully.'
         assert_text comment_content
     end
 end

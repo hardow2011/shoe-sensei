@@ -1,6 +1,8 @@
 default: &default
   toolbar:
-    - undo redo | bold italic underline
+    - undo redo | bold italic underline | bullist numlist
+  plugins:
+    - lists
   block_formats: 'Paragraph=p'
 
   inline: true

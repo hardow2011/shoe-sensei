@@ -1,0 +1,9 @@
+<div class="section">
+    <div class="container is-widescreen">
+    <%= turbo_frame_tag 'comments' do %>
+        <div class="block">
+            <%= render partial: 'comments/comment', collection: @comments %>
+        </div>
+    <% end %>
+    </div>
+</div>
