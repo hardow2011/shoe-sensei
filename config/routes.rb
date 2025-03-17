@@ -26,7 +26,9 @@ Rails.application.routes.draw do
 
       get 'filter_models', to: 'pages#filter_models', as: 'filter_models'
 
-      resources :posts, only: %i[show index], path: 'blog', as: 'posts'
+      resources :posts, only: %i[show index], path: 'blog', as: 'posts' do
+        resources :comments, shallow: true
+      end
 
       resources :brands, only: %i[show index]
       # get 'collections/:brand_id/:id', to: 'collections#show', as: 'collection'
