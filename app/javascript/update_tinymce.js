@@ -12,5 +12,3 @@ function updateTinymceFields() {
         console.log(hiddenInput);
     });
 }
-
-console.log('ola k ase');
