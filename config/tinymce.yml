@@ -7,7 +7,7 @@ default: &default
 
 comment:
   <<: *default
-  selector: .post-tinymce
+  selector: .comment-tinymce
   menubar: false
   # file: false
   # edit: false
@@ -17,7 +17,7 @@ comment:
 
 admin:
   <<: *default
-  selector: .tinymce
+  selector: .admin-tinymce
   toolbar:
     - undo redo | blocks | bold italic | superscript | bullist numlist | alignleft aligncenter alignright | bullist numlist outdent indent | removeformat
     - code | table | hr
