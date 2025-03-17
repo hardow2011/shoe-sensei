@@ -10,7 +10,7 @@
         <%= link_to 'Reply', new_post_comment_path(comment_id: comment.id) %>
     <% end %>
     <div class="block p-3">
-        <% comment.replies.each do |r| %>
+        <% comment.replies.reverse.each do |r| %>
             <%= r.content.html_safe %>
         <% end %>
     </div>
