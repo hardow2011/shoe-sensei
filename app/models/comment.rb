@@ -25,9 +25,12 @@
 class Comment < ApplicationRecord
   belongs_to :post
   belongs_to :user
-  belongs_to :comment, foreign_key: :parent_comment, optional: true
+  belongs_to :parent_comment, foreign_key: :comment_id, class_name: 'Comment', optional: true
+  has_many :replies, foreign_key: :comment_id, class_name: 'Comment'
 
   validates :content, presence: true
   validates_presence_of :post
   validates_presence_of :user
+
+  scope :top_comments, -> { where(comment_id: nil) }
 end

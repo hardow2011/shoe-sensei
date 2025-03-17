@@ -1,12 +1,13 @@
 class CommentsController < ApplicationController
     def index
         post_id = params[:post_id]
-        @comments = Comment.where(post_id: post_id).order(created_at: :desc)
+        @comments = Comment.top_comments.where(post_id: post_id).order(created_at: :desc)
     end
     
     def new
         post_id = params[:post_id]
-        @comment = Comment.new(post_id: post_id, user_id: current_user.id)
+        parent_comment = params[:comment_id]
+        @comment = Comment.new(post_id: post_id, user_id: current_user.id, comment_id: parent_comment)
     end
     
     def create
@@ -17,7 +18,7 @@ class CommentsController < ApplicationController
               format.html { redirect_to post_comments_path, notice: 'Comment posted successfully.' }
               format.turbo_stream do
                 flash.now[:notice] = 'Comment posted successfully.'
-                @comments = Comment.where(post_id: comment.post_id).order(created_at: :desc)
+                @comments = Comment.top_comments.where(post_id: comment.post_id).order(created_at: :desc)
                 @new_comment = Comment.new(post_id: comment.post_id)
               end
             end
@@ -29,6 +30,6 @@ class CommentsController < ApplicationController
     private
 
     def comment_params
-        params.require(:comment).permit(:content, :post_id, :user_id)
+        params.require(:comment).permit(:content, :post_id, :user_id, :comment_id)
     end
 end
