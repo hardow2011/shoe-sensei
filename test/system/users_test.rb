@@ -8,27 +8,6 @@ class UsersTest < ApplicationSystemTestCase
         @yordania = users(:yordania)
     end
 
-    def login(username: nil, email: nil, password: nil)
-        visit root_url
-
-        assert_selector 'a', text: 'Join'
-
-        click_on 'Join'
-
-        assert_text "Don't have an account yet?"
-        assert_no_text "Already have an account?"
-
-        fill_in "user[login]", with: username ? username : email
-        fill_in "user[password]", with: password
-
-        click_on 'Log In'
-
-        assert_text 'Logged in successfully.'
-
-        assert_no_selector 'a', text: 'Join'
-        assert_selector 'a', text: 'Account'
-    end
-
     def visit_email_link(text)
         sleep 1
 
