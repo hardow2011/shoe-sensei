@@ -298,7 +298,7 @@ a {
     }
 }
 
-.tinymce {
+.tinymce, .post-tinymce {
     @extend .content;
     @extend .textarea;
     max-height: unset !important;
