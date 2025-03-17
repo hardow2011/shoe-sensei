@@ -144,5 +144,3 @@ my_doctor_told_me = Post.create!(
   published: true,
   tags: ['healthcare']
   )
-
-byebug
