@@ -40,6 +40,7 @@
 
 $navbar-height: 52px;
 
+@use "bulma/sass/base" as *;
 @use "bulma/sass/utilities/mixins";
 @use 'bulma/css/bulma' as *;
 @use "bulma/sass/utilities/initial-variables.scss" as *;
@@ -334,4 +335,11 @@ hr {
     border-radius: $input-radius;
     border-color: $input-border-color;
     border-width: 1px;
+}
+
+.comment-box {
+    @extend .pl-3;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-left-color: $body-color;
 }

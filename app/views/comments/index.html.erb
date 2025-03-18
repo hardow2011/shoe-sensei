@@ -2,7 +2,7 @@
     <div class="container is-widescreen">
     <%= turbo_frame_tag 'comments' do %>
         <div class="block">
-            <%= render partial: 'comments/comment', collection: @comments %>
+            <%= render @comments %>
         </div>
     <% end %>
     </div>

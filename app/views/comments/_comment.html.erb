@@ -1,17 +1,23 @@
 <% reply = Comment.new(post_id: comment.post.id, comment_id: comment.id) %>
 
-<div class="block">
+<div class="comment-box <%= comment.parent_comment ? 'block' : 'mb-6' %>">
     <p class="mb-2"><span class="has-text-weight-bold"><%= comment.user.username %></span> * <span class="has-text-weight-light"><%= distance_of_time_in_words(comment.created_at, DateTime.now) %> ago</span></p>
-    <%= comment.content.html_safe %>
-    <div class="block p-3">
-        <%#= render partial: "comments/form", locals: { comment: reply } %>
+    <div class="block">
+        <div class="pl-3">
+            <div class="mb-2">
+                <%= comment.content.html_safe %>
+            </div>
+            <%= turbo_frame_tag Comment.new do %>
+                <%= link_to 'Reply', new_post_comment_path(comment_id: comment.id) %>
+            <% end %>
+        </div>
     </div>
-    <%= turbo_frame_tag Comment.new do %>
-        <%= link_to 'Reply', new_post_comment_path(comment_id: comment.id) %>
+    <% if comment.replies.any? %>
+        <div class="block pl-4">
+            <% comment.replies.reverse.each do |r| %>
+                <%= render r %>
+                <%#= r.content.html_safe %>
+            <% end %>
+        </div>
     <% end %>
-    <div class="block p-3">
-        <% comment.replies.reverse.each do |r| %>
-            <%= r.content.html_safe %>
-        <% end %>
-    </div>
 </div>
