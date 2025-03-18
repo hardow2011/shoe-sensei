@@ -1,4 +1,8 @@
 es:
+  activerecord:
+    attributes:
+      user:
+        login: Nombre de usuario o contraseña
   language:
     prompt: Idioma
     english: English
