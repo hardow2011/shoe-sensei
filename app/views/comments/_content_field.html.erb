@@ -1,7 +1,7 @@
 <%# Random number in id so tinymce initializes the div again after form submition %>
 <% div_id = dom_id(comment.parent_comment ? comment.parent_comment : comment) + rand(10000..100000).to_s %>
 <% tinymce_selector = "div#" + div_id %>
-<div class="tinymce comment-tinymce" name="comment[content]" id="<%= div_id %>">
+<div class="tinymce comment-tinymce <%= comment.parent_comment ? 'comment-reply-input' : nil %>" name="comment[content]" id="<%= div_id %>">
     <%= comment.content.to_s&.html_safe %>
 </div>
 <%= form.hidden_field :content, id: "#{div_id}_content" %>

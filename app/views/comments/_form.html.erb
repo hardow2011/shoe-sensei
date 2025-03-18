@@ -9,7 +9,7 @@
             
             <div class="field is-grouped is-grouped-right">
                 <div class="control">
-                <%= f.submit "Post Comment", class: 'button is-link' %>
+                <%= f.submit (comment.parent_comment ? "Post Reply" : "Post Comment"), class: 'button is-link' %>
                 </div>
             </div>   
         <% end %>
