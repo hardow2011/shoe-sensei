@@ -1,6 +1,6 @@
 <% new_reply = Comment.new(post_id: comment.post.id, comment_id: comment.id) %>
 
-<div class="<%= comment.parent_comment ? 'block' : 'mb-6' %>">
+<div class="<%= comment.parent_comment ? 'block' : 'mb-6 parent-comment-box' %>">
     <div class="mb-2">
         <p class="has-text-weight-bold"><%= comment.user.username %></span></p>
         <p class="has-text-weight-light"><%= distance_of_time_in_words(comment.created_at, DateTime.now) %> ago</p>
@@ -11,16 +11,22 @@
                 <%= comment.content.html_safe %>
             </div>
             <%= turbo_frame_tag do %>
-                <%= link_to pluralize(comment.replies.count, 'Reply'), post_comment_replies_path(comment_id: comment.id), data: { turbo_frame: comment.replies_turbo_frame_id } %>
-                <%= link_to 'Reply', new_post_comment_path(comment_id: comment.id), data: { turbo_frame: new_reply.turbo_frame_id } %>
+                <div class="columns">
+                    <div class="column is-narrow">
+                        <%= link_to pluralize(comment.replies.count, 'reply'), post_comment_replies_path(comment_id: comment.id), data: { turbo_frame: comment.replies_turbo_frame_id } %>
+                    </div>
+                    <div class="column is-narrow">
+                        <%= link_to 'Reply', new_post_comment_path(comment_id: comment.id), data: { turbo_frame: new_reply.turbo_frame_id } %>
+                    </div>
+                </div>
             <% end %>
         </div>
     </div>
     <div class="reply-box block">
-        <%= turbo_frame_tag new_reply.turbo_frame_id do %>
+        <%= turbo_frame_tag new_reply.turbo_frame_id, class: 'is-block block' do %>
         <% end %>
         
-        <%= turbo_frame_tag comment.replies_turbo_frame_id do %>
+        <%= turbo_frame_tag comment.replies_turbo_frame_id, class: 'is-block block' do %>
             <%#= render @comment.replies %>
         <% end %>
     </div>
