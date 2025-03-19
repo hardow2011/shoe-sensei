@@ -8,7 +8,7 @@
                 <%= comment.content.html_safe %>
             </div>
             <%= turbo_frame_tag do %>
-                <%= link_to pluralize(comment.replies.count, 'Reply'), post_comment_path(id: comment.id), data: { turbo_frame: comment.replies_turbo_frame_id } %>
+                <%= link_to pluralize(comment.replies.count, 'Reply'), post_comment_replies_path(comment_id: comment.id), data: { turbo_frame: comment.replies_turbo_frame_id } %>
                 <%= link_to 'Reply', new_post_comment_path(comment_id: comment.id), data: { turbo_frame: new_reply.turbo_frame_id } %>
             <% end %>
         </div>
@@ -16,9 +16,9 @@
     <%= turbo_frame_tag new_reply.turbo_frame_id do %>
     <% end %>
     
-    <%#= turbo_frame_tag comment.replies_turbo_frame_id do %>
+    <%= turbo_frame_tag comment.replies_turbo_frame_id do %>
         <%#= render @comment.replies %>
-    <%# end %>
+    <% end %>
 
     <% if false %>
         <% if comment.replies.any? %>

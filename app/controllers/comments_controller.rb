@@ -9,6 +9,11 @@ class CommentsController < ApplicationController
   def show
   end
 
+  def replies
+    @comment = Comment.find(params[:comment_id])
+    @replies = @comment.replies
+  end
+
   def new
       post_id = params[:post_id]
       parent_comment = params[:comment_id]
