@@ -24,16 +24,4 @@
             <%#= render @comment.replies %>
         <% end %>
     </div
-
-    <% if false %>
-        <% if comment.replies.any? %>
-            <div class="block pl-4">
-                <% comment.replies.reverse.each do |r| %>
-                    <%= render r %>
-                    <%#= r.content.html_safe %>
-                <% end %>
-            </div>
-        <% end %>
-    <% end %>
-
 </div>
