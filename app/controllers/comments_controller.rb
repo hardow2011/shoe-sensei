@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
   def new
       post_id = params[:post_id]
       parent_comment = params[:comment_id]
-      @comment = Comment.new(post_id: post_id, user_id: current_user.id, comment_id: parent_comment)
+      @comment = Comment.new(post_id: post_id, user_id: user_signed_in? ? current_user.id : nil, comment_id: parent_comment)
   end
   
   def create

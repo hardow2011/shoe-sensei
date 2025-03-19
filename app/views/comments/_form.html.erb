@@ -1,19 +1,27 @@
 <%= turbo_frame_tag comment.turbo_frame_id do %>
-    <%= tinymce :comment %>
-    <div class="block">
-        <%= simple_form_for(comment, url: post_comments_path, html: {onsubmit: 'updateTinymceFields()'}) do |f| %>
-            <%= f.hidden_field :post_id, value: comment.post.id %>
-            <%= hidden_field_tag :turbo_frame_id, comment.turbo_frame_id %>
-            <%= f.hidden_field :user_id, value: current_user.id %>
-            <%= (f.hidden_field :comment_id, value: comment.comment_id) if comment.comment_id %>
+    <% if user_signed_in? %>
+        <%= tinymce :comment %>
+        <div class="block">
+            <%= simple_form_for(comment, url: post_comments_path, html: {onsubmit: 'updateTinymceFields()'}) do |f| %>
+                <%= f.hidden_field :post_id, value: comment.post.id %>
+                <%= hidden_field_tag :turbo_frame_id, comment.turbo_frame_id %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= (f.hidden_field :comment_id, value: comment.comment_id) if comment.comment_id %>
 
-            <%= render partial: "comments/content_field", locals: { form: f, comment: comment } %>
-            
-            <div class="field is-grouped is-grouped-right">
-                <div class="control">
-                <%= f.submit (comment.parent_comment ? "Post Reply" : "Post Comment"), class: 'button is-link' %>
-                </div>
-            </div>   
-        <% end %>
-    </div>   
+                <%= render partial: "comments/content_field", locals: { form: f, comment: comment } %>
+                
+                <div class="field is-grouped is-grouped-right">
+                    <div class="control">
+                        <%= f.submit (comment.parent_comment ? "Post Reply" : "Post Comment"), class: 'button is-link' %>
+                    </div>
+                </div>   
+            <% end %>
+        </div>   
+    <% else %>
+        <div class="field is-grouped is-grouped-right">
+            <div class="control">
+                <%= link_to t('join_to_comment'), new_user_session_path, class: "button is-link" %>
+            </div>
+        </div>   
+    <% end %>
 <% end %>
