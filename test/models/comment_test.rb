@@ -45,7 +45,7 @@ class CommentTest < ActiveSupport::TestCase
     assert comment.valid?
   end
 
-  test 'destroyed comment still exists but the content and user are removed' do
+  test 'destroyed comment by user still exists but the content and user are removed' do
     @valid_comment.save
     assert @valid_comment.valid?
     refute @valid_comment.deleted_at.present?
@@ -56,5 +56,9 @@ class CommentTest < ActiveSupport::TestCase
 
     assert @valid_comment.valid?
     assert @valid_comment.deleted_at.present?
+  end
+
+  test 'comment is completely deleted when post is deleted' do
+    # TODO
   end
 end
