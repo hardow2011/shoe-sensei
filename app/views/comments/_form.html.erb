@@ -1,4 +1,4 @@
-<%= turbo_frame_tag new_comment_turbo_frame_id(comment) do %>
+<%= turbo_frame_tag comment.turbo_frame_id do %>
     <%= tinymce :comment %>
     <div class="block">
         <%= simple_form_for(comment, url: post_comments_path, html: {onsubmit: 'updateTinymceFields()'}) do |f| %>

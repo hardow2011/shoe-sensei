@@ -1,0 +1,12 @@
+<div class="section">
+    <div class="container is-widescreen">
+    <%= turbo_frame_tag @comment do %>
+        <div class="block">
+            <%= render @comment %>
+        </div>
+    <% end %>
+    <%= turbo_frame_tag @comment.replies_turbo_frame_id do %>
+        <%= render @comment.replies %>
+    <% end %>
+    </div>
+</div>

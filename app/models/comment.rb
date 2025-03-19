@@ -23,6 +23,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Comment < ApplicationRecord
+  include ActionView::RecordIdentifier
+  
   belongs_to :post
   belongs_to :user
   belongs_to :parent_comment, foreign_key: :comment_id, class_name: 'Comment', optional: true
@@ -33,4 +35,15 @@ class Comment < ApplicationRecord
   validates_presence_of :user
 
   scope :top_comments, -> { where(comment_id: nil) }
+
+  def turbo_frame_id
+    if parent_comment
+        "reply_to_comment_#{parent_comment.id}"
+    else
+        dom_id self
+    end
+  end
+  def replies_turbo_frame_id
+      "replies_for_comment_#{id}"
+  end
 end
