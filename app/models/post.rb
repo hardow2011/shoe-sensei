@@ -71,7 +71,7 @@ class Post < ApplicationRecord
   end
 
   def destroy
-    Comment.where(post_id: post.id).delete_all
+    Comment.where(post_id: self.id).delete_all
     super
   end
 
