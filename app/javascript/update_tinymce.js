@@ -1,6 +1,6 @@
 // This is necessary to tinymce after turbo does its thing
 
-tinymce.remove();
+// tinymce.remove();
 
 window.updateTinymceFields = function updateTinymceFields() {
     const tinymceFields = document.querySelectorAll('.tinymce');
