@@ -8,12 +8,12 @@
                 <%= comment.content.html_safe %>
             </div>
             <%= turbo_frame_tag do %>
-                <%#= link_to pluralize(comment.replies.count, 'Replies'), new_post_comment_path(comment_id: comment.id), data: { turbo_frame: comment_turbo_frame_id(new_reply) } %>
-                <%= link_to 'Reply', new_post_comment_path(comment_id: comment.id), data: { turbo_frame: comment_turbo_frame_id(new_reply) } %>
+                <%#= link_to pluralize(comment.replies.count, 'Replies'), new_post_comment_path(comment_id: comment.id), data: { turbo_frame: new_comment_turbo_frame_id(new_reply) } %>
+                <%= link_to 'Reply', new_post_comment_path(comment_id: comment.id), data: { turbo_frame: new_comment_turbo_frame_id(new_reply) } %>
             <% end %>
         </div>
     </div>
-    <%= turbo_frame_tag comment_turbo_frame_id(new_reply) do %>
+    <%= turbo_frame_tag new_comment_turbo_frame_id(new_reply) do %>
     <% end %>
 
     <% if false %>
