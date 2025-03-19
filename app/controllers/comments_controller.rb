@@ -22,7 +22,6 @@ class CommentsController < ApplicationController
   
   def create
       comment = Comment.new(comment_params)
-
       if comment.save
           respond_to do |format|
             format.html { redirect_to post_comments_path, notice: 'Comment posted successfully.' }
@@ -30,6 +29,9 @@ class CommentsController < ApplicationController
               flash.now[:notice] = 'Comment posted successfully.'
               @comments = Comment.top_comments.where(post_id: comment.post_id).order(created_at: :desc)
               @new_comment = Comment.new(post_id: comment.post_id)
+              @turbo_frame_id_to_update = comment_turbo_redirect_params
+              @comment = comment
+              # byebug
             end
           end
         else
@@ -41,6 +43,10 @@ class CommentsController < ApplicationController
 
   def comment_params
       params.require(:comment).permit(:content, :post_id, :user_id, :comment_id)
+  end
+
+  def comment_turbo_redirect_params
+    params.require(:turbo_frame_id)
   end
 
   def set_comment

@@ -1,3 +1,2 @@
-<%= turbo_stream.update "comments", partial: 'comments/comment', collection: @comments %>
-<%= turbo_stream.replace Comment.new, partial: 'comments/form', locals: { comment: @new_comment } %>
+<%= turbo_stream.update @turbo_frame_id_to_update, partial: 'comments/comment', locals: { comment: @comment } %>
 <%= turbo_stream.replace 'flash', partial: 'layouts/flash' %>

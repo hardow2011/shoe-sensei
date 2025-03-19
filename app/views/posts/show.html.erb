@@ -29,29 +29,33 @@
                 </div>
             <% end %>
             <div class="column">
-                <%= cache [I18n.locale, @post] do  %>
-                    <div class="content post-content">
-                        <% if @post.has_affiliate_links %>
-                            <div class="mb-3 ">
-                                <p class="is-size-7"><%= t('associate_disclaimer') %></span>
+                <div>
+                    <div class="block content post-content">
+                        <%= cache [I18n.locale, @post] do  %>
+                            <% if @post.has_affiliate_links %>
+                                <div class="mb-3 ">
+                                    <p class="is-size-7"><%= t('associate_disclaimer') %></span>
+                                </div>
+                            <% end %>
+                            <div class="block">
+                                <h1 class="title is-3"><%= @post.title %></h1>
+                                <%= render partial: 'posts/published_on', locals: { published_date: @post.humanized_published_at } %>                            
+                            </div>
+                            <div class="block">
+                                <%= @post.content.html_safe %>
+                            </div>
+                            <%= render partial: 'posts/tags', locals: { tags: @post.tags } %>
+                            <hr>
                             </div>
                         <% end %>
-                        <div class="block">
-                            <h1 class="title is-3"><%= @post.title %></h1>
-                            <%= render partial: 'posts/published_on', locals: { published_date: @post.humanized_published_at } %>                            
-                        </div>
-                        <div class="block">
-                            <%= @post.content.html_safe %>
-                        </div>
-                        <%= render partial: 'posts/tags', locals: { tags: @post.tags } %>
-                        <hr>
+                    </div>
+                    <div class="block">
                         <%= turbo_frame_tag Comment.new, src: new_post_comment_path(post_id: @post.id) do %>
                         <% end %>
                         <%= turbo_frame_tag 'comments', src: post_comments_path(post_id: @post.id), loading: :lazy do %>
                         <% end %>
-                        </div>
                     </div>
-                <% end %>
+                </div>
             </div>
         </div>
     </div>

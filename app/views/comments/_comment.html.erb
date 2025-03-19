@@ -1,9 +1,12 @@
 <% new_reply = Comment.new(post_id: comment.post.id, comment_id: comment.id) %>
 
-<div class="comment-box <%= comment.parent_comment ? 'block' : 'mb-6' %>">
-    <p class="mb-2"><span class="has-text-weight-bold"><%= comment.user.username %></span> * <span class="has-text-weight-light"><%= distance_of_time_in_words(comment.created_at, DateTime.now) %> ago</span></p>
+<div class="<%= comment.parent_comment ? 'block' : 'mb-6' %>">
+    <div class="mb-2">
+        <p class="has-text-weight-bold"><%= comment.user.username %></span></p>
+        <p class="has-text-weight-light"><%= distance_of_time_in_words(comment.created_at, DateTime.now) %> ago</p>
+    </div>
     <div class="block">
-        <div class="pl-3">
+        <div>
             <div class="mb-2">
                 <%= comment.content.html_safe %>
             </div>
@@ -13,12 +16,14 @@
             <% end %>
         </div>
     </div>
-    <%= turbo_frame_tag new_reply.turbo_frame_id do %>
-    <% end %>
-    
-    <%= turbo_frame_tag comment.replies_turbo_frame_id do %>
-        <%#= render @comment.replies %>
-    <% end %>
+    <div class="reply-box block">
+        <%= turbo_frame_tag new_reply.turbo_frame_id do %>
+        <% end %>
+        
+        <%= turbo_frame_tag comment.replies_turbo_frame_id do %>
+            <%#= render @comment.replies %>
+        <% end %>
+    </div
 
     <% if false %>
         <% if comment.replies.any? %>

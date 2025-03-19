@@ -337,9 +337,9 @@ hr {
     border-width: 1px;
 }
 
-.comment-box {
+.reply-box {
     @extend .pl-3;
-    border-left-width: 1px;
+    border-left-width: 3px;
     border-left-style: solid;
-    border-left-color: $body-color;
+    border-left-color: $grey-lighter;
 }
