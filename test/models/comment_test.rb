@@ -33,7 +33,7 @@ class CommentTest < ActiveSupport::TestCase
     comment.save
     refute comment.valid?
 
-    assert_includes comment.errors[:user], "must exist"
+    assert_includes comment.errors[:user], "can't be blank"
   end
 
   test 'comment may belong to another comment' do
@@ -43,5 +43,18 @@ class CommentTest < ActiveSupport::TestCase
 
     comment.save
     assert comment.valid?
+  end
+
+  test 'destroyed comment still exists but the content and user are removed' do
+    @valid_comment.save
+    assert @valid_comment.valid?
+    refute @valid_comment.deleted_at.present?
+
+    @valid_comment.destroy
+    @valid_comment.user = nil
+    @valid_comment.content = nil
+
+    assert @valid_comment.valid?
+    assert @valid_comment.deleted_at.present?
   end
 end

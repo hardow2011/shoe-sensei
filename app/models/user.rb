@@ -63,6 +63,8 @@ class User < ApplicationRecord
   validates :subdomain, inclusion: { in: VALID_SUBDOMAINS,
   message: "%{value} is not a valid subdomain" }
 
+  has_many :comments
+
   attr_writer :login
 
   def login
@@ -90,5 +92,10 @@ class User < ApplicationRecord
     result = update(params, *options)
     clean_up_passwords
     result
+  end
+
+  def destroy
+    self.comments.destroy_all
+    super
   end
 end

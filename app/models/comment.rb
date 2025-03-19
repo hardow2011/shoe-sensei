@@ -3,12 +3,13 @@
 # Table name: comments
 #
 #  id         :bigint           not null, primary key
-#  content    :text             not null
+#  content    :text
+#  deleted_at :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  comment_id :bigint
 #  post_id    :bigint           not null
-#  user_id    :bigint           not null
+#  user_id    :bigint
 #
 # Indexes
 #
@@ -26,14 +27,15 @@ class Comment < ApplicationRecord
   include ActionView::RecordIdentifier
   
   belongs_to :post
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :parent_comment, foreign_key: :comment_id, class_name: 'Comment', optional: true
   has_many :replies, foreign_key: :comment_id, class_name: 'Comment'
 
-  validates :content, presence: true
+  validates :content, presence: true, on: :create
   validates_presence_of :post
-  validates_presence_of :user
+  validates :user, presence: true, on: :create
 
+  # TODO: rename to parent_comments
   scope :top_comments, -> { where(comment_id: nil) }
 
   def turbo_frame_id
@@ -45,5 +47,10 @@ class Comment < ApplicationRecord
   end
   def replies_turbo_frame_id
       "replies_for_comment_#{id}"
+  end
+
+  # Soft deletes the comment by making user and content nil
+  def destroy
+    self.update({user: nil, content: nil, deleted_at: DateTime.now})
   end
 end

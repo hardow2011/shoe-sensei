@@ -62,10 +62,17 @@ class Post < ApplicationRecord
 
   attr_accessor :images_ids
 
+  has_many :comments
+
   scope :published, -> { where(published: true) }
 
   def humanized_published_at
     self.published_at.present? ? I18n.l(self.published_at, format: :long) : nil
+  end
+
+  def destroy
+    Comment.where(post_id: post.id).delete_all
+    super
   end
 
   private
