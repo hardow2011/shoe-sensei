@@ -72,6 +72,9 @@ The blog section in Shoe Sensei uses TinyMCE for a flexible text editor interfac
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
+### Development tips
+For better error messages, disable `config.exceptions_app = self.routes` from `config/applications.rb` and uncomment `config.consider_all_requests_local = true` from `config/environments/development.rb` and `config/environments/test.rb`
+
 ### Prerequisites
 * Install the libyaml-dev library
 * Install the libpq-dev library
