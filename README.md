@@ -31,6 +31,7 @@
     <li>
       <a href="#usage">Usage</a>
       <ul>
+        <li><a href="#admin-subdomain">Admin subdomain</a></li>
         <li><a href="#shoe-filter-sort-and-pagination">Shoe filter, sort and pagination</a></li>
         <li><a href="#blog">Blog</a></li>
         <li><a href="#testing">Testing</a></li>
@@ -117,6 +118,8 @@ This command starts the web server; the js and css watchers.
 ### Admin login
 The admin login is:
 ```
+url: admin.localhost:3000
+
 email: admin@email.com
 
 password: Adm!n123
@@ -124,6 +127,14 @@ password: Adm!n123
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+
+### Admin subdomain
+The admin interface is completely separated in its own subdomain.
+
+To access in local development, go to:
+```
+admin.localhost:3000
+```
 
 ### Shoe filter, sort and pagination
 Shoe Sensei provides a handy, custom-made shoe filter to assist interested parties in their search for the right footwear for the occasion.
