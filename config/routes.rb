@@ -36,6 +36,11 @@ Rails.application.routes.draw do
       # get 'collections/:brand_id/:id', to: 'collections#show', as: 'collection'
       # get 'models/:brand_id/:collection_id/:id', to: 'models#show', as: 'model'
     end
+
+    # error pages
+    %w( 404 422 500 503 ).each do |code|
+      get code, :to => "errors#show", :code => code
+    end
   end
 
   # admin.localhost:3000

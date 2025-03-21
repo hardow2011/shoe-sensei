@@ -1,0 +1,11 @@
+<div class="section">
+    <div class="container is-widescreen">
+        <div class="block content has-text-centered">
+            <h1 class="title is-1"><%= @status_code %></h1>
+            <h2 class="title is-2 has-text-centered	"><%= t('error_page_title') %></h2>
+            <p class="is-size-4	"><%= t('error_page_subtitle') %></p>
+            <p><%= link_to t('error_page_action_btn'), root_path, class: "button is-link has-text-white" %></p>
+
+        </div>
+    </div>
+</div>

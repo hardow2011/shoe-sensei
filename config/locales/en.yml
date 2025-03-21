@@ -115,3 +115,6 @@ en:
   cancel_my_account?: Cancel my account?
   cancel_my_account: Cancel my account
   are_you_sure_that_you_want_to_delete_your_account: Are you sure that you want to delete your account?
+  error_page_title: There seem to have been an error
+  error_page_subtitle: Don't worry, we've been alerted and will investigate the issue shortly.
+  error_page_action_btn: Take me back to the main page

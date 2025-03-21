@@ -72,3 +72,6 @@ es:
   cancel_my_account?: ¿Cancelar mi cuenta?
   cancel_my_account: Cancelar mi cuenta
   are_you_sure_that_you_want_to_delete_your_account: ¿Estás seguro de que deseas eliminar tu cuenta?
+  error_page_title: Parece que aconteció un error
+  error_page_subtitle: No te preocupes, fuimos alertados e investigaremos el error en breve
+  error_page_action_btn: Llévame a la página principal
