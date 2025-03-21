@@ -1,7 +1,7 @@
 <div class="section">
   <div class="container is-max-tablet">
     <div class="block">
-      <h2 class="title is-2">Change your password</h2>
+      <h2 class="title is-2"><%= t('change_your_password') %></h2>
     </div>
 
     <div class="block">
@@ -12,12 +12,12 @@
         <%= f.full_error :reset_password_token %>
 
           <%= f.input :password,
-                      label: "New password",
+                      label: t('new_password'),
                       autofocus: true,
-                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      hint: (t('minimum_password_length', minimum_password_length: @minimum_password_length) if @minimum_password_length),
                       input_html: { autocomplete: "new-password" } %>
           <%= f.input :password_confirmation,
-                      label: "Confirm your new password",
+                      label: t('confirm_your_new_password'),
                       input_html: { autocomplete: "new-password" } %>
 
         <div class="field is-grouped is-grouped-right">

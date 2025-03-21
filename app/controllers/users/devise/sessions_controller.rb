@@ -13,15 +13,15 @@ class Users::Devise::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     super
-    flash.now[:notice] = 'Logged in successfully.'
-    flash[:notice] = 'Logged in successfully.'
+    flash.now[:notice] = I18n.t('logged_in_successfully')
+    flash[:notice] = I18n.t('logged_in_successfully')
   end
 
   # DELETE /resource/sign_out
   def destroy
     super
-    flash.now[:notice] = 'Logged out successfully.'
-    flash[:notice] = 'Logged out successfully.'
+    flash.now[:notice] = I18n.t('logged_out_successfully')
+    flash[:notice] = I18n.t('logged_out_successfully')
   end
 
   # protected

@@ -2,7 +2,12 @@ es:
   activerecord:
     attributes:
       user:
-        login: Nombre de usuario o contraseña
+        email: Correo electrónico
+        username: Nombre de usuario
+        login: Nombre de usuario o correo electrónico
+        password: Contraseña
+        remember_me: Acordarse de mí
+        password_confirmation: Confirmación de contraseña
   language:
     prompt: Idioma
     english: English
@@ -43,3 +48,27 @@ es:
   account: Cuenta
   settings: Configuraciones
   log_out: Cerrar sesión
+  log_in: Iniciar sesión
+  dont_have_an_account_yet: '¿Aún no tienes cuenta?'
+  sign_up: Registrarse
+  forgot_your_password: "¿Olvidaste tu contraseña?"
+  didnt_receive_confirmation_instructions: ¿No recibiste instrucciones de confirmación?
+  username_hint: El nombre de usuario debe tener al menos 3 caracteres y solo puede contener letras, números, guiones o guiones bajos
+  password_hint: La contraseña debe tener al menos 8 caracteres
+  already_have_an_account: ¿Ya tienes cuenta?
+  logged_in_successfully: Sesión iniciada exitosamente
+  logged_out_successfully: Sesión cerrada exitosamente
+  resend_confirmation_instructions: Reenviar instrucciones de confirmación
+  change_your_password: Cambiar tu contraseña
+  new_password: Nueva contraseña
+  minimum_password_length: "%{minimum_password_length} caracteres mínimo"
+  confirm_your_new_password: Confirma tu nueva contraseña
+  change_my_password: Cambiar mi contraseña
+  send_me_reset_password_instructions: Enviar instrucciones de reinicio de contraseña
+  edit_my_account: Configurar cuenta
+  currently_waiting_confirmation_for_email: "Actualmente esperando confirmación para: %{email}"
+  leave_blank_if_you_dont_want_to_change_it: Deja en blanco si no quieres cambiar
+  update: Actualizar
+  cancel_my_account?: ¿Cancelar mi cuenta?
+  cancel_my_account: Cancelar mi cuenta
+  are_you_sure_that_you_want_to_delete_your_account: ¿Estás seguro de que deseas eliminar tu cuenta?
