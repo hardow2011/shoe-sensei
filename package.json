@@ -12,6 +12,6 @@
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --minify",
-    "build:css": "sass ./app/assets/stylesheets/application.bulma.scss:./app/assets/builds/application.css --style compressed --no-source-map --load-path=node_modules"
+    "build:css": "sass ./app/assets/stylesheets/application.bulma.scss:./app/assets/builds/application.css ./app/assets/stylesheets/emails.scss:./app/assets/builds/emails.css --style compressed --no-source-map --load-path=node_modules"
   }
 }
