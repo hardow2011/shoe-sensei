@@ -1,13 +1,16 @@
-<p>Welcome <%= @email %>!</p>
+<%= stylesheet_link_tag "emails" %>
 
-<p>Thank you for joining Shoe Sensei.</p>
-<p>You can confirm your account email through the link below:</p>
+<div class="section">
+    <div class="content has-text-centered">
+        <h1 class="title is-1">Welcome to Shoe Sensei!</h1>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+        <p class="has-text-centered is-size-4">Please confirm your account email using the button below:</p>
+        <p class="has-text-centered mb-6"><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token), class: 'button is-link has-text-white is-size-4' %></p>
 
-
-<p>You may also use the following link instead:<br/>
-    <span>
-        <%= link_to confirmation_url(@resource, confirmation_token: @token), confirmation_url(@resource, confirmation_token: @token) %>
-    <span>
-</p>
+        <p>You may also use the following link instead:<br/>
+            <span>
+                <%= link_to confirmation_url(@resource, confirmation_token: @token), confirmation_url(@resource, confirmation_token: @token) %>
+            <span>
+        </p>
+    </div>
+</div>
