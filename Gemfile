@@ -76,6 +76,7 @@ gem 'simple_form'
 gem 'pundit'
 
 gem 'mailgun-ruby', '~>1.3.2'
+gem 'premailer-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
