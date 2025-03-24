@@ -118,3 +118,11 @@ en:
   error_page_title: There seem to have been an error
   error_page_subtitle: Don't worry, we've been alerted and will investigate the issue shortly.
   error_page_action_btn: Take me back to the main page
+  policies:
+    title: Policies
+    terms:
+      short: Terms of Use
+      long: Terms of Use Policy
+    privacy:
+      short: Privacy
+      long: Privacy Policy

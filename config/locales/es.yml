@@ -75,3 +75,11 @@ es:
   error_page_title: Parece que aconteció un error
   error_page_subtitle: No te preocupes, fuimos alertados e investigaremos el error en breve
   error_page_action_btn: Llévame a la página principal
+  policies:
+    title: Políticas
+    terms:
+      short: Términos de Uso
+      long: Políticas de Términos de Uso
+    privacy:
+      short: Privacy
+      long: Política de provacidad

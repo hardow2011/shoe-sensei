@@ -25,14 +25,21 @@
         <p><%= link_to t('cta.try_our_shoe_filter'), root_path(anchor: 'homepage-filter') %></p>
       </div>
       <div class="column">
-        <h4><%= t('join_our_community') %></h4>
-        <p>
-          <%= link_to 'https://www.instagram.com/shoesenseiofficial/', target: :_blank do %>
-            <span class="icon is-medium">
-              <i class="fab fa-2x fa-instagram" style="color: #4258ff;"></i>
-            </span>
-          <% end %>
-        </p>
+        <div class="block">
+          <h4><%= t('join_our_community') %></h4>
+          <p>
+            <%= link_to 'https://www.instagram.com/shoesenseiofficial/', target: :_blank do %>
+              <span class="icon is-medium">
+                <i class="fab fa-2x fa-instagram" style="color: #4258ff;"></i>
+              </span>
+            <% end %>
+          </p>
+        </div>
+        <div class="block">
+          <h4><%= t('policies.title') %></h4>
+          <p><%= link_to t('policies.terms.short'), policies_privacy_path %></p>
+          <p><%= link_to t('policies.privacy.long'), policies_terms_path %></p>
+        </div>
       </div>
     </div>
     <hr>

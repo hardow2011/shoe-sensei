@@ -10,10 +10,12 @@ class PagesController < ApplicationController
   end
 
   def privacy_policy
+    @meta_tags[:title] = 'Shoe Sensei | ' + I18n.t('policies.privacy.long')
     render "pages/policies/privacy_#{locale}"
   end
 
   def terms_of_use
+    @meta_tags[:title] = 'Shoe Sensei | ' + I18n.t('policies.terms.long')
     render "pages/policies/terms_#{locale}"
   end
 end
