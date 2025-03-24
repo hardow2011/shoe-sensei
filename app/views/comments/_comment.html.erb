@@ -1,14 +1,13 @@
 <% new_reply = Comment.new(post_id: comment.post.id, comment_id: comment.id) %>
 
 <div class="<%= comment.parent_comment ? 'block' : 'mb-6 parent-comment-box' %>">
-    <div class="mb-2">
-        <p class="has-text-weight-bold"><%= comment.user.username %></span></p>
-        <p class="has-text-weight-light"><%= distance_of_time_in_words(comment.created_at, DateTime.now) %> ago</p>
+    <div class="mb-5">
+        <p><span class="has-text-weight-bold"><%= comment.user.username %></span> &#x2022; <span class="has-text-weight-light"><%= distance_of_time_in_words(comment.created_at, DateTime.now) %> ago</span></p>
     </div>
     <div class="block">
         <div>
-            <div class="mb-2">
-                <%= comment.content.html_safe %>
+            <div class="mb-2 content">
+                <%== comment.content %>
             </div>
             <%= turbo_frame_tag do %>
                 <div class="columns">
