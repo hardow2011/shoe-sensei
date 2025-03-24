@@ -1,8 +1,15 @@
 <%# Random number in id so tinymce initializes the div again after form submition %>
 <% div_id = dom_id(comment.parent_comment ? comment.parent_comment : comment) + rand(10000..100000).to_s %>
 <% tinymce_selector = "div#" + div_id %>
-<div class="tinymce comment-tinymce <%= comment.parent_comment ? 'comment-reply-input' : nil %>" name="comment[content]" id="<%= div_id %>">
-    <%= comment.content.to_s&.html_safe %>
+<div class="field">
+    <div class="tinymce comment-tinymce <%= comment.parent_comment ? 'comment-reply-input' : nil %>" name="comment[content]" id="<%= div_id %>">
+        <%= comment.content.to_s&.html_safe %>
+    </div>
+    <% if comment.errors %>
+        <% comment.errors.full_messages_for(:content).each do |content_error| %>
+            <p class="help is-danger"><%= content_error %></p>
+        <% end %>
+    <% end %>
 </div>
 <%= form.input :content, as: :text, wrapper_html: { style: 'display: none' }, id: "#{div_id}_content" %>
 <script>
