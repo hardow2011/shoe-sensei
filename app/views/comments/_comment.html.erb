@@ -2,7 +2,7 @@
 
 <div class="<%= comment.parent_comment ? 'block' : 'mb-6 parent-comment-box' %>">
     <div class="mb-5">
-        <p><span class="has-text-weight-bold"><%= comment.user.username %></span> &#x2022; <span class="has-text-weight-light"><%= distance_of_time_in_words(comment.created_at, DateTime.now) %> ago</span></p>
+        <p><span class="has-text-weight-bold"><%= comment.user.username %></span> &#x2022; <span class="has-text-weight-light"><%= t('time_ago', time: distance_of_time_in_words(comment.created_at, DateTime.now)).capitalize %></span></p>
     </div>
     <div class="block">
         <div>

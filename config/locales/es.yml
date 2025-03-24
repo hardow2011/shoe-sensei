@@ -83,3 +83,4 @@ es:
     privacy:
       short: Privacy
       long: Política de provacidad
+  time_ago: "Hace %{time}"

@@ -126,3 +126,4 @@ en:
     privacy:
       short: Privacy
       long: Privacy Policy
+  time_ago: "%{time} ago"
