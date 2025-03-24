@@ -39,11 +39,11 @@ class Comment < ApplicationRecord
   # TODO: rename to parent_comments
   scope :top_comments, -> { where(comment_id: nil) }
 
-  def turbo_frame_id
+  def reply_to_turbo_frame_id
     if parent_comment
         "reply_to_comment_#{parent_comment.id}"
     else
-        dom_id self
+        "new_comment"
     end
   end
   def replies_for_turbo_frame_id
