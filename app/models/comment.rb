@@ -46,7 +46,7 @@ class Comment < ApplicationRecord
         dom_id self
     end
   end
-  def replies_turbo_frame_id
+  def replies_for_turbo_frame_id
       "replies_for_comment_#{id}"
   end
 

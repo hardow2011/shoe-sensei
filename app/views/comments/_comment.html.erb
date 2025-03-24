@@ -12,7 +12,7 @@
             <%= turbo_frame_tag do %>
                 <div class="columns">
                     <div class="column is-narrow">
-                        <%= link_to t('reply', count: comment.replies.count), post_comment_replies_path(comment_id: comment.id), data: { turbo_frame: comment.replies_turbo_frame_id } %>
+                        <%= link_to t('reply', count: comment.replies.count), post_comment_replies_path(comment_id: comment.id), data: { turbo_frame: comment.replies_for_turbo_frame_id } %>
                     </div>
                     <div class="column is-narrow">
                         <%= link_to t('cta.reply'), new_post_comment_path(comment_id: comment.id), data: { turbo_frame: new_reply.turbo_frame_id } %>
@@ -25,7 +25,7 @@
         <%= turbo_frame_tag new_reply.turbo_frame_id, class: 'is-block block' do %>
         <% end %>
         
-        <%= turbo_frame_tag comment.replies_turbo_frame_id, class: 'is-block block' do %>
+        <%= turbo_frame_tag comment.replies_for_turbo_frame_id, class: 'is-block block' do %>
             <%#= render @comment.replies %>
         <% end %>
     </div>
