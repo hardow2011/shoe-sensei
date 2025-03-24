@@ -4,4 +4,4 @@
 <div class="tinymce admin-tinymce" name="<%= class_name %>[<%= attr_name.to_s %>]">
     <%= object.send(attr_name.to_s)&.html_safe %>
 </div>
-<%= form.hidden_field attr_name %>
+<%= form.text_area attr_name, style: 'display: none' %>

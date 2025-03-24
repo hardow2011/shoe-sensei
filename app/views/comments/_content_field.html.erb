@@ -4,7 +4,7 @@
 <div class="tinymce comment-tinymce <%= comment.parent_comment ? 'comment-reply-input' : nil %>" name="comment[content]" id="<%= div_id %>">
     <%= comment.content.to_s&.html_safe %>
 </div>
-<%= form.hidden_field :content, id: "#{div_id}_content" %>
+<%= form.input :content, as: :text, wrapper_html: { style: 'display: none' }, id: "#{div_id}_content" %>
 <script>
     TinyMCERails.initialize('comment', {
         selector: "<%= tinymce_selector %>"
