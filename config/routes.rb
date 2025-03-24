@@ -26,6 +26,9 @@ Rails.application.routes.draw do
 
       get 'filter_models', to: 'pages#filter_models', as: 'filter_models'
 
+      get 'policies/privacy', to: 'pages#privacy_policy'
+      get 'policies/terms', to: 'pages#terms_of_use'
+
       resources :posts, only: %i[show index], path: 'blog', as: 'posts' do
         resources :comments do
           get 'replies', shallow: true
