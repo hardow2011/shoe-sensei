@@ -12,7 +12,7 @@ class UsersTest < ApplicationSystemTestCase
         sleep 1
 
         email = ActionMailer::Base.deliveries.last
-        html = Nokogiri::HTML(email.body.to_s)
+        html = Nokogiri::HTML(email.html_part.body.to_s)
         target_link = html.at("a:contains('#{text}')")
         visit target_link['href']
     end

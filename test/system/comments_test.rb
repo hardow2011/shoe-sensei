@@ -20,7 +20,7 @@ class CommentsTests < ApplicationSystemTestCase
         page.scroll_to(0, 5000)
         sleep 1
 
-        find('[name="comment[content]"]').set(@comment_content)
+        find('div[name="comment[content]"]').set(@comment_content)
 
         click_on 'Post Comment'
 

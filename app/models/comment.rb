@@ -49,8 +49,29 @@ class Comment < ApplicationRecord
       "replies_for_comment_#{id}"
   end
 
+  def content=(value)
+    # Security philosophy:
+    # Validation (by rejection, not sanitization) on input. Escaping on output
+
+    # validate by rejecting non permitted tags
+    value = ActionController::Base.helpers.sanitize value, scrubber: Comment::CommentScrubber.new(prune: true)
+    super(value)
+  end
+
   # Soft deletes the comment by making user and content nil
   def destroy
     self.update({user: nil, content: nil, deleted_at: DateTime.now})
+  end
+
+  class CommentScrubber < Rails::HTML::PermitScrubber
+    def Initialize
+      super
+      self.tags = %w( p strong em span ul ol li )
+      self.attributes = %w( style )
+    end
+
+    def skip_node?(node)
+      node.text?
+    end
   end
 end
