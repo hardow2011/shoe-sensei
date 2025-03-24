@@ -37,6 +37,7 @@ es:
     try_our_shoe_filter: "Prueba Nuestro Selector de Zapatos"
     read_blog_instead_html: "¡Para artículos detallados sobre zapatos, salta directamente a nuestro %{blog_anchor}!"
     visit_our_blog: ¡Visita Nuestro Blog!
+    reply: Responder
   published_on: Publicado el
   slogan: Muévete con Confianza
   explore: Explorar
@@ -84,3 +85,7 @@ es:
       short: Privacy
       long: Política de provacidad
   time_ago: "Hace %{time}"
+  reply:
+    zero: 0 respuestas
+    one: 1 respuesta
+    other: "%{count} respuestas"
