@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
 
   def replies
     @comment = Comment.find(params[:comment_id])
-    @replies = @comment.replies
+    @replies = @comment.replies.order(created_at: :desc)
   end
 
   def new

@@ -1,5 +1,6 @@
 <% if @comment.parent_comment %>
     <%= turbo_stream.update @turbo_frame_id_to_update, partial: 'comments/comment', locals: { comment: @comment } %>
+    <%= turbo_stream.replace @comment.parent_comment.reply_count_turbo_frame_id, partial: 'comments/replies_count_btn', locals: { comment: @comment.parent_comment } %>
 <% else %>
     <%= turbo_stream.prepend 'comments', partial: 'comments/comment', locals: { comment: @comment } %>
     <%= turbo_stream.replace 'new_comment', partial: 'comments/form', locals: { comment: @new_comment } %>

@@ -39,6 +39,10 @@ class Comment < ApplicationRecord
   # TODO: rename to parent_comments
   scope :top_comments, -> { where(comment_id: nil) }
 
+  def turbo_frame_id
+    dom_id self
+  end
+
   def reply_to_turbo_frame_id
     if parent_comment
         "reply_to_comment_#{parent_comment.id}"
@@ -46,8 +50,13 @@ class Comment < ApplicationRecord
         "new_comment"
     end
   end
+
   def replies_for_turbo_frame_id
       "replies_for_comment_#{id}"
+  end
+
+  def reply_count_turbo_frame_id
+    "#{dom_id(self)}_reply_count"
   end
 
   # Soft deletes the comment by making user and content nil
