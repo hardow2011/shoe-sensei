@@ -31,7 +31,6 @@ class CommentsController < ApplicationController
               @new_comment = Comment.new(post_id: comment.post_id)
               @turbo_frame_id_to_update = comment_turbo_redirect_params
               @comment = comment
-              # byebug
             end
           end
         else
