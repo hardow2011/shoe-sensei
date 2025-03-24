@@ -1,2 +1,7 @@
-<%= turbo_stream.update @turbo_frame_id_to_update, partial: 'comments/comment', locals: { comment: @comment } %>
+<% if @comment.parent_comment %>
+    <%= turbo_stream.update @turbo_frame_id_to_update, partial: 'comments/comment', locals: { comment: @comment } %>
+<% else %>
+    <%= turbo_stream.prepend 'comments', partial: 'comments/comment', locals: { comment: @comment } %>
+    <%= turbo_stream.replace 'new_comment', partial: 'comments/form', locals: { comment: @new_comment } %>
+<% end %>
 <%= turbo_stream.replace 'flash', partial: 'layouts/flash' %>
