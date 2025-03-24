@@ -31,7 +31,8 @@ class Comment < ApplicationRecord
   belongs_to :parent_comment, foreign_key: :comment_id, class_name: 'Comment', optional: true
   has_many :replies, foreign_key: :comment_id, class_name: 'Comment'
 
-  validates :content, presence: true, on: :create
+  # validates :content, presence: true, on: :create
+  before_validation :content_presence, on: :create
   validates_presence_of :post
   validates :user, presence: true, on: :create
 
@@ -49,15 +50,6 @@ class Comment < ApplicationRecord
       "replies_for_comment_#{id}"
   end
 
-  def content=(value)
-    # Security philosophy:
-    # Validation (by rejection, not sanitization) on input. Escaping on output
-
-    # validate by rejecting non permitted tags
-    value = ActionController::Base.helpers.sanitize value, scrubber: Comment::CommentScrubber.new(prune: true)
-    super(value)
-  end
-
   # Soft deletes the comment by making user and content nil
   def destroy
     self.update({user: nil, content: nil, deleted_at: DateTime.now})
@@ -73,5 +65,20 @@ class Comment < ApplicationRecord
     def skip_node?(node)
       node.text?
     end
+  end
+
+  private
+
+  def content_presence
+    # Security philosophy:
+    # Validation (by rejection, not sanitization) on input. Escaping on output
+
+    # validate by rejecting non permitted tags
+    self.content = ActionController::Base.helpers.sanitize self.content, scrubber: Comment::CommentScrubber.new(prune: true)
+    plain_content = ActionController::Base.helpers.strip_tags self.content
+
+
+    # Check that the content without tags is not empty
+    self.errors.add(:content, :blank) if (self.content.blank? or plain_content.blank?)
   end
 end
