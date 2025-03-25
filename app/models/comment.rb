@@ -65,10 +65,11 @@ class Comment < ApplicationRecord
   end
 
   class CommentScrubber < Rails::HTML::PermitScrubber
+    ALLOWED_TAGS = %w( p strong em span ul ol li )
     def Initialize
       super
-      self.tags = %w( p strong em span ul ol li )
-      self.attributes = %w( style )
+      self.tags = ALLOWED_TAGS
+      # self.attributes = %w( style )
     end
 
     def skip_node?(node)

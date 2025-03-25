@@ -45,7 +45,7 @@ class CommentTest < ActiveSupport::TestCase
     assert comment.valid?
   end
 
-  test 'destroyed comment by user still exists but the content and user are removed' do
+  test 'when comment is destroyed by user, it still exists but the content and associated user are removed' do
     @valid_comment.save
     assert @valid_comment.valid?
     refute @valid_comment.deleted_at.present?
@@ -59,6 +59,46 @@ class CommentTest < ActiveSupport::TestCase
   end
 
   test 'comment is completely deleted when post is deleted' do
-    # TODO
+    @valid_comment.save
+    assert @valid_comment.valid?
+
+    post = @valid_comment.post
+    post.destroy
+
+    @valid_comment.destroyed?
+  end
+
+  test 'comment content sanitized properly' do
+    # Content can't be nil
+    @valid_comment.content = nil
+    @valid_comment.save
+    refute @valid_comment.valid?
+    assert_includes @valid_comment.errors[:content], "can't be blank"
+
+    # Content can't be blank
+    @valid_comment.content = ''
+    @valid_comment.save
+    refute @valid_comment.valid?
+    assert_includes @valid_comment.errors[:content], "can't be blank"
+
+    # Content can't allow empty text
+    @valid_comment.content = '<p><strong></strong></p>'\
+                              '<p><em></em></p>'\
+                              '<p><ol><li></li></ol></p>'\
+                              '<p><ul><li></li></ul></p>'
+    @valid_comment.save
+    assert_includes @valid_comment.errors[:content], "can't be blank"
+
+    # Content rejects unpermitted tags
+    @valid_comment.content = "<p><script>alert('hello')</script></p>"
+    @valid_comment.save
+    refute @valid_comment.valid?
+    assert_includes @valid_comment.errors[:content], "can't be blank"
+
+    # Content rejects unpermitted tags
+    @valid_comment.content = "<p><script>alert('hello')</script></p>"\
+                              "<p>Hello</p>"
+    @valid_comment.save
+    assert @valid_comment.valid?
   end
 end
