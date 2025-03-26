@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[show]
+  before_action :set_comment, only: %i[show destroy]
   
   def index
       post_id = params[:post_id]
@@ -34,6 +34,18 @@ class CommentsController < ApplicationController
       end
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @comment.destroy
+    @new_reply = Comment.new(post_id: @comment.post.id, comment_id: @comment.id)
+
+    respond_to do |format|
+      format.html { redirect_to post_comments_path(@comment.post.id), notice: I18n.t('comment.successful_deletion') }
+      format.turbo_stream do
+        flash.now[:notice] = I18n.t('comment.successful_deletion')
+      end
     end
   end
 

@@ -1,26 +1,7 @@
 <% new_reply = Comment.new(post_id: comment.post.id, comment_id: comment.id) %>
 
 <div class="<%= comment.parent_comment ? 'block' : 'mb-6 parent-comment-box' %>">
-    <div class="mb-5">
-        <p><span class="has-text-weight-bold"><%= comment.user.username %></span> &#x2022; <span class="has-text-weight-light"><%= t('time_ago', time: distance_of_time_in_words(comment.created_at, DateTime.now)).capitalize %></span></p>
-    </div>
-    <div class="block">
-        <div>
-            <div class="mb-2 content">
-                <%== comment.content %>
-            </div>
-            <%= turbo_frame_tag do %>
-                <div class="columns">
-                    <div class="column is-narrow">
-                        <%= render partial: 'comments/replies_count_btn', locals: { comment: comment } %>
-                    </div>
-                    <div class="column is-narrow">
-                        <%= link_to t('cta.reply'), new_post_comment_path(comment_id: comment.id), data: { turbo_frame: new_reply.reply_to_turbo_frame_id } %>
-                    </div>
-                </div>
-            <% end %>
-        </div>
-    </div>
+    <%= render partial: 'comments/info', locals: { comment: comment, new_reply: new_reply } %>
     <div class="reply-box block">
         <%= turbo_frame_tag new_reply.reply_to_turbo_frame_id, class: 'is-block block' do %>
         <% end %>

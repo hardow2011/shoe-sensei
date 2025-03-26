@@ -1,0 +1,5 @@
+<% if comment.content %>
+    <%== comment.content %>
+<% else %>
+    <em><%= t('comment.deleted') %></em>
+<% end %>

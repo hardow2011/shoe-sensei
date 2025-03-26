@@ -89,3 +89,9 @@ es:
     zero: 0 respuestas
     one: 1 respuesta
     other: "%{count} respuestas"
+  comment:
+    deletion_message: ¿Estás seguro que deseas borrar este mensaje?
+    successful_deletion: Comentario elimindado con éxito
+    deleted_html: <em>Comentario eliminado</em>
+    user:
+      deleted: <strong>Eliminado</strong>

@@ -77,6 +77,10 @@ class Comment < ApplicationRecord
     end
   end
 
+  def deletion_message
+    I18n.t('comment.deletion_message')
+  end
+
   private
 
   def content_presence

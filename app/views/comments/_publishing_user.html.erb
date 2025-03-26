@@ -1,0 +1,8 @@
+<p>
+    <% if comment.user %>
+        <span class="has-text-weight-bold"><%= comment.user.username %></span> 
+    <% else %>
+        <span>[<%= t('comment.user.deleted') %>]</span>
+    <% end %>
+    &#x2022; <span class="has-text-weight-light"><%= t('time_ago', time: distance_of_time_in_words(comment.created_at, DateTime.now)).capitalize %></span>
+</p>

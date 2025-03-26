@@ -1,0 +1,25 @@
+<%= turbo_frame_tag comment.turbo_frame_id, class: "is-block block" do %>
+    <div class="mb-5">
+        <%= render partial: 'comments/publishing_user', locals: { comment: comment } %>
+    </div>
+    <div class="block">
+        <div>
+            <div class="mb-5 content">
+                <%= render partial: 'comments/content', locals: { comment: comment } %>
+            </div>
+            <%#= turbo_frame_tag do %>
+                <div class="columns">
+                    <div class="column is-narrow">
+                        <%= render partial: 'comments/replies_count_btn', locals: { comment: comment } %>
+                    </div>
+                    <div class="column is-narrow">
+                        <%= link_to t('cta.reply'), new_post_comment_path(comment_id: comment.id), data: { turbo_frame: new_reply.reply_to_turbo_frame_id } %>
+                    </div>
+                    <div class="column is-narrow">
+                        <%= link_to 'Delete', [comment.post, comment], data: { turbo_method: :delete, turbo_confirm: "#{comment.deletion_message}" }, class: "is-text-danger" %>
+                    </div>
+                </div>
+            <%# end %>
+        </div>
+    </div>
+<% end %>
