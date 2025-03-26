@@ -1,1 +1,2 @@
 <%= turbo_stream.update @comment.turbo_frame_id, partial: 'comments/info', locals: { comment: @comment, new_reply: @new_reply } %>
+<%= turbo_stream.replace 'flash', partial: 'layouts/flash' %>

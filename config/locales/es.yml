@@ -91,7 +91,7 @@ es:
     other: "%{count} respuestas"
   comment:
     deletion_message: ¿Estás seguro que deseas borrar este mensaje?
-    successful_deletion: Comentario elimindado con éxito
+    successful_deletion: Comentario elimindado con éxito.
     deleted_html: <em>Comentario eliminado</em>
     user:
       deleted: <strong>Eliminado</strong>

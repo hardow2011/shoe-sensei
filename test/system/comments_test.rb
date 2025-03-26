@@ -73,7 +73,9 @@ class CommentsTests < ApplicationSystemTestCase
         assert_text 'Comment posted successfully.'
         assert_text @comment_content
 
-        click_on 'Delete'
+        accept_alert 'Are you sure that you want to delete this comment?' do
+            click_on 'Delete', match: :first
+        end
 
         assert_text 'Comment deleted successfully.'
     end
