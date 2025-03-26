@@ -51,10 +51,12 @@ class CommentTest < ActiveSupport::TestCase
     refute @valid_comment.deleted_at.present?
 
     @valid_comment.destroy
-    @valid_comment.user = nil
-    @valid_comment.content = nil
+    # @valid_comment.user = nil
+    # @valid_comment.content = nil
 
     assert @valid_comment.valid?
+    refute @valid_comment.user.present?
+    refute @valid_comment.content.present?
     assert @valid_comment.deleted_at.present?
   end
 
@@ -100,5 +102,23 @@ class CommentTest < ActiveSupport::TestCase
                               "<p>Hello</p>"
     @valid_comment.save
     assert @valid_comment.valid?
+  end
+
+  test 'comment content validated on update' do
+    comment = @valid_comment.dup
+    comment.save
+    assert comment.valid?
+
+    comment.content = nil
+    comment.save
+    refute comment.valid?
+
+    comment.content = ''
+    comment.save
+    refute comment.valid?
+
+    comment.content = '<p>Hello</p>'
+    comment.save
+    assert comment.valid?
   end
 end

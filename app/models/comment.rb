@@ -32,7 +32,7 @@ class Comment < ApplicationRecord
   has_many :replies, foreign_key: :comment_id, class_name: 'Comment'
 
   # validates :content, presence: true, on: :create
-  before_validation :content_presence, on: :create
+  validate :content_format, if: -> { new_record? || content_changed? }
   validates_presence_of :post
   validates :user, presence: true, on: :create
 
@@ -61,7 +61,10 @@ class Comment < ApplicationRecord
 
   # Soft deletes the comment by making user and content nil
   def destroy
-    self.update({user: nil, content: nil, deleted_at: DateTime.now})
+    self.update_column(:user_id, nil)
+    self.update_column(:content, nil)
+    self.update_column(:deleted_at, DateTime.now)
+    # self.save(validate: false)
   end
 
   class CommentScrubber < Rails::HTML::PermitScrubber
@@ -83,7 +86,7 @@ class Comment < ApplicationRecord
 
   private
 
-  def content_presence
+  def content_format
     # Security philosophy:
     # Validation (by rejection, not sanitization) on input. Escaping on output
 
