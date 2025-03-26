@@ -90,8 +90,10 @@ es:
     one: 1 respuesta
     other: "%{count} respuestas"
   comment:
-    deletion_message: ¿Estás seguro que deseas borrar este mensaje?
+    deletion_message: ¿Estás seguro que deseas borrar este comentatio?
     successful_deletion: Comentario elimindado con éxito.
-    deleted_html: <em>Comentario eliminado</em>
+    successful_posting: Comentario publicado con éxito.
+    deleted: Comentario eliminado
+    delete: Eliminar
     user:
-      deleted: <strong>Eliminado</strong>
+      deleted: Eliminado

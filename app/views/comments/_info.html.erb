@@ -16,7 +16,7 @@
                         <%= link_to t('cta.reply'), new_post_comment_path(comment_id: comment.id), data: { turbo_frame: new_reply.reply_to_turbo_frame_id } %>
                     </div>
                     <div class="column is-narrow">
-                        <%= link_to 'Delete', [comment.post, comment], data: { turbo_method: :delete, turbo_confirm: "#{comment.deletion_message}" }, class: "is-text-danger" %>
+                        <%= link_to t('comment.delete'), [comment.post, comment], data: { turbo_method: :delete, turbo_confirm: "#{comment.deletion_message}" }, class: "is-text-danger" %>
                     </div>
                 </div>
             <%# end %>

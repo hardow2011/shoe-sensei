@@ -24,9 +24,9 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     if @comment.save
       respond_to do |format|
-        format.html { redirect_to post_comments_path, notice: 'Comment posted successfully.' }
+        format.html { redirect_to post_comments_path, notice: I18n.t('comment.successful_posting') }
         format.turbo_stream do
-          flash.now[:notice] = 'Comment posted successfully.'
+          flash.now[:notice] = I18n.t('comment.successful_posting')
           @comments = Comment.top_comments.where(post_id: @comment.post_id).order(created_at: :desc)
           @new_comment = Comment.new(post_id: @comment.post_id)
           @turbo_frame_id_to_update = comment_turbo_redirect_params
