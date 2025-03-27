@@ -1,6 +1,5 @@
 <%= turbo_frame_tag form_turbo_id do %>
     <% if user_signed_in? %>
-        <%= tinymce :comment %>
         <div class="block">
             <%= simple_form_for([comment.post, comment], html: {onsubmit: 'updateTinymceFields()'}) do |f| %>
                 <%= f.hidden_field :post_id, value: comment.post.id %>

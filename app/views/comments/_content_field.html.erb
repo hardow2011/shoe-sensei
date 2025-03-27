@@ -13,6 +13,9 @@
 </div>
 <%= form.input :content, as: :text, wrapper_html: { style: 'display: none' }, id: "#{div_id}_content" %>
 <script>
+    // using this instead of <%= tinymce :comment %> so that the initializer...
+    // targets the newly created form by id, instead of affecting every single...
+    // tinymce form with the comment class element already on the page
     TinyMCERails.initialize('comment', {
         selector: "<%= tinymce_selector %>"
     });
