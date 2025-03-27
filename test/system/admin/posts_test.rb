@@ -53,7 +53,7 @@ class Admin::PostsTest < Admin::AdminSystemTestCase
     assert_no_button 'Delete Post'
     click_on 'Publish Post'
 
-    assert_text 'Post published successfuly'
+    assert_text 'Post published successfully'
     assert_text @new_post[:title_en]
 
     visit posts_url
@@ -100,7 +100,7 @@ class Admin::PostsTest < Admin::AdminSystemTestCase
     assert_no_button 'Unpublish and Save as Draft'
     click_on 'Save as Draft'
 
-    assert_text 'Post saved as draft successfuly'
+    assert_text 'Post saved as draft successfully'
     assert_text @new_post[:title_en]
 
     visit posts_url
@@ -122,7 +122,7 @@ class Admin::PostsTest < Admin::AdminSystemTestCase
     assert_no_selector "input[value='Save as Draft']"
     click_on 'Unpublish and Save as Draft'
 
-    assert_text 'Post saved as draft successfuly'
+    assert_text 'Post saved as draft successfully'
     assert_text Post.first.title
 
     visit posts_url

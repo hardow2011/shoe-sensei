@@ -84,9 +84,9 @@ class Admin::PostsController < Admin::AdminController
 
   def notice_message_from_published_status(post)
     if post.published
-      return 'Post published successfuly.'
+      return 'Post published successfully.'
     else
-      return 'Post saved as draft successfuly.'
+      return 'Post saved as draft successfully.'
     end
   end
 end
