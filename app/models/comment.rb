@@ -43,6 +43,10 @@ class Comment < ApplicationRecord
     dom_id self
   end
 
+  def edit_frame_id
+    "edit_#{dom_id self}"
+  end
+
   def reply_to_turbo_frame_id
     if parent_comment
         "reply_to_comment_#{parent_comment.id}"

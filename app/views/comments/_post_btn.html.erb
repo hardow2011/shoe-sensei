@@ -1,0 +1,2 @@
+<% submit_message = comment.new_record? ? (comment.parent_comment ? t('comment.post_reply') : t('comment.post_comment')) : t('comment.save_edits') %>
+<%= f.submit submit_message, class: 'button is-link' %>

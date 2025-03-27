@@ -136,7 +136,12 @@ en:
     deletion_message: Are you sure that you want to delete this comment?
     successful_deletion: Comment deleted successfully.
     successful_posting: Comment posted successfully.
+    successful_edit: Comment edited successfully.
     deleted: Comment removed
     delete: Delete
+    edit: Edit Comment
+    post_comment: Post Comment
+    post_reply: Post Reply
+    save_edits: Save Edits
     user:
       deleted: deleted

@@ -91,9 +91,14 @@ es:
     other: "%{count} respuestas"
   comment:
     deletion_message: ¿Estás seguro que deseas borrar este comentatio?
-    successful_deletion: Comentario elimindado con éxito.
+    successful_deletion: Comentario eliminado con éxito.
     successful_posting: Comentario publicado con éxito.
+    successful_edit: Comentario editado con éxito.
     deleted: Comentario eliminado
     delete: Eliminar
+    edit: Editar comentario
+    post_comment: Publicar comentario
+    post_reply: Publicar respuesta
+    save_edits: Guardar cambios
     user:
       deleted: Eliminado

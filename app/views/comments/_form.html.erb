@@ -1,10 +1,10 @@
-<%= turbo_frame_tag comment.reply_to_turbo_frame_id do %>
+<%= turbo_frame_tag form_turbo_id do %>
     <% if user_signed_in? %>
         <%= tinymce :comment %>
         <div class="block">
-            <%= simple_form_for(comment, url: post_comments_path, html: {onsubmit: 'updateTinymceFields()'}) do |f| %>
+            <%= simple_form_for([comment.post, comment], html: {onsubmit: 'updateTinymceFields()'}) do |f| %>
                 <%= f.hidden_field :post_id, value: comment.post.id %>
-                <%= hidden_field_tag :turbo_frame_id, comment.reply_to_turbo_frame_id %>
+                <%#= hidden_field_tag :turbo_frame_id, comment.replies_for_turbo_frame_id %>
                 <%= f.hidden_field :user_id, value: current_user.id %>
                 <%= (f.hidden_field :comment_id, value: comment.comment_id) if comment.parent_comment %>
 
@@ -12,7 +12,7 @@
                 
                 <div class="field is-grouped is-grouped-right">
                     <div class="control">
-                        <%= f.submit (comment.parent_comment ? "Post Reply" : "Post Comment"), class: 'button is-link' %>
+                        <%= render partial: 'comments/post_btn', locals: { f: f, comment: comment } %>
                     </div>
                 </div>   
             <% end %>
