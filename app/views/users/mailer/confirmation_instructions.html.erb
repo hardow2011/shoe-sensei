@@ -5,11 +5,11 @@
         <h1 class="title is-1"><%= t('user.mailer.confirmation_instructions.welcome') %></h1>
 
         <p class="is-size-4"><%= t('user.mailer.confirmation_instructions.please_confirm_your_email') %></p>
-        <p class="mb-6"><%= link_to t('user.mailer.confirmation_instructions.confirm_my_account'), confirmation_url(@resource, confirmation_token: @token), class: 'button is-link has-text-white is-size-4' %></p>
+        <p class="mb-6"><%= link_to t('user.mailer.confirmation_instructions.confirm_my_account'), confirmation_url(@resource, confirmation_token: @token, locale: locale), class: 'button is-link has-text-white is-size-4' %></p>
 
         <p><%= t('user.mailer.shared.you_may_also_use_the_following_link') %><br/>
             <span>
-                <%= link_to confirmation_url(@resource, confirmation_token: @token), confirmation_url(@resource, confirmation_token: @token) %>
+                <%= link_to confirmation_url(@resource, confirmation_token: @token, locale: locale), confirmation_url(@resource, confirmation_token: @token, locale: locale) %>
             <span>
         </p>
     </div>
