@@ -10,7 +10,7 @@
             <%#= turbo_frame_tag do %>
                 <div class="columns">
                     <div class="column is-narrow">
-                        <%= link_to t('cta.reply'), new_post_comment_path(comment_id: comment.id), data: { turbo_frame: new_reply.reply_to_turbo_frame_id } %>
+                        <%= render partial: 'comments/reply_toggle', locals: { comment: comment, new_reply: new_reply }  %>
                     </div>
                     <div class="column is-narrow">
                         <%= link_to t('comment.edit'), edit_post_comment_path(id: comment), data: { turbo_frame: comment.edit_frame_id } %>

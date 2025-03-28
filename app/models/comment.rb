@@ -24,6 +24,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Comment < ApplicationRecord
+  REPLY_TO_TURBO_SUFFIX = "reply_to_comment_"
   include ActionView::RecordIdentifier
   
   belongs_to :post
@@ -49,7 +50,7 @@ class Comment < ApplicationRecord
 
   def reply_to_turbo_frame_id
     if parent_comment
-        "reply_to_comment_#{parent_comment.id}"
+        REPLY_TO_TURBO_SUFFIX + "#{parent_comment.id}"
     else
         "new_comment"
     end

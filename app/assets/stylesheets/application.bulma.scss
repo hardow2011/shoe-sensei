@@ -405,3 +405,18 @@ hr {
     border-bottom-style: solid;
     border-bottom-color: $grey-lighter;
 }
+
+.dummy-reply-btn {
+    display: none;
+}
+
+.reply-btns-wrapper {
+    &.show-dummy-reply-btn {
+        a:not(.dummy-reply-btn) {
+            display: none;
+        }
+        .dummy-reply-btn {
+            display: block;
+        }
+    }
+}

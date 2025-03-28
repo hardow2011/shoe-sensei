@@ -13,3 +13,16 @@ window.minimizeComment = function minimizeComment(event) {
 window.toggleReplyCountbutton = function toggleReplyCountbutton(button) {
     button.style.display = "none";
 }
+
+window.toggleDummyReplyBtn = function toggleCommentForm(btn) {
+    const replyBtnsWrapper = btn.closest('.reply-btns-wrapper');
+    replyBtnsWrapper.classList.add('show-dummy-reply-btn');
+}
+
+
+window.toggleCommentForm = function toggleCommentForm(targetId) {
+    const form = document.getElementById(targetId)
+    form.classList.toggle('is-hidden');
+    form.classList.toggle('is-block');
+    event.preventDefault();
+}

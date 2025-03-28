@@ -3,7 +3,7 @@
 <div class="<%= comment.parent_comment ? 'block' : 'mb-6 parent-comment-box' %>">
     <%= render partial: 'comments/info', locals: { comment: comment, new_reply: new_reply } %>
     <div class="block">
-    <%= turbo_frame_tag new_reply.reply_to_turbo_frame_id, class: 'is-block block' do %>
+        <%= turbo_frame_tag new_reply.reply_to_turbo_frame_id, class: 'is-block block' do %>
         <% end %>
         
         <div class="replies-wrapper">
