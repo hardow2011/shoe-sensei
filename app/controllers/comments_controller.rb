@@ -12,6 +12,13 @@ class CommentsController < ApplicationController
   def replies
     @comment = Comment.find(params[:comment_id])
     @replies = @comment.replies.order(created_at: :desc)
+    
+    respond_to do |format|
+      format.html
+      format.turbo_stream do
+        turbo_stream.remove @comment.reply_count_turbo_frame_id
+      end
+    end
   end
 
   def new

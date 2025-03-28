@@ -337,11 +337,52 @@ hr {
     border-width: 1px;
 }
 
-.reply-box {
+// .replies- {
+//     // @extend .pl-4;
+// }
+
+.replies-wrapper {
     @extend .pl-4;
-    border-left-width: 3px;
-    border-left-style: solid;
-    border-left-color: $grey-lighter;
+    @extend .is-relative;
+
+    &.is-compacted {
+     .replies-list, .comments-close-bar {
+        @extend .is-hidden;
+     }
+     
+     .comment-open-btn {
+        @extend .is-block;
+    }
+    }
+}
+
+.replies-list {
+    @extend .is-block;
+    @extend .block;
+}
+
+.comment-open-btn {
+    @extend .is-hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.comments-close-bar {
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    left: 0;
+    cursor: pointer;
+    padding-right: 8px; // For easier clicking
+
+    &:before {
+        content: '';
+        background: $grey-lighter;
+        width: inherit;
+        height: inherit;
+        position: inherit;
+        left: 0;
+    }
 }
 
 .parent-comment-box {

@@ -2,12 +2,15 @@
 
 <div class="<%= comment.parent_comment ? 'block' : 'mb-6 parent-comment-box' %>">
     <%= render partial: 'comments/info', locals: { comment: comment, new_reply: new_reply } %>
-    <div class="reply-box block">
-        <%= turbo_frame_tag new_reply.reply_to_turbo_frame_id, class: 'is-block block' do %>
+    <div class="block">
+    <%= turbo_frame_tag new_reply.reply_to_turbo_frame_id, class: 'is-block block' do %>
         <% end %>
         
-        <%= turbo_frame_tag comment.replies_for_turbo_frame_id, class: 'is-block block' do %>
-            <%#= render @comment.replies %>
-        <% end %>
+        <div class="replies-wrapper">
+            <div class="comment-open-btn" onclick="minimizeComment(event)">[+]</div>
+            <div class="comments-close-bar" onclick="minimizeComment(event)"></div>
+            <%= turbo_frame_tag comment.replies_for_turbo_frame_id, class: 'replies-list' do %>
+            <% end %>
+        </div>
     </div>
 </div>
