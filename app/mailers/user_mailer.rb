@@ -1,5 +1,8 @@
 class UserMailer < Devise::Mailer
-    # default from: "noreply@yourdomain.com"
+    default from: email_address_with_name(
+      Rails.application.credentials.dig(:mailgun, Rails.env.to_sym, :senders, :accounts, :email), 
+      Rails.application.credentials.dig(:mailgun, Rails.env.to_sym, :senders, :accounts, :name)
+    )
   
     def confirmation_instructions(...)
       super(...)

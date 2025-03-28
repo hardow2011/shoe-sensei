@@ -79,4 +79,12 @@ Rails.application.configure do
 
   # This is necessary to be able to use subdomains in dev
   config.action_dispatch.tld_length = 0
+
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: Rails.application.credentials.dig(:mailgun, :development, :api_key),
+    domain: Rails.application.credentials.dig(:mailgun, :development, :domain),
+    # api_host: 'api.eu.mailgun.net'  # Uncomment this line for EU region domains
+    # timeout: 20 # Default depends on rest-client, whose default is 60s. Added in 1.2.3.
+  }
 end
