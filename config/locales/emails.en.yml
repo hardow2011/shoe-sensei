@@ -1,0 +1,19 @@
+en:
+  user:
+    mailer:
+      shared:
+        greeting: "Hello %{greeted}!"
+        you_may_also_use_the_following_link: 'You may also use the following link instead:'
+      confirmation_instructions:
+        welcome: Welcome to Shoe Sensei!
+        please_confirm_your_email: 'Please confirm your account email using the button below:'
+        confirm_my_account: Confirm my account
+      email_changed:
+        notify_email_changed: "We're contacting you to notify you that your email is being changed to %{email}."
+      password_changed:
+        notify_password_changed: "We're contacting you to notify you that your password has been changed."
+      reset_password_instructions:
+        requested_link_to_change_password: Someone has requested a link to change your password. You can do this through the link below.
+        change_my_password: 'Change my password'
+        please_ignore_this_email: "If you didn't request this, please ignore this email."
+        your_password_wont_change: "Your password won't change until you access the link above and create a new one."
