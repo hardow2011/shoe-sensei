@@ -10,8 +10,8 @@
             <div class="comment-open-btn" onclick="minimizeComment(event)">[+]</div>
             <div class="comments-close-bar" onclick="minimizeComment(event)"></div>
             <%= turbo_frame_tag comment.replies_for_turbo_frame_id, class: 'replies-list' do %>
-                <%= render partial: 'comments/replies_count_btn', locals: { comment: comment } %>
             <% end %>
         </div>
+        <%= render partial: 'comments/replies_count_btn', locals: { comment: comment } %>
     </div>
 </div>
