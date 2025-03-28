@@ -131,15 +131,20 @@ class Post < ApplicationRecord
         tags = doc_content.css('h2,h3')
         # Loop through the tags
         tags.each_with_index do |tag, i|
+
           # Tag name
           name = tag.name
-          # Skip iteration of tag not h2
-          next if name != 'h2'
+
           # Tag content
           content = tag.content
+
           # Tag id
           id = content.parameterize
           tag['id'] = id
+
+          # Skip iteration of tag not h2
+          next if name != 'h2'
+
           tag = {tag: name, title: content, id: id }
           # Start looking fot next h3 tags
           h3_tag_index = i+1
