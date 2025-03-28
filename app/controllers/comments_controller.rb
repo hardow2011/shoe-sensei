@@ -15,9 +15,6 @@ class CommentsController < ApplicationController
     
     respond_to do |format|
       format.html
-      format.turbo_stream do
-        turbo_stream.remove @comment.reply_count_turbo_frame_id
-      end
     end
   end
 

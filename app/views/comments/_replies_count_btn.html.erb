@@ -1,3 +1,8 @@
 <%= turbo_frame_tag comment.reply_count_turbo_frame_id do %>
-    <%= link_to t('reply', count: comment.replies.count), post_comment_replies_path(comment_id: comment.id), data: { turbo_frame: comment.replies_for_turbo_frame_id } %>
+    <% replies_count = comment.replies.count %>
+    <% if replies_count > 0 %>
+        <%= link_to t('reply', count: replies_count), post_comment_replies_path(comment_id: comment.id), data: { turbo_frame: comment.replies_for_turbo_frame_id } %>
+    <% else %>
+        <p><%= t('reply', count: replies_count) %></p>
+    <% end %>
 <% end %>

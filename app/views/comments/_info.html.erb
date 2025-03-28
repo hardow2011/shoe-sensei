@@ -19,11 +19,6 @@
                         <%= link_to t('comment.delete'), [comment.post, comment], data: { turbo_method: :delete, turbo_confirm: "#{comment.deletion_message}" }, class: "is-text-danger" %>
                     </div>
                 </div>
-                <div class="columns">
-                    <div class="column is-narrow">
-                        <%= render partial: 'comments/replies_count_btn', locals: { comment: comment } %>
-                    </div>
-                </div>
             <%# end %>
         </div>
     </div>
