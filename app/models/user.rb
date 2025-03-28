@@ -98,4 +98,10 @@ class User < ApplicationRecord
     self.comments.destroy_all
     super
   end
+
+  private
+
+  def devise_mailer
+    UserMailer
+  end
 end
