@@ -7,19 +7,19 @@
             <%= turbo_frame_tag comment.edit_frame_id, class: 'is-block mb-5 content' do %>
                 <%= render partial: 'comments/content', locals: { comment: comment } %>
             <% end %>
-            <%#= turbo_frame_tag do %>
-                <div class="columns">
-                    <div class="column is-narrow">
-                        <%= render partial: 'comments/reply_toggle', locals: { comment: comment, new_reply: new_reply }  %>
-                    </div>
+            <div class="columns">
+                <div class="column is-narrow">
+                    <%= render partial: 'comments/reply_toggle', locals: { comment: comment, new_reply: new_reply }  %>
+                </div>
+                <% if comment.user == current_user %>
                     <div class="column is-narrow">
                         <%= link_to t('comment.edit'), edit_post_comment_path(id: comment), data: { turbo_frame: comment.edit_frame_id } %>
                     </div>
                     <div class="column is-narrow">
                         <%= link_to t('comment.delete'), [comment.post, comment], data: { turbo_method: :delete, turbo_confirm: "#{comment.deletion_message}" }, class: "is-text-danger" %>
                     </div>
-                </div>
-            <%# end %>
+                <% end %>
+            </div>
         </div>
     </div>
 <% end %>
