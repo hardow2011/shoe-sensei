@@ -1,6 +1,6 @@
-<%= turbo_frame_tag comment.reply_count_turbo_frame_id do %>
+<%= turbo_frame_tag comment.reply_count_turbo_frame_id, class: "replies-count-wrapper" do %>
     <% replies_count = comment.replies.count %>
     <% if replies_count > 0 %>
-        <%= link_to t('reply', count: replies_count), post_comment_replies_path(comment_id: comment.id), data: { turbo_frame: comment.replies_for_turbo_frame_id } %>
+        <%= link_to t('reply', count: replies_count), post_comment_replies_path(comment_id: comment.id), data: { turbo_frame: comment.replies_for_turbo_frame_id }, onclick: 'toggleReplyCountbutton(this)' %>
     <% end %>
 <% end %>

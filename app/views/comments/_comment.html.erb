@@ -7,7 +7,9 @@
         <% end %>
         
         <div class="replies-wrapper">
-            <div class="comment-open-btn" onclick="minimizeComment(event)">[+]</div>
+            <p class="comment-open-btn">
+                <span onclick="minimizeComment(event)">[+] <%= t('comment.show_replies') %></span>
+            </p>
             <div class="comments-close-bar" onclick="minimizeComment(event)"></div>
             <%= turbo_frame_tag comment.replies_for_turbo_frame_id, class: 'replies-list' do %>
             <% end %>

@@ -143,5 +143,6 @@ en:
     post_comment: Post Comment
     post_reply: Post Reply
     save_edits: Save Edits
+    show_replies: Show replies
     user:
       deleted: deleted

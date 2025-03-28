@@ -100,5 +100,6 @@ es:
     post_comment: Publicar comentario
     post_reply: Publicar respuesta
     save_edits: Guardar cambios
+    show_replies: Mostrar respuestas
     user:
       deleted: Eliminado

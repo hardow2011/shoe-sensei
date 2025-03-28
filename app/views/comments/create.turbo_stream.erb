@@ -1,7 +1,11 @@
 <% if @comment.parent_comment %>
     <%= turbo_stream.update @comment.reply_to_turbo_frame_id, nil %>
     <%= turbo_stream.prepend @comment.parent_comment.replies_for_turbo_frame_id, partial: 'comments/comment', locals: { comment: @comment } %>
-    <%= turbo_stream.replace @comment.parent_comment.reply_count_turbo_frame_id, partial: 'comments/replies_count_btn', locals: { comment: @comment.parent_comment } %>
+    <% if @comment.parent_comment.replies.count > 1 %>
+        <%= turbo_stream.replace @comment.parent_comment.reply_count_turbo_frame_id, partial: 'comments/replies_count_btn', locals: { comment: @comment.parent_comment } %>
+    <% else %>
+        <%= turbo_stream.remove @comment.parent_comment.reply_count_turbo_frame_id %>
+    <% end %>
 <% else %>
     <%= turbo_stream.prepend 'comments', partial: 'comments/comment', locals: { comment: @comment } %>
     <%= turbo_stream.replace 'new_comment', partial: 'comments/form', locals: { comment: @new_comment, form_turbo_id: @form_turbo_id } %>

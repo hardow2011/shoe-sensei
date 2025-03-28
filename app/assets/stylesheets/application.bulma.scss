@@ -342,29 +342,43 @@ hr {
 // }
 
 .replies-wrapper {
-    @extend .pl-4;
     @extend .is-relative;
 
     &.is-compacted {
-     .replies-list, .comments-close-bar {
-        @extend .is-hidden;
-     }
-     
-     .comment-open-btn {
-        @extend .is-block;
+        .replies-list, .comments-close-bar {
+            @extend .is-hidden;
+        }
+
+        .comment-open-btn {
+            @extend .is-block;
+        }
+
+        + .replies-count-wrapper {
+            @extend .is-hidden;
+        }
     }
+
+    &.is-opened {
+        + .replies-count-wrapper {
+            @extend .is-hidden;
+        }
     }
 }
 
 .replies-list {
     @extend .is-block;
     @extend .block;
+    @extend .pl-4;
 }
 
 .comment-open-btn {
     @extend .is-hidden;
+    color: var(--bulma-link-text);
     position: relative;
-    cursor: pointer;
+
+    span {
+        cursor: pointer;
+    }
 }
 
 .comments-close-bar {
