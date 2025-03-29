@@ -101,4 +101,12 @@ Rails.application.configure do
   Rails.application.routes.default_url_options[:host] = 'https://www.shoesensei.com/'
 
   config.action_dispatch.tld_length = 1
+
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: Rails.application.credentials.dig(:mailgun, :production, :api_key),
+    domain: Rails.application.credentials.dig(:mailgun, :production, :domain),
+    # api_host: 'api.eu.mailgun.net'  # Uncomment this line for EU region domains
+    # timeout: 20 # Default depends on rest-client, whose default is 60s. Added in 1.2.3.
+  }
 end

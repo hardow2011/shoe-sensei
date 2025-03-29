@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include SenderInfo
   around_action :switch_locale
   before_action :set_app_name
   before_action :set_meta_tags
