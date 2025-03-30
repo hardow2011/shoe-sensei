@@ -11,6 +11,10 @@
         <%= f.input :username, hint: t('username_hint'), input_html: { autocomplete: "email" } %>
         <%= f.input :password, hint: t('password_hint'), input_html: { autofocus: true, autocomplete: "new-password" } %>
         <%= f.input :password_confirmation, input_html: { autofocus: true, autocomplete: "new-password" } %>
+        
+        <%# The remember me field is a honeypot input to trap bots %>
+        <%= check_box_tag :remember_me, tabindex: -1, class: 'bluff' %>
+        
         <div class="field is-grouped is-grouped-right">
           <div class="control">
             <%= f.submit t('sign_up'), class: 'button is-link' %>

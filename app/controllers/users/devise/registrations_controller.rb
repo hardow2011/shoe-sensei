@@ -12,9 +12,14 @@ class Users::Devise::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    # The remember_me field is a honeypot input to trap bots and ignore their form submission
+    if params[:remember_me]
+      redirect_to root_path, notice: I18n.t('devise.confirmations.send_instructions') 
+      return
+    end
+    super
+  end
 
   # GET /resource/edit
   # def edit
