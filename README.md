@@ -62,9 +62,10 @@ The blog section in Shoe Sensei uses TinyMCE for a flexible text editor interfac
 ### Built With
 
 * [![Ruby on Rails][RoR-logo]][RoR-url]
-* [![Bulma][Bulma-logo]][Bulma-url]
 * [![Render][Render-logo]][Render-url]
 * [![Amazon S3][AmazonS3-logo]][AmazonS3-url]
+* [![Mailgun][Mailgun-logo]][Mailgun-url]
+* [![Bulma][Bulma-logo]][Bulma-url]
 * [TinyMCE](https://www.tiny.cloud/)
 
 ## Getting Started
@@ -253,3 +254,6 @@ Every push to the main origin branch will be automatically deployed to Render.
 
 [AmazonS3-logo]: https://img.shields.io/badge/Amazon%20S3-759c14?style=for-the-badge&logo=amazons3&logoColor=white
 [AmazonS3-url]: https://aws.amazon.com/s3/
+
+[Mailgun-logo]: https://img.shields.io/badge/Mailgun-F06B66?style=for-the-badge&logo=mailgun&logoColor=white
+[Mailgun-url]: https://www.mailgun.com/
