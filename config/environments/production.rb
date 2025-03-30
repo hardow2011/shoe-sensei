@@ -97,7 +97,7 @@ Rails.application.configure do
 
   # TODO: set host for production
   config.action_mailer.asset_host = 'https://www.shoesensei.com'
-  config.action_mailer.default_url_options = 'https://www.shoesensei.com'
+  # config.action_mailer.default_url_options = 'https://www.shoesensei.com'
 
   Rails.application.routes.default_url_options[:host] = 'https://www.shoesensei.com'
 
