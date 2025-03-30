@@ -46,11 +46,11 @@ class Admin::ModelsController < Admin::AdminController
     # If the request comes from the collections index page, then
     # repopulate with all collection after deletion
     if request.params["deleted_from_index"] == "true"
-      models = models_by_default_order
+      @models = models_by_default_order
     # Otherwise, the collection deletion request comes from the brand page
     # Then, return only the collection belonging to that brand 
     else
-      models = Model.where(collection: @model.collection).order(:name)
+      @models = Model.where(collection: @model.collection).order(:name)
     end
     respond_to do |format|
       format.html { redirect_to admin_models_path, notice: 'Model was destroyed successfully.' }
