@@ -96,9 +96,10 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   # TODO: set host for production
-  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.asset_host = 'https://www.shoesensei.com'
+  config.action_mailer.default_url_options = 'https://www.shoesensei.com'
 
-  Rails.application.routes.default_url_options[:host] = 'https://www.shoesensei.com/'
+  Rails.application.routes.default_url_options[:host] = 'https://www.shoesensei.com'
 
   config.action_dispatch.tld_length = 1
 
