@@ -78,6 +78,8 @@ To get a local copy up and running follow these simple example steps.
 ### Development tips
 For better error messages, disable `config.exceptions_app = self.routes` from `config/applications.rb` and uncomment `config.consider_all_requests_local = true` from `config/environments/development.rb` and `config/environments/test.rb`
 
+To disable real email sending in development environment, comment the line `config.action_mailer.delivery_method = :mailgun` from `config/environments/development.rb`
+
 ### Prerequisites
 * Install the libyaml-dev library
 * Install the libpq-dev library
