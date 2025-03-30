@@ -61,6 +61,8 @@ The project is built with Ruby on Rails, utilizing Turbo and custom JS for updat
 Additionally, a robust set of model and system tests has been implemented to maintain a reliable update cycle between new features. Shoe Sensei is deployed on Render and uses Active Storage with AWS for storing media.
 The blog section in Shoe Sensei uses TinyMCE for a flexible text editor interface.
 
+The transactional email platform used is Mailgun.
+
 ### Built With
 
 * [![Ruby on Rails][RoR-logo]][RoR-url]
