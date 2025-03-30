@@ -49,7 +49,6 @@ $navbar-height: 52px;
 @use "bulma/sass/components/breadcrumb" with(
     $breadcrumb-item-separator-color: $grey-dark,
 );
-@import './direct_uploads.css';
 
 @import 'homepage-hero';
 
