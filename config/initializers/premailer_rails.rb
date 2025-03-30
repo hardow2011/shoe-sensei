@@ -1,2 +1,2 @@
-Premailer::Rails.config.merge!(preserve_styles: true, remove_ids: true)
+Premailer::Rails.config.merge!(remove_ids: true)
 Premailer::Adapter.use = :nokogiri
