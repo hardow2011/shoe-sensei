@@ -67,6 +67,10 @@ class User < ApplicationRecord
 
   attr_writer :login
 
+  scope :non_admin, -> { where(admin: false).order(created_at: :desc) }
+  scope :confirmed, -> { where.not(confirmed_at: nil).order(created_at: :desc) }
+  scope :unonfirmed, -> { where(confirmed_at: nil).order(created_at: :desc) }
+
   def login
     @login || self.username || self.email
   end

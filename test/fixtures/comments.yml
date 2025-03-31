@@ -5,6 +5,22 @@ not_too_bad:
   post: my_doctor_told_me
   user: yordania
 
+ive_seen_better:
+  content: "<p>I've seen better</p>"
+  post: my_doctor_told_me
+  user: harold
+
+changed_my_mind:
+  content: <strong>Changed my mind</strong>
+  post: my_doctor_told_me
+  user: harold
+
+i_know_right:
+  content: <em>I know right!</em>
+  post: my_doctor_told_me
+  user: harold
+  comment: not_too_bad
+
 # two:
 #   content: MyText
 #   post: two
