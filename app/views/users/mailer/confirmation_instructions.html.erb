@@ -1,24 +1,71 @@
-<!DOCTYPE html>
-<html lang="<%= locale %>">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="supported-color-schemes" content="light dark" />
+    <title><%= t('user.mailer.confirmation_instructions.welcome') %></title>
     <%= stylesheet_link_tag 'emails' %>
-</head>
-<body>
-    <div class="section">
-        <div class="content">
-            <h1 class="title is-1"><%= t('user.mailer.confirmation_instructions.welcome') %></h1>
-
-            <p class="is-size-4"><%= t('user.mailer.confirmation_instructions.please_confirm_your_email') %></p>
-            <p class="mb-6"><%= link_to t('user.mailer.confirmation_instructions.confirm_my_account'), confirmation_url(@resource, confirmation_token: @token, locale: locale), class: 'button is-link has-text-white is-size-4' %></p>
-
-            <p><%= t('user.mailer.shared.you_may_also_use_the_following_link') %><br/>
-                <span>
-                    <%= link_to confirmation_url(@resource, confirmation_token: @token, locale: locale), confirmation_url(@resource, confirmation_token: @token, locale: locale) %>
-                <span>
-            </p>
-        </div>
-    </div>
-</body>
+    <!--[if mso]>
+    <style type="text/css">
+      .f-fallback  {
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  <![endif]-->
+  </head>
+  <body>
+    <span class="preheader"><%= t('user.mailer.confirmation_instructions.welcome') %></span>
+    <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+      <tr>
+        <td align="center">
+          <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+            <tr>
+              <td class="email-masthead">
+                <%= link_to 'Shoe Sensei', root_url(locale: locale), class: 'f-fallback email-masthead_name' %>
+              </td>
+            </tr>
+            <!-- Email Body -->
+            <tr>
+              <td class="email-body" width="570" cellpadding="0" cellspacing="0">
+                <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
+                  <!-- Body content -->
+                  <tr>
+                    <td class="content-cell">
+                      <div class="f-fallback">
+                        <h1><%= t('user.mailer.confirmation_instructions.welcome') %></h1>
+                        <p><%= t('user.mailer.confirmation_instructions.please_confirm_your_email') %></p>
+                        <!-- Action -->
+                        <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                          <tr>
+                            <td align="center">
+                              <!-- Border based button
+           https://litmus.com/blog/a-guide-to-bulletproof-buttons-in-email-design -->
+                              <table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
+                                <tr>
+                                  <td align="center">
+                                    <%= link_to t('user.mailer.confirmation_instructions.confirm_my_account'), confirmation_url(@resource, confirmation_token: @token, locale: locale), class: 'f-fallback button' %>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                        <p><%= t('user.mailer.shared.you_may_also_use_the_following_link') %><br>
+                            <%= link_to confirmation_url(@resource, confirmation_token: @token, locale: locale), confirmation_url(@resource, confirmation_token: @token, locale: locale) %>
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <%#= render partial: 'users/mailer/footer' %>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
 </html>
