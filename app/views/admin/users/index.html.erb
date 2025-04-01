@@ -1,0 +1,23 @@
+<div class="section px-0 pt-0">
+    <div class="columns">
+        <div class="column">
+            <h1 class="title is-1">Users</h1>
+        </div>
+    </div>
+</div>
+<%= turbo_frame_tag 'users' do %>
+    <div>
+        <div class="tabs">
+            <ul>
+                <li class="<%= @selected_filter == 'all' || @selected_filter == nil ? 'is-active' : nil %>"><%= link_to 'All', admin_users_path %></li>
+                <li class="<%= @selected_filter == 'confirmed' ? 'is-active' : nil %>"><%= link_to 'Confirmed', admin_users_path(filter: 'confirmed') %></li>
+                <li class="<%= @selected_filter == 'unconfirmed' ? 'is-active' : nil %>"><%= link_to 'Unconfirmed', admin_users_path(filter: 'unconfirmed') %></li>
+            </ul>
+        </div>
+        <div class="fixed-grid has-1-cols">
+            <div class="grid models-grid">
+                <%= render partial: 'admin/users/user', collection: @users %>
+            </div>
+        </div>  
+    </div>  
+<% end %>

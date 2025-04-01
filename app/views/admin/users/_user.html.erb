@@ -1,0 +1,17 @@
+<div>
+    <div class="columns">
+        <div class="column is-flex is-align-items-center">
+            <p class="is-size-5">
+                <%= user.username %>
+            </p>
+            <p>
+                <%= user.email %>
+            </p>
+        </div>
+        <div class="column is-narrow">
+            <div class="buttons is-right">
+                <%= link_to 'Edit', edit_admin_user_path(user), data: { turbo: false }, class: "button is-link" %>
+            </div>
+        </div>
+    </div>
+</div>
