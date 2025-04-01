@@ -8,10 +8,16 @@
     "@rails/activestorage": "^7.2.0",
     "bulma": "^1.0.2",
     "esbuild": "^0.23.0",
+    "postcss-cli": "^11.0.1",
     "sass": "^1.77.8"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --minify",
-    "build:css": "sass ./app/assets/stylesheets/application.bulma.scss:./app/assets/builds/application.css ./app/assets/stylesheets/emails.scss:./app/assets/builds/emails.css --style compressed --no-source-map --load-path=node_modules"
+    "build:css": "sass ./app/assets/stylesheets/application.bulma.scss:./app/assets/builds/application.css --style compressed --no-source-map --load-path=node_modules",
+    "build:emails": "sass ./app/assets/stylesheets/emails.scss:./app/assets/builds/emails.css --no-source-map --load-path=node_modules && postcss ./app/assets/builds/emails.css -o ./app/assets/builds/emails.css"
+  },
+  "devDependencies": {
+    "postcss": "^8.5.3",
+    "postcss-css-variables": "^0.19.0"
   }
 }
