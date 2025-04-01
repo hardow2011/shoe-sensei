@@ -1,9 +1,49 @@
-<%= t('user.mailer.shared.greeting', greeted: @email) %>
-
----
-
-<% if @resource.try(:unconfirmed_email?) %>
-  <%= t('user.mailer.email_changed.notify_email_changed', email: @resource.unconfirmed_email) %>
-<% else %>
-  <%= t('user.mailer.email_changed.notify_email_changed', email: @resource.email) %>
-<% end %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <%= render partial: 'users/mailer/head', locals: { title: @resource.try(:unconfirmed_email?) ? t('user.mailer.email_changed.notify_email_changed', email: @resource.unconfirmed_email) : t('user.mailer.email_changed.notify_email_changed', email: @resource.email) } %>
+  <body>
+    <span class="preheader">
+      <% if @resource.try(:unconfirmed_email?) %>
+        <p><%= t('user.mailer.email_changed.notify_email_changed', email: @resource.unconfirmed_email) %></p>
+      <% else %>
+        <p><%= t('user.mailer.email_changed.notify_email_changed', email: @resource.email) %></p>
+      <% end %>
+    </span>
+    <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+      <tr>
+        <td align="center">
+          <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+            <tr>
+              <td class="email-masthead">
+                <%= link_to 'Shoe Sensei', root_url(locale: locale), class: 'f-fallback email-masthead_name' %>
+              </td>
+            </tr>
+            <!-- Email Body -->
+            <tr>
+              <td class="email-body" width="570" cellpadding="0" cellspacing="0">
+                <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
+                  <!-- Body content -->
+                  <tr>
+                    <td class="content-cell">
+                      <div class="f-fallback">
+                        <h1><%= t('user.mailer.shared.greeting', greeted: @email) %></h1>
+                        <p>
+                          <% if @resource.try(:unconfirmed_email?) %>
+                            <p><%= t('user.mailer.email_changed.notify_email_changed', email: @resource.unconfirmed_email) %></p>
+                          <% else %>
+                            <p><%= t('user.mailer.email_changed.notify_email_changed', email: @resource.email) %></p>
+                          <% end %>
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <%= render partial: 'users/mailer/footer' %>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
