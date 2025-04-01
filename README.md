@@ -24,7 +24,9 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
+          <li><a href="#prerequisites">Prerequisites</a></li>
+          <li><a href="#development-tips">Development tips</a></li>
+          <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
@@ -59,12 +61,15 @@ The project is built with Ruby on Rails, utilizing Turbo and custom JS for updat
 Additionally, a robust set of model and system tests has been implemented to maintain a reliable update cycle between new features. Shoe Sensei is deployed on Render and uses Active Storage with AWS for storing media.
 The blog section in Shoe Sensei uses TinyMCE for a flexible text editor interface.
 
+The transactional email platform used is Mailgun.
+
 ### Built With
 
 * [![Ruby on Rails][RoR-logo]][RoR-url]
-* [![Bulma][Bulma-logo]][Bulma-url]
 * [![Render][Render-logo]][Render-url]
 * [![Amazon S3][AmazonS3-logo]][AmazonS3-url]
+* [![Mailgun][Mailgun-logo]][Mailgun-url]
+* [![Bulma][Bulma-logo]][Bulma-url]
 * [TinyMCE](https://www.tiny.cloud/)
 
 ## Getting Started
@@ -74,6 +79,8 @@ To get a local copy up and running follow these simple example steps.
 
 ### Development tips
 For better error messages, disable `config.exceptions_app = self.routes` from `config/applications.rb` and uncomment `config.consider_all_requests_local = true` from `config/environments/development.rb` and `config/environments/test.rb`
+
+To disable real email sending in development environment, comment the line `config.action_mailer.delivery_method = :mailgun` from `config/environments/development.rb`
 
 ### Prerequisites
 * Install the libyaml-dev library
@@ -253,3 +260,6 @@ Every push to the main origin branch will be automatically deployed to Render.
 
 [AmazonS3-logo]: https://img.shields.io/badge/Amazon%20S3-759c14?style=for-the-badge&logo=amazons3&logoColor=white
 [AmazonS3-url]: https://aws.amazon.com/s3/
+
+[Mailgun-logo]: https://img.shields.io/badge/Mailgun-F06B66?style=for-the-badge&logo=mailgun&logoColor=white
+[Mailgun-url]: https://www.mailgun.com/

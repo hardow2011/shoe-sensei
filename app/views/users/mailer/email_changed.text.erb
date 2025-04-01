@@ -1,13 +1,9 @@
-<%= stylesheet_link_tag "emails" %>
+<%= t('user.mailer.shared.greeting', greeted: @email) %>
 
-<div class="section">
-    <div class="content">
-      <p><%= t('user.mailer.shared.greeting', greeted: @email) %></p>
+---
 
-      <% if @resource.try(:unconfirmed_email?) %>
-        <p><%= t('user.mailer.email_changed.notify_email_changed', email: @resource.unconfirmed_email) %></p>
-      <% else %>
-        <p><%= t('user.mailer.email_changed.notify_email_changed', email: @resource.email) %></p>
-      <% end %>
-    </div>
-</div>
+<% if @resource.try(:unconfirmed_email?) %>
+<%= t('user.mailer.email_changed.notify_email_changed', email: @resource.unconfirmed_email) %>
+<% else %>
+<%= t('user.mailer.email_changed.notify_email_changed', email: @resource.email) %>
+<% end %>
