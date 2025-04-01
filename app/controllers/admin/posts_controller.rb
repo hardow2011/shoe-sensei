@@ -6,9 +6,9 @@ class Admin::PostsController < Admin::AdminController
     
     case @selected_filter
     when 'published'
-      @posts = Post.order(updated_at: :desc).where(published: true)
+      @posts = Post.where(published: true).order(updated_at: :desc)
     when 'drafted'
-      @posts = Post.order(updated_at: :desc).where(published: false)
+      @posts = Post.where(published: false).order(updated_at: :desc)
     else
       @posts = Post.order(updated_at: :desc)
     end
