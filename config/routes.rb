@@ -63,6 +63,7 @@ Rails.application.routes.draw do
       resources :models, except: %i[show]
       resources :posts, except: %i[show]
       resources :users, except: %i[create show]
+      resources :comments, except: %i[create show]
       post '/tinymce_assets' => 'tinymce_assets#create'
     end
   end

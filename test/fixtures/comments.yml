@@ -19,7 +19,7 @@ i_know_right:
   content: <em>I know right!</em>
   post: my_doctor_told_me
   user: harold
-  comment_id: not_too_bad
+  parent_comment: not_too_bad
 
 # two:
 #   content: MyText

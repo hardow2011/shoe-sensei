@@ -1,0 +1,22 @@
+<div id="<%= dom_id comment %>">
+    <div class="columns">
+        <div class="column ">
+            <div class="mb-2">
+                <%== comment.content %>
+            </div>
+            <% if comment.parent_comment %>
+                <p>
+                    Replying to: <%= link_to "Comment ##{comment.parent_comment.id}", edit_admin_comment_path(comment.parent_comment), data: { turbo: false } %>
+                </p>
+            <% end %>
+            <p title="<%= comment.post.title %>">
+                Under: <%= link_to "Post ##{comment.post.id}", edit_admin_post_path(comment.post), data: { turbo: false } %>
+            </p>
+        </div>
+        <div class="column is-narrow">
+            <div class="buttons is-right">
+                <%= button_to('Delete', [:admin, comment], method: :delete, class: "button is-danger", form: { data: { turbo_confirm: "#{comment.deletion_message}" } }) %>
+            </div>
+        </div>
+    </div>
+</div>
