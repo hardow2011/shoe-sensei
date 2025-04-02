@@ -21,16 +21,17 @@ class Admin::CommentsTest < Admin::AdminSystemTestCase
             assert_text "Under: Post ##{c.post.id}"
         end
 
-        # TODO: finish this test
-        return
-
         click_on 'Deleted'
 
-        assert_selector 'a:not(.is-active)', text: 'Published'
-        assert_selector 'a.is-active', text: 'Deleted'
+        assert_selector 'li:not(.is-active)', text: 'Published'
+        assert_selector 'li.is-active', text: 'Deleted'
 
         @deleted_comments.each do |c|
-            assert_text strip_tags(c.content)
+            assert_text ActionController::Base.helpers.strip_tags(c.content)
+            if c.parent_comment
+                assert_text "Replying to: Comment ##{c.parent_comment.id}"
+            end
+            assert_text "Under: Post ##{c.post.id}"
         end
     end
 end
