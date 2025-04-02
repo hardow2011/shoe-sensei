@@ -8,6 +8,7 @@
                     <em><%= t('comment.deleted') %></em>
                 <% end %>
             </div>
+            <p>Posted on: <%= I18n.l(comment.created_at, format: :long) %></p>
             <% if comment.parent_comment %>
                 <p>
                     Replying to: <%= link_to "Comment ##{comment.parent_comment.id}", edit_admin_comment_path(comment.parent_comment), data: { turbo: false } %>

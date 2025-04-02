@@ -15,6 +15,7 @@ class Admin::CommentsTest < Admin::AdminSystemTestCase
 
         @published_comments.each do |c|
             assert_text ActionController::Base.helpers.strip_tags(c.content)
+            assert_text "Posted on: #{I18n.l(c.created_at, format: :long)}"
             if c.parent_comment
                 assert_text "Replying to: Comment ##{c.parent_comment.id}"
             end
@@ -28,6 +29,7 @@ class Admin::CommentsTest < Admin::AdminSystemTestCase
 
         @deleted_comments.each do |c|
             assert_text I18n.t('comment.deleted')
+            assert_text "Posted on: #{I18n.l(c.created_at, format: :long)}"
             if c.parent_comment
                 assert_text "Replying to: Comment ##{c.parent_comment.id}"
             end

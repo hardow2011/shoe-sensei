@@ -61,18 +61,19 @@ class Admin::UsersTest < Admin::AdminSystemTestCase
 
         assert_button 'Delete User'
 
-        # TODO: fisnish test
-
+        # TODO: finish test
         return
 
-        user.comments.each do |c|
-            assert_text strip_tags(c.content)
-            assert_text "Posted on #{I18n.l(c.created_at, format: :long)}"
-            # TODO: assert confirmed_at datetime format
-            assert_selector 'a', text: "Post: #{c.post.title}"
+        within('.comments') do
+            user.comments.each do |c|
+                assert_text ActionController::Base.helpers.strip_tags(c.content)
+                assert_text "Posted on #{I18n.l(c.created_at, format: :long)}"
+                # TODO: assert confirmed_at datetime format
+                assert_selector 'a', text: "Post: #{c.post.title}"
 
-            if c.parent_comment
-                assert_selector 'a', text: "Reply to: #{strip_tags c.parent_comment.content}"
+                if c.parent_comment
+                    assert_selector 'a', text: "Reply to: #{strip_tags c.parent_comment.content}"
+                end
             end
         end
 
