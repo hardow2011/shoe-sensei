@@ -59,15 +59,15 @@ class Admin::UsersTest < Admin::AdminSystemTestCase
         # assert confirmed_at datetime format
         assert_selector "input[name='user[confirmed_at]'][value='#{I18n.l(user.confirmed_at, format: :long)}']"
 
-        return
+        assert_button 'Delete User'
 
-        # accept_alert 'Are you sure that you want to delete this user?' do
-        #     assert_button 'Delete User'
-        # end
+        # TODO: fisnish test
+
+        return
 
         user.comments.each do |c|
             assert_text strip_tags(c.content)
-            assert_text c.created_at
+            assert_text "Posted on #{I18n.l(c.created_at, format: :long)}"
             # TODO: assert confirmed_at datetime format
             assert_selector 'a', text: "Post: #{c.post.title}"
 
@@ -77,4 +77,5 @@ class Admin::UsersTest < Admin::AdminSystemTestCase
         end
 
     end
+
 end
