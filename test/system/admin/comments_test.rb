@@ -27,7 +27,7 @@ class Admin::CommentsTest < Admin::AdminSystemTestCase
         assert_selector 'li.is-active', text: 'Deleted'
 
         @deleted_comments.each do |c|
-            assert_text ActionController::Base.helpers.strip_tags(c.content)
+            assert_text I18n.t('comment.deleted')
             if c.parent_comment
                 assert_text "Replying to: Comment ##{c.parent_comment.id}"
             end

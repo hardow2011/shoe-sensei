@@ -1,8 +1,12 @@
 <div id="<%= dom_id comment %>">
     <div class="columns">
         <div class="column ">
-            <div class="mb-2">
-                <%== comment.content %>
+            <div class="mb-2 admin-comment--content-box">
+                <% if comment.content %>
+                    <%== comment.content %>
+                <% else %>
+                    <em><%= t('comment.deleted') %></em>
+                <% end %>
             </div>
             <% if comment.parent_comment %>
                 <p>
