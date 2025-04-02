@@ -42,7 +42,7 @@ class CommentsTests < ApplicationSystemTestCase
         page.scroll_to(0, 5000)
         sleep 1
 
-        click_on 'Reply'
+        click_on 'Reply', match: :first
 
         find('.comment-reply-input').set(@comment_content)
 

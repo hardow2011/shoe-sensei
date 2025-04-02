@@ -103,6 +103,14 @@ class User < ApplicationRecord
     super
   end
 
+  def deletion_message
+    if self.comments.any?
+      'Are you sure that you want to delete this user before the associated comments?'
+    else
+      'Are you sure that you want to delete this user?'
+    end
+  end
+
   private
 
   def devise_mailer

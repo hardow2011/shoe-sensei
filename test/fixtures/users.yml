@@ -32,4 +32,4 @@ harold:
   email: harold@email.com
   username: harold76
   encrypted_password: <%= Devise::Encryptor.digest(User, 'H@r01d007') %>
-  confirmed_at: 2025-03-21 07:41:37
+  confirmed_at: 2025-03-23 16:55:09

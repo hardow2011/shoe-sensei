@@ -1,9 +1,9 @@
 require_relative './admin_system_test_case'
 
-class Admin::ModelsTest < Admin::AdminSystemTestCase
+class Admin::UsersTest < Admin::AdminSystemTestCase
     # include ActionController::Base.helpers
     setup do
-        @users_non_admin = users.filter { |u| !u.admin }
+        @users_non_admin = User.non_admin.filter { |u| !u.admin }
         @users_non_admin_confirmed = users.filter { |u| !u.admin and u.confirmed? }
         @users_non_admin_unconfirmed = users.filter { |u| !u.admin and !u.confirmed? }
         sign_in_as_admin
@@ -42,31 +42,39 @@ class Admin::ModelsTest < Admin::AdminSystemTestCase
         end
     end
 
-    # test 'showing a user' do
-    #     user = @users_non_admin_confirmed.last
-    #     click_on 'Users'
+    test 'showing a user' do
+        user = @users_non_admin_confirmed.find { |u| u.email == 'harold@email.com'}
+        
+        click_on 'Users'
 
-    #     click_on 'Edit', match: :first
+        within("##{dom_id(user)}") do
+            click_on 'Edit'
+        end
 
-    #     assert_text user.email
-    #     assert_text user.username
-    #     # TODO: assert created_at datetime format
-    #     assert_text '21 march 2025 at 07:41 AM'
-    #     # TODO: assert confirmed_at datetime format
-    #     assert_text '21 march 2025 at 07:41 AM'
+        assert_selector "input[name='user[email]'][value='#{user.email}']"
 
-    #     assert_button 'Delete User'
+        assert_selector "input[name='user[username]'][value='#{user.username}']"
+        # assert created_at datetime format
+        assert_selector "input[name='user[created_at]'][value='#{I18n.l(user.created_at, format: :long)}']"
+        # assert confirmed_at datetime format
+        assert_selector "input[name='user[confirmed_at]'][value='#{I18n.l(user.confirmed_at, format: :long)}']"
 
-    #     user.comments.each |c| do
-    #         assert_text strip_tags(c.content)
-    #         assert_text c.created_at
-    #         # TODO: assert confirmed_at datetime format
-    #         assert_selector 'a', text: "Post: #{c.post.title}"
+        return
 
-    #         if c.parent_comment
-    #             assert_selector 'a', text: "Reply to: #{strip_tags c.parent_comment.content}"
-    #         end
-    #     end
+        # accept_alert 'Are you sure that you want to delete this user?' do
+        #     assert_button 'Delete User'
+        # end
 
-    # end
+        user.comments.each do |c|
+            assert_text strip_tags(c.content)
+            assert_text c.created_at
+            # TODO: assert confirmed_at datetime format
+            assert_selector 'a', text: "Post: #{c.post.title}"
+
+            if c.parent_comment
+                assert_selector 'a', text: "Reply to: #{strip_tags c.parent_comment.content}"
+            end
+        end
+
+    end
 end
