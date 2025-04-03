@@ -44,6 +44,8 @@ class Admin::UsersTest < Admin::AdminSystemTestCase
 
     test 'showing a user' do
         user = @users_non_admin_confirmed.find { |u| u.email == 'harold@email.com'}
+        published_comments = comments.filter { |c| c.content.present? && user.id == user.id }
+        deleted_comments = comments.filter { |c| !c.content.present? && user.id == user.id  }
         
         click_on 'Users'
 
@@ -54,26 +56,38 @@ class Admin::UsersTest < Admin::AdminSystemTestCase
         assert_selector "input[name='user[email]'][value='#{user.email}']"
 
         assert_selector "input[name='user[username]'][value='#{user.username}']"
-        # assert created_at datetime format
         assert_selector "input[name='user[created_at]'][value='#{I18n.l(user.created_at, format: :long)}']"
-        # assert confirmed_at datetime format
         assert_selector "input[name='user[confirmed_at]'][value='#{I18n.l(user.confirmed_at, format: :long)}']"
 
         assert_button 'Delete User'
 
-        # TODO: finish test
-        return
+        # asserting user comments
 
         within('.comments') do
-            user.comments.each do |c|
+            assert_selector 'li.is-active', text: 'Published'
+            assert_selector 'li:not(.is-active)', text: 'Deleted'
+    
+            published_comments.each do |c|
                 assert_text ActionController::Base.helpers.strip_tags(c.content)
-                assert_text "Posted on #{I18n.l(c.created_at, format: :long)}"
-                # TODO: assert confirmed_at datetime format
-                assert_selector 'a', text: "Post: #{c.post.title}"
-
+                assert_text "Posted on: #{I18n.l(c.created_at, format: :long)}"
                 if c.parent_comment
-                    assert_selector 'a', text: "Reply to: #{strip_tags c.parent_comment.content}"
+                    assert_text "Replying to: Comment ##{c.parent_comment.id}"
                 end
+                assert_text "Under: Post ##{c.post.id}"
+            end
+    
+            click_on 'Deleted'
+    
+            assert_selector 'li:not(.is-active)', text: 'Published'
+            assert_selector 'li.is-active', text: 'Deleted'
+    
+            deleted_comments.each do |c|
+                assert_text I18n.t('comment.deleted')
+                assert_text "Posted on: #{I18n.l(c.created_at, format: :long)}"
+                if c.parent_comment
+                    assert_text "Replying to: Comment ##{c.parent_comment.id}"
+                end
+                assert_text "Under: Post ##{c.post.id}"
             end
         end
 

@@ -1,7 +1,8 @@
 class Admin::CommentsController < Admin::AdminController
     def index
-        @selected_filter = request.params['filter']
-    
+        @selected_user = params['user_id'] ? User.find(params['user_id']) : nil
+        @selected_filter = params['filter']
+
         case @selected_filter
         when 'published'
             @comments = Comment.published
@@ -9,6 +10,10 @@ class Admin::CommentsController < Admin::AdminController
             @comments = Comment.deleted
         else
             @comments = Comment.published
+        end
+
+        if @selected_user
+            @comments.where(user: @selected_user)
         end
 
         @comments = @comments.order(created_at: :desc)
