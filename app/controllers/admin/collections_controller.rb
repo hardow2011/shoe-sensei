@@ -64,10 +64,6 @@ class Admin::CollectionsController < Admin::AdminController
     @collection = Collection.find(params[:id])
   end
 
-  def collections_by_default_order
-    Collection.order(created_at: :desc)
-  end
-
   def set_collections
     selected_brand = params['brand_id'].present? ? Brand.find(params[:brand_id]) : nil
 
