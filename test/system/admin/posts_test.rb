@@ -12,6 +12,10 @@ class Admin::PostsTest < Admin::AdminSystemTestCase
       content_es: "La lista es la siguiente",
       published_at:'2023-05-19'
     }
+
+    @post = posts.find { |p| p.handle == 'the-doctor-told-me-to-get-a-new-pair-of-shoes-but' }
+    @published_comments = comments.filter { |c| c.content.present? && c.post_id == @post.id }
+    @deleted_comments = comments.filter { |c| !c.content.present? && c.post_id == @post.id  }
   end
 
   test 'listing all posts' do
@@ -144,18 +148,34 @@ class Admin::PostsTest < Admin::AdminSystemTestCase
   end
 
   test 'showing a posts comments' do
-    post = posts.find { |p| p.handle == 'the-doctor-told-me-to-get-a-new-pair-of-shoes-but' }
-    published_comments = comments.filter { |c| c.content.present? && c.post_id == post.id }
-    deleted_comments = comments.filter { |c| !c.content.present? && c.post_id == post.id  }
-
     click_on 'Posts'
 
-    within("##{dom_id(post)}") do
+    within("##{dom_id(@post)}") do
       click_on 'Edit'
     end
 
     page.scroll_to(0, 5000)
 
-    assert_comments(published_comments, deleted_comments)
+    assert_comments(@published_comments, @deleted_comments)
+  end
+
+  test 'deleting a comment from the post page' do
+    click_on 'Posts'
+
+    within("##{dom_id(@post)}") do
+        click_on 'Edit'
+    end
+
+    page.scroll_to(0, 5000)
+
+    within(".comments") do
+        accept_alert 'Are you sure that you want to delete this comment?' do
+            click_button 'Delete', match: :first
+        end
+    end
+
+    # assert the comments from the database because one was just deleted
+    @published_comments = Comment.published.where(post: @post)
+    assert_comments(@published_comments)
   end
 end
