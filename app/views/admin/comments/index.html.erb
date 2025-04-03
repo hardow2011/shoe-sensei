@@ -5,6 +5,6 @@
         </div>
     </div>
 </div>
-<%= turbo_frame_tag 'comments' do %>
+<%= turbo_frame_tag 'comments', class: 'comments' do %>
     <%= render partial: 'admin/comments/comments_tabs' %>
 <% end %>

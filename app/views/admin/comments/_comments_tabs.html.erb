@@ -2,7 +2,9 @@
     <div class="tabs">
         <ul>
             <li class="<%= @selected_filter == 'published' || @selected_filter == nil ? 'is-active' : nil %>"><%= link_to 'Published', admin_comments_path(user_id: params['user_id'], post_id: params['post_id']) %></li>
-            <li class="<%= @selected_filter == 'deleted' ? 'is-active' : nil %>"><%= link_to 'Deleted', admin_comments_path(filter: 'deleted', user_id: params['user_id'], post_id: params['post_id']) %></li>
+            <% if !params['user_id'].present? %>
+                <li class="<%= @selected_filter == 'deleted' ? 'is-active' : nil %>"><%= link_to 'Deleted', admin_comments_path(filter: 'deleted', user_id: params['user_id'], post_id: params['post_id']) %></li>
+            <% end %>
         </ul>
     </div>
     <div class="fixed-grid has-1-cols">

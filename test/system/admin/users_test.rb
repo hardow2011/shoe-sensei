@@ -62,7 +62,7 @@ class Admin::UsersTest < Admin::AdminSystemTestCase
         assert_button 'Delete User'
 
         # asserting user comments
-        assert_comments(@published_comments, @deleted_comments)
+        assert_comments(@published_comments, @deleted_comments, true, false)
     end
 
     test 'deleting a comment from the user page' do
@@ -82,7 +82,7 @@ class Admin::UsersTest < Admin::AdminSystemTestCase
 
         # assert the comments from the database because one was just deleted
         @published_comments = Comment.published.where(user: @user)
-        assert_comments(@published_comments)
+        assert_comments(@published_comments, nil, true, false)
     end
 
 end

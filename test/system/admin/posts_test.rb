@@ -156,7 +156,7 @@ class Admin::PostsTest < Admin::AdminSystemTestCase
 
     page.scroll_to(0, 5000)
 
-    assert_comments(@published_comments, @deleted_comments)
+    assert_comments(@published_comments, @deleted_comments, false, true)
   end
 
   test 'deleting a comment from the post page' do
@@ -176,6 +176,6 @@ class Admin::PostsTest < Admin::AdminSystemTestCase
 
     # assert the comments from the database because one was just deleted
     @published_comments = Comment.published.where(post: @post)
-    assert_comments(@published_comments)
+    assert_comments(@published_comments, nil, false, true)
   end
 end

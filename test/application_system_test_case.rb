@@ -33,21 +33,22 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     click_on 'Log In'
   end
 
-  def assert_comments(published_comments, deleted_comments = nil)
+  def assert_comments(published_comments, deleted_comments, skip_posted_by, skip_posted_under)
     within('.comments') do
       assert_selector 'li.is-active', text: 'Published'
-      assert_selector 'li:not(.is-active)', text: 'Deleted'
+      assert_selector('li:not(.is-active)', text: 'Deleted') if deleted_comments.present?
 
       published_comments.each do |c|
           assert_text ActionController::Base.helpers.strip_tags(c.content)
           assert_text "Posted on: #{I18n.l(c.created_at, format: :long)}"
+          assert_text("Posted by: #{c.user.username}") unless skip_posted_by
           if c.parent_comment
               assert_text "Replying to: Comment ##{c.parent_comment.id}"
           end
-          assert_text "Under: Post ##{c.post.id}"
+          assert_text("Posted under: Post ##{c.post.id}") unless skip_posted_under
       end
 
-      if deleted_comments
+      if deleted_comments.present?
         click_on 'Deleted'
 
         assert_selector 'li:not(.is-active)', text: 'Published'
