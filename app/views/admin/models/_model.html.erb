@@ -11,7 +11,7 @@
         </div>
         <div class="column">
             <div class="buttons is-right">
-                <%= link_to 'Edit', edit_admin_model_path(model), class: "button is-link" %>
+                <%= link_to 'Edit', edit_admin_model_path(model), class: "button is-link", data: { turbo: params['brand_id'].present? } %>
                 <%= button_to('Delete', [:admin, model], method: :delete, class: "button is-danger", params: { collection_id: params['collection_id'] }, form: { data: { turbo_confirm: "#{model.deletion_message}" } }) %>
             </div>
         </div>
