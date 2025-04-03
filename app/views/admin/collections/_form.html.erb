@@ -1,6 +1,7 @@
 <% edited_from_brand = !params[:edited_from_brand].nil? ? params[:edited_from_brand].to_boolean : false %>
 <%= turbo_frame_tag collection, autoscroll: true do %>
     <%= form_with model: [:admin, collection] do |f| %>
+        <%= hidden_field_tag :brand_id, params[:brand_id] %>
         <% if collection.errors.any? %>
             <%= render partial: 'admin/shared/form_error_message' %>
         <% end %>
