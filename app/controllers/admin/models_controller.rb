@@ -1,8 +1,8 @@
 class Admin::ModelsController < Admin::AdminController
   before_action :set_model, only: %i[edit update destroy]
+  before_action :set_models, only: %i[index]
 
   def index
-    @models = models_by_default_order
   end
 
   def new
@@ -13,13 +13,13 @@ class Admin::ModelsController < Admin::AdminController
   def create
     @model = Model.new(model_params)
     format_model_tags
-
+    
     if @model.save
+      set_models
       respond_to do |format|
         format.html { redirect_to admin_models_path, notice: 'Model was created successfully.' }
         format.turbo_stream do
           flash.now[:notice] = 'Model was created successfully.'
-          @models = Model.where(collection: @model.collection).order(:name)
         end
       end
     else
@@ -43,22 +43,11 @@ class Admin::ModelsController < Admin::AdminController
 
   def destroy
     @model.destroy
-    # If the request comes from the collections index page, then
-    # repopulate with all collection after deletion
-    if request.params["deleted_from_index"] == "true"
-      @models = models_by_default_order
-    # Otherwise, the collection deletion request comes from the brand page
-    # Then, return only the collection belonging to that brand 
-    else
-      @models = Model.where(collection: @model.collection).order(:name)
-    end
+    set_models
     respond_to do |format|
       format.html { redirect_to admin_models_path, notice: 'Model was destroyed successfully.' }
       format.turbo_stream do
         flash.now[:notice] = 'Model was destroyed successfully.'
-        unless request.params["deleted_from_index"] == "true"
-          @collection = @model.collection
-        end
       end
     end
   end
@@ -85,5 +74,15 @@ class Admin::ModelsController < Admin::AdminController
 
   def models_by_default_order
     Model.order(updated_at: :desc)
+  end
+
+  def set_models
+    selected_collection = params[:collection].present? ? Collection.find(params[:collection]) : nil
+
+    if selected_collection
+      @models = selected_collection.models
+    else
+      @models = Model.order(created_at: :desc)
+    end
   end
 end
