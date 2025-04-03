@@ -44,8 +44,8 @@ class Admin::UsersTest < Admin::AdminSystemTestCase
 
     test 'showing a user' do
         user = @users_non_admin_confirmed.find { |u| u.email == 'harold@email.com'}
-        published_comments = comments.filter { |c| c.content.present? && user.id == user.id }
-        deleted_comments = comments.filter { |c| !c.content.present? && user.id == user.id  }
+        published_comments = comments.filter { |c| c.content.present? && c.user_id == user.id }
+        deleted_comments = comments.filter { |c| !c.content.present? && c.user_id == user.id  }
         
         click_on 'Users'
 
