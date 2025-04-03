@@ -36,4 +36,25 @@ class Admin::CommentsTest < Admin::AdminSystemTestCase
             assert_text "Under: Post ##{c.post.id}"
         end
     end
+
+    test 'delete comment' do
+        click_on 'Comments'
+        comment = @published_comments.find { |c| c.content == '<strong>Changed my mind</strong>' }
+
+        assert_text ActionController::Base.helpers.strip_tags(comment.content)
+
+        within("##{dom_id(comment)}") do
+            accept_alert 'Are you sure that you want to delete this comment?' do
+                click_on 'Delete'
+            end
+        end
+
+        assert_text 'Comment was deleted succesfully.'
+
+        assert_no_text ActionController::Base.helpers.strip_tags(comment.content)
+
+        click_on 'Deleted'
+
+        assert_no_text ActionController::Base.helpers.strip_tags(comment.content)
+    end
 end

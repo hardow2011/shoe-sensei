@@ -18,10 +18,12 @@
                 Under: <%= link_to "Post ##{comment.post.id}", edit_admin_post_path(comment.post), data: { turbo: false } %>
             </p>
         </div>
-        <div class="column is-narrow">
-            <div class="buttons is-right">
-                <%= button_to('Delete', [:admin, comment], method: :delete, class: "button is-danger", form: { data: { turbo_confirm: "#{comment.deletion_message}" } }) %>
+        <% if comment.user %>
+            <div class="column is-narrow">
+                <div class="buttons is-right">
+                    <%= button_to('Delete', [:admin, comment], method: :delete, class: "button is-danger", form: { data: { turbo_confirm: "#{comment.deletion_message}" } }) %>
+                </div>
             </div>
-        </div>
+        <% end %>
     </div>
 </div>

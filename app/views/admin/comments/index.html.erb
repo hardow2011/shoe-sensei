@@ -6,17 +6,5 @@
     </div>
 </div>
 <%= turbo_frame_tag 'comments' do %>
-    <div>
-        <div class="tabs">
-            <ul>
-                <li class="<%= @selected_filter == 'published' || @selected_filter == nil ? 'is-active' : nil %>"><%= link_to 'Published', admin_comments_path %></li>
-                <li class="<%= @selected_filter == 'deleted' ? 'is-active' : nil %>"><%= link_to 'Deleted', admin_comments_path(filter: 'deleted') %></li>
-            </ul>
-        </div>
-        <div class="fixed-grid has-1-cols">
-            <div class="grid is-gap-5">
-                <%= render partial: 'admin/comments/comment', collection: @comments %>
-            </div>
-        </div>  
-    </div>  
+    <%= render partial: 'admin/comments/comments_tabs' %>
 <% end %>
