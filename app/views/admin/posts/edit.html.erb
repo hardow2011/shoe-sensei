@@ -6,6 +6,6 @@
 </div>
 <div class="block">
     <h3 class="title">Comments</h3>
-    <%= turbo_frame_tag 'comments', class: 'comments', src: admin_comments_path(post_id: @user), loading: :lazy do  %>
-<% end %>
+    <%= turbo_frame_tag 'comments', class: 'comments', src: admin_comments_path(post_id: @post), loading: :lazy do  %>
+    <% end %>
 </div>
