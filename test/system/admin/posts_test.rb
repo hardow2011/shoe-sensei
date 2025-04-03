@@ -142,4 +142,20 @@ class Admin::PostsTest < Admin::AdminSystemTestCase
       click_on 'Delete Post'
     end
   end
+
+  test 'showing a posts comments' do
+    post = posts.find { |p| p.handle == 'the-doctor-told-me-to-get-a-new-pair-of-shoes-but' }
+    published_comments = comments.filter { |c| c.content.present? && c.post_id == post.id }
+    deleted_comments = comments.filter { |c| !c.content.present? && c.post_id == post.id  }
+
+    click_on 'Posts'
+
+    within("##{dom_id(post)}") do
+      click_on 'Edit'
+    end
+
+    page.scroll_to(0, 5000)
+
+    assert_comments(published_comments, deleted_comments)
+  end
 end

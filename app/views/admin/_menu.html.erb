@@ -36,4 +36,14 @@
             </ul>
         </li>
     </ul>
+    <ul class="menu-list">
+        <li>
+            <%= link_to 'Users', admin_users_path, class: "#{request.path == admin_users_path ? 'is-active' : nil}" %>
+        </li>
+    </ul>
+    <ul class="menu-list">
+        <li>
+            <%= link_to 'Comments', admin_comments_path, class: "#{request.path == admin_comments_path ? 'is-active' : nil}" %>
+        </li>
+    </ul>
 </aside>

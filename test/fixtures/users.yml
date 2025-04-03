@@ -22,3 +22,14 @@ andris:
   username: andris98
   encrypted_password: <%= Devise::Encryptor.digest(User, 'An4r!s+Q') %>
   confirmed_at: 2025-09-12 12:32:41
+
+melquiades:
+  email: melquiades@email.com
+  username: melqui99
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'M3lqu1Ades') %>
+
+harold:
+  email: harold@email.com
+  username: harold76
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'H@r01d007') %>
+  confirmed_at: 2025-03-23 16:55:09

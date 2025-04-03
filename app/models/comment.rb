@@ -37,8 +37,9 @@ class Comment < ApplicationRecord
   validates_presence_of :post
   validates :user, presence: true, on: :create
 
-  # TODO: rename to parent_comments
-  scope :top_comments, -> { where(comment_id: nil) }
+  scope :parent_comments, -> { where(comment_id: nil) }
+  scope :published, -> { where.not(content: nil) }
+  scope :deleted, -> { where(content: nil) }
 
   def turbo_frame_id
     dom_id self

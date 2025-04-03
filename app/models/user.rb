@@ -67,6 +67,10 @@ class User < ApplicationRecord
 
   attr_writer :login
 
+  scope :non_admin, -> { where(admin: false) }
+  scope :confirmed, -> { where.not(confirmed_at: nil) }
+  scope :unconfirmed, -> { where(confirmed_at: nil) }
+
   def login
     @login || self.username || self.email
   end
@@ -97,6 +101,14 @@ class User < ApplicationRecord
   def destroy
     self.comments.destroy_all
     super
+  end
+
+  def deletion_message
+    if self.comments.any?
+      'Are you sure that you want to delete this user before the associated comments?'
+    else
+      'Are you sure that you want to delete this user?'
+    end
   end
 
   private

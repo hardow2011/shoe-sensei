@@ -419,3 +419,11 @@ hr {
         }
     }
 }
+
+.admin-comment--content-box {
+    @extend .mb-2;
+    @extend .pl-2;
+    border-left-width: 3px;
+    border-left-style: solid;
+    border-left-color: $grey;
+}

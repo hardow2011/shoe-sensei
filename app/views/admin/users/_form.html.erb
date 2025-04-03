@@ -1,0 +1,17 @@
+<%= simple_form_for([:admin, user]) do |f| %>
+    <%= f.input :email, input_html: { readonly: true } %>
+    <%= f.input :username, input_html: { readonly: true } %>
+    <div class="columns">
+        <div class="column">
+            <%= f.input :created_at, input_html: { value: I18n.l(user.created_at, format: :long), readonly: true }, as: :string %>
+        </div>
+        <div class="column">
+        <%= f.input :confirmed_at, input_html: { readonly: true, value: user.confirmed_at ? I18n.l(user.confirmed_at, format: :long) : 'Unconfirmed' }, as: :string %>
+        </div>
+    </div>
+    <div class="column">
+        <div class="buttons is-right">
+            <%= button_to('Delete User', [:admin, user], method: :delete, class: "button is-danger", form: { data: { turbo_confirm: "#{user.deletion_message}" } }) %>
+        </div>
+    </div>
+<% end %>

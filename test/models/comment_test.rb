@@ -121,4 +121,32 @@ class CommentTest < ActiveSupport::TestCase
     comment.save
     assert comment.valid?
   end
+
+  test 'when user is destoyed, its comment still exist with their content, but their association to the user is removed' do
+    user = User.new(email: 'user@email.com',  username: 'usnme', password: 'P@tito-f3o')
+
+    user.save
+    assert user.valid?
+
+    comments = [
+      comment_1 = Comment.create(post: Post.first, user: user, content: '<p>First comment</p>'),
+      comment_2 = Comment.create(post: Post.first, user: user, content: '<p>Second comment</p>'),
+      comment_3 = Comment.create(post: Post.first, user: user, parent_comment: comment_1, content: '<p>Reply to first comment</p>')
+    ]
+
+    comments.each do |comment|
+      assert comment.user.present?
+      assert comment.content.present?
+      assert comment.post.present?
+    end
+
+    user.destroy
+
+    comments.each do |comment|
+      assert comment.persisted?
+      assert comment.user.destroyed?
+      assert comment.content.present?
+      assert comment.post.present?
+    end
+  end
 end

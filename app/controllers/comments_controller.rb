@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   
   def index
       post_id = params[:post_id]
-      @comments = Comment.top_comments.where(post_id: post_id).order(created_at: :desc)
+      @comments = Comment.parent_comments.where(post_id: post_id).order(created_at: :desc)
   end
   
   def show
@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
         format.html { redirect_to post_comments_path, notice: I18n.t('comment.successful_posting') }
         format.turbo_stream do
           flash.now[:notice] = I18n.t('comment.successful_posting')
-          @comments = Comment.top_comments.where(post_id: @comment.post_id).order(created_at: :desc)
+          @comments = Comment.parent_comments.where(post_id: @comment.post_id).order(created_at: :desc)
           @new_comment = Comment.new(post_id: @comment.post_id)
           # @turbo_frame_id_to_update = comment_turbo_redirect_params
         end
@@ -53,8 +53,6 @@ class CommentsController < ApplicationController
         format.html { redirect_to post_comments_path, notice: I18n.t('comment.successful_edit') }
         format.turbo_stream do
           flash.now[:notice] = I18n.t('comment.successful_edit')
-          # @comments = Comment.top_comments.where(post_id: @comment.post_id).order(created_at: :desc)
-          # @new_comment = Comment.new(post_id: @comment.post_id)
           @turbo_frame_id_to_update = @comment.edit_frame_id
         end
       end

@@ -1,0 +1,11 @@
+<div class="section px-0 pt-0">
+    <h1 class="title is-1">Edit user</h1>
+</div>
+<div class="block">
+    <%= render partial: "admin/users/form", locals: { user: @user } %>
+</div>
+<div class="block">
+    <h3 class="title">Comments</h3>
+    <%= turbo_frame_tag 'comments', class: 'comments', src: admin_comments_path(user_id: @user), loading: :lazy do  %>
+<% end %>
+</div>
