@@ -22,11 +22,11 @@ class Admin::CommentsController < Admin::AdminController
     end
 
     def set_comments
-        @selected_user = params['user_id'].present? ? User.find(params['user_id']) : nil
-        @selected_post = params['post_id'].present? ? Post.find(params['post_id']) : nil
-        @selected_filter = params['filter']
+        selected_user = params['user_id'].present? ? User.find(params['user_id']) : nil
+        selected_post = params['post_id'].present? ? Post.find(params['post_id']) : nil
+        selected_filter = params['filter']
 
-        case @selected_filter
+        case selected_filter
         when 'published'
             @comments = Comment.published
         when 'deleted'
@@ -35,12 +35,12 @@ class Admin::CommentsController < Admin::AdminController
             @comments = Comment.published
         end
 
-        if @selected_user
-            @comments = @comments.where(user: @selected_user)
+        if selected_user
+            @comments = @comments.where(user: selected_user)
         end
 
-        if @selected_post
-            @comments = @comments.where(post: @selected_post)
+        if selected_post
+            @comments = @comments.where(post: selected_post)
         end
 
         @comments = @comments.order(created_at: :desc)

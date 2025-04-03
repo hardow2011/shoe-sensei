@@ -1,5 +1,3 @@
-<% edited_from_collection = !params[:edited_from_collection].nil? ? params[:edited_from_collection].to_boolean : false %>
-<%# byebug %>
 <%= turbo_frame_tag model, autoscroll: true do %>
     <%= form_with model: [:admin, model] do |f| %>
         <% if model.errors.any? %>
@@ -128,7 +126,7 @@
         <div class="field">
             <div class="buttons is-right">
                 <%= link_to("Cancel", edit_admin_collection_path(model.collection), class: 'button') if model.collection %>
-                <%= f.submit edited_from_collection ? 'Add Model' : nil, class: 'button is-success', data: { turbo: edited_from_collection } %>
+                <%= f.submit params[:collection_id].present? ? 'Add Model' : nil, class: 'button is-success', data: { turbo: params[:collection_id].present? } %>
             </div>
         </div>
     <% end %>

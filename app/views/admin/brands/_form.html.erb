@@ -67,8 +67,7 @@
     <div class="block">
         <div class="field">
             <label class="label">Collections</label>
-            <%= turbo_frame_tag 'collections' do %>
-                <%= render partial: 'admin/collections/collection', collection: brand.collections.order(:name), locals: { brand: brand } %>
+            <%= turbo_frame_tag 'collections', src: admin_collections_path(brand_id: brand) do %>
             <% end %>
         </div>
     </div>

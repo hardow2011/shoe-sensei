@@ -1,6 +1,6 @@
-<% edited_from_brand = !params[:edited_from_brand].nil? ? params[:edited_from_brand].to_boolean : false %>
 <%= turbo_frame_tag collection, autoscroll: true do %>
     <%= form_with model: [:admin, collection] do |f| %>
+        <%= hidden_field_tag :brand_id, params[:brand_id] %>
         <% if collection.errors.any? %>
             <%= render partial: 'admin/shared/form_error_message' %>
         <% end %>
@@ -37,7 +37,7 @@
         <div class="field">
             <div class="buttons is-right">
                 <%= link_to("Cancel", edit_admin_brand_path(collection.brand), class: 'button') if collection.brand %>
-                <%= f.submit edited_from_brand ? 'Add Collection' : nil, class: 'button is-success', data: { turbo: edited_from_brand } %>
+                <%= f.submit params[:brand_id].present? ? 'Add Collection' : nil, class: 'button is-success', data: { turbo: params[:brand_id].present? } %>
             </div>
         </div>
     <% end %>
@@ -47,8 +47,7 @@
     <div class="block">
         <div class="field">
             <label class="label">Models</label>
-            <%= turbo_frame_tag 'models' do %>
-                <%= render partial: 'admin/models/model', collection: collection.models.order(:name), locals: { collection: collection } %>
+            <%= turbo_frame_tag 'models', src: admin_models_path(collection_id: collection) do %>
             <% end %>
         </div>
     </div>

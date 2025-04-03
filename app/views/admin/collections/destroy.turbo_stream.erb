@@ -1,2 +1,2 @@
-<%= turbo_stream.update "collections", partial: 'admin/collections/collection', collection: @collections, locals: { brand: @brand } %>
+<%= turbo_stream.update "collections", partial: 'admin/collections/collection', collection: @collections %>
 <%= turbo_stream.replace 'flash', partial: 'layouts/flash' %>

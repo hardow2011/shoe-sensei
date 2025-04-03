@@ -1,19 +1,18 @@
-<% comes_from_index = (defined?(collection) and collection != nil) ? false : true %>
 <%= turbo_frame_tag model, class: 'box' do %>
     <div class="columns">
         <div class="column is-narrow is-flex is-align-items-center">
             <p>
-                 <%= link_to model.name, edit_admin_model_path(model), data: { turbo: !comes_from_index }, class: "is-size-4" %>
-                 <% if comes_from_index %>
+                 <%= link_to model.name, edit_admin_model_path(model), data: { turbo: params['collection_id'].present? }, class: "is-size-4" %>
+                 <% unless params[:collection_id].present? %>
                  from 
-                 <%= link_to model.collection.name, edit_admin_collection_path(model.collection), data: { turbo: !comes_from_index }, class: "is-size-5" %>
+                 <%= link_to model.collection.name, edit_admin_collection_path(model.collection), data: { turbo: params['collection_id'].present? }, class: "is-size-5" %>
                  <% end %>
             </p>
         </div>
         <div class="column">
             <div class="buttons is-right">
-                <%= link_to 'Edit', edit_admin_model_path(model), class: "button is-link" %>
-                <%= button_to('Delete', [:admin, model], method: :delete, class: "button is-danger", params: { deleted_from_index: comes_from_index }, form: { data: { turbo_confirm: "#{model.deletion_message}" } }) %>
+                <%= link_to 'Edit', edit_admin_model_path(model), class: "button is-link", data: { turbo: params['brand_id'].present? } %>
+                <%= button_to('Delete', [:admin, model], method: :delete, class: "button is-danger", params: { collection_id: params['collection_id'] }, form: { data: { turbo_confirm: "#{model.deletion_message}" } }) %>
             </div>
         </div>
     </div>
