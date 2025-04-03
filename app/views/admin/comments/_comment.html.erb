@@ -21,7 +21,8 @@
         <% if comment.user %>
             <div class="column is-narrow">
                 <div class="buttons is-right">
-                    <%= button_to('Delete', [:admin, comment], method: :delete, class: "button is-danger", form: { data: { turbo_confirm: "#{comment.deletion_message}" } }) %>
+                    <%# TODO: delete from user and post %>
+                    <%= button_to('Delete', [:admin, comment], method: :delete, class: "button is-danger", params: { user_id: params['user_id'], post_id: params['post_id'] }, form: { data: { turbo_confirm: "#{comment.deletion_message}" } }) %>
                 </div>
             </div>
         <% end %>

@@ -1,7 +1,7 @@
 require "test_helper"
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-  driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+  driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
 
   setup do
     # Necessary for tests to pass, given that the active storage urls now have the local added
@@ -33,7 +33,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     click_on 'Log In'
   end
 
-  def assert_comments(published_comments, deleted_comments)
+  def assert_comments(published_comments, deleted_comments = nil)
     within('.comments') do
       assert_selector 'li.is-active', text: 'Published'
       assert_selector 'li:not(.is-active)', text: 'Deleted'
@@ -47,18 +47,20 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
           assert_text "Under: Post ##{c.post.id}"
       end
 
-      click_on 'Deleted'
+      if deleted_comments
+        click_on 'Deleted'
 
-      assert_selector 'li:not(.is-active)', text: 'Published'
-      assert_selector 'li.is-active', text: 'Deleted'
+        assert_selector 'li:not(.is-active)', text: 'Published'
+        assert_selector 'li.is-active', text: 'Deleted'
 
-      deleted_comments.each do |c|
-          assert_text I18n.t('comment.deleted')
-          assert_text "Posted on: #{I18n.l(c.created_at, format: :long)}"
-          if c.parent_comment
-              assert_text "Replying to: Comment ##{c.parent_comment.id}"
-          end
-          assert_text "Under: Post ##{c.post.id}"
+        deleted_comments.each do |c|
+            assert_text I18n.t('comment.deleted')
+            assert_text "Posted on: #{I18n.l(c.created_at, format: :long)}"
+            if c.parent_comment
+                assert_text "Replying to: Comment ##{c.parent_comment.id}"
+            end
+            assert_text "Under: Post ##{c.post.id}"
+        end
       end
     end
   end
