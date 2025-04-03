@@ -142,4 +142,47 @@ class Admin::PostsTest < Admin::AdminSystemTestCase
       click_on 'Delete Post'
     end
   end
+
+  test 'showing a posts comments' do
+    post = posts.find { |p| p.handle == 'the-doctor-told-me-to-get-a-new-pair-of-shoes-but' }
+    published_comments = comments.filter { |c| c.content.present? && c.post_id == post.id }
+    deleted_comments = comments.filter { |c| !c.content.present? && c.post_id == post.id  }
+
+    click_on 'Posts'
+
+    within("##{dom_id(post)}") do
+      click_on 'Edit'
+    end
+
+    page.scroll_to(0, 5000)
+
+    within('.comments') do
+      assert_selector 'li.is-active', text: 'Published'
+      assert_selector 'li:not(.is-active)', text: 'Deleted'
+
+      published_comments.each do |c|
+          assert_text ActionController::Base.helpers.strip_tags(c.content)
+          assert_text "Posted on: #{I18n.l(c.created_at, format: :long)}"
+          if c.parent_comment
+              assert_text "Replying to: Comment ##{c.parent_comment.id}"
+          end
+          assert_text "Under: Post ##{c.post.id}"
+      end
+
+      click_on 'Deleted'
+
+      assert_selector 'li:not(.is-active)', text: 'Published'
+      assert_selector 'li.is-active', text: 'Deleted'
+
+      deleted_comments.each do |c|
+          assert_text I18n.t('comment.deleted')
+          assert_text "Posted on: #{I18n.l(c.created_at, format: :long)}"
+          if c.parent_comment
+              assert_text "Replying to: Comment ##{c.parent_comment.id}"
+          end
+          assert_text "Under: Post ##{c.post.id}"
+      end
+    end
+
+  end
 end
