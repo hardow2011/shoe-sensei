@@ -57,14 +57,14 @@
             <%= render partial: 'admin/shared/field_errors', locals: { object: model, field: :discontinued } %>
         </div>
         <div class="field">
-            <label class="label"><%= f.label :heel_to_toe_drop %></label>
+            <label class="label"><%= f.label :heel_to_toe_drop, 'Heel to toe drop (in millimeters)' %></label>
             <div class="control">
                 <%= f.number_field :heel_to_toe_drop, class: "input #{model.errors.full_messages_for(:heel_to_toe_drop).present? ? 'is-danger' : nil}", step: 0.1, min: 0 %>
             </div>
             <%= render partial: 'admin/shared/field_errors', locals: { object: model, field: :heel_to_toe_drop } %>
         </div>
         <div class="field">
-            <label class="label"><%= f.label :weight %></label>
+            <label class="label"><%= f.label :weight, 'Weight (in grams)' %></label>
             <div class="control">
                 <%= f.number_field :weight, class: "input #{model.errors.full_messages_for(:weight).present? ? 'is-danger' : nil}", step: 0.1, min: 0.1 %>
             </div>

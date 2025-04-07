@@ -25,7 +25,7 @@ class Model < ApplicationRecord
   include DataFormatting
   include AllowedTags
   # Weight in grams.
-  # Heel to toe drop in millimiters.
+  # Heel to toe drop in millimeters.
   belongs_to :collection
   has_one :brand, through: :collection
 

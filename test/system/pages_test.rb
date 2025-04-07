@@ -63,7 +63,7 @@ class PagesTest < ApplicationSystemTestCase
     within("[data-model='On Cloud X 4']") do
       assert_text @on_cloud_x_4.name
       assert_selector 'a', text: @on_cloud_x_4.brand.name
-      assert_text "Weight: #{@on_cloud_x_4.weight} gr / #{@on_cloud_x_4.weight(to_oz = true)} oz"
+      assert_text "Weight: #{@on_cloud_x_4.weight} g / #{@on_cloud_x_4.weight(to_oz = true)} oz"
       assert_text "Cushioning: #{@on_cloud_x_4.cushioning_name.capitalize}"
 
       within('.cushioning_info') do
@@ -81,7 +81,7 @@ class PagesTest < ApplicationSystemTestCase
     within("[data-model='HOKA Bondi 8']") do
       assert_text @hoka_bondi_8.name
       assert_selector 'a', text: @hoka_bondi_8.brand.name
-      assert_text "Weight: #{@hoka_bondi_8.weight} gr / #{@hoka_bondi_8.weight(to_oz = true)} oz"
+      assert_text "Weight: #{@hoka_bondi_8.weight} g / #{@hoka_bondi_8.weight(to_oz = true)} oz"
       assert_text "Cushioning: #{@hoka_bondi_8.cushioning_name.capitalize}"
 
       within('.cushioning_info') do
