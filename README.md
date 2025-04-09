@@ -212,7 +212,7 @@ This approach to developing allows for a more future-proof app, and ensures that
 Two types of tests were embedded in the code:
 1. [Model Tests](https://github.com/hardow2011/shoe-sensei/tree/main/test/models) to ensure the models logic and functions work as intended.
 
-2. [System Tests](https://github.com/hardow2011/shoe-sensei/tree/main/test/system) tverify the interaction with the system from the end user perspective.
+2. [System Tests](https://github.com/hardow2011/shoe-sensei/tree/main/test/system) to verify the interaction with the system from the end user perspective.
 
 ### Internationalization
 
