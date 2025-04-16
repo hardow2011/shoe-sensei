@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import CollectionHighlightController from "./collection_highlight_controller"
+application.register("collection-highlight", CollectionHighlightController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
