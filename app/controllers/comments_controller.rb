@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
       post_id = params[:post_id]
       parent_comment = params[:comment_id]
       @comment = Comment.new(post_id: post_id, user_id: user_signed_in? ? current_user.id : nil, comment_id: parent_comment)
-      @form_turbo_id = @comment.reply_to_turbo_frame_id
+      set_new_form_turbo_id
   end
   
   def create
@@ -39,12 +39,13 @@ class CommentsController < ApplicationController
         end
       end
     else
+      set_new_form_turbo_id
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @form_turbo_id = @comment.edit_frame_id
+    set_edit_form_turbo_id
   end
 
   def update
@@ -57,6 +58,7 @@ class CommentsController < ApplicationController
         end
       end
     else
+      set_edit_form_turbo_id
       render :edit, status: :unprocessable_entity
     end
   end
@@ -77,6 +79,14 @@ class CommentsController < ApplicationController
 
   def comment_params
       params.require(:comment).permit(:content, :post_id, :user_id, :comment_id)
+  end
+
+  def set_new_form_turbo_id
+    @form_turbo_id = @comment.reply_to_turbo_frame_id
+  end
+
+  def set_edit_form_turbo_id
+    @form_turbo_id = @comment.edit_frame_id
   end
 
   # def comment_turbo_redirect_params
