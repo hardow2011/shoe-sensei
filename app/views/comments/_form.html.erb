@@ -1,7 +1,7 @@
 <%= turbo_frame_tag form_turbo_id do %>
     <% if user_signed_in? %>
         <div class="block">
-            <%= simple_form_for([comment.post, comment], html: {onsubmit: 'updateTinymceFields()'}) do |f| %>
+            <%= simple_form_for([comment.post, comment], html: {onsubmit: 'updateTinymceFields()'}, data: {  }) do |f| %>
                 <%= f.hidden_field :post_id, value: comment.post.id %>
                 <%#= hidden_field_tag :turbo_frame_id, comment.replies_for_turbo_frame_id %>
                 <%= f.hidden_field :user_id, value: current_user.id %>

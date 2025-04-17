@@ -1,16 +1,16 @@
 <% new_reply = Comment.new(post_id: comment.post.id, comment_id: comment.id) %>
 
-<div class="<%= comment.parent_comment ? 'block' : 'mb-6 parent-comment-box' %>">
+<div class="<%= comment.parent_comment ? 'block' : 'mb-6 parent-comment-box' %>" data-controller="comment-interactivity">
     <%= render partial: 'comments/info', locals: { comment: comment, new_reply: new_reply } %>
     <div class="block">
-        <%= turbo_frame_tag new_reply.reply_to_turbo_frame_id, class: 'is-block block' do %>
+        <%= turbo_frame_tag new_reply.reply_to_turbo_frame_id, class: 'is-block block', data: { 'comment-interactivity-target': 'replyForm' } do %>
         <% end %>
         
-        <div class="replies-wrapper">
+        <div class="replies-wrapper" data-comment-interactivity-target="repliesWrapper">
             <p class="comment-open-btn">
-                <span onclick="minimizeComment(event)">[+] <%= t('comment.show_replies') %></span>
+                <span data-action="click->comment-interactivity#toggleReplies" >[+] <%= t('comment.show_replies') %></span>
             </p>
-            <div class="comments-close-bar" onclick="minimizeComment(event)"></div>
+            <div class="comments-close-bar" data-action="click->comment-interactivity#toggleReplies"></div>
             <%= turbo_frame_tag comment.replies_for_turbo_frame_id, class: 'replies-list' do %>
             <% end %>
         </div>

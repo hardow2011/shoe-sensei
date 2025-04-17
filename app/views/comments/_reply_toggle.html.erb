@@ -1,4 +1,3 @@
 <div class="reply-btns-wrapper">
-    <%= link_to t('cta.reply'), new_post_comment_path(comment_id: comment.id), data: { turbo_frame: new_reply.reply_to_turbo_frame_id }, onclick: "toggleDummyReplyBtn(this)" %>
-    <%= link_to t('cta.reply'), '', data: { turbo: false }, onclick: "toggleCommentForm('#{Comment::REPLY_TO_TURBO_SUFFIX + "#{comment.id}"}')", class: 'dummy-reply-btn' %>
+    <%= link_to t('cta.reply'), new_post_comment_path(comment_id: comment.id), data: { turbo_frame: new_reply.reply_to_turbo_frame_id, action: 'click->comment-interactivity#toggleCommentForm', 'comment-interactivity-target': 'replyFormToggleBtn' } %>
 </div>

@@ -7,5 +7,8 @@ import { application } from "./application"
 import CollectionHighlightController from "./collection_highlight_controller"
 application.register("collection-highlight", CollectionHighlightController)
 
+import CommentInteractivityController from "./comment_interactivity_controller"
+application.register("comment-interactivity", CommentInteractivityController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
