@@ -1,5 +1,4 @@
 import { Controller } from "@hotwired/stimulus"
-import { Turbo } from "@hotwired/turbo"
 
 // Connects to data-controller="comment-interactivity"
 export default class extends Controller {
