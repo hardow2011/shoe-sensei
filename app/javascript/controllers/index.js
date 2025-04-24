@@ -12,3 +12,6 @@ application.register("comment-interactivity", CommentInteractivityController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import ModelsFilterController from "./models_filter_controller"
+application.register("models-filter", ModelsFilterController)

@@ -4,7 +4,7 @@
             <% filter_list.each do |filter| %>
                 <div>
                     <label class='is-inline-block py-1'>
-                        <%= form.check_box "additional_filters[]", { checked: filter[:checked], onchange: "submit_filter_form(this)", include_hidden: false }, "#{filter[:name]}" %>
+                        <%= form.check_box "additional_filters[]", { checked: filter[:checked], data: { action: 'models-filter#submitForm' }, include_hidden: false }, "#{filter[:name]}" %>
                         <%= t("filter.additional_filters.#{filter[:name]}") %>
                     </label>
                 </div>
