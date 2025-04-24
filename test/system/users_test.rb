@@ -63,15 +63,15 @@ class UsersTest < ApplicationSystemTestCase
     end
     
     test 'login with email' do
-        login(email: @yordania.email, password: 'yordania')
+        login(email: @yordania.email, password: '*V4D83i2u!$4^t@3w6&H38uY&Cb6*%r^^$i2&')
     end
 
     test 'login with username' do
-        login(username: @yordania.username, password: 'yordania')
+        login(username: @yordania.username, password: '*V4D83i2u!$4^t@3w6&H38uY&Cb6*%r^^$i2&')
     end
 
     test 'logout' do
-        login(email: @yordania.email, password: 'yordania')
+        login(email: @yordania.email, password: '*V4D83i2u!$4^t@3w6&H38uY&Cb6*%r^^$i2&')
 
         logout
 
@@ -83,7 +83,7 @@ class UsersTest < ApplicationSystemTestCase
 
     test 'change email' do
         new_email = 'new@email.com'
-        login(email: @yordania.email, password: 'yordania')
+        login(email: @yordania.email, password: '*V4D83i2u!$4^t@3w6&H38uY&Cb6*%r^^$i2&')
 
         find('.account-dropdown').hover
 
@@ -101,12 +101,12 @@ class UsersTest < ApplicationSystemTestCase
 
         logout
 
-        login(email: new_email, password: 'yordania')
+        login(email: new_email, password: '*V4D83i2u!$4^t@3w6&H38uY&Cb6*%r^^$i2&')
     end
 
     test 'change password' do
         new_password = 'pppppppp'
-        login(email: @yordania.email, password: 'yordania')
+        login(email: @yordania.email, password: '*V4D83i2u!$4^t@3w6&H38uY&Cb6*%r^^$i2&')
 
         find('.account-dropdown').hover
 
@@ -125,7 +125,7 @@ class UsersTest < ApplicationSystemTestCase
     end
 
     test 'delete account' do
-        login(email: @yordania.email, password: 'yordania')
+        login(email: @yordania.email, password: '*V4D83i2u!$4^t@3w6&H38uY&Cb6*%r^^$i2&')
 
         find('.account-dropdown').hover
 
