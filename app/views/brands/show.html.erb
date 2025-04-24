@@ -23,9 +23,7 @@
 </div>
 <div class="section">
     <div class="container is-widescreen">
-        <%= turbo_frame_tag 'models-filter-frame', src: filter_models_path(brand_id: @brand.id), loading: :lazy do %>
-            <%= render partial: 'models/filter/skeleton/grid', locals: { models_count: @models_count } %>
-        <% end %>
+        <%= render partial: 'shared/shoe_filter_turbo_frame', locals: { src: filter_models_path(brand_id: @brand.id) } %>
     </div>
 </div>
 <div class="section">
