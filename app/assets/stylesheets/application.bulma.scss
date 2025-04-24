@@ -239,39 +239,21 @@ a {
 }
 
 .is-loading {
-    .model-box {
-        .media-content {
-            * {
-                @extend .is-skeleton;
-            }
-        }
-        .icon {
-            visibility: hidden;
-        }
-        p {
-            @extend .is-skeleton;
-        }
-        .card-image {
-            @extend .is-skeleton
-        }
-        figure {
-            @extend .is-skeleton;
-            image {
-
-                visibility: hidden;
-            }
-        }
+    @extend .is-unselectable;
+    
+    label, a, p, .card-image, figure, .media-content * {
+        @extend .is-skeleton;
     }
 
-    .pagination a, .field-label label {
-        @extend .is-skeleton
+    input[type='checkbox'], image, .icon {
+        @extend .is-invisible;
     }
 
     .field-body {
         @extend .has-skeleton;
 
         * {
-            visibility: hidden;
+            @extend .is-invisible;
         }
 
         &::after {
