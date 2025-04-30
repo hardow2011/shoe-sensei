@@ -1,3 +1,5 @@
-<%= turbo_frame_tag 'models-filter-frame', src: src, loading: :lazy, data: { 'controller': 'models-filter' } do %>
-    <%= render partial: 'models/filter/skeleton/grid', locals: { models_count: @models_count } %>
-<% end %>
+<div class="container is-widescreen" data-controller="models-filter" data-models-filter-target="filterWrapper">
+    <%= turbo_frame_tag 'models-filter-frame', src: src, loading: :lazy do %>
+        <%= render partial: 'models/filter/skeleton/grid', locals: { models_count: @models_count } %>
+    <% end %>
+</div>
