@@ -18,7 +18,7 @@ export default class extends Controller {
       // The random ID every time is necessary because it is the selector that TinyMCERails.initialize
       // will use to initialize TinyMCE in a specific field.
       // If the field come from a Turbo Stream, this will also help re-initialize the field.
-      const fieldId = 'timemce-field-' + crypto.randomUUID();
+      const fieldId = 'tinymce-field-' + crypto.randomUUID();
       
       // The config to be used for the field retrieved from the data-tinymce-config attribute.
       // If not assiged, then it will default to 'default'.
