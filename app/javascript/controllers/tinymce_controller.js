@@ -9,6 +9,17 @@ export default class extends Controller {
   connect() {
   }
 
+  disconnect() {
+    // Remove tinyMCE from children fields when form is removed from page.
+    // This fixes an issue where the inline toolbar would be stuck if it was open before going back
+    // from a page and going back in, using the browser arrows
+    this.fieldTargets.forEach((field, _) => {
+      if (field.id) {
+        tinymce.remove('#' + field.id)
+      }
+    })
+  }
+
   // Every time a fieldTarget (i.e. a tinyMCE field) is added to the page,
   // the fieldTargetConnected will run.
   // This funtion is used to initialize a tinyMCE using a specific selector and configuration.
