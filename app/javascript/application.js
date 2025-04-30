@@ -9,3 +9,4 @@ import "@fortawesome/fontawesome-free/js/solid.min";
 import "@fortawesome/fontawesome-free/js/brands.min";
 import "@fortawesome/fontawesome-free/js/fontawesome.min";
 import './navbar_burger'
+import './tinymce_reinit_fix'

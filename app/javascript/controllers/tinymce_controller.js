@@ -4,20 +4,9 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   // The form target will be the form element surrounding the tinyMCE field
   // The field target will be the tinyMCE field itself
-  static targets = ['form', 'field']
+  static targets = ['field']
 
   connect() {
-  }
-
-  disconnect() {
-    // Remove tinyMCE from children fields when form is removed from page.
-    // This fixes an issue where the inline toolbar would be stuck if it was open before going back
-    // from a page and going back in, using the browser arrows
-    this.fieldTargets.forEach((field, _) => {
-      if (field.id) {
-        tinymce.remove('#' + field.id)
-      }
-    })
   }
 
   // Every time a fieldTarget (i.e. a tinyMCE field) is added to the page,
@@ -42,17 +31,12 @@ export default class extends Controller {
     });
   }
 
-  // Get all tinyMCE fields in a form (identified by the attribute data-tinymce-target="field")
-  get tinymceFields() {
-    return this.element.querySelectorAll('[data-tinymce-target="field"]');
-  }
-
   // This function will be called on form submission.
   // It's used to set a hidden field with the value of the tinyMCE field.
   // This is so the tinyMCE field value can be properly passed to the controller because the
   // tinyMCE field is a div, and divs do not get sent with form submissions.
   setHiddenField() {
-    this.tinymceFields.forEach((field, index) => {
+    this.fieldTargets.forEach((field, index) => {
       // It is important to assign the correct name attribute to the tinyMCE field,
       // as it will be used for the hidden field
       const fieldName = field.getAttribute('name');
