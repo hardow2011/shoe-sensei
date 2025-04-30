@@ -1,5 +1,5 @@
 <%# I used data: { turbo: false } in the form because turbo was acting weird %>
-<%= form_with model: [:admin, post], html: {onsubmit: 'updateTinymceFields()'} do |f| %>
+<%= form_with model: [:admin, post], html: {data: { controller: 'tiny-mce', action: 'tiny-mce#setHiddenField' }} do |f| %>
     <% if post.errors.any? %>
         <div>
             <%= post.errors.full_messages.to_sentence.capitalize %>
