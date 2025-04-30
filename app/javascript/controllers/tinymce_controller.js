@@ -12,26 +12,23 @@ export default class extends Controller {
   // Every time a fieldTarget (i.e. a tinyMCE field) is added to the page,
   // the fieldTargetConnected will run.
   // This funtion is used to initialize a tinyMCE using a specific selector and configuration.
-  fieldTargetConnected() {
-    // this.fieldTargets get every element with the data-tinymce-target="field" attribute
-    this.fieldTargets.forEach((field, _) => {
-      // The random ID every time is necessary because it is the selector that TinyMCERails.initialize
-      // will use to initialize TinyMCE in a specific field.
-      // If the field come from a Turbo Stream, this will also help re-initialize the field.
-      const fieldId = 'tinymce-field-' + crypto.randomUUID();
-      
-      // The config to be used for the field retrieved from the data-tinymce-config attribute.
-      // If not assiged, then it will default to 'default'.
-      const config = field.dataset.tinymceConfig || 'default';
-  
-      // The random ID is assigned to the tinyMCE field.
-      field.id = fieldId;
+  fieldTargetConnected(field) {
+    // The random ID every time is necessary because it is the selector that TinyMCERails.initialize
+    // will use to initialize TinyMCE in a specific field.
+    // If the field come from a Turbo Stream, this will also help re-initialize the field.
+    const fieldId = 'tinymce-field-' + crypto.randomUUID();
+    
+    // The config to be used for the field retrieved from the data-tinymce-config attribute.
+    // If not assiged, then it will default to 'default'.
+    const config = field.dataset.tinymceConfig || 'default';
 
-      // tinyMCE is initialized to an element using the random ID as selector
-      TinyMCERails.initialize(config, {
-        selector: `#${fieldId}`
-      });
-    })
+    // The random ID is assigned to the tinyMCE field.
+    field.id = fieldId;
+
+    // tinyMCE is initialized to an element using the random ID as selector
+    TinyMCERails.initialize(config, {
+      selector: `#${fieldId}`
+    });
   }
 
   // Get all tinyMCE fields in a form (identified by the attribute data-tinymce-target="field")
