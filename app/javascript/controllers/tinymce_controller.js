@@ -1,10 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="tiny-mce"
+// Connects to data-controller="tinymce"
 export default class extends Controller {
   static targets = ['form', 'field']
 
   connect() {
+    console.log('ola k ase');
+    
   }
 
   fieldTargetConnected() {
@@ -12,9 +14,12 @@ export default class extends Controller {
     // initialize the same ID more than once
     this.fieldTargets.forEach((field, _) => {
       const fieldId = 'time-mce-field-' + crypto.randomUUID();
-      const config = field.dataset.tinyMceConfig;
+      const config = field.dataset.tinymceConfig;
   
       field.id = fieldId;
+
+      console.log(field);
+      
       
       TinyMCERails.initialize(config, {
         selector: `#${fieldId}`

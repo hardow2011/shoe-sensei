@@ -1,6 +1,6 @@
 <%# Random number in id so tinymce initializes the div again after form submition %>
 <div class="field">
-    <div class="tinymce comment-tinymce <%= comment.parent_comment ? 'comment-reply-input' : nil %>" data-tiny-mce-target="field" data-tiny-mce-config="comment" name="comment[content]">
+    <div class="tinymce comment-tinymce <%= comment.parent_comment ? 'comment-reply-input' : nil %>" data-tinymce-target="field" data-tinymce-config="comment" name="comment[content]">
         <%= comment.content.to_s&.html_safe %>
     </div>
     <% if comment.errors %>
