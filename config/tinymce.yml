@@ -1,5 +1,7 @@
 default: &default
-  selector: ''
+# Use an impossible selector because the gem demands one.
+# I will manually select which forms get tinymce with TinyMCERails.initialize
+  selector: '*:not(*)'
   toolbar:
     - undo redo | bold italic underline | bullist numlist
   plugins:
@@ -11,17 +13,12 @@ default: &default
 
 comment:
   <<: *default
-  selector: .comment-tinymce
+  # selector: .comment-tinymce
   menubar: false
-  # file: false
-  # edit: false
-  # view: false
-  # insert: false
-  # format: false
 
 admin:
   <<: *default
-  selector: .admin-tinymce
+  # selector: .admin-tinymce
   toolbar:
     - undo redo | blocks | bold italic | superscript | bullist numlist | alignleft aligncenter alignright | bullist numlist outdent indent | removeformat
     - code | table | hr

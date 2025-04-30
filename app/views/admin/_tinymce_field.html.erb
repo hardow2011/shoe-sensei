@@ -1,6 +1,6 @@
 <%# added contenteditable="true" to the div because tinymce was not loading in test env %>
 <%# and it was necessary to fill that field %>
 <% class_name = object.class.name.underscore %>
-<div class="tinymce admin-tinymce" name="<%= class_name %>[<%= attr_name.to_s %>]">
+<div class="tinymce admin-tinymce" name="<%= class_name %>[<%= attr_name.to_s %>]" data-tiny-mce-target="field" data-tiny-mce-config="admin">
     <%= object.send(attr_name.to_s)&.html_safe %>
 </div>

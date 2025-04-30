@@ -1,4 +1,7 @@
-<%= tinymce :comment %>
+<% content_for :head do %>
+    <%#= load only when needed to avoid loading unnecessary resources on pages with no tinymce %>
+    <%= tinymce %>
+<% end %>
 <div class="section">
     <div class="container is-widescreen is-max-desktop">
         <div class="columns">

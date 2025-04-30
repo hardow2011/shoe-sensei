@@ -1,8 +1,6 @@
 <%# Random number in id so tinymce initializes the div again after form submition %>
-<% div_id = dom_id(comment.parent_comment ? comment.parent_comment : comment) + rand(10000..100000).to_s %>
-<% tinymce_selector = "div#" + div_id %>
 <div class="field">
-    <div class="tinymce comment-tinymce <%= comment.parent_comment ? 'comment-reply-input' : nil %>" name="comment[content]" id="<%= div_id %>">
+    <div class="tinymce comment-tinymce <%= comment.parent_comment ? 'comment-reply-input' : nil %>" data-tiny-mce-target="field" data-tiny-mce-config="comment" name="comment[content]">
         <%= comment.content.to_s&.html_safe %>
     </div>
     <% if comment.errors %>
@@ -11,11 +9,3 @@
         <% end %>
     <% end %>
 </div>
-<script>
-    // using this instead of tinymce :comment so that the initializer...
-    // targets the newly created form by id, instead of affecting every single...
-    // tinymce form with the comment class element already on the page
-    TinyMCERails.initialize('comment', {
-        selector: "<%= tinymce_selector %>"
-    });
-</script>
