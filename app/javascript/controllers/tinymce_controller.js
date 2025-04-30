@@ -2,11 +2,11 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="tinymce"
 export default class extends Controller {
+  // the form target will be the form element surrounding the tinyMCE field
+  // the field target will be the tinyMCE field itself
   static targets = ['form', 'field']
 
   connect() {
-    console.log('ola k ase');
-    
   }
 
   fieldTargetConnected() {
