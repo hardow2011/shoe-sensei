@@ -26,6 +26,7 @@ es:
   app_created_by_html: "<strong>%{app_name}</strong> creado por <span class='is-underlined'>%{developer_name}</span>."
   table_of_contents: Tabla de contenido
   collections: Colecciones
+  collection: Colección
   blog: Blog
   blog_post: Artículo
   tags: Etiquetas

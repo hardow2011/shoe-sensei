@@ -65,6 +65,7 @@ en:
   app_created_by_html: "<strong>%{app_name}</strong> created by <span class='is-underlined'>%{developer_name}</span>."
   table_of_contents: Table of contents
   collections: Collections
+  collection: Collection
   save_as_draft: Save as Draft
   publish_post: Publish Post
   publish_updates: Publish Updates

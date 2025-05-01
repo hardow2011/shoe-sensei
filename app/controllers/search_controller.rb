@@ -2,7 +2,7 @@ class SearchController < ApplicationController
     def autocomplete
         results = Searchkick.search(
             search_params, 
-            models: [Post, Brand]
+            models: [Post, Brand, Collection]
             )
         results = results.map do |r|
             { name: r.search_name, description: r.search_description, path: r.search_path }
