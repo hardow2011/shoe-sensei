@@ -389,3 +389,11 @@ hr {
     border-left-style: solid;
     border-left-color: $grey;
 }
+
+.autocomplete-wrapper {
+    @extend .navbar-item;
+    flex-basis: 50%;
+    .autocomplete {
+        width: 100%;
+    }
+}

@@ -33,7 +33,7 @@ window.addEventListener('turbo:load', () => {
                     <a href="${item.path}">
                         <div class="aa-ItemWrapper">
                                 <div class="aa-ItemContent">
-                                    <div class="aa-ItemIcon aa-ItemIcon--alignTop">
+                                    <div class="aa-ItemIcon aa-ItemIcon--picture aa-ItemIcon--alignTop">
                                         <img src="${item.image}" alt="${item.name}" width="40" height="40" />
                                     </div>
                                     <div class="aa-ItemContentBody">

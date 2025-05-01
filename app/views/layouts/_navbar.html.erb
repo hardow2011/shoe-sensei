@@ -9,7 +9,7 @@
     </a>
   </div>
   <div id="navbar-menu" class="navbar-menu">
-    <div class="navbar-start">
+    <div class="navbar-start is-flex-grow-1">
       <div class="navbar-item has-dropdown is-hoverable brands-dropdown">
         <%= link_to t('brands'), brands_path, class: "navbar-link" %>
 
@@ -22,8 +22,8 @@
         </div>
       </div>
       <%= link_to t('blog'), posts_path, class: "navbar-item #{request.path == posts_path ? 'is-selected has-text-white' : nil}" %>
-      <div class="navbar-item">
-        <div id="autocomplete"></div>
+      <div class="autocomplete-wrapper">
+        <div id="autocomplete" class="autocomplete"></div>
       </div>
     </div>
 
