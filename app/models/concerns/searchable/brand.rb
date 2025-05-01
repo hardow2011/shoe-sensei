@@ -2,7 +2,7 @@ module Searchable::Brand
     extend ActiveSupport::Concern
 
     included do
-        searchkick
+        searchkick word_start: [:brand]
     end
 
     def search_data

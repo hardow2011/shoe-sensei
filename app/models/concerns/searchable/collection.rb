@@ -2,7 +2,7 @@ module Searchable::Collection
     extend ActiveSupport::Concern
 
     included do
-        searchkick
+        searchkick word_start: [:name, :overview_en, :overview_es]
     end
 
     def search_data

@@ -2,7 +2,7 @@ module Searchable::Post
     extend ActiveSupport::Concern
 
     included do
-        searchkick
+        searchkick word_start: [:title_en, :title_es, :content_en, :content_es, :overview_en, ::overview_es]
     end
 
     def search_data
