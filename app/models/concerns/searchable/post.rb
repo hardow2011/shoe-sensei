@@ -11,7 +11,7 @@ module Searchable::Post
             title_en: title_en,
             title_es: title_es,
             content_en: content_en,
-            content_en: content_en,
+            content_es: content_es,
             overview_en: overview_en,
             overview_es: overview_es
         }
