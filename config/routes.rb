@@ -36,8 +36,7 @@ Rails.application.routes.draw do
       end
 
       resources :brands, only: %i[show index]
-      # get 'collections/:brand_id/:id', to: 'collections#show', as: 'collection'
-      # get 'models/:brand_id/:collection_id/:id', to: 'models#show', as: 'model'
+      get 'search/:query', to: 'search#autocomplete'
     end
 
     # error pages

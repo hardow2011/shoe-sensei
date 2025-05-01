@@ -5,6 +5,18 @@ import "./controllers"
 import * as ActiveStorage from "@rails/activestorage"
 ActiveStorage.start()
 
+import { autocomplete } from '@algolia/autocomplete-js';
+import '@algolia/autocomplete-theme-classic';
+
+autocomplete({
+  container: '#autocomplete',
+  placeholder: 'Search for products',
+  getSources() {
+    return [];
+  },
+});
+
+
 import "@fortawesome/fontawesome-free/js/solid.min";
 import "@fortawesome/fontawesome-free/js/brands.min";
 import "@fortawesome/fontawesome-free/js/fontawesome.min";

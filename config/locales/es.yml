@@ -13,6 +13,7 @@ es:
     english: English
     spanish: Español
   brands: Marcas
+  brand: Marca
   all_brands: Todas las marcas
   explore_our_brands: Descubre nuestras marcas destacadas de zapatos, diseñadas para ofrecer soporte, comodidad y rendimiento óptimo. Encuentra el par ideal que se adapta a tus necesidades diarias y actividades deportivas, con opciones confiables como Brooks, Hoka y más.
   brand_not_found: 'Marca no encontrada'
@@ -26,6 +27,7 @@ es:
   table_of_contents: Tabla de contenido
   collections: Colecciones
   blog: Blog
+  blog_post: Artículo
   tags: Etiquetas
   no_available_posts: Disculpa. En este momento no hay artículos disponibles.
   blog_title: Guías y Reseñas de Zapatos | Blog de %{app_name}

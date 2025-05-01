@@ -52,6 +52,7 @@ en:
 
   errors_prevent_save: Some errors prevent the records from being saved.
   brands: Brands
+  brand: Brand
   all_brands: All brands
   explore_our_brands: Explore our featured footwear brands designed to provide optimal support, comfort, and performance. Find the perfect pair for your daily needs and athletic activities, with trusted options like Brooks, Hoka, and more.
   brand_overview: "%{brand_name} overview"
@@ -69,6 +70,7 @@ en:
   publish_updates: Publish Updates
   unpublish_post_and_save_as_draft: Unpublish and Save as Draft
   blog: Blog
+  blog_post: Blog post
   tags: Tags
   no_available_posts: Sorry. There are currently no available blog posts.
   blog_title: Shoe Guides & Reviews | %{app_name} Blog

@@ -25,6 +25,7 @@
 #
 class Post < ApplicationRecord
   include Searchable::Post
+  
   include DataFormatting
   include AllowedTags
   extend Mobility
