@@ -17,6 +17,8 @@
 #  index_brands_on_name    (name) UNIQUE
 #
 class Brand < ApplicationRecord
+include Searchable::Brand
+  
   include DataFormatting
   include ActionView::Helpers::TextHelper
   extend Mobility
