@@ -15,15 +15,24 @@ module Searchable::Collection
     end
 
     def search_name
-        name
+        "#{brand.name} #{name}"
     end
 
     def search_description
         I18n.t('collection')
     end
 
+    def search_image
+        self.image
+    end
+
     def search_path
         brand_path(self.brand.handle, anchor: self.handle, locale: I18n.locale)
+    end
+
+    def search_image
+        image = self.models.last&.image || self.brand.logo
+        image ? url_for(image) : nil
     end
 end
   
