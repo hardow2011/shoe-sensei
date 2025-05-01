@@ -11,7 +11,7 @@ window.addEventListener('turbo:load', () => {
                 sourceId: 'results',
                 async getItems() {
                     const locale = window.location.pathname.split('/')[1]
-                    const url = `/${locale}/search/${query}`;
+                    const url = `${(!!locale ? '/' + locale : '')}/search/${query}`;
                     try {
                     const response = await fetch(url);
                     if (!response.ok) {
