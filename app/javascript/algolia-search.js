@@ -1,16 +1,20 @@
 import { autocomplete } from '@algolia/autocomplete-js';
 
 window.addEventListener('turbo:load', () => {
+    const locale = window.location.pathname.split('/')[1];
     autocomplete({
     container: '#autocomplete',
-    placeholder: 'Search',
-    //   openOnFocus: true,
+    placeholder: locale == 'es' ? 'Buscar' : 'Search',
+    translations: {
+        clearButtonTitle: locale == 'es' ? 'Limpiar' : 'Clear', // defaults to 'Clear'
+        detachedCancelButtonText: locale == 'es' ? 'Cancelar' : 'Cancel', // defaults to 'Cancel'
+        submitButtonTitle: locale == 'es' ? 'Enviar' : 'Submit' // defaults to 'Submit'
+        },
     getSources({query}) {
         return [
             {
                 sourceId: 'results',
                 async getItems() {
-                    const locale = window.location.pathname.split('/')[1]
                     const url = `${(!!locale ? '/' + locale : '')}/search/${query}`;
                     try {
                     const response = await fetch(url);
