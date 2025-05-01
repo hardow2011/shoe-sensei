@@ -5,17 +5,7 @@ import "./controllers"
 import * as ActiveStorage from "@rails/activestorage"
 ActiveStorage.start()
 
-import { autocomplete } from '@algolia/autocomplete-js';
-
-autocomplete({
-  container: '#autocomplete',
-  placeholder: 'Search',
-  openOnFocus: true,
-  getSources() {
-    return [];
-  },
-});
-
+import './algolia-search'
 
 import "@fortawesome/fontawesome-free/js/solid.min";
 import "@fortawesome/fontawesome-free/js/brands.min";
