@@ -24,6 +24,7 @@
 #  index_posts_on_handle  (handle) UNIQUE
 #
 class Post < ApplicationRecord
+  include Searchable::Post
   include DataFormatting
   include AllowedTags
   extend Mobility
