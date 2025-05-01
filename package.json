@@ -2,6 +2,7 @@
   "name": "app",
   "private": true,
   "dependencies": {
+    "@algolia/autocomplete-js": "^1.19.1",
     "@fortawesome/fontawesome-free": "^5",
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.5",

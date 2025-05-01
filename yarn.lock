@@ -2,6 +2,44 @@
 # yarn lockfile v1
 
 
+"@algolia/autocomplete-core@1.19.1":
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/@algolia/autocomplete-core/-/autocomplete-core-1.19.1.tgz#70b6bea6f6549be6f9f25a48f4e7001eb3dd67fa"
+  integrity sha512-MeZZN1NSPgfp2zhiaCyAW02jOWMftCJ06qoeEVEQ8v+kMlXL15SUYBpQwj7Gd+nV46KHqDrW+g5EGqhCsX6zWg==
+  dependencies:
+    "@algolia/autocomplete-plugin-algolia-insights" "1.19.1"
+    "@algolia/autocomplete-shared" "1.19.1"
+
+"@algolia/autocomplete-js@^1.19.1":
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/@algolia/autocomplete-js/-/autocomplete-js-1.19.1.tgz#14bb7f0cd94f87eeb2e01cbb65eb3d7efb572a23"
+  integrity sha512-4uVK+2GQ3JbnaOtX2eD6mYew62jHY5hJ/0ZPn/0awaVnvlqpvXo4iRo4RNbrZ/7GyMNNlsBeE1p4PZJ+hDB5UQ==
+  dependencies:
+    "@algolia/autocomplete-core" "1.19.1"
+    "@algolia/autocomplete-preset-algolia" "1.19.1"
+    "@algolia/autocomplete-shared" "1.19.1"
+    htm "^3.1.1"
+    preact "^10.13.2"
+
+"@algolia/autocomplete-plugin-algolia-insights@1.19.1":
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/@algolia/autocomplete-plugin-algolia-insights/-/autocomplete-plugin-algolia-insights-1.19.1.tgz#2089b8aa239180e2b71db3764edee272ac7c855e"
+  integrity sha512-TPVerIGKbfOwd69ZNrriI6voKRwwj6Vmy4tD12/3RCh8zdvDOdRvc7LxeKPtgwJzavZkfH7nK9pb+4E+PCdgdg==
+  dependencies:
+    "@algolia/autocomplete-shared" "1.19.1"
+
+"@algolia/autocomplete-preset-algolia@1.19.1":
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/@algolia/autocomplete-preset-algolia/-/autocomplete-preset-algolia-1.19.1.tgz#800162ad98dc57e8d26242b748702f79ea24279e"
+  integrity sha512-8VTPeE7UwyfvNF44IEkaNOnRoofv0Ejtsqg3tu9T8gj+pbVMj8NBErlbYD88es893EseqJj7oWAhqcq1bgnxcQ==
+  dependencies:
+    "@algolia/autocomplete-shared" "1.19.1"
+
+"@algolia/autocomplete-shared@1.19.1":
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/@algolia/autocomplete-shared/-/autocomplete-shared-1.19.1.tgz#ce15e1fb682a2ea0ddc8e19814d4c5eaf1457355"
+  integrity sha512-/GcOv70emuVdSHBAERW7/r4czMzJROkgLOl45+ugyxK79RzSkXV2esY638qSo6mzC7EVwglSJ8BQ0kAVKVxMjA==
+
 "@esbuild/aix-ppc64@0.23.1":
   version "0.23.1"
   resolved "https://registry.yarnpkg.com/@esbuild/aix-ppc64/-/aix-ppc64-0.23.1.tgz#51299374de171dbd80bb7d838e1cfce9af36f353"
@@ -307,6 +345,11 @@ fill-range@^7.1.1:
   dependencies:
     to-regex-range "^5.0.1"
 
+htm@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/htm/-/htm-3.1.1.tgz#49266582be0dc66ed2235d5ea892307cc0c24b78"
+  integrity sha512-983Vyg8NwUE7JkZ6NmOqpCZ+sh1bKv2iYTlUkzlWmA5JD2acKoxd4KVxbMmxX/85mtfdnDmTFoNKcg5DGAvxNQ==
+
 immutable@^5.0.2:
   version "5.0.3"
   resolved "https://registry.npmjs.org/immutable/-/immutable-5.0.3.tgz"
@@ -346,6 +389,11 @@ picomatch@^2.3.1:
   version "2.3.1"
   resolved "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
+
+preact@^10.13.2:
+  version "10.26.5"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.26.5.tgz#7e1e998af178f139e4c7cb53f441bf2179f44ad2"
+  integrity sha512-fmpDkgfGU6JYux9teDWLhj9mKN55tyepwYbxHgQuIxbWQzgFg5vk7Mrrtfx7xRxq798ynkY4DDDxZr235Kk+4w==
 
 readdirp@^4.0.1:
   version "4.1.2"
