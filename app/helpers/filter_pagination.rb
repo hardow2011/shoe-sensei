@@ -112,7 +112,11 @@ module FilterPagination
                       .filter_by_apma_accepted(selected_aditional_filters.include?(:apma_accepted))
 
       # Filter models based on selected brands
-      @models = models_to_filter.filter_by_brand_ids(single_brand_id.present? ? [single_brand_id] : brands_ids ).includes(image_attachment: :blob).includes(brand: {logo_attachment: [blob: { variant_records: :blob }]})
+      @models = models_to_filter.filter_by_brand_ids(single_brand_id.present? ? [single_brand_id] : brands_ids )
+        # eager load model images (to avoid N+1 queries when looping through them in the view)
+        .includes(image_attachment: :blob)
+        # eager load associated brand images (to avoid N+1 queries when looping through them in the view)
+        .includes(brand: {logo_attachment: [blob: { variant_records: :blob }]})
 
       # Sort filtered models
       case sort
