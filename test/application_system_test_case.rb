@@ -20,6 +20,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     super
     FileUtils.rm_rf(ActiveStorage::Blob.service.root)
   end
+  
   parallelize_setup do |i|
     ActiveStorage::Blob.service.root = "#{ActiveStorage::Blob.service.root}-#{i}"
   end
