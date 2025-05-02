@@ -11,6 +11,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     host = Capybara.current_session.server.host
     port = Capybara.current_session.server.port
     Rails.application.config.action_mailer.default_url_options = { host: host, port: port }
+    Rails.application.routes.default_url_options[:host] = host
   end
 
   # Clear attached files after each system test

@@ -7,6 +7,13 @@ module ActiveSupport
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
 
+    Brand.reindex
+    Collection.reindex
+    Post.reindex
+
+    # and disable callbacks
+    Searchkick.disable_callbacks
+
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
