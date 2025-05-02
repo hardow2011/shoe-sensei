@@ -7,7 +7,7 @@ module ActiveSupport
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
 
-    parallelize_setup do
+    parallelize_setup do |worker|
       Searchkick.index_suffix = worker
 
       # reindex models
