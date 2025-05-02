@@ -81,6 +81,8 @@ gem "searchkick"
 gem "faraday_middleware-aws-sigv4"
 gem "opensearch-ruby"
 
+gem "solid_queue", "~> 1.1"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri ]
