@@ -41,8 +41,8 @@
         <li><a href="#testing">Testing</a></li>
       </ul>
     </li>
-    <li><a href="deployment-and-storage">Deployment and Storage</a></li>
-    <li><a href="todo">TODO</a></li>
+    <li><a href="#deployment-and-storage">Deployment and Storage</a></li>
+    <li><a href="#todo">TODO</a></li>
   </ol>
 </details>
 
