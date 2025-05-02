@@ -112,20 +112,7 @@ module FilterPagination
                       .filter_by_apma_accepted(selected_aditional_filters.include?(:apma_accepted))
 
       # Filter models based on selected brands
-      @models = models_to_filter.filter_by_brand_ids(single_brand_id.present? ? [single_brand_id] : brands_ids )
-
-      # Get all brands from filtered models
-      filtered_brands = Brand.joins(:models).where(models: { id: (brands_ids.any? ? models_pre_brand_filter : (@models & models_pre_brand_filter)).map(&:id) }).uniq.sort_by(&:name)
-
-      # Create filter list for brands
-      filtered_brands.each do |brand|
-        @filter_list[:brands][brand.name] = { id: brand.id, checked: brands_ids.include?(brand.id) }
-      end
-
-      # Create filter list for additional filters
-      ALLOWED_ADDITIONAL_FILTERS.each do |filter|
-        @filter_list[:additional_filters] << { name: filter, checked: selected_aditional_filters.include?(filter) }
-      end
+      @models = models_to_filter.filter_by_brand_ids(single_brand_id.present? ? [single_brand_id] : brands_ids ).includes(image_attachment: :blob).includes(brand: {logo_attachment: [blob: { variant_records: :blob }]})
 
       # Sort filtered models
       case sort
@@ -143,6 +130,19 @@ module FilterPagination
         @models = @models.order_by_heel_to_toe_drop
       when :heel_to_toe_drop_desc
         @models = @models.order_by_heel_to_toe_drop(:desc)
+      end
+
+      # Get all brands from filtered models
+      filtered_brands = Brand.joins(:models).where(models: { id: (brands_ids.any? ? models_pre_brand_filter : (@models & models_pre_brand_filter)).map(&:id) }).uniq.sort_by(&:name)
+
+      # Create filter list for brands
+      filtered_brands.each do |brand|
+        @filter_list[:brands][brand.name] = { id: brand.id, checked: brands_ids.include?(brand.id) }
+      end
+
+      # Create filter list for additional filters
+      ALLOWED_ADDITIONAL_FILTERS.each do |filter|
+        @filter_list[:additional_filters] << { name: filter, checked: selected_aditional_filters.include?(filter) }
       end
 
       @models = @models.each_slice(MODELS_PER_PAGE).to_a
