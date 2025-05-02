@@ -150,6 +150,9 @@ GEM
       logger
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
+    faraday_middleware-aws-sigv4 (1.0.1)
+      aws-sigv4 (~> 1.0)
+      faraday (>= 2.0, < 3)
     ffi (1.17.1-aarch64-linux-gnu)
     ffi (1.17.1-aarch64-linux-musl)
     ffi (1.17.1-arm-linux-gnu)
@@ -402,6 +405,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise
+  faraday_middleware-aws-sigv4
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails

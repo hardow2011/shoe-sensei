@@ -79,6 +79,7 @@ gem 'mailgun-ruby', '~>1.3.2'
 gem 'premailer-rails'
 
 gem "searchkick"
+gem "faraday_middleware-aws-sigv4"
 gem "opensearch-ruby"
 
 group :development, :test do
