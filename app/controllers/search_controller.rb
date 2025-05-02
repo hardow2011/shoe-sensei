@@ -12,7 +12,7 @@ class SearchController < ApplicationController
         results.sort_by! { |result| - responses.find { |response| match_result_response(result, response) }['_score'] }
 
         results = results.map do |r|
-            { name: r.search_name, description: r.search_description, path: r.search_path, image: r.search_image }
+            { name: r.search_name, description: r.search_description, path: r.search_path, image: r.search_image || ActionController::Base.helpers.asset_path('logo/official.webp') }
         end
 
         render json: results
