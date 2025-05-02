@@ -56,7 +56,6 @@ gem 'mobility', '~> 1.3.0.rc3'
 # gem "actionpack-page_caching"
 # gem 'actionpack-action_caching'
 # gem 'delayed_job_active_record'
-gem 'sidekiq'
 
 # Sentry gems
 gem 'stackprof'
