@@ -19,8 +19,6 @@ window.addEventListener('turbo:load', () => {
                     if(locale == 'es' || locale == 'en') {
                         url = `/${locale}${url}`;
                     }
-                    console.log(url);
-                    
                     try {
                     const response = await fetch(new URL(url, window.location.origin));
                     if (!response.ok) {
