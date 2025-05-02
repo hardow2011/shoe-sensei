@@ -14,7 +14,7 @@ class SearchController < ApplicationController
         # This avoids the N+1 query problem
         posts = Post.where(id: posts_ids)
         # eager load brands logos
-        brands = Brand.where(id: brands_ids).with_attached_logo
+        brands = Brand.where(id: brands_ids).includes(logo_attachment: :blob)
         # eager load model images from collections
         collections = Collection.where(id: collections_ids).includes(models: :image_attachment)
 

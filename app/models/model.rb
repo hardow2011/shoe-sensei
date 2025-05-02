@@ -29,7 +29,7 @@ class Model < ApplicationRecord
   belongs_to :collection
   has_one :brand, through: :collection
 
-  has_one_attached :image
+  has_one_attached :image, dependent: :destroy
 
   serialize :tags, coder: HashSerializer
 

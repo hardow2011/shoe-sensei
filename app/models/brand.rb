@@ -40,7 +40,7 @@ class Brand < ApplicationRecord
     .select('brands.id, brands.handle, brands.name, count(models.id) as models_count')
     .group(:id).order(models_count: :desc).limit(limit) }
 
-  has_one_attached :logo do |attachable|
+  has_one_attached :logo, dependent: :destroy do |attachable|
     attachable.variant :thumb, resize_to_limit: [500, 500], preprocessed: true
   end
 
