@@ -16,5 +16,8 @@ application.register("hello", HelloController)
 import ModelsFilterController from "./models_filter_controller"
 application.register("models-filter", ModelsFilterController)
 
-import TinyMceController from "./tinymce_controller"
-application.register("tinymce", TinyMceController)
+import NavbarSearchController from "./navbar_search_controller"
+application.register("navbar-search", NavbarSearchController)
+
+import TinymceController from "./tinymce_controller"
+application.register("tinymce", TinymceController)

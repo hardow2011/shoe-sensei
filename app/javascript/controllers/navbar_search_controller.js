@@ -1,9 +1,13 @@
+import { Controller } from "@hotwired/stimulus"
 import { autocomplete } from '@algolia/autocomplete-js';
 
-window.addEventListener('turbo:load', () => {
+// Connects to data-controller="navbar-search"
+export default class extends Controller {
+  static targets = ['autocompleteField']
+  connect() {
     const locale = window.location.pathname.split('/')[1];
-    autocomplete({
-    container: '#autocomplete',
+    this.autocompleteObject = autocomplete({
+    container: `#${this.autocompleteFieldTarget.id}`,
     placeholder: locale == 'es' ? 'Buscar' : 'Search',
     translations: {
         clearButtonTitle: locale == 'es' ? 'Limpiar' : 'Clear', // defaults to 'Clear'
@@ -65,4 +69,10 @@ window.addEventListener('turbo:load', () => {
         ];
     },
     });
-})
+    
+  }
+
+  disconnect() {
+    this.autocompleteObject.destroy();
+  }
+}
