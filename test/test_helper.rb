@@ -7,9 +7,18 @@ module ActiveSupport
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
 
-    Brand.reindex
-    Collection.reindex
-    Post.reindex
+    parallelize_setup do
+      Searchkick.index_suffix = worker
+
+      # reindex models
+      Brand.reindex
+      Collection.reindex
+      Post.reindex
+  
+      # and disable callbacks
+      Searchkick.disable_callbacks
+    end
+
 
     # and disable callbacks
     Searchkick.disable_callbacks
