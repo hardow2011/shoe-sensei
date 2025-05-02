@@ -15,9 +15,14 @@ window.addEventListener('turbo:load', () => {
             {
                 sourceId: 'results',
                 async getItems() {
-                    const url = `${(!!locale ? '/' + locale : '')}/search/${query}`;
+                    let url = `/search/${query}`;
+                    if(locale == 'es' || locale == 'en') {
+                        url = `/${locale}${url}`;
+                    }
+                    console.log(url);
+                    
                     try {
-                    const response = await fetch(url);
+                    const response = await fetch(new URL(url, window.location.origin));
                     if (!response.ok) {
                         throw new Error(`Response status: ${response.status}`);
                     }
