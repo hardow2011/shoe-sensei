@@ -42,6 +42,7 @@
       </ul>
     </li>
     <li><a href="deployment-and-storage">Deployment and Storage</a></li>
+    <li><a href="todo">TODO</a></li>
   </ol>
 </details>
 
@@ -267,6 +268,12 @@ The Active Storage images and OpenSearch search engine are stored in AWS.
 The production variables are stored in the credential files.
 
 Every push to the main origin branch will be automatically deployed to Render.
+
+## TODO
+
+1. Routinely delete unnatached images using background queues.
+2. Reindex using background queues.
+3. Send emails using queues.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
