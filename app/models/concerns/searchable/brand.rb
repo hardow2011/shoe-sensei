@@ -10,7 +10,7 @@ module Searchable::Brand
         {
             name: name,
             overview_en: overview_en,
-            overview_es: overview_es
+            overview_es: overview_es,
         }
     end
 
@@ -29,7 +29,5 @@ module Searchable::Brand
     def search_image
         url_for self.logo
     end
-
-
 end
   

@@ -13,7 +13,7 @@ module Searchable::Post
             content_en: content_en,
             content_es: content_es,
             overview_en: overview_en,
-            overview_es: overview_es
+            overview_es: overview_es,
         }
     end
 
@@ -32,5 +32,4 @@ module Searchable::Post
     def search_image
         nil
     end
-
 end

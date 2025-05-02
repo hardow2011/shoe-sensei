@@ -10,7 +10,7 @@ module Searchable::Collection
         {
             name: name,
             overview_en: overview_en,
-            overview_es: overview_es
+            overview_es: overview_es,
         }
     end
 
