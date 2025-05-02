@@ -86,11 +86,20 @@ For better error messages, disable `config.exceptions_app = self.routes` from `c
 
 To disable real email sending in development environment, comment the line `config.action_mailer.delivery_method = :mailgun` from `config/environments/development.rb`
 
+OpenSeacrh must be running locally for the related tests to run properly. That can be dome with the command `docker compose -f opensearch-docker-compose-3.x.yml up` and waiting a bit to allow the engine to start before running the tests.
+
+When starting the local server with `bin/dev`, four services are started according the the `Procfile.dev`:
+1. `web`: for the Rails server
+2. `js`: the JavaScript file watcher
+3. `css`: the styles files watcher
+4. `opensearch`: the docker compose to start the OpenSearch search engine
+
 ### Prerequisites
 * Install the libyaml-dev library
 * Install the libpq-dev library
 * Install the ruby-railties library
 * Install the libvips42 library
+* Install Docker Compose
 * [Install Ruby version 3.2.2](https://github.com/rbenv/rbenv)
 * [Install PostgreSQL](https://www.postgresql.org/download/)
 * [Install node version 18.17.1 or higher](https://nodejs.org/en/download)
@@ -253,7 +262,7 @@ es:
 ## Deployment and Storage
 
 The web app, database and cache store are being held in [Render](https://render.com/).
-The Active Storage images and stored in an AWS S3 bucket.
+The Active Storage images and OpenSearch search engine are stored in AWS.
 
 The production variables are stored in the credential files.
 
