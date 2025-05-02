@@ -17,6 +17,10 @@ module Searchable::Post
         }
     end
 
+    def should_index?
+        published # only index published posts
+    end
+
     def search_name
         title
     end
