@@ -37,6 +37,7 @@
         <li><a href="#admin-subdomain">Admin subdomain</a></li>
         <li><a href="#shoe-filter-sort-and-pagination">Shoe filter, sort and pagination</a></li>
         <li><a href="#blog">Blog</a></li>
+        <li><a href="#search">Search</a></li>
         <li><a href="#testing">Testing</a></li>
       </ul>
     </li>
@@ -70,6 +71,8 @@ The transactional email platform used is Mailgun.
 * [![Render][Render-logo]][Render-url]
 * [![Amazon S3][AmazonS3-logo]][AmazonS3-url]
 * [![Mailgun][Mailgun-logo]][Mailgun-url]
+* [![OpenSearch][OpenSearch-logo]][OpenSearch-url]
+* [![Algolia][Algolia-logo]][Algolia-url]
 * [![Bulma][Bulma-logo]][Bulma-url]
 * [TinyMCE](https://www.tiny.cloud/)
 
@@ -149,7 +152,7 @@ admin.localhost:3000
 
 ### Shoe filter, sort and pagination
 Shoe Sensei provides a handy, custom-made shoe filter to assist interested parties in their search for the right footwear for the occasion.
-<img width="704" alt="image" src="https://github.com/user-attachments/assets/dee4a979-524c-418d-9eb8-fdc1b1698d4f" />
+![image](https://github.com/user-attachments/assets/dee4a979-524c-418d-9eb8-fdc1b1698d4f)
 
 The filter is comprised of:
 1. Brand
@@ -201,6 +204,14 @@ Once received by the controller, it will be uploaded to the AWS S3 bucket and th
 Now, **every time** an image is pasted, it is automatically uploaded to storage, whether or not the blog post ends up getting saved. This creates an issue, because the storage will progresively accumulate unused media, and storage is not free.
 
 To remediate the issue, a [cron task](https://github.com/hardow2011/shoe-sensei/blob/main/config/schedule.rb) should run periodically to clean up the unattached files by executing the [cleanup:unnattached_files task](https://github.com/hardow2011/shoe-sensei/blob/main/lib/tasks/cleanup.rake).
+
+### Search
+
+![image](https://github.com/user-attachments/assets/f2ec0834-7932-4bbc-9f57-008dbe0c502a)
+
+To provide a user-friendly and responsive search experience, this project combines a backend powered by OpenSearch and Searchkick with a frontend built using Algolia’s autocomplete-js library. While OpenSearch handles full-text indexing and relevance scoring, Algolia's autocomplete-js enables a dynamic autocomplete interface and real-time search result updates. 
+
+When a user begins typing in the search bar, Algolia sends the query to a custom Rails endpoint, which uses Searchkick to query OpenSearch. Results are returned with relevance scores and highlighted matches, and then reloaded using ActiveRecord to ensure associations and attachments (like images or files) are properly eager loaded. This approach eliminates N+1 queries and provides a smooth, scalable search experience that feels as fast as hosted SaaS options, while giving full control over the indexing and search logic.
 
 ### Testing
 
@@ -264,3 +275,10 @@ Every push to the main origin branch will be automatically deployed to Render.
 
 [Mailgun-logo]: https://img.shields.io/badge/Mailgun-F06B66?style=for-the-badge&logo=mailgun&logoColor=white
 [Mailgun-url]: https://www.mailgun.com/
+
+[OpenSearch-logo]: https://img.shields.io/badge/OpenSearch-005EB8?style=for-the-badge&logo=opensearch&logoColor=white
+[OpenSearch-url]: (https://opensearch.org/
+
+
+[Algolia-logo]: https://img.shields.io/badge/Algolia-003DFF?style=for-the-badge&logo=algolia&logoColor=white
+[Algolia-url]: https://www.algolia.com/doc/ui-libraries/autocomplete/introduction/what-is-autocomplete/
