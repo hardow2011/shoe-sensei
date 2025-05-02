@@ -37,10 +37,12 @@
         <li><a href="#admin-subdomain">Admin subdomain</a></li>
         <li><a href="#shoe-filter-sort-and-pagination">Shoe filter, sort and pagination</a></li>
         <li><a href="#blog">Blog</a></li>
+        <li><a href="#search">Search</a></li>
         <li><a href="#testing">Testing</a></li>
       </ul>
     </li>
-    <li><a href="deployment-and-storage">Deployment and Storage</a></li>
+    <li><a href="#deployment-and-storage">Deployment and Storage</a></li>
+    <li><a href="#todo">TODO</a></li>
   </ol>
 </details>
 
@@ -70,6 +72,8 @@ The transactional email platform used is Mailgun.
 * [![Render][Render-logo]][Render-url]
 * [![Amazon S3][AmazonS3-logo]][AmazonS3-url]
 * [![Mailgun][Mailgun-logo]][Mailgun-url]
+* [![OpenSearch][OpenSearch-logo]][OpenSearch-url]
+* [![Algolia][Algolia-logo]][Algolia-url]
 * [![Bulma][Bulma-logo]][Bulma-url]
 * [TinyMCE](https://www.tiny.cloud/)
 
@@ -83,11 +87,20 @@ For better error messages, disable `config.exceptions_app = self.routes` from `c
 
 To disable real email sending in development environment, comment the line `config.action_mailer.delivery_method = :mailgun` from `config/environments/development.rb`
 
+OpenSeacrh must be running locally for the related tests to run properly. That can be dome with the command `docker compose -f opensearch-docker-compose-3.x.yml up` and waiting a bit to allow the engine to start before running the tests.
+
+When starting the local server with `bin/dev`, four services are started according the the `Procfile.dev`:
+1. `web`: for the Rails server
+2. `js`: the JavaScript file watcher
+3. `css`: the styles files watcher
+4. `opensearch`: the docker compose to start the OpenSearch search engine
+
 ### Prerequisites
 * Install the libyaml-dev library
 * Install the libpq-dev library
 * Install the ruby-railties library
 * Install the libvips42 library
+* Install Docker Compose
 * [Install Ruby version 3.2.2](https://github.com/rbenv/rbenv)
 * [Install PostgreSQL](https://www.postgresql.org/download/)
 * [Install node version 18.17.1 or higher](https://nodejs.org/en/download)
@@ -149,7 +162,7 @@ admin.localhost:3000
 
 ### Shoe filter, sort and pagination
 Shoe Sensei provides a handy, custom-made shoe filter to assist interested parties in their search for the right footwear for the occasion.
-<img width="704" alt="image" src="https://github.com/user-attachments/assets/dee4a979-524c-418d-9eb8-fdc1b1698d4f" />
+![image](https://github.com/user-attachments/assets/dee4a979-524c-418d-9eb8-fdc1b1698d4f)
 
 The filter is comprised of:
 1. Brand
@@ -202,6 +215,14 @@ Now, **every time** an image is pasted, it is automatically uploaded to storage,
 
 To remediate the issue, a [cron task](https://github.com/hardow2011/shoe-sensei/blob/main/config/schedule.rb) should run periodically to clean up the unattached files by executing the [cleanup:unnattached_files task](https://github.com/hardow2011/shoe-sensei/blob/main/lib/tasks/cleanup.rake).
 
+### Search
+
+![image](https://github.com/user-attachments/assets/f2ec0834-7932-4bbc-9f57-008dbe0c502a)
+
+To provide a user-friendly and responsive search experience, this project combines a backend powered by OpenSearch and Searchkick with a frontend built using Algolia’s autocomplete-js library. While OpenSearch handles full-text indexing and relevance scoring, Algolia's autocomplete-js enables a dynamic autocomplete interface and real-time search result updates. 
+
+When a user begins typing in the search bar, Algolia sends the query to a custom Rails endpoint, which uses Searchkick to query OpenSearch. Results are returned with relevance scores and highlighted matches, and then reloaded using ActiveRecord to ensure associations and attachments (like images or files) are properly eager loaded. This approach eliminates N+1 queries and provides a smooth, scalable search experience that feels as fast as hosted SaaS options, while giving full control over the indexing and search logic.
+
 ### Testing
 
 The development methodology used for building this project is **[Test-driven development (TDD)](https://en.wikipedia.org/wiki/Test-driven_development)**.
@@ -242,11 +263,17 @@ es:
 ## Deployment and Storage
 
 The web app, database and cache store are being held in [Render](https://render.com/).
-The Active Storage images and stored in an AWS S3 bucket.
+The Active Storage images and OpenSearch search engine are stored in AWS.
 
 The production variables are stored in the credential files.
 
 Every push to the main origin branch will be automatically deployed to Render.
+
+## TODO
+
+1. Routinely delete unnatached images using background queues.
+2. Reindex using background queues.
+3. Send emails using queues.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
@@ -264,3 +291,10 @@ Every push to the main origin branch will be automatically deployed to Render.
 
 [Mailgun-logo]: https://img.shields.io/badge/Mailgun-F06B66?style=for-the-badge&logo=mailgun&logoColor=white
 [Mailgun-url]: https://www.mailgun.com/
+
+[OpenSearch-logo]: https://img.shields.io/badge/OpenSearch-005EB8?style=for-the-badge&logo=opensearch&logoColor=white
+[OpenSearch-url]: (https://opensearch.org/
+
+
+[Algolia-logo]: https://img.shields.io/badge/Algolia-003DFF?style=for-the-badge&logo=algolia&logoColor=white
+[Algolia-url]: https://www.algolia.com/doc/ui-libraries/autocomplete/introduction/what-is-autocomplete/
