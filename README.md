@@ -129,9 +129,6 @@ Make sure the Postgre service is running
  ```sh
    rails test:all
    ```
-6. Set up the cron jobs to periodically remove unattached images uploaded through TinyMCE.
-```sh
-whenever --update-crontab
 ```
 ### Start The Local Server
  ```sh

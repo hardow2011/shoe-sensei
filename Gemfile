@@ -66,8 +66,6 @@ gem "aws-sdk-s3", require: false
 
 gem 'tinymce-rails'
 
-gem 'whenever', require: false
-
 gem 'nokogiri'
 
 gem 'simple_form'
