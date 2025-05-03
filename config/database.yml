@@ -91,6 +91,7 @@ production:
   url: <%= ENV["DATABASE_URL"] %>
   queue:
     <<: *primary_production
+    adapter: postgresql
     host: <%= Rails.application.credentials.dig(:aws, :production, :queue_database, :host) %>
     database: <%= Rails.application.credentials.dig(:aws, :production, :queue_database, :database) %>
     username: <%= Rails.application.credentials.dig(:aws, :production, :queue_database, :username) %>
