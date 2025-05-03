@@ -268,7 +268,7 @@ Every push to the main origin branch will be automatically deployed to Render.
 
 ## TODO
 
-1. Routinely delete unnatached images using background queues.
+1. Routinely delete unatached images using background queues.
 2. Reindex using background queues.
 3. Send emails using queues.
 
