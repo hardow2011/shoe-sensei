@@ -87,4 +87,8 @@ Rails.application.configure do
     # api_host: 'api.eu.mailgun.net'  # Uncomment this line for EU region domains
     # timeout: 20 # Default depends on rest-client, whose default is 60s. Added in 1.2.3.
   }
+
+  # Use Solid Queue in Development.
+  config.active_job.queue_adapter = :solid_queue
+  config.solid_queue.connects_to = { database: { writing: :queue } }
 end

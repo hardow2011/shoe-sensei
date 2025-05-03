@@ -20,8 +20,17 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
-  <<: *default
-  database: footwearapp_development
+  primary:
+    <<: *default
+    database: footwearapp_development
+  queue:
+    <<: *default
+    database: footwearapp_queue_development
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *default
+    database: footwearapp_cable_development
+    migrations_paths: db/cable_migrate
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -78,4 +87,9 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
+  primary: &primary_production
   url: <%= ENV["DATABASE_URL"] %>
+  queue:
+    <<: *primary_production
+    database: shoesensei_production_queue
+    migrations_paths: db/queue_migrate
