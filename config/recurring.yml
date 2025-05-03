@@ -8,3 +8,7 @@
 #     command: "SoftDeletedRecord.due.delete_all"
 #     priority: 2
 #     schedule: at 5am every day
+development:
+  periodic_unatached_uploads:
+    class: Maintenance::CleanupUnatachedUploadsJob
+    schedule: every day at 03:00 am
