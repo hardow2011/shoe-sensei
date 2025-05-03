@@ -2,3 +2,4 @@ web: env RUBY_DEBUG_OPEN=true bin/rails server
 js: yarn build --watch
 css: yarn build:css --watch
 opensearch: docker compose -f opensearch-docker-compose-3.x.yml up
+jobs: bin/jobs
