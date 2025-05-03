@@ -91,5 +91,8 @@ production:
   url: <%= ENV["DATABASE_URL"] %>
   queue:
     <<: *primary_production
-    database: shoesensei_production_queue
+    host: <%= Rails.application.credentials.dig(:aws, :production, :queue_database, :host) %>
+    database: <%= Rails.application.credentials.dig(:aws, :production, :queue_database, :database) %>
+    username: <%= Rails.application.credentials.dig(:aws, :production, :queue_database, :username) %>
+    password: <%= Rails.application.credentials.dig(:aws, :production, :queue_database, :password) %>
     migrations_paths: db/queue_migrate
