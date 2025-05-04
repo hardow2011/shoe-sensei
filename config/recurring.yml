@@ -11,4 +11,4 @@
 development:
   periodic_unatached_uploads:
     class: Maintenance::CleanupUnatachedUploadsJob
-    schedule: every day at 02:22 am
+    schedule: every day at 02:27 am
