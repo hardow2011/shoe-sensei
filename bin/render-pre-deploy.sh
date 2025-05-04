@@ -7,3 +7,6 @@ bundle exec rails db:migrate
 
 echo "running: bundle exec rails db:prepare for the queue database"
 bundle exec rails db:prepare
+
+echo "running: bin/jobs"
+bin/jobs
