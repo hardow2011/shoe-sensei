@@ -216,9 +216,9 @@ To remediate the issue, a [cron task](https://github.com/hardow2011/shoe-sensei/
 
 ![image](https://github.com/user-attachments/assets/f2ec0834-7932-4bbc-9f57-008dbe0c502a)
 
-To provide a user-friendly and responsive search experience, this project combines a backend powered by OpenSearch and Searchkick with a frontend built using Algolia’s autocomplete-js library. While OpenSearch handles full-text indexing and relevance scoring, Algolia's autocomplete-js enables a dynamic autocomplete interface and real-time search result updates. 
+To provide a user-friendly and responsive search experience, this project combines a backend powered by OpenSearch and Searchkick with a frontend built using Algolia’s autocomplete-js library. While OpenSearch handles full-text indexing and relevance scoring, Algolia's autocomplete-js enables a dynamic autocomplete interface and real-time search result updates.
 
-When a user begins typing in the search bar, Algolia sends the query to a custom Rails endpoint, which uses Searchkick to query OpenSearch. Results are returned with relevance scores and highlighted matches, and then reloaded using ActiveRecord to ensure associations and attachments (like images or files) are properly eager loaded. This approach eliminates N+1 queries and provides a smooth, scalable search experience that feels as fast as hosted SaaS options, while giving full control over the indexing and search logic.
+When a user begins typing in the search bar, Algolia sends the query to a custom Rails endpoint, which uses Searchkick to query OpenSearch. Results are returned with relevance scores, and then reloaded using ActiveRecord to ensure associations and attachments (like images or files) are properly eager loaded. This approach eliminates N+1 queries and provides a smooth, scalable search experience that feels as fast as hosted SaaS options, while giving full control over the indexing and search logic.
 
 ### Testing
 
