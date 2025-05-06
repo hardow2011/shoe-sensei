@@ -89,7 +89,7 @@ test:
 production:
   primary:
     adapter: postgresql
-    url: <%= Rails.application.credentials.dig(:aws, :production, :database, :database) %>
+    url: <%= Rails.application.credentials.dig(:aws, :production, :database_url) %>
   queue:
     adapter: postgresql
     post: 5432
