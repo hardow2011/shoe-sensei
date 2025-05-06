@@ -87,7 +87,7 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  primary: &primary_production
+  primary:
     adapter: postgresql
     url: <%= Rails.application.credentials.dig(:aws, :production, :database, :database) %>
   queue:
