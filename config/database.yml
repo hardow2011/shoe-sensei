@@ -89,7 +89,13 @@ test:
 production:
   primary:
     adapter: postgresql
-    url: <%= Rails.application.credentials.dig(:aws, :production, :database_url) %>
+    encoding: unicode
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    database: <%= Rails.application.credentials.dig(:aws, :production, :primary_database, :name) %>
+    username: <%= Rails.application.credentials.dig(:aws, :production, :primary_database, :username) %>
+    password: <%= Rails.application.credentials.dig(:aws, :production, :primary_database, :password) %>
+    host: <%= Rails.application.credentials.dig(:aws, :production, :primary_database, :host) %>
+    port: 5432
   queue:
     adapter: postgresql
     post: 5432
