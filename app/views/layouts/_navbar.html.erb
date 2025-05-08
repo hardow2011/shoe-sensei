@@ -22,9 +22,6 @@
         </div>
       </div>
       <%= link_to t('blog'), posts_path, class: "navbar-item #{request.path == posts_path ? 'is-selected has-text-white' : nil}" %>
-      <div class="autocomplete-wrapper" data-controller="navbar-search">
-        <div id="autocomplete" class="autocomplete" data-navbar-search-target="autocompleteField"></div>
-      </div>
     </div>
 
     <div class="navbar-end">

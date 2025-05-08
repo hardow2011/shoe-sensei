@@ -8,15 +8,15 @@ module ActiveSupport
     parallelize(workers: :number_of_processors)
 
     # reindex models
-    Brand.reindex
-    Collection.reindex
-    Post.reindex
+    # Brand.reindex
+    # Collection.reindex
+    # Post.reindex
 
     # and disable callbacks
-    Searchkick.disable_callbacks
+    # Searchkick.disable_callbacks
 
     # and disable callbacks
-    Searchkick.disable_callbacks
+    # Searchkick.disable_callbacks
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all

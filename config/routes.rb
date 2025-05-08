@@ -36,7 +36,7 @@ Rails.application.routes.draw do
       end
 
       resources :brands, only: %i[show index]
-      get 'search/:query', to: 'search#autocomplete'
+      # get 'search/:query', to: 'search#autocomplete'
     end
 
     # error pages
