@@ -5,6 +5,9 @@
 # Admin user
 admin = User.create!(email: 'admin@email.com', password: 'Adm!n123', password_confirmation: 'Adm!n123', confirmed_at: DateTime.new(2025, 10, 3), admin: true, subdomain: 'admin')
 
+# Regular user
+user = User.create!(email: 'fast@email.com', username: 'fastrunner', password: 'fast1234', password_confirmation: 'fast1234', confirmed_at: DateTime.new(2025, 10, 3))
+
 # Brands
 brooks = Brand.create!(name: 'Brooks', company_color: '#1375b8',
   logo: File.open('test/fixtures/files/brooks-logo.webp'),
