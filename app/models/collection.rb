@@ -2,14 +2,14 @@
 #
 # Table name: collections
 #
-#  id          :bigint           not null, primary key
-#  handle      :string           not null
+#  id          :integer          not null, primary key
 #  name        :string           not null
 #  overview_en :string           not null
 #  overview_es :string           not null
+#  handle      :string           not null
+#  brand_id    :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  brand_id    :bigint           not null
 #
 # Indexes
 #
@@ -17,10 +17,7 @@
 #  index_collections_on_handle_and_brand_id  (handle,brand_id) UNIQUE
 #  index_collections_on_name_and_brand_id    (name,brand_id) UNIQUE
 #
-# Foreign Keys
-#
-#  fk_rails_...  (brand_id => brands.id)
-#
+
 class Collection < ApplicationRecord
   # include Searchable::Collection
   include DataFormatting

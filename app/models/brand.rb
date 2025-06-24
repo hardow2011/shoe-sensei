@@ -2,20 +2,21 @@
 #
 # Table name: brands
 #
-#  id            :bigint           not null, primary key
-#  company_color :string(7)        not null
-#  handle        :string           not null
+#  id            :integer          not null, primary key
 #  name          :string           not null
+#  handle        :string           not null
 #  overview_en   :string           not null
 #  overview_es   :string           not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  company_color :string(7)        not null
 #
 # Indexes
 #
 #  index_brands_on_handle  (handle) UNIQUE
 #  index_brands_on_name    (name) UNIQUE
 #
+
 class Brand < ApplicationRecord
   # include Searchable::Brand
   

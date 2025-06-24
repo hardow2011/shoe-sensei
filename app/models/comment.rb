@@ -2,14 +2,14 @@
 #
 # Table name: comments
 #
-#  id         :bigint           not null, primary key
+#  id         :integer          not null, primary key
 #  content    :text
-#  deleted_at :datetime
+#  post_id    :integer          not null
+#  user_id    :integer
+#  comment_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  comment_id :bigint
-#  post_id    :bigint           not null
-#  user_id    :bigint
+#  deleted_at :datetime
 #
 # Indexes
 #
@@ -17,12 +17,7 @@
 #  index_comments_on_post_id     (post_id)
 #  index_comments_on_user_id     (user_id)
 #
-# Foreign Keys
-#
-#  fk_rails_...  (comment_id => comments.id)
-#  fk_rails_...  (post_id => posts.id)
-#  fk_rails_...  (user_id => users.id)
-#
+
 class Comment < ApplicationRecord
   REPLY_TO_TURBO_SUFFIX = "reply_to_comment_"
   include ActionView::RecordIdentifier
