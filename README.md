@@ -214,7 +214,7 @@ To remediate the issue, a [cron task](https://github.com/hardow2011/shoe-sensei/
 
 ### Search
 
-![image](https://github.com/user-attachments/assets/f2ec0834-7932-4bbc-9f57-008dbe0c502a)
+https://github.com/user-attachments/assets/1deab506-6825-4288-abb6-5c0a9b6360ce
 
 To provide a user-friendly and responsive search experience, this project combines a backend powered by OpenSearch and Searchkick with a frontend built using Algolia’s autocomplete-js library. While OpenSearch handles full-text indexing and relevance scoring, Algolia's autocomplete-js enables a dynamic autocomplete interface and real-time search result updates.
 
