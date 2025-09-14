@@ -36,7 +36,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
-  # Use aws Render storage disk
+  # Use Render storage disk
   config.active_storage.service = :render
 
   # Mount Action Cable outside main process or domain.

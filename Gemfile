@@ -64,8 +64,6 @@ gem 'stackprof'
 gem 'sentry-ruby'
 gem 'sentry-rails'
 
-gem "aws-sdk-s3", require: false
-
 gem 'tinymce-rails'
 
 gem 'nokogiri'
@@ -77,9 +75,8 @@ gem 'pundit'
 gem 'mailgun-ruby', '~>1.3.2'
 gem 'premailer-rails'
 
-gem "searchkick"
-gem "faraday_middleware-aws-sigv4"
-gem "opensearch-ruby"
+# gem "searchkick"
+# gem "opensearch-ruby"
 
 gem "solid_queue", "~> 1.1"
 
