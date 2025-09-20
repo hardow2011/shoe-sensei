@@ -2,6 +2,7 @@ class Admin::CommentsController < Admin::AdminController
     before_action :set_comment, only: [:destroy]
     before_action :set_comments, only: [:index]
     def index
+        @selected_filter = request.params['filter']
     end
 
     def destroy
