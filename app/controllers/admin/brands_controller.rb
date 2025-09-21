@@ -2,7 +2,7 @@ class Admin::BrandsController < Admin::AdminController
   before_action :set_brand, only: %i[edit update destroy]
 
   def index
-    @brands = Brand.order(updated_at: :desc)
+    @brands = Brand.order(updated_at: :desc).includes(logo_attachment: :blob)
   end
 
   # def show
