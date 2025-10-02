@@ -1,52 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <% if @meta_tags&.fetch(:google_tag, false) %>
-      <!-- Google Tag Manager -->
-      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-PRTXNJGN');</script>
-      <!-- End Google Tag Manager -->
-
-      <!-- Google tag (gtag.js) -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-HPZY3GYRWR"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-HPZY3GYRWR');
-      </script>
-
-    <% end %>
-    <% if @meta_tags&.fetch(:title, false) %>
-      <title><%= @meta_tags[:title] %></title>
-    <% end %>
-    <% if @meta_tags&.fetch(:description, false) %>
-      <meta name="description" content="<%= @meta_tags[:description] %>"/>
-    <% end %>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-
-    <% if Rails.env != 'test' %>
-      <%# TODO: remove hardcodded "https://shoesensei.com" %>
-      <link rel="alternate" href="<%= ["https://shoesensei.com", url_for(request.params.replace(locale: nil))].join('') %>" hreflang="en">
-      <link rel="alternate" href="<%= ["https://shoesensei.com", url_for(request.params.replace(locale: :es))].join('') %>" hreflang="es">
-      <link rel="alternate" href="<%= ["https://shoesensei.com", url_for(request.params.replace(locale: nil))].join('') %>" hreflang="x-default">
-    <% end %>
-
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "honeypot", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-    <link rel="icon" type="image/x-icon" href="<%= image_path("logo/favicon.ico") %>">
-    <%= tinymce_assets data: { turbo_track: "reload" } %>
-    <%= content_for :head %>
-    <%= Sentry.get_trace_propagation_meta.html_safe %>
-  </head>
+  <%= render 'layouts/head' %>
 
   <body>
     <% if @meta_tags&.fetch(:google_tag, false) %>

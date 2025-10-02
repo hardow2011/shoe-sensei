@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
   include SenderInfo
   around_action :switch_locale
   before_action :set_app_name
@@ -56,7 +57,15 @@ class ApplicationController < ActionController::Base
     @meta_tags = {
       title: @app_name,
       description: I18n.t('site_default_description'),
-      google_tag: true
+      google_tag: true,
+      open_graph: {
+        title: I18n.t('shoes_made_simple'),
+        url: request.original_url,
+        image: view_context.image_url("logo/official.webp"),
+        description: I18n.t('site_default_description'),
+        locale: I18n.locale,
+        type: 'website'
+      }
     }
   end
 
