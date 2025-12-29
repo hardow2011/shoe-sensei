@@ -1,12 +1,12 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://shoesensei.com">
+  <!-- <a href="https://shoesensei.com"> -->
     <img src="https://github.com/user-attachments/assets/55edba10-f689-4f09-ac8a-c0b5f8d0af57" alt="Logo" width="80" height="80">
-  </a>
+  <!-- </a> -->
 
   <h3 align="center">Shoe Sensei</h3>
-  <p><a href="https://shoesensei.com/">https://shoesensei.com/</a></p>
+  <!-- <p><a href="https://shoesensei.com/">https://shoesensei.com/</a></p> -->
 
   <p align="center">
     Shoes Made Simple.
