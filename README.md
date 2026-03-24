@@ -37,6 +37,7 @@
         <li><a href="#admin-subdomain">Admin subdomain</a></li>
         <li><a href="#shoe-filter-sort-and-pagination">Shoe filter, sort and pagination</a></li>
         <li><a href="#blog">Blog</a></li>
+        <li><a href="#search">Search</a></li>
         <li><a href="#testing">Testing</a></li>
       </ul>
     </li>
