@@ -87,7 +87,7 @@ For better error messages, disable `config.exceptions_app = self.routes` from `c
 
 To disable real email sending in development environment, comment the line `config.action_mailer.delivery_method = :mailgun` from `config/environments/development.rb`
 
-OpenSeacrh must be running locally for the related tests to run properly. That can be dome with the command `docker compose -f opensearch-docker-compose-3.x.yml up` and waiting a bit to allow the engine to start before running the tests.
+OpenSearch must be running locally for the related tests to run properly. That can be dome with the command `docker compose -f opensearch-docker-compose-3.x.yml up` and waiting a bit to allow the engine to start before running the tests.
 
 When starting the local server with `bin/dev`, four services are started according the the `Procfile.dev`:
 1. `web`: for the Rails server
