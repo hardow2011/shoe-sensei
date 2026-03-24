@@ -4,6 +4,7 @@ ruby "3.2.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 8.0.2'
+gem 'minitest', '~> 5.0'
 
 gem 'stringio', "~> 3.1.7"
 
@@ -75,8 +76,8 @@ gem 'pundit'
 gem 'mailgun-ruby', '~>1.3.2'
 gem 'premailer-rails'
 
-# gem "searchkick"
-# gem "opensearch-ruby"
+gem "searchkick"
+gem "opensearch-ruby"
 
 gem "solid_queue", "~> 1.1"
 
