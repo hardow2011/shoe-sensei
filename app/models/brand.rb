@@ -18,7 +18,7 @@
 #
 
 class Brand < ApplicationRecord
-  # include Searchable::Brand
+  include Searchable::Brand
   
   include DataFormatting
   include ActionView::Helpers::TextHelper

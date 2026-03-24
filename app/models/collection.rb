@@ -19,7 +19,7 @@
 #
 
 class Collection < ApplicationRecord
-  # include Searchable::Collection
+  include Searchable::Collection
   include DataFormatting
   include ActionView::Helpers::TextHelper
   extend Mobility
